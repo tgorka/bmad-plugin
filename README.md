@@ -28,7 +28,17 @@ A Claude Code plugin that transforms Claude into a complete agile development
 environment with specialized agents, structured workflows, and intelligent
 context management.
 
-## Installation
+## Features
+
+- **9 Specialized Agents**: Business Analyst, Product Manager, UX Designer,
+  System Architect, Scrum Master, Developer, QA Engineer, Tech Writer, and
+  Solo Dev
+- **26 Guided Workflows**: From brainstorming to implementation
+- **4 Development Phases**: Analysis, Planning, Solutioning, Implementation
+- **Progressive Disclosure**: Step-by-step workflow execution
+- **State Tracking**: Resume workflows across sessions
+
+## Usage
 
 ### Step 1: Add Marketplace
 
@@ -100,17 +110,7 @@ git -C ~/.claude/plugins/marketplaces/bmad-method pull origin main
 claude plugin update bmad@bmad-method
 ```
 
-## Features
-
-- **9 Specialized Agents**: Business Analyst, Product Manager, UX Designer,
-  System Architect, Scrum Master, Developer, QA Engineer, Tech Writer, and
-  Solo Dev
-- **26 Guided Workflows**: From brainstorming to implementation
-- **4 Development Phases**: Analysis, Planning, Solutioning, Implementation
-- **Progressive Disclosure**: Step-by-step workflow execution
-- **State Tracking**: Resume workflows across sessions
-
-## Quick Start
+### Quick Start
 
 ```bash
 # Initialize BMAD in your project
