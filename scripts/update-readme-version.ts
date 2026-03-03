@@ -12,7 +12,7 @@ import { getEnabledSources } from './lib/upstream-sources.ts';
 
 /** Display labels for upstream source IDs */
 const SOURCE_LABELS: Record<string, string> = {
-  core: 'Core',
+  core: 'BMAD Method',
   tea: 'TEA',
   bmb: 'BMB',
   cis: 'CIS',
@@ -59,13 +59,13 @@ for (const source of sources) {
   const tagDate = await getTagDate(source.localPath, version);
   const syncDate = getLastSyncDate(source.versionFile);
   rows.push(
-    `| ${label} | [${source.repo}](https://github.com/${source.repo}) | ${version} | ${tagDate} | ${syncDate} |`,
+    `| [${label}](https://github.com/${source.repo}) | ${version} | ${tagDate} | ${syncDate} |`,
   );
 }
 
 const table = [
-  '| Module | Repo | Version | Released | Last Synced |',
-  '|---|---|---|---|---|',
+  '| Module | Version | Released | Last Synced |',
+  '|---|---|---|---|',
   ...rows,
 ].join('\n');
 
