@@ -3,6 +3,7 @@
 > BMAD Method - Breakthrough Method for Agile AI-Driven Development
 
 [![Synced with BMAD-METHOD](https://github.com/PabloLION/bmad-plugin/actions/workflows/sync-upstream.yml/badge.svg)](https://github.com/PabloLION/bmad-plugin/actions/workflows/sync-upstream.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 <!-- upstream-badges-start -->
 [![BMAD Method version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/PabloLION/bmad-plugin/main/.github/badges/upstream-version.json)](https://github.com/bmadcode/BMAD-METHOD)
 [![TEA Module version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/PabloLION/bmad-plugin/main/.github/badges/upstream-version-tea.json)](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise)
@@ -10,7 +11,6 @@
 [![CIS Module version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/PabloLION/bmad-plugin/main/.github/badges/upstream-version-cis.json)](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite)
 [![GDS Module version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/PabloLION/bmad-plugin/main/.github/badges/upstream-version-gds.json)](https://github.com/bmad-code-org/bmad-module-game-dev-studio)
 <!-- upstream-badges-end -->
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 <!-- upstream-version-start -->
 **Plugin version:** v6.0.3.4
