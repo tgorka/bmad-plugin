@@ -141,9 +141,11 @@ export function rewriteFileContent(
   let changeCount = 0;
   const warnings: string[] = [];
 
-  // Main regex: captures module alias and the rest of the path
+  // Main regex: captures module alias and the rest of the path.
+  // Alias allows underscore-prefixed segments like _config and _memory.
   // Terminates at whitespace, quotes, angle brackets, curly braces, backticks, or parens
-  const pattern = /\{project-root\}\/_bmad\/([a-z]+)\/((?:[^\s'"<>{}()`])+)/g;
+  const pattern =
+    /\{project-root\}\/_bmad\/(_?[a-z][a-z-]*)\/((?:[^\s'"<>{}()`])+)/g;
 
   const rewritten = content.replace(pattern, (fullMatch, alias, rest) => {
     const result = rewriteSinglePath(alias as string, rest as string, map);
@@ -177,13 +179,8 @@ function rewriteSinglePath(
     return { replacement: '', changed: false };
   }
   if (alias === '_config' || rest.startsWith('_config/')) {
-    return { replacement: '', changed: false };
+    return rewriteConfigDirPath(alias, rest);
   }
-
-  // Handle top-level _bmad/_memory/ and _bmad/_config/ (alias starts with _)
-  // These are caught by the regex as alias="_memory" or alias="_config"
-  // but the regex requires [a-z]+ so they won't match. Handle the case
-  // where they appear as part of a module path instead.
 
   // Task paths: <alias>/tasks/<file>
   if (rest.startsWith('tasks/')) {
@@ -298,6 +295,36 @@ function rewriteTaskPath(_alias: string, rest: string): SingleRewriteResult {
     replacement: `\${CLAUDE_PLUGIN_ROOT}/_shared/tasks/${file}`,
     changed: true,
   };
+}
+
+/**
+ * Rewrite paths under _bmad/_config/.
+ *
+ * Known mappings:
+ *   _config/agent-manifest.csv → ${CLAUDE_PLUGIN_ROOT}/_shared/agent-manifest.csv
+ *
+ * Unknown _config paths are left unrewritten (pass-through with no warning,
+ * since upstream may add new _config files that the plugin doesn't generate).
+ */
+function rewriteConfigDirPath(
+  _alias: string,
+  rest: string,
+): SingleRewriteResult {
+  // When alias=="_config": rest is just the filename (e.g. "agent-manifest.csv").
+  // When alias is a module and rest starts with "_config/": strip the prefix.
+  const file = rest.startsWith('_config/')
+    ? rest.slice('_config/'.length)
+    : rest;
+
+  if (file === 'agent-manifest.csv') {
+    return {
+      replacement: `\${CLAUDE_PLUGIN_ROOT}/_shared/agent-manifest.csv`,
+      changed: true,
+    };
+  }
+
+  // Unknown _config file — leave unrewritten, no warning (expected: upstream adds files)
+  return { replacement: '', changed: false };
 }
 
 /** Rewrite a config.yaml path to .claude/bmad.local.md */

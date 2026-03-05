@@ -20,6 +20,7 @@ All scripts use `bun run <script>`. For local tooling (biome, tsc), use
 | sync:source | `bun run sync:source <id>` | Sync a single upstream source |
 | generate:agents | `bun run generate:agents` | Generate agent .md files from upstream YAML |
 | generate:skills | `bun run generate:skills` | Generate SKILL.md files from upstream workflows |
+| generate:manifest | `bun run generate:manifest` | Generate _shared/agent-manifest.csv from plugin agent files |
 | sync-all | `bun run sync-all` | Run sync → generate:agents → generate:skills in sequence |
 | bump-core | `bun run bump-core` | Bump plugin version for new core BMAD-METHOD release |
 | bump-module | `bun run bump-module -- --source <id>` | Bump plugin version for new external module release |
