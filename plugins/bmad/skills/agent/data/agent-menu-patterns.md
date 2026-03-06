@@ -58,7 +58,7 @@ Attach to ANY handler to pass input files.
 ```yaml
 - trigger: TS or fuzzy match on team-standup
   exec: '${CLAUDE_PLUGIN_ROOT}/_shared/tasks/team-standup.md'
-  data: '{project-root}/_bmad/_config/agent-manifest.csv'
+  data: '${CLAUDE_PLUGIN_ROOT}/_shared/agent-manifest.csv'
   description: '[TS] Run team standup'
 ```
 

@@ -4,3 +4,7 @@
 node_modules/
 .DS_Store
 .release-state
+
+# Dolt database files (added by bd init)
+.dolt/
+*.db

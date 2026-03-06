@@ -1,7 +1,7 @@
 <task id="_bmad/core/workflows/advanced-elicitation/workflow.xml" name="Advanced Elicitation"
   description="Push the LLM to reconsider refine and improve its recent output. Use when the user asks for advanced elicitation"
   methods="${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/methods.csv"
-  agent-party="{project-root}/_bmad/_config/agent-manifest.csv">
+  agent-party="${CLAUDE_PLUGIN_ROOT}/_shared/agent-manifest.csv">
   <llm critical="true">
     <i>MANDATORY: Execute ALL steps in the flow section IN EXACT ORDER</i>
     <i>DO NOT skip steps or change the sequence</i>

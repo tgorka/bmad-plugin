@@ -3,6 +3,7 @@
 > BMAD Method - Breakthrough Method for Agile AI-Driven Development
 
 [![Synced with BMAD-METHOD](https://github.com/PabloLION/bmad-plugin/actions/workflows/sync-upstream.yml/badge.svg)](https://github.com/PabloLION/bmad-plugin/actions/workflows/sync-upstream.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 <!-- upstream-badges-start -->
 [![BMAD Method version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/PabloLION/bmad-plugin/main/.github/badges/upstream-version.json)](https://github.com/bmadcode/BMAD-METHOD)
 [![TEA Module version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/PabloLION/bmad-plugin/main/.github/badges/upstream-version-tea.json)](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise)
@@ -10,25 +11,34 @@
 [![CIS Module version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/PabloLION/bmad-plugin/main/.github/badges/upstream-version-cis.json)](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite)
 [![GDS Module version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/PabloLION/bmad-plugin/main/.github/badges/upstream-version-gds.json)](https://github.com/bmad-code-org/bmad-module-game-dev-studio)
 <!-- upstream-badges-end -->
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 <!-- upstream-version-start -->
-**Plugin version:** v6.0.3.4
+**Plugin version:** v6.0.4.2
 
-| Module | Repo | Version | Released | Last Synced |
-|---|---|---|---|---|
-| Core | [bmadcode/BMAD-METHOD](https://github.com/bmadcode/BMAD-METHOD) | v6.0.3 | 2026-02-23 | 2026-02-24 |
-| TEA | [bmad-code-org/bmad-method-test-architecture-enterprise](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.3.1 | 2026-02-25 | 2026-02-26 |
-| BMB | [bmad-code-org/bmad-builder](https://github.com/bmad-code-org/bmad-builder) | v0.1.6 | 2026-02-08 | 2026-02-11 |
-| CIS | [bmad-code-org/bmad-module-creative-intelligence-suite](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.1.8 | 2026-02-23 | 2026-02-24 |
-| GDS | [bmad-code-org/bmad-module-game-dev-studio](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.1.9 | 2026-02-23 | 2026-02-24 |
+| Module | Version | Released | Last Synced |
+|---|---|---|---|
+| [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.0.4 | 2026-02-28 | 2026-02-24 |
+| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.5.2 | 2026-03-05 | 2026-02-26 |
+| [BMB](https://github.com/bmad-code-org/bmad-builder) | v0.1.6 | 2026-02-08 | 2026-02-11 |
+| [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.1.8 | 2026-02-23 | 2026-02-24 |
+| [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.1.10 | 2026-02-28 | 2026-02-24 |
 <!-- upstream-version-end -->
 
 A Claude Code plugin that transforms Claude into a complete agile development
 environment with specialized agents, structured workflows, and intelligent
 context management.
 
-## Installation
+## Features
+
+- **9 Specialized Agents**: Business Analyst, Product Manager, UX Designer,
+  System Architect, Scrum Master, Developer, QA Engineer, Tech Writer, and
+  Solo Dev
+- **26 Guided Workflows**: From brainstorming to implementation
+- **4 Development Phases**: Analysis, Planning, Solutioning, Implementation
+- **Progressive Disclosure**: Step-by-step workflow execution
+- **State Tracking**: Resume workflows across sessions
+
+## Usage
 
 ### Step 1: Add Marketplace
 
@@ -86,17 +96,21 @@ claude plugin install bmad@bmad-method --scope local
 | **Project** | All collaborators | `.claude/settings.json` (in repo) |
 | **Local** | You, this repo only | `.claude/settings.local.json` |
 
-## Features
+### Troubleshooting: Plugin Update Shows Stale Version
 
-- **9 Specialized Agents**: Business Analyst, Product Manager, UX Designer,
-  System Architect, Scrum Master, Developer, QA Engineer, Tech Writer, and
-  Solo Dev
-- **26 Guided Workflows**: From brainstorming to implementation
-- **4 Development Phases**: Analysis, Planning, Solutioning, Implementation
-- **Progressive Disclosure**: Step-by-step workflow execution
-- **State Tracking**: Resume workflows across sessions
+`claude plugin update` may report the plugin is "already at the latest version"
+even when a newer version exists. This is a
+[known Claude Code bug](https://github.com/anthropics/claude-code/issues/28540)
+where the marketplace cache is not fetched before comparing versions.
 
-## Quick Start
+Workaround — manually pull the marketplace cache, then retry:
+
+```sh
+git -C ~/.claude/plugins/marketplaces/bmad-method pull origin main
+claude plugin update bmad@bmad-method
+```
+
+### Quick Start
 
 ```bash
 # Initialize BMAD in your project
