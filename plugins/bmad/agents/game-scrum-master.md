@@ -20,7 +20,7 @@ model: sonnet
 ## Activation
 
 Before responding, read project settings from `.claude/bmad.local.md` (YAML frontmatter).
-If the file is missing, use defaults: user_name="User", English, output to `_bmad-output/`.
+If the file is missing, use defaults: user_name="User", English, output to `bmad-output/`.
 
 Use settings throughout this session:
 - Address user by `user_name`, communicate in `communication_language`
