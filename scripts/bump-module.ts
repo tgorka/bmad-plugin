@@ -22,7 +22,11 @@ import {
   VERSION_FILES,
 } from './lib/bump-utils.ts';
 import { ROOT } from './lib/config.ts';
-import { getSource } from './lib/upstream-sources.ts';
+import {
+  getSource,
+  readVersion,
+  writeVersionInfo,
+} from './lib/upstream-sources.ts';
 
 const DRY_RUN = process.argv.includes('--dry-run');
 const YES = process.argv.includes('--yes');
@@ -64,9 +68,7 @@ const targetModuleTagPrefixed = `v${targetModuleVersion}`;
 
 // --- Read current versions ---
 
-const currentModuleRaw = (
-  await Bun.file(join(ROOT, source.versionFile)).text()
-).trim();
+const currentModuleRaw = await readVersion(source.id);
 const currentModuleVersion = currentModuleRaw.replace(/^v/, '');
 
 const currentPluginRaw = (
@@ -108,7 +110,7 @@ if (currentModuleVersion === targetModuleVersion) {
 
 if (DRY_RUN) {
   console.log('[dry-run] Files that would change:');
-  console.log(`  ${source.versionFile}`);
+  console.log(`  .upstream-versions/${source.id}.json`);
   for (const [label, path] of Object.entries(VERSION_FILES)) {
     console.log(`  ${label}: ${path}`);
   }
@@ -124,8 +126,10 @@ if (DRY_RUN) {
 
 await confirmProceed(YES);
 
-await Bun.write(join(ROOT, source.versionFile), `${targetModuleTagPrefixed}\n`);
-console.log(`Updated ${source.versionFile} to ${targetModuleTagPrefixed}`);
+await writeVersionInfo(source.id, targetModuleTagPrefixed);
+console.log(
+  `Updated .upstream-versions/${source.id}.json to ${targetModuleTagPrefixed}`,
+);
 
 await Bun.write(VERSION_FILES.pluginVersion, `${newPluginVersionPrefixed}\n`);
 console.log(`Updated .plugin-version to ${newPluginVersionPrefixed}`);

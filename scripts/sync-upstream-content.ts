@@ -24,7 +24,9 @@ import {
   getCoreSource,
   getEnabledSources,
   getSource,
+  readVersion,
   shouldSkipContentFile,
+  writeVersionInfo,
 } from './lib/upstream-sources.ts';
 import { getWorkflowEntries } from './lib/workflow-iterator.ts';
 
@@ -132,8 +134,7 @@ async function checkoutSource(
   source: UpstreamSource,
   upstreamRoot: string,
 ): Promise<string> {
-  const versionFile = join(ROOT, source.versionFile);
-  const trackedVersion = (await Bun.file(versionFile).text()).trim();
+  const trackedVersion = await readVersion(source.id);
   const candidates = [trackedVersion, trackedVersion.replace(/^v/, '')];
   try {
     await gitInUpstream(upstreamRoot, 'fetch', '--tags');
@@ -366,8 +367,8 @@ if (!DRY_RUN && !SOURCE_FILTER) {
   const coreRoot = join(ROOT, '.upstream', core.localPath);
   const pkgJson = await Bun.file(join(coreRoot, 'package.json')).json();
   const newUpstream = `v${pkgJson.version}`;
-  await Bun.write(join(ROOT, core.versionFile), `${newUpstream}\n`);
-  console.log(`\nUpdated ${core.versionFile} to ${newUpstream}`);
+  await writeVersionInfo(core.id, newUpstream);
+  console.log(`\nUpdated .upstream-versions/${core.id}.json to ${newUpstream}`);
 
   // Bump plugin version: <upstream>.0 (reset patch on upstream change)
   const newPlugin = `${newUpstream}.0`;
@@ -411,7 +412,7 @@ if (!DRY_RUN && !SOURCE_FILTER) {
       '--abbrev=0',
     );
     const latestTag = result.text().trim();
-    await Bun.write(join(ROOT, source.versionFile), `${latestTag}\n`);
-    console.log(`Updated ${source.versionFile} to ${latestTag}`);
+    await writeVersionInfo(source.id, latestTag);
+    console.log(`Updated .upstream-versions/${source.id}.json to ${latestTag}`);
   }
 }

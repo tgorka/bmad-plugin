@@ -26,7 +26,7 @@ jobs:
       - name: Compare versions
         id: compare
         run: |
-          CURRENT=$(cat .upstream-version-core | sed 's/^v//')
+          CURRENT=$(jq -r '.version' .upstream-versions/core.json | sed 's/^v//')
           UPSTREAM=$(echo "${{ steps.upstream.outputs.version }}" | sed 's/^v//')
           echo "Current: $CURRENT"
           echo "Upstream: $UPSTREAM"
@@ -43,7 +43,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           UPSTREAM="${{ steps.upstream.outputs.version }}"
-          CURRENT=$(cat .upstream-version-core)
+          CURRENT=$(jq -r '.version' .upstream-versions/core.json)
 
           EXISTING=$(gh issue list --repo ${{ github.repository }} --search "Upstream BMAD update: $UPSTREAM" --state open --json number -q '.[0].number')
 
@@ -65,7 +65,7 @@ jobs:
           1. Update \`.upstream/BMAD-METHOD\` to the new version
           2. Diff changes against current plugin content
           3. Apply relevant updates to \`plugins/bmad/\`
-          4. Update \`.upstream-version-core\` to \`$UPSTREAM\`
+          4. Update \`.upstream-versions/core.json\` to \`$UPSTREAM\`
 
           See [upstream releases](https://github.com/bmadcode/BMAD-METHOD/releases) for changelog." \
               --label "upstream-sync"
@@ -88,7 +88,7 @@ jobs:
       - name: Compare versions
         id: compare
         run: |
-          CURRENT=$(cat .upstream-version-tea | sed 's/^v//')
+          CURRENT=$(jq -r '.version' .upstream-versions/tea.json | sed 's/^v//')
           UPSTREAM=$(echo "${{ steps.upstream.outputs.version }}" | sed 's/^v//')
           echo "Current: $CURRENT"
           echo "Upstream: $UPSTREAM"
@@ -105,7 +105,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           UPSTREAM="${{ steps.upstream.outputs.version }}"
-          CURRENT=$(cat .upstream-version-tea)
+          CURRENT=$(jq -r '.version' .upstream-versions/tea.json)
 
           EXISTING=$(gh issue list --repo ${{ github.repository }} --search "Upstream TEA update: $UPSTREAM" --state open --json number -q '.[0].number')
 
@@ -127,7 +127,7 @@ jobs:
           1. Update \`.upstream/bmad-method-test-architecture-enterprise\` to the new version
           2. Run \`bun run sync\` to update plugin content
           3. Run \`bun run validate\` to verify coverage
-          4. Version file \`.upstream-version-tea\` is updated automatically by sync
+          4. Version file \`.upstream-versions/tea.json\` is updated automatically by sync
 
           See [upstream releases](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise/releases) for changelog." \
               --label "upstream-sync"
@@ -150,7 +150,7 @@ jobs:
       - name: Compare versions
         id: compare
         run: |
-          CURRENT=$(cat .upstream-version-bmb | sed 's/^v//')
+          CURRENT=$(jq -r '.version' .upstream-versions/bmb.json | sed 's/^v//')
           UPSTREAM=$(echo "${{ steps.upstream.outputs.version }}" | sed 's/^v//')
           echo "Current: $CURRENT"
           echo "Upstream: $UPSTREAM"
@@ -167,7 +167,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           UPSTREAM="${{ steps.upstream.outputs.version }}"
-          CURRENT=$(cat .upstream-version-bmb)
+          CURRENT=$(jq -r '.version' .upstream-versions/bmb.json)
 
           EXISTING=$(gh issue list --repo ${{ github.repository }} --search "Upstream BMB update: $UPSTREAM" --state open --json number -q '.[0].number')
 
@@ -189,7 +189,7 @@ jobs:
           1. Update \`.upstream/bmad-builder\` to the new version
           2. Run \`bun run sync\` to update plugin content
           3. Run \`bun run validate\` to verify coverage
-          4. Version file \`.upstream-version-bmb\` is updated automatically by sync
+          4. Version file \`.upstream-versions/bmb.json\` is updated automatically by sync
 
           See [upstream releases](https://github.com/bmad-code-org/bmad-builder/releases) for changelog." \
               --label "upstream-sync"
@@ -212,7 +212,7 @@ jobs:
       - name: Compare versions
         id: compare
         run: |
-          CURRENT=$(cat .upstream-version-cis | sed 's/^v//')
+          CURRENT=$(jq -r '.version' .upstream-versions/cis.json | sed 's/^v//')
           UPSTREAM=$(echo "${{ steps.upstream.outputs.version }}" | sed 's/^v//')
           echo "Current: $CURRENT"
           echo "Upstream: $UPSTREAM"
@@ -229,7 +229,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           UPSTREAM="${{ steps.upstream.outputs.version }}"
-          CURRENT=$(cat .upstream-version-cis)
+          CURRENT=$(jq -r '.version' .upstream-versions/cis.json)
 
           EXISTING=$(gh issue list --repo ${{ github.repository }} --search "Upstream CIS update: $UPSTREAM" --state open --json number -q '.[0].number')
 
@@ -251,7 +251,7 @@ jobs:
           1. Update \`.upstream/bmad-module-creative-intelligence-suite\` to the new version
           2. Run \`bun run sync\` to update plugin content
           3. Run \`bun run validate\` to verify coverage
-          4. Version file \`.upstream-version-cis\` is updated automatically by sync
+          4. Version file \`.upstream-versions/cis.json\` is updated automatically by sync
 
           See [upstream releases](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite/releases) for changelog." \
               --label "upstream-sync"
@@ -274,7 +274,7 @@ jobs:
       - name: Compare versions
         id: compare
         run: |
-          CURRENT=$(cat .upstream-version-gds | sed 's/^v//')
+          CURRENT=$(jq -r '.version' .upstream-versions/gds.json | sed 's/^v//')
           UPSTREAM=$(echo "${{ steps.upstream.outputs.version }}" | sed 's/^v//')
           echo "Current: $CURRENT"
           echo "Upstream: $UPSTREAM"
@@ -291,7 +291,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           UPSTREAM="${{ steps.upstream.outputs.version }}"
-          CURRENT=$(cat .upstream-version-gds)
+          CURRENT=$(jq -r '.version' .upstream-versions/gds.json)
 
           EXISTING=$(gh issue list --repo ${{ github.repository }} --search "Upstream GDS update: $UPSTREAM" --state open --json number -q '.[0].number')
 
@@ -313,7 +313,7 @@ jobs:
           1. Update \`.upstream/bmad-module-game-dev-studio\` to the new version
           2. Run \`bun run sync\` to update plugin content
           3. Run \`bun run validate\` to verify coverage
-          4. Version file \`.upstream-version-gds\` is updated automatically by sync
+          4. Version file \`.upstream-versions/gds.json\` is updated automatically by sync
 
           See [upstream releases](https://github.com/bmad-code-org/bmad-module-game-dev-studio/releases) for changelog." \
               --label "upstream-sync"

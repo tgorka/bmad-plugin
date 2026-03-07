@@ -14,7 +14,7 @@ Your domain covers upstream repository analysis (BMAD-METHOD, TEA, BMB, CIS, GDS
 
 Key conventions:
 - Research output path: `docs/agents/research/research-output/<topic>.md`
-- Upstream sources are in `.upstream/` with version files at `.upstream-version-<id>`
+- Upstream sources are in `.upstream/` with version files at `.upstream-versions/<id>.json`
 - Upstream IDs: core (BMAD-METHOD), tea, bmb, cis, gds
 - The plugin uses agent-as-service architecture (Claude Code orchestrates, BMAD agents are specialists)
 - Use WebFetch/WebSearch for external information gathering

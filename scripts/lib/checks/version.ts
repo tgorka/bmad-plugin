@@ -1,29 +1,35 @@
 /**
  * Version consistency check for all upstream sources.
  *
- * Core: .upstream-version-core ↔ upstream package.json, plugin version anchored
- * External modules: .upstream-version-<id> tracks module version independently
+ * Core: .upstream-versions/core.json ↔ upstream package.json, plugin version anchored
+ * External modules: .upstream-versions/<id>.json tracks module version independently
  */
 
 import { exists } from 'node:fs/promises';
 import { join } from 'node:path';
 import { ROOT } from '../config.ts';
 import { fail, pass, section, warn } from '../output.ts';
-import { getEnabledSources } from '../upstream-sources.ts';
+import {
+  getEnabledSources,
+  readVersion,
+  versionFilePath,
+} from '../upstream-sources.ts';
 
 export async function checkVersion(): Promise<void> {
   section('Version Consistency');
 
   for (const source of getEnabledSources()) {
     const upstreamRoot = join(ROOT, '.upstream', source.localPath);
-    const versionFilePath = join(ROOT, source.versionFile);
+    const vfPath = versionFilePath(source.id);
 
-    if (!(await exists(versionFilePath))) {
-      fail(`[${source.id}] Version file ${source.versionFile} not found`);
+    if (!(await exists(vfPath))) {
+      fail(
+        `[${source.id}] Version file .upstream-versions/${source.id}.json not found`,
+      );
       continue;
     }
 
-    const trackedVersion = (await Bun.file(versionFilePath).text()).trim();
+    const trackedVersion = await readVersion(source.id);
 
     if (source.id === 'core') {
       // Core: compare against package.json
@@ -34,7 +40,7 @@ export async function checkVersion(): Promise<void> {
         pass(`[core] Upstream version: ${trackedVersion}`);
       } else {
         fail(
-          `[core] Version mismatch: ${source.versionFile}=${trackedVersion}, package.json=${upstreamVersion}`,
+          `[core] Version mismatch: .upstream-versions/core.json=${trackedVersion}, package.json=${upstreamVersion}`,
         );
       }
 
@@ -61,7 +67,9 @@ export async function checkVersion(): Promise<void> {
       if (trackedVersion) {
         pass(`[${source.id}] Version: ${trackedVersion}`);
       } else {
-        warn(`[${source.id}] Version file ${source.versionFile} is empty`);
+        warn(
+          `[${source.id}] Version file .upstream-versions/${source.id}.json is empty`,
+        );
       }
     }
   }
