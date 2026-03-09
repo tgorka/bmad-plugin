@@ -4,7 +4,13 @@
  * Each UpstreamSource defines an external repo that contributes content
  * to the flat plugin output. The sync and validation scripts iterate
  * over enabled sources.
+ *
+ * Version tracking lives in `.upstream-versions/<id>.json` — see
+ * readVersionInfo / writeVersionInfo helpers below.
  */
+
+import { join } from 'node:path';
+import { ROOT } from './config.ts';
 
 export interface UpstreamSource {
   /** Unique identifier: "core", "tea", etc. */
@@ -13,8 +19,6 @@ export interface UpstreamSource {
   repo: string;
   /** Path relative to .upstream/ */
   localPath: string;
-  /** Version tracking file at repo root (e.g. ".upstream-version-core") */
-  versionFile: string;
   /** Whether this source is active */
   enabled: boolean;
   /** Path inside cloned repo to the workflows root */
@@ -50,7 +54,6 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     id: 'core',
     repo: 'bmadcode/BMAD-METHOD',
     localPath: 'BMAD-METHOD',
-    versionFile: '.upstream-version-core',
     enabled: true,
     contentRoot: 'src/bmm/workflows',
     agentsRoot: 'src/bmm/agents',
@@ -69,7 +72,6 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     id: 'tea',
     repo: 'bmad-code-org/bmad-method-test-architecture-enterprise',
     localPath: 'bmad-method-test-architecture-enterprise',
-    versionFile: '.upstream-version-tea',
     enabled: true,
     contentRoot: 'src/workflows/testarch',
     agentsRoot: 'src/agents',
@@ -90,7 +92,6 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     id: 'bmb',
     repo: 'bmad-code-org/bmad-builder',
     localPath: 'bmad-builder',
-    versionFile: '.upstream-version-bmb',
     enabled: true,
     contentRoot: 'src/workflows',
     agentsRoot: 'src/agents',
@@ -107,7 +108,6 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     id: 'cis',
     repo: 'bmad-code-org/bmad-module-creative-intelligence-suite',
     localPath: 'bmad-module-creative-intelligence-suite',
-    versionFile: '.upstream-version-cis',
     enabled: true,
     contentRoot: 'src/workflows',
     agentsRoot: 'src/agents',
@@ -124,7 +124,6 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     id: 'gds',
     repo: 'bmad-code-org/bmad-module-game-dev-studio',
     localPath: 'bmad-module-game-dev-studio',
-    versionFile: '.upstream-version-gds',
     enabled: true,
     contentRoot: 'src/workflows',
     agentsRoot: 'src/agents',
@@ -156,6 +155,41 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     pluginOnlyData: new Set(),
   },
 ];
+
+// --- Version file helpers ---
+
+const VERSIONS_DIR = join(ROOT, '.upstream-versions');
+
+export interface VersionInfo {
+  version: string;
+  syncedAt: string; // YYYY-MM-DD
+}
+
+/** Path to a source's version file: .upstream-versions/<id>.json */
+export function versionFilePath(id: string): string {
+  return join(VERSIONS_DIR, `${id}.json`);
+}
+
+/** Read version info for a source. */
+export async function readVersionInfo(id: string): Promise<VersionInfo> {
+  return Bun.file(versionFilePath(id)).json();
+}
+
+/** Read just the version string for a source. */
+export async function readVersion(id: string): Promise<string> {
+  const info = await readVersionInfo(id);
+  return info.version;
+}
+
+/** Write version info for a source, updating syncedAt to today. */
+export async function writeVersionInfo(
+  id: string,
+  version: string,
+): Promise<void> {
+  const syncedAt = new Date().toISOString().slice(0, 10);
+  const info: VersionInfo = { version, syncedAt };
+  await Bun.write(versionFilePath(id), `${JSON.stringify(info, null, 2)}\n`);
+}
 
 /** Check if a filename should be skipped for a given source. */
 export function shouldSkipContentFile(

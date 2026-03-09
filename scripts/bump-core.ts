@@ -2,7 +2,7 @@
  * Bumps plugin version for a new core BMAD-METHOD release.
  *
  * Fetches tags from .upstream/BMAD-METHOD, finds the latest semver tag
- * (or uses --tag override), updates .upstream-version-core, derives
+ * (or uses --tag override), updates .upstream-versions/core.json, derives
  * plugin version as v<core>.0, and updates all version files + README.
  *
  * Run: bun scripts/bump-core.ts [--tag <version>] [--dry-run] [--yes]
@@ -22,7 +22,11 @@ import {
   VERSION_FILES,
 } from './lib/bump-utils.ts';
 import { ROOT } from './lib/config.ts';
-import { getCoreSource } from './lib/upstream-sources.ts';
+import {
+  getCoreSource,
+  readVersion,
+  writeVersionInfo,
+} from './lib/upstream-sources.ts';
 
 const DRY_RUN = process.argv.includes('--dry-run');
 const YES = process.argv.includes('--yes');
@@ -42,9 +46,7 @@ const targetTagPrefixed = `v${targetVersion}`;
 
 // --- Read current versions ---
 
-const currentCoreRaw = (
-  await Bun.file(join(ROOT, core.versionFile)).text()
-).trim();
+const currentCoreRaw = await readVersion(core.id);
 const currentCoreVersion = currentCoreRaw.replace(/^v/, '');
 
 const currentPluginRaw = (
@@ -72,7 +74,7 @@ if (currentCoreVersion === targetVersion) {
 
 if (DRY_RUN) {
   console.log('[dry-run] Files that would change:');
-  console.log(`  ${core.versionFile}`);
+  console.log(`  .upstream-versions/${core.id}.json`);
   for (const [label, path] of Object.entries(VERSION_FILES)) {
     console.log(`  ${label}: ${path}`);
   }
@@ -88,8 +90,10 @@ if (DRY_RUN) {
 
 await confirmProceed(YES);
 
-await Bun.write(join(ROOT, core.versionFile), `${targetTagPrefixed}\n`);
-console.log(`Updated ${core.versionFile} to ${targetTagPrefixed}`);
+await writeVersionInfo(core.id, targetTagPrefixed);
+console.log(
+  `Updated .upstream-versions/${core.id}.json to ${targetTagPrefixed}`,
+);
 
 await Bun.write(VERSION_FILES.pluginVersion, `${newPluginVersionPrefixed}\n`);
 console.log(`Updated .plugin-version to ${newPluginVersionPrefixed}`);

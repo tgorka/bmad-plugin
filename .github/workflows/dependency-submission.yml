@@ -3,7 +3,7 @@ name: Submit upstream dependency
 on:
   push:
     branches: [main]
-    paths: [.upstream-version-core]
+    paths: [.upstream-versions/core.json]
   workflow_dispatch:
 
 permissions:
@@ -19,7 +19,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          VERSION=$(cat .upstream-version-core | tr -d 'v \n')
+          VERSION=$(jq -r '.version' .upstream-versions/core.json | tr -d 'v')
           SHA=$(git rev-parse HEAD)
           SCANNED=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
@@ -40,10 +40,10 @@ jobs:
             },
             "scanned": "$SCANNED",
             "manifests": {
-              ".upstream-version-core": {
-                "name": ".upstream-version-core",
+              ".upstream-versions/core.json": {
+                "name": ".upstream-versions/core.json",
                 "file": {
-                  "source_location": ".upstream-version-core"
+                  "source_location": ".upstream-versions/core.json"
                 },
                 "resolved": {
                   "BMAD-METHOD": {

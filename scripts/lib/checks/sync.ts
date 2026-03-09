@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { $ } from 'bun';
 import { ROOT } from '../config.ts';
 import { fail, pass, section, warn } from '../output.ts';
-import { getEnabledSources } from '../upstream-sources.ts';
+import { getEnabledSources, readVersion } from '../upstream-sources.ts';
 
 /** Run git in an upstream repo, with BEADS_DIR set to avoid hook interference. */
 function gitInUpstream(
@@ -32,8 +32,7 @@ export async function checkSync(): Promise<void> {
       continue;
     }
 
-    const versionFile = join(ROOT, source.versionFile);
-    const trackedVersion = (await Bun.file(versionFile).text()).trim();
+    const trackedVersion = await readVersion(source.id);
     // Try version as-is first, then without 'v' prefix (repos vary)
     const candidates = [trackedVersion, trackedVersion.replace(/^v/, '')];
 

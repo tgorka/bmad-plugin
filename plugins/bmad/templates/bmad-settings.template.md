@@ -13,7 +13,8 @@ communication_language: "English"
 document_output_language: "English"
 
 # Base output directory (relative to project root)
-output_folder: "_bmad-output"
+# Configurable via .claude/bmad.local.md (artifacts-dir setting)
+output_folder: "bmad-output"
 
 # Project name (used in artifact filenames)
 project_name: ""
@@ -22,10 +23,10 @@ project_name: ""
 user_skill_level: "intermediate"
 
 # Where planning artifacts go (PRDs, briefs, architecture)
-planning_artifacts: "_bmad-output/planning-artifacts"
+planning_artifacts: "bmad-output/planning-artifacts"
 
 # Where implementation artifacts go (sprints, stories, reviews)
-implementation_artifacts: "_bmad-output/implementation-artifacts"
+implementation_artifacts: "bmad-output/implementation-artifacts"
 
 # Where long-term project knowledge goes (docs, research)
 project_knowledge: "docs"

@@ -1,6 +1,6 @@
 /**
  * Updates the plugin version and multi-upstream dependency table in README.md.
- * Reads from all .upstream-version-* files and .plugin-version, writes between
+ * Reads from .upstream-versions/<id>.json and .plugin-version, writes between
  * marker comments.
  *
  * Run: bun scripts/update-readme-version.ts
@@ -8,7 +8,11 @@
 
 import { join } from 'node:path';
 import { ROOT } from './lib/config.ts';
-import { getEnabledSources } from './lib/upstream-sources.ts';
+import {
+  getEnabledSources,
+  readVersion,
+  readVersionInfo,
+} from './lib/upstream-sources.ts';
 
 /** Display labels for upstream source IDs */
 const SOURCE_LABELS: Record<string, string> = {
@@ -37,29 +41,15 @@ async function getTagDate(localPath: string, version: string): Promise<string> {
   return date || 'unknown';
 }
 
-/** Date of the last commit that changed a version file (i.e. when we actually synced). */
-function getLastSyncDate(versionFile: string): string {
-  const result = Bun.spawnSync({
-    cmd: ['git', 'log', '-1', '--format=%ai', '--', versionFile],
-    cwd: ROOT,
-  });
-  const raw = new TextDecoder().decode(result.stdout).trim();
-  // %ai gives "2026-02-10 12:34:56 +0100", take date part only
-  return raw.split(' ')[0] || 'unknown';
-}
-
 const sources = getEnabledSources();
 const rows: string[] = [];
 
 for (const source of sources) {
-  const version = (
-    await Bun.file(join(ROOT, source.versionFile)).text()
-  ).trim();
+  const info = await readVersionInfo(source.id);
   const label = SOURCE_LABELS[source.id] ?? source.id.toUpperCase();
-  const tagDate = await getTagDate(source.localPath, version);
-  const syncDate = getLastSyncDate(source.versionFile);
+  const tagDate = await getTagDate(source.localPath, info.version);
   rows.push(
-    `| [${label}](https://github.com/${source.repo}) | ${version} | ${tagDate} | ${syncDate} |`,
+    `| [${label}](https://github.com/${source.repo}) | ${info.version} | ${tagDate} | ${info.syncedAt} |`,
   );
 }
 
@@ -121,9 +111,7 @@ if (updated === readme) {
 const BADGES_DIR = join(ROOT, '.github', 'badges');
 
 for (const source of sources) {
-  const version = (
-    await Bun.file(join(ROOT, source.versionFile)).text()
-  ).trim();
+  const version = await readVersion(source.id);
   const badgeFile =
     source.id === 'core'
       ? 'upstream-version.json'

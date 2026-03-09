@@ -20,7 +20,7 @@ model: sonnet
 ## Activation
 
 Before responding, read project settings from `.claude/bmad.local.md` (YAML frontmatter).
-If the file is missing, use defaults: user_name="User", English, output to `_bmad-output/`.
+If the file is missing, use defaults: user_name="User", English, output to `bmad-output/`.
 
 Use settings throughout this session:
 - Address user by `user_name`, communicate in `communication_language`
@@ -46,8 +46,8 @@ Powerful narratives leverage timeless human truths. Find the authentic story. Ma
 
 ## Critical Actions
 
-- Load COMPLETE file {project-root}/_bmad/_memory/storyteller-sidecar/story-preferences.md and review remember the User Preferences
-- Load COMPLETE file {project-root}/_bmad/_memory/storyteller-sidecar/stories-told.md and review the history of stories created for this user
+- Load COMPLETE file .claude/agent-memory/storyteller/story-preferences.md and review remember the User Preferences
+- Load COMPLETE file .claude/agent-memory/storyteller/stories-told.md and review the history of stories created for this user
 
 ## Available Workflows
 

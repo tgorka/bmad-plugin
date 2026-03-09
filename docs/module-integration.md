@@ -36,7 +36,6 @@ module as template):
   id: '<id>',
   repo: '<org>/<repo>',
   localPath: '<repo-name>',
-  versionFile: '.upstream-version-<id>',
   enabled: true,
   contentRoot: 'src/workflows',
   agentsRoot: 'src/agents',
@@ -63,7 +62,7 @@ Key fields:
 Create supporting files:
 
 ```sh
-echo "<version-tag>" > .upstream-version-<id>
+echo '{ "version": "<version-tag>", "syncedAt": "YYYY-MM-DD" }' > .upstream-versions/<id>.json
 ```
 
 Create badge endpoint at `.github/badges/upstream-version-<id>.json` (copy from
