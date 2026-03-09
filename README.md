@@ -13,7 +13,7 @@
 <!-- upstream-badges-end -->
 
 <!-- upstream-version-start -->
-**Plugin version:** v6.0.4.2
+**Plugin version:** v6.0.4.3
 
 | Module | Version | Released | Last Synced |
 |---|---|---|---|
