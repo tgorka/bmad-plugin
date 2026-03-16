@@ -44,6 +44,7 @@ async function findAgentForWorkflow(
 ): Promise<
   { agentName: string; characterName: string; module: string } | undefined
 > {
+  if (!source.agentsRoot) return undefined;
   const agentsDir = join(
     ROOT,
     '.upstream',

@@ -24,7 +24,7 @@ export interface UpstreamSource {
   /** Path inside cloned repo to the workflows root */
   contentRoot: string;
   /** Path inside cloned repo to the agents directory */
-  agentsRoot: string;
+  agentsRoot?: string;
   /**
    * Whether contentRoot contains workflow dirs directly (true)
    * or has a category layer in between (false).
@@ -93,11 +93,11 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     repo: 'bmad-code-org/bmad-builder',
     localPath: 'bmad-builder',
     enabled: true,
-    contentRoot: 'src/workflows',
-    agentsRoot: 'src/agents',
+    contentRoot: 'src/skills',
+    agentsRoot: undefined,
     flatWorkflows: true,
     skipDirs: new Set(['_shared', 'templates']),
-    skipContentFiles: new Set(['workflow.md', 'workflow.yaml', 'SKILL.md']),
+    skipContentFiles: new Set(['workflow.md', 'workflow.yaml']),
     workflowWorkarounds: {},
     pluginOnlySkills: new Set(),
     pluginOnlyAgents: new Set(),

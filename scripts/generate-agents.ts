@@ -224,6 +224,7 @@ async function findAgentYamls(
 
 /** Process a single upstream source. */
 async function processSource(source: UpstreamSource): Promise<number> {
+  if (!source.agentsRoot) return 0;
   const upstreamRoot = join(ROOT, '.upstream', source.localPath);
   const agentsDir = join(upstreamRoot, source.agentsRoot);
 
@@ -288,6 +289,10 @@ console.log(
 
 let total = 0;
 for (const source of sources) {
+  if (!source.agentsRoot) {
+    console.log(`[${source.id}] No agentsRoot configured, skipping\n`);
+    continue;
+  }
   console.log(`[${source.id}] Processing agents from ${source.agentsRoot}/`);
   const count = await processSource(source);
   total += count;
