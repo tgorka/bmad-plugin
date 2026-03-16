@@ -3,15 +3,15 @@ name: 'step-06-innovation'
 description: 'Detect and explore innovative aspects of the product (optional step)'
 
 # File References
-nextStepFile: '${CLAUDE_PLUGIN_ROOT}/skills/create-prd/steps-c/step-07-project-type.md'
+nextStepFile: '{project-root}/_bmad/gds/workflows/2-design/create-prd/steps-c/step-07-project-type.md'
 outputFile: '{planning_artifacts}/prd.md'
 
 # Data Files
-projectTypesCSV: '${CLAUDE_PLUGIN_ROOT}/skills/create-prd/data/project-types.csv'
+projectTypesCSV: '{project-root}/_bmad/gds/workflows/2-design/create-prd/data/project-types.csv'
 
 # Task References
-advancedElicitationTask: '${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/workflow.xml'
-partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/party-mode/SKILL.md'
+advancedElicitationTask: 'skill:bmad-advanced-elicitation'
+partyModeWorkflow: '{project-root}/_bmad/core/workflows/bmad-party-mode/workflow.md'
 ---
 
 # Step 6: Innovation Discovery

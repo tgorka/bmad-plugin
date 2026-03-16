@@ -7,7 +7,7 @@ inputDocuments: []
 
 ## Overview
 
-This document provides the complete epic and story breakdown for {{project_name}}, decomposing the requirements from the PRD, UX Design if it exists, and Architecture requirements into implementable stories.
+This document provides the complete epic and story breakdown for {{project_name}}, decomposing the requirements from the GDD, UX Design if it exists, and Architecture requirements into implementable stories.
 
 ## Requirements Inventory
 
@@ -22,6 +22,10 @@ This document provides the complete epic and story breakdown for {{project_name}
 ### Additional Requirements
 
 {{additional_requirements}}
+
+### UX Design Requirements
+
+{{ux_design_requirements}}
 
 ### FR Coverage Map
 

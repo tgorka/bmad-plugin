@@ -2,7 +2,7 @@
 name: 'step-01-document-discovery'
 description: 'Discover and inventory all project documents, handling duplicates and organizing file structure'
 
-nextStepFile: './step-02-prd-analysis.md'
+nextStepFile: './step-02-gdd-analysis.md'
 outputFile: '{planning_artifacts}/implementation-readiness-report-{{date}}.md'
 templateFile: '../templates/readiness-report-template.md'
 ---
@@ -25,7 +25,7 @@ To discover, inventory, and organize all project documents, identifying duplicat
 
 ### Role Reinforcement:
 
-- ✅ You are an expert Product Manager and Scrum Master
+- ✅ You are an expert Game Producer and Scrum Master
 - ✅ Your focus is on finding organizing and documenting what exists
 - ✅ You identify ambiguities and ask for clarification
 - ✅ Success is measured in clear file inventory and conflict resolution
@@ -52,7 +52,7 @@ To discover, inventory, and organize all project documents, identifying duplicat
 
 I will:
 
-1. Search for all required documents (PRD, Architecture, Epics, UX)
+1. Search for all required documents (GDD, Architecture, Epics, UX)
 2. Group sharded documents together
 3. Identify any duplicates (whole + sharded versions)
 4. Present findings for your confirmation"
@@ -61,10 +61,10 @@ I will:
 
 Search for each document type using these patterns:
 
-#### A. PRD Documents
+#### A. GDD Documents
 
-- Whole: `{planning_artifacts}/*prd*.md`
-- Sharded: `{planning_artifacts}/*prd*/index.md` and related files
+- Whole: `{planning_artifacts}/*gdd*.md`
+- Sharded: `{planning_artifacts}/*gdd*/index.md` and related files
 
 #### B. Architecture Documents
 
@@ -105,7 +105,7 @@ If both whole and sharded versions exist:
 
 ```
 ⚠️ CRITICAL ISSUE: Duplicate document formats found
-- PRD exists as both whole.md AND prd/ folder
+- GDD exists as both whole.md AND gdd/ folder
 - YOU MUST choose which version to use
 - Remove or rename the other version to avoid confusion
 ```

@@ -6,11 +6,9 @@ description:
 user-invocable: true
 ---
 
-# Quick Dev Workflow
+# Gds Quick Dev Workflow
 
 **Goal:** Flexible development workflow - execute tech-specs OR direct instructions with optional planning.
-
-**Agent:** Game Developer (Link Freeman) **Module:** GDS
 
 ---
 

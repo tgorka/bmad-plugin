@@ -1,13 +1,13 @@
 ---
 description:
-  Sprint change impact analysis and planning. Use when the user says "I want t
-  o analyze and plan significant sprint changes"
+  Manage significant changes during sprint execution. Use when the user says "
+  correct course" or "propose sprint change"
 user-invocable: true
 ---
 
 # Correct Course Workflow
 
-**Goal:** Sprint change impact analysis and planning.
+**Goal:** Manage significant changes during sprint execution.
 
 **Agent:** Game Architect (Cloud Dragonborn) **Module:** GDS
 

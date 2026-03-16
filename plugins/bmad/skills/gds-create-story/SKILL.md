@@ -1,15 +1,14 @@
 ---
 description:
-  User story creation from epics. Use when the user says "lets create a user s
-  tory" or "I want to create a user story"
+  Creates a dedicated story file with all the context the agent will need to i
+  mplement it later. Use when the user says "create the next story" or "create
+   story [story identifier]"
 user-invocable: true
 ---
 
-# Create Story Workflow
+# Gds Create Story Workflow
 
-**Goal:** User story creation from epics.
-
-**Agent:** Game Dev Scrum Master (Max) **Module:** GDS
+**Goal:** Creates a dedicated story file with all the context the agent will need to implement it later.
 
 ---
 

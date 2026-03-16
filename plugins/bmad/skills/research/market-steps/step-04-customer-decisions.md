@@ -1,4 +1,4 @@
-# Market Research Step 4: Customer Decisions and Journey
+# Game Market Research Step 4: Player Decisions and Purchase Journey
 
 ## MANDATORY EXECUTION RULES (READ FIRST):
 
@@ -7,8 +7,8 @@
 - 📖 CRITICAL: ALWAYS read the complete step file before taking any action - partial understanding leads to incomplete decisions
 - 🔄 CRITICAL: When loading next step with 'C', ensure the entire file is read and understood before proceeding
 - ✅ Search the web to verify and supplement your knowledge with current facts
-- 📋 YOU ARE A CUSTOMER DECISION ANALYST, not content generator
-- 💬 FOCUS on customer decision processes and journey mapping
+- 📋 YOU ARE A PLAYER DECISION ANALYST, not content generator
+- 💬 FOCUS on player decision processes, game selection journey, and purchase factors
 - 🔍 WEB SEARCH REQUIRED - verify current facts against live sources
 - 📝 WRITE CONTENT IMMEDIATELY TO DOCUMENT
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
@@ -17,7 +17,7 @@
 
 - 🎯 Show web search analysis before presenting findings
 - ⚠️ Present [C] continue option after decision processes content generation
-- 📝 WRITE CUSTOMER DECISIONS ANALYSIS TO DOCUMENT IMMEDIATELY
+- 📝 WRITE PLAYER DECISIONS ANALYSIS TO DOCUMENT IMMEDIATELY
 - 💾 ONLY proceed when user chooses C (Continue)
 - 📖 Update frontmatter `stepsCompleted: [1, 2, 3, 4]` before loading next step
 - 🚫 FORBIDDEN to load next step until C is selected
@@ -25,155 +25,155 @@
 ## CONTEXT BOUNDARIES:
 
 - Current document and frontmatter from previous steps are available
-- Customer behavior and pain points analysis completed in previous steps
-- Focus on customer decision processes and journey mapping
+- Player behavior and pain points analysis completed in previous steps
+- Focus on player decision processes and game selection journey mapping
 - Web search capabilities with source verification are enabled
 - **Research topic = "{{research_topic}}"** - established from initial discussion
 - **Research goals = "{{research_goals}}"** - established from initial discussion
 
 ## YOUR TASK:
 
-Conduct customer decision processes and journey analysis with emphasis on decision factors and journey mapping.
+Conduct player decision processes and game selection journey analysis with emphasis on how players discover, evaluate, and purchase games in this market.
 
-## CUSTOMER DECISIONS ANALYSIS SEQUENCE:
+## PLAYER DECISIONS ANALYSIS SEQUENCE:
 
-### 1. Begin Customer Decisions Analysis
+### 1. Begin Player Decisions Analysis
 
-**UTILIZE SUBPROCESSES AND SUBAGENTS**: Use research subagents, subprocesses or parallel processing if available to thoroughly analyze different customer decision areas simultaneously and thoroughly.
+**UTILIZE SUBPROCESSES AND SUBAGENTS**: Use research subagents, subprocesses or parallel processing if available to thoroughly analyze different player decision areas simultaneously and thoroughly.
 
-Start with customer decisions research approach:
-"Now I'll conduct **customer decision processes analysis** for **{{research_topic}}** to understand customer decision-making.
+Start with player decisions research approach:
+"Now I'll conduct **player decision processes analysis** for **{{research_topic}}** to understand game selection and purchase decision-making.
 
-**Customer Decisions Focus:**
+**Player Decisions Focus:**
 
-- Customer decision-making processes
-- Decision factors and criteria
-- Customer journey mapping
-- Purchase decision influencers
-- Information gathering patterns
+- Game discovery and awareness channels
+- Game selection criteria and evaluation process
+- Purchase decision factors and price sensitivity
+- Storefront and platform selection behavior
+- Refund and regret patterns
 
-**Let me search for current customer decision insights.**"
+**Let me search for current player decision insights.**"
 
 ### 2. Parallel Decisions Research Execution
 
 **Execute multiple web searches simultaneously:**
 
-Search the web: "{{research_topic}} customer decision process"
-Search the web: "{{research_topic}} buying criteria factors"
-Search the web: "{{research_topic}} customer journey mapping"
-Search the web: "{{research_topic}} decision influencing factors"
+Search the web: "{{research_topic}} game discovery how players find games"
+Search the web: "{{research_topic}} game purchase decision factors criteria"
+Search the web: "{{research_topic}} game selection evaluation process player"
+Search the web: "{{research_topic}} game influencer streaming word of mouth purchase"
 
 **Analysis approach:**
 
-- Look for customer decision research studies
-- Search for buying criteria and factor analysis
-- Research customer journey mapping methodologies
-- Analyze decision influence factors and channels
-- Study information gathering and evaluation patterns
+- Look for player survey data on game discovery and purchase behavior
+- Search for storefront analytics and game marketing effectiveness data
+- Research influencer and content creator impact on game purchases
+- Analyze price sensitivity and sale behavior patterns
+- Study refund patterns and buyer's remorse data
 
 ### 3. Analyze and Aggregate Results
 
 **Collect and analyze findings from all parallel searches:**
 
-"After executing comprehensive parallel web searches, let me analyze and aggregate customer decision findings:
+"After executing comprehensive parallel web searches, let me analyze and aggregate player decision findings:
 
 **Research Coverage:**
 
-- Customer decision-making processes
-- Decision factors and criteria
-- Customer journey mapping
-- Decision influence factors
+- Game discovery and awareness channel analysis
+- Game selection criteria and evaluation processes
+- Purchase decision factors and pricing dynamics
+- Influencer and social proof impact on decisions
 
 **Cross-Decisions Analysis:**
-[Identify patterns connecting decision factors and journey stages]
+[Identify patterns connecting discovery channels, evaluation criteria, and purchase factors]
 
 **Quality Assessment:**
 [Overall confidence levels and research gaps identified]"
 
-### 4. Generate Customer Decisions Content
+### 4. Generate Player Decisions Content
 
 **WRITE IMMEDIATELY TO DOCUMENT**
 
-Prepare customer decisions analysis with web search citations:
+Prepare player decisions analysis with web search citations:
 
 #### Content Structure:
 
 When saving to document, append these Level 2 and Level 3 sections:
 
 ```markdown
-## Customer Decision Processes and Journey
+## Player Decision Processes and Purchase Journey
 
-### Customer Decision-Making Processes
+### Game Discovery and Awareness
 
-[Decision processes analysis with source citations]
-_Decision Stages: [Key stages in customer decision making]_
-_Decision Timelines: [Timeframes for different decisions]_
-_Complexity Levels: [Decision complexity assessment]_
-_Evaluation Methods: [How customers evaluate options]_
+[Game discovery analysis with source citations]
+_Discovery Channels: [Steam discovery, social media, streaming, word of mouth, advertising]_
+_Awareness Timelines: [How far in advance players become aware of games]_
+_Wishlisting Behavior: [How players track and follow games before release]_
+_Algorithm vs Human Recommendation: [Platform algorithm vs peer recommendation impact]_
 _Source: [URL]_
 
-### Decision Factors and Criteria
+### Game Selection Criteria and Evaluation
 
-[Decision factors analysis with source citations]
-_Primary Decision Factors: [Most important factors in decisions]_
-_Secondary Decision Factors: [Supporting factors influencing decisions]_
-_Weighing Analysis: [How different factors are weighed]_
-_Evoluton Patterns: [How factors change over time]_
+[Game selection analysis with source citations]
+_Primary Selection Factors: [Most important criteria in game selection decisions]_
+_Secondary Selection Factors: [Supporting factors influencing game choice]_
+_Trailer and Demo Impact: [How gameplay videos and demos affect selection]_
+_Review and Rating Impact: [How Metacritic, user reviews, and critic reviews affect selection]_
 _Source: [URL]_
 
-### Customer Journey Mapping
+### Player Purchase Journey Mapping
 
-[Journey mapping analysis with source citations]
-_Awareness Stage: [How customers become aware of {{research_topic}}]_
-_Consideration Stage: [Evaluation and comparison process]_
-_Decision Stage: [Final decision-making process]_
-_Purchase Stage: [Purchase execution and completion]_
-_Post-Purchase Stage: [Post-decision evaluation and behavior]_
+[Purchase journey analysis with source citations]
+_Awareness Stage: [How players first encounter {{research_topic}} games]_
+_Consideration Stage: [Wishlist, research, and comparison process]_
+_Decision Stage: [Final purchase decision triggers and timing]_
+_Purchase Stage: [Storefront selection, price point, and payment behavior]_
+_Post-Purchase Stage: [Early play, review writing, refund, and community entry]_
 _Source: [URL]_
 
-### Touchpoint Analysis
+### Influencer and Social Proof Impact
 
-[Touchpoint analysis with source citations]
-_Digital Touchpoints: [Online and digital interaction points]_
-_Offline Touchpoints: [Physical and in-person interaction points]_
-_Information Sources: [Where customers get information]_
-_Influence Channels: [What influences customer decisions]_
+[Influencer impact analysis with source citations]
+_Streaming Influence: [Twitch, YouTube, and content creator impact on game discovery]_
+_Community and Forum Influence: [Reddit, Discord, and gaming forum role in decisions]_
+_Peer Recommendation Influence: [Friend recommendations and social circle impact]_
+_Review Aggregator Influence: [Metacritic, OpenCritic, and Steam review impact]_
 _Source: [URL]_
 
-### Information Gathering Patterns
+### Pricing and Purchase Behavior
 
-[Information patterns analysis with source citations]
-_Research Methods: [How customers research options]_
-_Information Sources Trusted: [Most trusted information sources]_
-_Research Duration: [Time spent gathering information]_
-_Evaluation Criteria: [How customers evaluate information]_
+[Pricing behavior analysis with source citations]
+_Price Point Sensitivity: [Player willingness to pay at different price tiers]_
+_Sale and Discount Behavior: [How sales affect purchase timing and volume]_
+_Bundle Purchase Behavior: [How game bundles and package deals drive decisions]_
+_Free-to-Play Conversion: [F2P player conversion rates and spending patterns]_
 _Source: [URL]_
 
-### Decision Influencers
+### Platform and Storefront Selection
 
-[Decision influencer analysis with source citations]
-_Peer Influence: [How friends and family influence decisions]_
-_Expert Influence: [How expert opinions affect decisions]_
-_Media Influence: [How media and marketing affect decisions]_
-_Social Proof Influence: [How reviews and testimonials affect decisions]_
+[Platform selection analysis with source citations]
+_Platform Preference Factors: [What drives PC vs console vs mobile choice]_
+_Storefront Preference: [Steam vs Epic vs console store selection factors]_
+_Cross-Platform Considerations: [How cross-play and cross-save affect decisions]_
+_Subscription Service Impact: [Game Pass, PS Plus, and subscription on purchase decisions]_
 _Source: [URL]_
 
-### Purchase Decision Factors
+### Post-Purchase Behavior and Retention
 
-[Purchase decision factors analysis with source citations]
-_Immediate Purchase Drivers: [Factors triggering immediate purchase]_
-_Delayed Purchase Drivers: [Factors causing purchase delays]_
-_Brand Loyalty Factors: [Factors driving repeat purchases]_
-_Price Sensitivity: [How price affects purchase decisions]_
+[Post-purchase analysis with source citations]
+_Early Retention Factors: [What keeps players engaged in the first week]_
+_Long-term Retention Drivers: [Content updates, community, and progression]_
+_Refund and Abandonment Patterns: [When and why players refund or abandon games]_
+_Review and Community Contribution: [How satisfied players contribute reviews and content]_
 _Source: [URL]_
 
-### Customer Decision Optimizations
+### Player Decision Optimizations
 
 [Decision optimization analysis with source citations]
-_Friction Reduction: [Ways to make decisions easier]_
-_Trust Building: [Building customer trust in decisions]_
-_Conversion Optimization: [Optimizing decision-to-purchase rates]_
-_Loyalty Building: [Building long-term customer relationships]_
+_Wishlist Conversion Strategies: [Converting wishlists to purchases]_
+_Trust and Credibility Building: [Building player confidence before purchase]_
+_Launch Strategy Timing: [Optimal launch window and marketing timing]_
+_Long-term Player Relationship: [Building sustainable player communities]_
 _Source: [URL]_
 ```
 
@@ -181,15 +181,15 @@ _Source: [URL]_
 
 **Show analysis and present continue option:**
 
-"I've completed **customer decision processes analysis** for {{research_topic}}, focusing on customer decision-making.
+"I've completed **player decision processes analysis** for {{research_topic}}, focusing on game selection and purchase decision-making.
 
 **Key Decision Findings:**
 
-- Customer decision-making processes clearly mapped
-- Decision factors and criteria thoroughly analyzed
-- Customer journey mapping completed across all stages
-- Decision influencers and touchpoints identified
-- Information gathering patterns documented
+- Game discovery channels and awareness mechanisms clearly mapped
+- Player selection criteria and evaluation process thoroughly analyzed
+- Purchase journey mapped across all stages
+- Influencer and social proof impact documented
+- Pricing behavior and storefront preferences identified
 
 **Ready to proceed to competitive analysis?**
 [C] Continue - Save this to document and proceed to competitive analysis
@@ -200,7 +200,7 @@ _Source: [URL]_
 
 - **CONTENT ALREADY WRITTEN TO DOCUMENT**
 - Update frontmatter: `stepsCompleted: [1, 2, 3, 4]`
-- Load: `${CLAUDE_PLUGIN_ROOT}/skills/research/market-steps/step-05-competitive-analysis.md`
+- Load: `{project-root}/_bmad/gds/workflows/1-preproduction/research/market-steps/step-05-competitive-analysis.md`
 
 ## APPEND TO DOCUMENT:
 
@@ -208,11 +208,11 @@ Content is already written to document when generated in step 4. No additional a
 
 ## SUCCESS METRICS:
 
-✅ Customer decision-making processes clearly mapped
-✅ Decision factors and criteria thoroughly analyzed
-✅ Customer journey mapping completed across all stages
-✅ Decision influencers and touchpoints identified
-✅ Information gathering patterns documented
+✅ Game discovery channels and awareness mechanisms clearly mapped
+✅ Player selection criteria and evaluation process thoroughly analyzed
+✅ Purchase journey mapped across all stages
+✅ Influencer and social proof impact documented
+✅ Pricing behavior and storefront preferences identified
 ✅ Content written immediately to document
 ✅ [C] continue option presented and handled correctly
 ✅ Proper routing to next step (competitive analysis)
@@ -220,11 +220,11 @@ Content is already written to document when generated in step 4. No additional a
 
 ## FAILURE MODES:
 
-❌ Relying solely on training data without web verification for current facts
+❌ Relying solely on training data without web verification for current game player facts
 
-❌ Missing critical decision-making process stages
-❌ Not identifying key decision factors
-❌ Incomplete customer journey mapping
+❌ Missing critical game discovery channel or awareness data
+❌ Not identifying key selection criteria or evaluation factors
+❌ Incomplete purchase journey mapping
 ❌ Not writing content immediately to document
 ❌ Not presenting [C] continue option after content generation
 ❌ Not routing to competitive analysis step
@@ -233,27 +233,27 @@ Content is already written to document when generated in step 4. No additional a
 ❌ **CRITICAL**: Proceeding with 'C' without fully reading and understanding the next step file
 ❌ **CRITICAL**: Making decisions without complete understanding of step requirements and protocols
 
-## CUSTOMER DECISIONS RESEARCH PROTOCOLS:
+## PLAYER DECISIONS RESEARCH PROTOCOLS:
 
-- Research customer decision studies and psychology
-- Use customer journey mapping methodologies
-- Analyze buying criteria and decision factors
-- Study decision influence and touchpoint analysis
-- Focus on current decision data
+- Research player survey data on game discovery and purchase behavior
+- Use storefront analytics and game marketing effectiveness studies
+- Analyze influencer and content creator impact on game purchases
+- Study price sensitivity and sale behavior patterns
+- Focus on current player decision data
 - Present conflicting information when sources disagree
 - Apply confidence levels appropriately
 
 ## DECISION ANALYSIS STANDARDS:
 
 - Always cite URLs for web search results
-- Use authoritative customer decision research sources
+- Use authoritative game player decision research sources
 - Note data currency and potential limitations
 - Present multiple perspectives when sources conflict
 - Apply confidence levels to uncertain data
-- Focus on actionable decision insights
+- Focus on actionable decision insights for game marketing and GDD
 
 ## NEXT STEP:
 
-After user selects 'C', load `${CLAUDE_PLUGIN_ROOT}/skills/research/market-steps/step-05-competitive-analysis.md` to analyze competitive landscape, market positioning, and competitive strategies for {{research_topic}}.
+After user selects 'C', load `{project-root}/_bmad/gds/workflows/1-preproduction/research/market-steps/step-05-competitive-analysis.md` to analyze the competitive game landscape, competing studios, and market positioning for {{research_topic}}.
 
-Remember: Always write research content to document immediately and emphasize current customer decision data with rigorous source verification!
+Remember: Always write research content to document immediately and emphasize current player decision data with rigorous source verification!

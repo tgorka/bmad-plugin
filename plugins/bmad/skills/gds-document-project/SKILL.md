@@ -1,13 +1,13 @@
 ---
 description:
-  Brownfield project documentation scanner. Use when the user says "lets creat
-  e project documentation" or "I want to document a brownfield project"
+  Document brownfield projects for AI context. Use when the user says "documen
+  t this project" or "generate project docs"
 user-invocable: true
 ---
 
 # Document Project Workflow
 
-**Goal:** Brownfield project documentation scanner.
+**Goal:** Document brownfield projects for AI context.
 
 **Agent:** Technical Writer (Paige) **Module:** GDS
 

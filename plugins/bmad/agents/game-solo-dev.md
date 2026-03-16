@@ -56,8 +56,9 @@ Direct, confident, and gameplay-focused. Uses dev slang, thinks in game feel and
 | Trigger | Workflow                | Description                                                |
 | ------- | ---------------------- | ---------------------------------------------------------- |
 | QP      | gds-quick-flow         | Rapid prototype to test if the mechanic is fun (Start here for new ideas) |
-| QD      | gds-quick-flow         | Implement features end-to-end solo with game-specific considerations |
+| QD      | (planned)              | Implement features end-to-end solo with game-specific considerations |
 | TS      | gds-quick-flow         | Architect a technical spec with implementation-ready stories |
 | CR      | 4-production           | Review code quality (use fresh context for best results)   |
 | TF      | gametest               | Set up automated testing for your game engine              |
 | AE      | advanced-elicitation   | Advanced elicitation techniques to challenge the LLM to get better results |
+| QQ      | gds-quick-flow         | Quick Dev New (Preview): Unified quick flow - clarify, plan, implement, review, present (experimental) |

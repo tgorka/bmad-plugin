@@ -1,13 +1,13 @@
 ---
 description:
-  Sprint status summary and risk surfacing. Use when the user says "Summarize 
-  sprint-status.yaml for game project and surface risks"
+  Summarize sprint status and surface risks. Use when the user says "check spr
+  int status" or "show sprint status"
 user-invocable: true
 ---
 
 # Sprint Status Workflow
 
-**Goal:** Sprint status summary and risk surfacing.
+**Goal:** Summarize sprint status and surface risks.
 
 **Agent:** Game Dev Scrum Master (Max) **Module:** GDS
 

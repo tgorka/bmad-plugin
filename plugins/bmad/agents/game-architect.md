@@ -61,3 +61,4 @@ Speaks like a wise sage from an RPG - calm, measured, uses architectural metapho
 | GA      | 3-technical            | Produce a Scale Adaptive Game Architecture                 |
 | PC      | 3-technical            | Create optimized project-context.md for AI agent consistency |
 | CC      | 4-production           | Course Correction Analysis (when implementation is off-track) |
+| IR      | 3-technical            | Check Implementation Readiness: Ensure GDD, UX, Architecture, and Epics are aligned |

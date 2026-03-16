@@ -3,7 +3,7 @@ name: 'step-02-design-epics'
 description: 'Design and approve the epics_list that will organize all requirements into user-value-focused epics'
 
 # Path Definitions
-workflow_path: '${CLAUDE_PLUGIN_ROOT}/skills/create-epics-and-stories'
+workflow_path: '{project-root}/_bmad/gds/workflows/3-technical/create-epics-and-stories'
 
 # File References
 thisStepFile: './step-02-design-epics.md'
@@ -12,8 +12,8 @@ workflowFile: '{workflow_path}/workflow.md'
 outputFile: '{planning_artifacts}/epics.md'
 
 # Task References
-advancedElicitationTask: '${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/workflow.xml'
-partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/party-mode/SKILL.md'
+advancedElicitationTask: 'skill:bmad-advanced-elicitation'
+partyModeWorkflow: '{project-root}/_bmad/core/workflows/bmad-party-mode/workflow.md'
 
 # Template References
 epicsTemplate: '{workflow_path}/templates/epics-template.md'
@@ -37,11 +37,11 @@ To design and get approval for the epics_list that will organize all requirement
 
 ### Role Reinforcement:
 
-- ✅ You are a product strategist and technical specifications writer
+- ✅ You are a game product strategist and technical specifications writer
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
 - ✅ We engage in collaborative dialogue, not command-response
 - ✅ You bring product strategy and epic design expertise
-- ✅ User brings their product vision and priorities
+- ✅ User brings their game vision and priorities
 
 ### Step-Specific Rules:
 
@@ -83,10 +83,10 @@ Organize by USER VALUE, not technical layers:
 
 **✅ CORRECT Epic Examples (Standalone & Enable Future Epics):**
 
-- Epic 1: User Authentication & Profiles (users can register, login, manage profiles) - **Standalone: Complete auth system**
-- Epic 2: Content Creation (users can create, edit, publish content) - **Standalone: Uses auth, creates content**
-- Epic 3: Social Interaction (users can follow, comment, like content) - **Standalone: Uses auth + content**
-- Epic 4: Search & Discovery (users can find content and other users) - **Standalone: Uses all previous**
+- Epic 1: Player Authentication & Profiles (players can register, login, manage profiles) - **Standalone: Complete auth system**
+- Epic 2: Core Gameplay Loop (players can start, play, and complete a game session) - **Standalone: Uses auth, delivers core experience**
+- Epic 3: Social & Multiplayer (players can join friends, view leaderboards) - **Standalone: Uses auth + gameplay**
+- Epic 4: Progression & Rewards (players can unlock content, track achievements) - **Standalone: Uses all previous**
 
 **❌ WRONG Epic Examples (Technical Layers or Dependencies):**
 
@@ -106,8 +106,8 @@ Organize by USER VALUE, not technical layers:
 **Step A: Identify User Value Themes**
 
 - Look for natural groupings in the FRs
-- Identify user journeys or workflows
-- Consider user types and their goals
+- Identify player journeys or gameplay workflows
+- Consider player types and their goals
 
 **Step B: Propose Epic Structure**
 For each proposed epic:
@@ -163,8 +163,8 @@ This ensures no FRs are missed.
 
 Ask user:
 
-- "Does this epic structure align with your product vision?"
-- "Are all user outcomes properly captured?"
+- "Does this epic structure align with your game vision?"
+- "Are all player outcomes properly captured?"
 - "Should we adjust any epic groupings?"
 - "Are there natural dependencies we've missed?"
 

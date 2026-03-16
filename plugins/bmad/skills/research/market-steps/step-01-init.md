@@ -1,10 +1,10 @@
-# Market Research Step 1: Market Research Initialization
+# Game Market Research Step 1: Market Research Initialization
 
 ## MANDATORY EXECUTION RULES (READ FIRST):
 
 - 🛑 NEVER generate research content in init step
 - ✅ ALWAYS confirm understanding of user's research goals
-- 📋 YOU ARE A MARKET RESEARCH FACILITATOR, not content generator
+- 📋 YOU ARE A GAME MARKET RESEARCH FACILITATOR, not content generator
 - 💬 FOCUS on clarifying scope and approach
 - 🔍 NO WEB RESEARCH in init - that's for later steps
 - 📖 CRITICAL: ALWAYS read the complete step file before taking any action - partial understanding leads to incomplete research
@@ -25,35 +25,35 @@
 - Research type = "market" is already set
 - **Research topic = "{{research_topic}}"** - discovered from initial discussion
 - **Research goals = "{{research_goals}}"** - captured from initial discussion
-- Focus on market research scope clarification
+- Focus on game market research scope clarification
 - Web search capabilities are enabled for later steps
 
 ## YOUR TASK:
 
-Initialize market research by confirming understanding of {{research_topic}} and establishing clear research scope.
+Initialize game market research by confirming understanding of {{research_topic}} and establishing clear research scope.
 
-## MARKET RESEARCH INITIALIZATION:
+## GAME MARKET RESEARCH INITIALIZATION:
 
 ### 1. Confirm Research Understanding
 
 **INITIALIZE - DO NOT RESEARCH YET**
 
 Start with research confirmation:
-"I understand you want to conduct **market research** for **{{research_topic}}** with these goals: {{research_goals}}
+"I understand you want to conduct **game market research** for **{{research_topic}}** with these goals: {{research_goals}}
 
 **My Understanding of Your Research Needs:**
 
 - **Research Topic**: {{research_topic}}
 - **Research Goals**: {{research_goals}}
-- **Research Type**: Market Research
-- **Approach**: Comprehensive market analysis with source verification
+- **Research Type**: Game Market Research
+- **Approach**: Comprehensive game market analysis with source verification
 
-**Market Research Areas We'll Cover:**
+**Game Market Research Areas We'll Cover:**
 
-- Market size, growth dynamics, and trends
-- Customer insights and behavior analysis
-- Competitive landscape and positioning
-- Strategic recommendations and implementation guidance
+- Game market size, genre growth dynamics, and platform trends
+- Player insights, behavior patterns, and gamer demographics
+- Competitive game landscape and studio positioning
+- Strategic recommendations and game design implications
 
 **Does this accurately capture what you're looking for?**"
 
@@ -63,10 +63,10 @@ Gather any clarifications needed:
 
 #### Scope Clarification Questions:
 
-- "Are there specific customer segments or aspects of {{research_topic}} we should prioritize?"
-- "Should we focus on specific geographic regions or global market?"
-- "Is this for market entry, expansion, product development, or other business purpose?"
-- "Any competitors or market segments you specifically want us to analyze?"
+- "Are there specific player segments or platforms for {{research_topic}} we should prioritize?"
+- "Should we focus on specific geographic regions or global game market?"
+- "Is this for game concept validation, competitor analysis, market entry strategy, or another purpose?"
+- "Any specific competing games, studios, or player communities you particularly want analyzed?"
 
 ### 3. Document Initial Scope
 
@@ -75,7 +75,7 @@ Gather any clarifications needed:
 Write initial research scope to document:
 
 ```markdown
-# Market Research: {{research_topic}}
+# Game Market Research: {{research_topic}}
 
 ## Research Initialization
 
@@ -83,17 +83,17 @@ Write initial research scope to document:
 
 **Topic**: {{research_topic}}
 **Goals**: {{research_goals}}
-**Research Type**: Market Research
+**Research Type**: Game Market Research
 **Date**: {{date}}
 
 ### Research Scope
 
-**Market Analysis Focus Areas:**
+**Game Market Analysis Focus Areas:**
 
-- Market size, growth projections, and dynamics
-- Customer segments, behavior patterns, and insights
-- Competitive landscape and positioning analysis
-- Strategic recommendations and implementation guidance
+- Game market size, genre growth projections, and platform dynamics
+- Player segments, behavior patterns, and gamer insights
+- Competitive game landscape and studio positioning analysis
+- Strategic recommendations and game design implications
 
 **Research Methodology:**
 
@@ -107,29 +107,31 @@ Write initial research scope to document:
 **Research Workflow:**
 
 1. ✅ Initialization and scope setting (current step)
-2. Customer Insights and Behavior Analysis
-3. Competitive Landscape Analysis
-4. Strategic Synthesis and Recommendations
+2. Player Insights and Behavior Analysis
+3. Player Pain Points and Unmet Needs Analysis
+4. Player Decision and Purchase Journey Analysis
+5. Game Competitive Analysis
+6. Research Synthesis and Completion
 
-**Research Status**: Scope confirmed, ready to proceed with detailed market analysis
+**Research Status**: Scope confirmed, ready to proceed with detailed game market analysis
 ```
 
 ### 4. Present Confirmation and Continue Option
 
 Show initial scope document and present continue option:
-"I've documented our understanding and initial scope for **{{research_topic}}** market research.
+"I've documented our understanding and initial scope for **{{research_topic}}** game market research.
 
 **What I've established:**
 
 - Research topic and goals confirmed
-- Market analysis focus areas defined
+- Game market analysis focus areas defined
 - Research methodology verification
 - Clear workflow progression
 
 **Document Status:** Initial scope written to research file for your review
 
-**Ready to begin detailed market research?**
-[C] Continue - Confirm scope and proceed to customer insights analysis
+**Ready to begin detailed game market research?**
+[C] Continue - Confirm scope and proceed to player insights analysis
 [Modify] Suggest changes to research scope before proceeding
 
 ### 5. Handle User Response
@@ -138,7 +140,7 @@ Show initial scope document and present continue option:
 
 - Update frontmatter: `stepsCompleted: [1]`
 - Add confirmation note to document: "Scope confirmed by user on {{date}}"
-- Load: `${CLAUDE_PLUGIN_ROOT}/skills/research/market-steps/step-02-customer-behavior.md`
+- Load: `{project-root}/_bmad/gds/workflows/1-preproduction/research/market-steps/step-02-customer-behavior.md`
 
 #### If 'Modify':
 
@@ -149,7 +151,7 @@ Show initial scope document and present continue option:
 ## SUCCESS METRICS:
 
 ✅ Research topic and goals accurately understood
-✅ Market research scope clearly defined
+✅ Game market research scope clearly defined
 ✅ Initial scope document written immediately
 ✅ User opportunity to review and modify scope
 ✅ [C] continue option presented and handled correctly
@@ -170,13 +172,13 @@ Show initial scope document and present continue option:
 
 This step ensures:
 
-- Clear mutual understanding of research objectives
+- Clear mutual understanding of game market research objectives
 - Well-defined research scope and approach
 - Immediate documentation for user review
 - User control over research direction before detailed work begins
 
 ## NEXT STEP:
 
-After user confirmation and scope finalization, load `${CLAUDE_PLUGIN_ROOT}/skills/research/market-steps/step-02-customer-behavior.md` to begin detailed market research with customer insights analysis.
+After user confirmation and scope finalization, load `{project-root}/_bmad/gds/workflows/1-preproduction/research/market-steps/step-02-customer-behavior.md` to begin detailed game market research with player insights analysis.
 
 Remember: Init steps confirm understanding and scope, not generate research content!

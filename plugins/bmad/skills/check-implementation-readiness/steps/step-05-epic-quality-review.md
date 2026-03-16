@@ -52,7 +52,7 @@ To validate epics and stories against the best practices defined in create-epics
 
 I will rigorously validate:
 
-- Epics deliver user value (not technical milestones)
+- Epics deliver player/user value (not technical milestones)
 - Epic independence (Epic 2 doesn't need Epic 3)
 - Story dependencies (no forward references)
 - Proper story sizing and completeness
@@ -61,20 +61,20 @@ Any deviation from best practices will be flagged as a defect."
 
 ### 2. Epic Structure Validation
 
-#### A. User Value Focus Check
+#### A. Player/User Value Focus Check
 
 For each epic:
 
-- **Epic Title:** Is it user-centric (what user can do)?
-- **Epic Goal:** Does it describe user outcome?
-- **Value Proposition:** Can users benefit from this epic alone?
+- **Epic Title:** Is it player-centric (what player or user can do)?
+- **Epic Goal:** Does it describe player outcome or game experience?
+- **Value Proposition:** Can players benefit from this epic alone?
 
 **Red flags (violations):**
 
-- "Setup Database" or "Create Models" - no user value
+- "Setup Database" or "Create Models" - no player value
 - "API Development" - technical milestone
-- "Infrastructure Setup" - not user-facing
-- "Authentication System" - borderline (is it user value?)
+- "Infrastructure Setup" - not player-facing
+- "Engine Initialization" - borderline (is it player value?)
 
 #### B. Epic Independence Validation
 
@@ -97,12 +97,12 @@ Test epic independence:
 
 Check each story:
 
-- **Clear User Value:** Does the story deliver something meaningful?
+- **Clear Player Value:** Does the story deliver something meaningful to the player?
 - **Independent:** Can it be completed without future stories?
 
 **Common violations:**
 
-- "Setup all models" - not a USER story
+- "Setup all models" - not a player story
 - "Create login UI (depends on Story 1.3)" - forward dependency
 
 #### B. Acceptance Criteria Review
@@ -116,7 +116,7 @@ For each story's ACs:
 
 **Issues to find:**
 
-- Vague criteria like "user can login"
+- Vague criteria like "player can move"
 - Missing error conditions
 - Incomplete happy path
 - Non-measurable outcomes
@@ -137,32 +137,32 @@ Map story dependencies within each epic:
 - "Wait for future story to work"
 - Stories referencing features not yet implemented
 
-#### B. Database/Entity Creation Timing
+#### B. Data/Entity Creation Timing
 
-Validate database creation approach:
+Validate data creation approach:
 
-- **Wrong:** Epic 1 Story 1 creates all tables upfront
-- **Right:** Each story creates tables it needs
-- **Check:** Are tables created only when first needed?
+- **Wrong:** Epic 1 Story 1 creates all data structures upfront
+- **Right:** Each story creates the data structures it needs
+- **Check:** Are data models created only when first needed?
 
 ### 5. Special Implementation Checks
 
 #### A. Starter Template Requirement
 
-Check if Architecture specifies starter template:
+Check if Architecture specifies starter template or engine project:
 
 - If YES: Epic 1 Story 1 must be "Set up initial project from starter template"
 - Verify story includes cloning, dependencies, initial configuration
 
 #### B. Greenfield vs Brownfield Indicators
 
-Greenfield projects should have:
+Greenfield game projects should have:
 
 - Initial project setup story
 - Development environment configuration
-- CI/CD pipeline setup early
+- Build pipeline setup early
 
-Brownfield projects should have:
+Brownfield game projects should have:
 
 - Integration points with existing systems
 - Migration or compatibility stories
@@ -171,11 +171,11 @@ Brownfield projects should have:
 
 For each epic, verify:
 
-- [ ] Epic delivers user value
+- [ ] Epic delivers player/user value
 - [ ] Epic can function independently
 - [ ] Stories appropriately sized
 - [ ] No forward dependencies
-- [ ] Database tables created when needed
+- [ ] Data structures created when needed
 - [ ] Clear acceptance criteria
 - [ ] Traceability to FRs maintained
 
@@ -185,7 +185,7 @@ Document all findings by severity:
 
 #### 🔴 Critical Violations
 
-- Technical epics with no user value
+- Technical epics with no player value
 - Forward dependencies breaking independence
 - Epic-sized stories that cannot be completed
 
@@ -193,7 +193,7 @@ Document all findings by severity:
 
 - Vague acceptance criteria
 - Stories requiring future stories
-- Database creation violations
+- Data creation violations
 
 #### 🟡 Minor Concerns
 

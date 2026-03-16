@@ -3,7 +3,7 @@ name: 'step-01-validate-prerequisites'
 description: 'Validate required documents exist and extract all requirements for epic and story creation'
 
 # Path Definitions
-workflow_path: '${CLAUDE_PLUGIN_ROOT}/skills/create-epics-and-stories'
+workflow_path: '{project-root}/_bmad/gds/workflows/3-technical/create-epics-and-stories'
 
 # File References
 thisStepFile: './step-01-validate-prerequisites.md'
@@ -13,8 +13,8 @@ outputFile: '{planning_artifacts}/epics.md'
 epicsTemplate: '{workflow_path}/templates/epics-template.md'
 
 # Task References
-advancedElicitationTask: '${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/workflow.xml'
-partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/party-mode/SKILL.md'
+advancedElicitationTask: 'skill:bmad-advanced-elicitation'
+partyModeWorkflow: '{project-root}/_bmad/core/workflows/bmad-party-mode/workflow.md'
 
 # Template References
 epicsTemplate: '{workflow_path}/templates/epics-template.md'
@@ -38,11 +38,11 @@ To validate that all required input documents exist and extract all requirements
 
 ### Role Reinforcement:
 
-- ✅ You are a product strategist and technical specifications writer
+- ✅ You are a game product strategist and technical specifications writer
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
 - ✅ We engage in collaborative dialogue, not command-response
 - ✅ You bring requirements extraction expertise
-- ✅ User brings their product vision and context
+- ✅ User brings their game vision and context
 
 ### Step-Specific Rules:
 
@@ -68,7 +68,7 @@ Welcome {user_name} to comprehensive epic and story creation!
 
 Verify required documents exist and are complete:
 
-1. **PRD.md** - Contains requirements (FRs and NFRs) and product scope
+1. **GDD.md** - Contains GDD requirements (FRs and NFRs) and game scope
 2. **Architecture.md** - Contains technical decisions, API contracts, data models
 3. **UX Design.md** (if UI exists) - Contains interaction patterns, mockups, user flows
 
@@ -76,10 +76,10 @@ Verify required documents exist and are complete:
 
 Search for required documents using these patterns (sharded means a large document was split into multiple small files with an index.md into a folder) - if the whole document is found, use that instead of the sharded version:
 
-**PRD Document Search Priority:**
+**GDD Document Search Priority:**
 
-1. `{planning_artifacts}/*prd*.md` (whole document)
-2. `{planning_artifacts}/*prd*/index.md` (sharded version)
+1. `{planning_artifacts}/*gdd*.md` (whole document)
+2. `{planning_artifacts}/*gdd*/index.md` (sharded version)
 
 **Architecture Document Search Priority:**
 
@@ -95,7 +95,7 @@ Before proceeding, Ask the user if there are any other documents to include for 
 
 ### 3. Extract Functional Requirements (FRs)
 
-From the PRD document (full or sharded), read then entire document and extract ALL functional requirements:
+From the GDD document (full or sharded), read then entire document and extract ALL functional requirements:
 
 **Extraction Method:**
 
@@ -113,7 +113,7 @@ FR2: [Clear, testable requirement description]
 
 ### 4. Extract Non-Functional Requirements (NFRs)
 
-From the PRD document, extract ALL non-functional requirements:
+From the GDD document, extract ALL non-functional requirements:
 
 **Extraction Method:**
 
@@ -154,20 +154,31 @@ Review the Architecture document for technical requirements that impact epic and
 ...
 ```
 
-### 6. Extract Additional Requirements from UX (if exists)
+### 6. Extract UX Design Requirements (if UX document exists)
 
-Review the UX document for requirements that affect epic and story creation:
+**IMPORTANT**: The UX Design Specification is a first-class input document, not supplementary material. Requirements from the UX spec must be extracted with the same rigor as GDD functional requirements.
+
+Read the FULL UX Design document and extract ALL actionable work items:
 
 **Look for:**
 
-- Responsive design requirements
-- Accessibility requirements
-- Browser/device compatibility
-- User interaction patterns that need implementation
-- Animation or transition requirements
-- Error handling UX requirements
+- **Design token work**: Color systems, spacing scales, typography tokens that need implementation or consolidation
+- **Component proposals**: Reusable UI components identified in the UX spec (e.g., ConfirmActions, StatusMessage, EmptyState, FocusIndicator)
+- **Visual standardization**: Semantic CSS classes, consistent color palette usage, design pattern consolidation
+- **Accessibility requirements**: Contrast audit fixes, ARIA patterns, keyboard navigation, screen reader support
+- **Responsive design requirements**: Breakpoints, layout adaptations, mobile-specific interactions
+- **Interaction patterns**: Animations, transitions, loading states, error handling UX
+- **Browser/device compatibility**: Target platforms, progressive enhancement requirements
 
-**Add these to Additional Requirements list.**
+**Format UX Design Requirements as a SEPARATE section (not merged into Additional Requirements):**
+
+```
+UX-DR1: [Actionable UX design requirement with clear implementation scope]
+UX-DR2: [Actionable UX design requirement with clear implementation scope]
+...
+```
+
+**🚨 CRITICAL**: Do NOT reduce UX requirements to vague summaries. Each UX-DR must be specific enough to generate a story with testable acceptance criteria. If the UX spec identifies 6 reusable components, list all 6 — not "create reusable components."
 
 ### 7. Load and Initialize Template
 
@@ -178,7 +189,8 @@ Load {epicsTemplate} and initialize {outputFile}:
 3. Replace placeholder sections with extracted requirements:
    - {{fr_list}} → extracted FRs
    - {{nfr_list}} → extracted NFRs
-   - {{additional_requirements}} → extracted additional requirements
+   - {{additional_requirements}} → extracted additional requirements (from Architecture)
+   - {{ux_design_requirements}} → extracted UX Design Requirements (if UX document exists)
 4. Leave {{requirements_coverage_map}} and {{epics_list}} as placeholders for now
 
 ### 8. Present Extracted Requirements
@@ -197,15 +209,20 @@ Display to user:
 - Display key NFRs
 - Ask if any constraints were missed
 
-**Additional Requirements:**
+**Additional Requirements (Architecture):**
 
 - Summarize technical requirements from Architecture
-- Summarize UX requirements (if applicable)
 - Verify completeness
+
+**UX Design Requirements (if applicable):**
+
+- Show count of UX-DRs found
+- Display key UX Design requirements (design tokens, components, accessibility)
+- Verify each UX-DR is specific enough for story creation
 
 ### 9. Get User Confirmation
 
-Ask: "Do these extracted requirements accurately represent what needs to be built? Any additions or corrections?"
+Ask: "Do these extracted GDD requirements accurately represent what needs to be built? Any additions or corrections?"
 
 Update the requirements based on user feedback until confirmation is received.
 
@@ -216,6 +233,7 @@ After extraction and confirmation, update {outputFile} with:
 - Complete FR list in {{fr_list}} section
 - Complete NFR list in {{nfr_list}} section
 - All additional requirements in {{additional_requirements}} section
+- UX Design requirements in {{ux_design_requirements}} section (if UX document exists)
 
 ### 10. Present MENU OPTIONS
 

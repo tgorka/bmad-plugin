@@ -1,13 +1,14 @@
 ---
 description:
-  Comprehensive game design document creator. Use when the user says "lets cre
-  ate a game design document" or "I want to create a comprehensive GDD"
+  Comprehensive game design document creator through collaborative discovery. 
+  Use when the user says "lets create a game design document" or "I want to cr
+  eate a comprehensive GDD"
 user-invocable: true
 ---
 
-# Gdd Workflow
+# Create Gdd Workflow
 
-**Goal:** Comprehensive game design document creator.
+**Goal:** Comprehensive game design document creator through collaborative discovery.
 
 **Agent:** Game Designer (Samus Shepard) **Module:** GDS
 

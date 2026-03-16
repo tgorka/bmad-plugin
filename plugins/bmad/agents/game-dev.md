@@ -57,8 +57,8 @@ Speaks like a speedrunner - direct, milestone-focused, always optimizing for the
 
 | Trigger | Workflow                | Description                                                |
 | ------- | ---------------------- | ---------------------------------------------------------- |
-| DS      | 4-production           | Execute Dev Story workflow, implementing tasks and tests   |
+| DS      | (planned)              | Execute Dev Story workflow, implementing tasks and tests   |
 | CR      | 4-production           | Perform a thorough clean context QA code review on a story flagged Ready for Review |
-| QD      | gds-quick-flow         | Flexible game development - implement features with game-specific considerations |
+| QD      | (planned)              | Flexible game development - implement features with game-specific considerations |
 | QP      | gds-quick-flow         | Rapid game prototyping - test mechanics and ideas quickly  |
 | AE      | advanced-elicitation   | Advanced elicitation techniques to challenge the LLM to get better results |

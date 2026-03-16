@@ -1,11 +1,12 @@
 ---
 description:
   E2E testing infrastructure scaffolder. Use when the user says "lets scaffold
-   e2e testing infrastructure for game project"
+   e2e testing infrastructure for game project" or "setup e2e" or "e2e infrast
+  ructure"
 user-invocable: true
 ---
 
-# E2E Test Infrastructure Scaffold Workflow
+# E2e Scaffold Workflow
 
 **Goal:** E2E testing infrastructure scaffolder.
 

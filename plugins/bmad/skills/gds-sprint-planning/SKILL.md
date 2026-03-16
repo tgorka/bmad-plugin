@@ -1,13 +1,13 @@
 ---
 description:
-  Sprint status tracking file generator. Use when the user says "I want to gen
-  erate sprint status" or "lets create sprint tracking"
+  Generate sprint status tracking from epics. Use when the user says "run spri
+  nt planning" or "generate sprint plan"
 user-invocable: true
 ---
 
 # Sprint Planning Workflow
 
-**Goal:** Sprint status tracking file generator.
+**Goal:** Generate sprint status tracking from epics.
 
 **Agent:** Game Dev Scrum Master (Max) **Module:** GDS
 

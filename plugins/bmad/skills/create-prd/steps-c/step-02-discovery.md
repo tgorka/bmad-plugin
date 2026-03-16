@@ -3,7 +3,7 @@ name: 'step-02-discovery'
 description: 'Discover project type, domain, and context through collaborative dialogue'
 
 # File References
-nextStepFile: '${CLAUDE_PLUGIN_ROOT}/skills/create-prd/steps-c/step-02b-vision.md'
+nextStepFile: '{project-root}/_bmad/gds/workflows/2-design/create-prd/steps-c/step-02b-vision.md'
 outputFile: '{planning_artifacts}/prd.md'
 
 # Data Files
@@ -11,8 +11,8 @@ projectTypesCSV: '../data/project-types.csv'
 domainComplexityCSV: '../data/domain-complexity.csv'
 
 # Task References
-advancedElicitationTask: '${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/workflow.xml'
-partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/party-mode/SKILL.md'
+advancedElicitationTask: 'skill:bmad-advanced-elicitation'
+partyModeWorkflow: '{project-root}/_bmad/core/workflows/bmad-party-mode/workflow.md'
 ---
 
 # Step 2: Project Discovery

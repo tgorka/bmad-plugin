@@ -1,13 +1,14 @@
 ---
 description:
-  Story-driven narrative design documentation. Use when the user says "lets cr
-  eate a narrative design document"
+  Comprehensive narrative design for story-driven games. Use when the user say
+  s "lets create a narrative design document" or "I want to design the narrati
+  ve for my game"
 user-invocable: true
 ---
 
-# Narrative Workflow
+# Create Narrative Workflow
 
-**Goal:** Story-driven narrative design documentation.
+**Goal:** Comprehensive narrative design for story-driven games.
 
 **Agent:** Game Designer (Samus Shepard) **Module:** GDS
 

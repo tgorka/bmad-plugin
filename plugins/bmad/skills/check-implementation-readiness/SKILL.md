@@ -1,15 +1,15 @@
 ---
 description:
-  Validate PRD, UX, Architecture and Epics specs are complete. Use when the us
-  er says "check implementation readiness".
+  Validate GDD, UX, Architecture and Epics specs are complete for game develop
+  ment. Use when the user says "check implementation readiness".
 user-invocable: true
 ---
 
 # Check Implementation Readiness Workflow
 
-**Goal:** Validate PRD, UX, Architecture and Epics specs are complete.
+**Goal:** Validate GDD, UX, Architecture and Epics specs are complete for game development.
 
-**Agent:** Architect (Winston) **Module:** CORE
+**Agent:** Game Architect (Cloud Dragonborn) **Module:** GDS
 
 ---
 

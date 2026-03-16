@@ -1,6 +1,6 @@
 ---
 name: create-prd
-description: 'Create a PRD from scratch. Use when the user says "lets create a product requirements document" or "I want to create a new PRD"'
+description: '(Optional) Create a PRD for use with external tools like bmad-assist. Uses the GDD as a base if available, otherwise creates from scratch. Use when the user says "create a PRD" or "generate PRD from GDD"'
 main_config: '.claude/bmad.local.md'
 nextStep: './steps-c/step-01-init.md'
 ---
@@ -51,7 +51,7 @@ This uses **step-file architecture** for disciplined execution:
 Load and read full config from {main_config} and resolve:
 
 - `project_name`, `output_folder`, `planning_artifacts`, `user_name`
-- `communication_language`, `document_output_language`, `user_skill_level`
+- `communication_language`, `document_output_language`, `game_dev_experience`
 - `date` as system-generated current datetime
 
 ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the configured `{communication_language}`.

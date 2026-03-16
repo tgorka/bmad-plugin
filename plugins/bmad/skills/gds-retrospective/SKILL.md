@@ -1,13 +1,13 @@
 ---
 description:
-  Post-epic review and lessons learned. Use when the user says "lets run a ret
-  rospective" or "execute epic completion review"
+  Post-epic review to extract lessons and assess success. Use when the user sa
+  ys "run a retrospective" or "lets retro the epic [epic]"
 user-invocable: true
 ---
 
 # Retrospective Workflow
 
-**Goal:** Post-epic review and lessons learned.
+**Goal:** Post-epic review to extract lessons and assess success.
 
 **Agent:** Game Dev Scrum Master (Max) **Module:** GDS
 

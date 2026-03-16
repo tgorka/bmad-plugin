@@ -3,7 +3,7 @@ name: 'step-03-create-stories'
 description: 'Generate all epics with their stories following the template structure'
 
 # Path Definitions
-workflow_path: '${CLAUDE_PLUGIN_ROOT}/skills/create-epics-and-stories'
+workflow_path: '{project-root}/_bmad/gds/workflows/3-technical/create-epics-and-stories'
 
 # File References
 thisStepFile: './step-03-create-stories.md'
@@ -12,8 +12,8 @@ workflowFile: '{workflow_path}/workflow.md'
 outputFile: '{planning_artifacts}/epics.md'
 
 # Task References
-advancedElicitationTask: '${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/workflow.xml'
-partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/party-mode/SKILL.md'
+advancedElicitationTask: 'skill:bmad-advanced-elicitation'
+partyModeWorkflow: '{project-root}/_bmad/core/workflows/bmad-party-mode/workflow.md'
 
 # Template References
 epicsTemplate: '{workflow_path}/templates/epics-template.md'
@@ -37,7 +37,7 @@ To generate all epics with their stories based on the approved epics_list, follo
 
 ### Role Reinforcement:
 
-- ✅ You are a product strategist and technical specifications writer
+- ✅ You are a game product strategist and technical specifications writer
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
 - ✅ We engage in collaborative dialogue, not command-response
 - ✅ You bring story creation and acceptance criteria expertise
@@ -66,8 +66,10 @@ Load {outputFile} and review:
 
 - Approved epics_list from Step 2
 - FR coverage map
-- All requirements (FRs, NFRs, additional)
+- All requirements (FRs, NFRs, additional, **UX Design requirements if present**)
 - Template structure at the end of the document
+
+**UX Design Integration**: If UX Design Requirements (UX-DRs) were extracted in Step 1, ensure they are visible during story creation. UX-DRs must be covered by stories — either within existing epics (e.g., accessibility fixes for a feature epic) or in a dedicated "Design System / UX Polish" epic.
 
 ### 2. Explain Story Creation Approach
 
@@ -79,7 +81,7 @@ For each epic, create stories that:
 - Are sized for single dev agent completion
 - Have clear user value
 - Include specific acceptance criteria
-- Reference requirements being fulfilled
+- Reference GDD requirements being fulfilled
 
 **🚨 DATABASE/ENTITY CREATION PRINCIPLE:**
 Create tables/entities ONLY when needed by the story:
@@ -114,17 +116,17 @@ So that {value_benefit}.
 
 **✅ GOOD STORY EXAMPLES:**
 
-_Epic 1: User Authentication_
+_Epic 1: Player Authentication_
 
-- Story 1.1: User Registration with Email
-- Story 1.2: User Login with Password
+- Story 1.1: Player Registration with Email
+- Story 1.2: Player Login with Password
 - Story 1.3: Password Reset via Email
 
-_Epic 2: Content Creation_
+_Epic 2: Core Gameplay Loop_
 
-- Story 2.1: Create New Blog Post
-- Story 2.2: Edit Existing Blog Post
-- Story 2.3: Publish Blog Post
+- Story 2.1: Start a New Game Session
+- Story 2.2: Save Game Progress
+- Story 2.3: Load and Resume a Saved Game
 
 **❌ BAD STORY EXAMPLES:**
 
@@ -132,7 +134,7 @@ _Epic 2: Content Creation_
 - Story: "Create all models" (too large, no user value)
 - Story: "Build authentication system" (too large)
 - Story: "Login UI (depends on Story 1.3 API endpoint)" (future dependency!)
-- Story: "Edit post (requires Story 1.4 to be implemented first)" (wrong order!)
+- Story: "Edit save (requires Story 1.4 to be implemented first)" (wrong order!)
 
 ### 3. Process Epics Sequentially
 
@@ -146,6 +148,7 @@ Display:
 - Epic goal statement
 - FRs covered by this epic
 - Any NFRs or additional requirements relevant
+- Any UX Design Requirements (UX-DRs) relevant to this epic
 
 #### B. Story Breakdown
 
@@ -168,14 +171,14 @@ For each story in the epic:
 - Use Given/When/Then format
 - Each AC should be independently testable
 - Include edge cases and error conditions
-- Reference specific requirements when applicable
+- Reference specific GDD requirements when applicable
 
 #### D. Collaborative Review
 
 After writing each story:
 
 - Present the story to user
-- Ask: "Does this story capture the requirement correctly?"
+- Ask: "Does this story capture the GDD requirement correctly?"
 - "Is the scope appropriate for a single dev session?"
 - "Are the acceptance criteria complete and testable?"
 
@@ -207,6 +210,7 @@ After all epics and stories are generated:
 - Verify the document follows template structure exactly
 - Ensure all placeholders are replaced
 - Confirm all FRs are covered
+- **Confirm all UX Design Requirements (UX-DRs) are covered by at least one story** (if UX document was an input)
 - Check formatting consistency
 
 ## TEMPLATE STRUCTURE COMPLIANCE:

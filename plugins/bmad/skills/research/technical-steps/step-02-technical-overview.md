@@ -1,4 +1,4 @@
-# Technical Research Step 2: Technology Stack Analysis
+# Game Technical Research Step 2: Game Technology Stack Analysis
 
 ## MANDATORY EXECUTION RULES (READ FIRST):
 
@@ -7,8 +7,8 @@
 - 📖 CRITICAL: ALWAYS read the complete step file before taking any action - partial understanding leads to incomplete decisions
 - 🔄 CRITICAL: When loading next step with 'C', ensure the entire file is read and understood before proceeding
 - ✅ Search the web to verify and supplement your knowledge with current facts
-- 📋 YOU ARE A TECHNOLOGY STACK ANALYST, not content generator
-- 💬 FOCUS on languages, frameworks, tools, and platforms
+- 📋 YOU ARE A GAME TECHNOLOGY STACK ANALYST, not content generator
+- 💬 FOCUS on game engines, languages, middleware, tools, and platforms
 - 🔍 WEB SEARCH REQUIRED - verify current facts against live sources
 - 📝 WRITE CONTENT IMMEDIATELY TO DOCUMENT
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
@@ -17,7 +17,7 @@
 
 - 🎯 Show web search analysis before presenting findings
 - ⚠️ Present [C] continue option after technology stack content generation
-- 📝 WRITE TECHNOLOGY STACK ANALYSIS TO DOCUMENT IMMEDIATELY
+- 📝 WRITE GAME TECHNOLOGY STACK ANALYSIS TO DOCUMENT IMMEDIATELY
 - 💾 ONLY proceed when user chooses C (Continue)
 - 📖 Update frontmatter `stepsCompleted: [1, 2]` before loading next step
 - 🚫 FORBIDDEN to load next step until C is selected
@@ -27,133 +27,133 @@
 - Current document and frontmatter from step-01 are available
 - **Research topic = "{{research_topic}}"** - established from initial discussion
 - **Research goals = "{{research_goals}}"** - established from initial discussion
-- Focus on languages, frameworks, tools, and platforms
+- Focus on game engines, languages, middleware, tools, and platforms
 - Web search capabilities with source verification are enabled
 
 ## YOUR TASK:
 
-Conduct technology stack analysis focusing on languages, frameworks, tools, and platforms. Search the web to verify and supplement current facts.
+Conduct game technology stack analysis focusing on game engines, programming languages, middleware, tools, and platforms. Search the web to verify and supplement current facts.
 
-## TECHNOLOGY STACK ANALYSIS SEQUENCE:
+## GAME TECHNOLOGY STACK ANALYSIS SEQUENCE:
 
-### 1. Begin Technology Stack Analysis
+### 1. Begin Game Technology Stack Analysis
 
-**UTILIZE SUBPROCESSES AND SUBAGENTS**: Use research subagents, subprocesses or parallel processing if available to thoroughly analyze different technology stack areas simultaneously and thoroughly.
+**UTILIZE SUBPROCESSES AND SUBAGENTS**: Use research subagents, subprocesses or parallel processing if available to thoroughly analyze different game technology stack areas simultaneously and thoroughly.
 
-Start with technology stack research approach:
-"Now I'll conduct **technology stack analysis** for **{{research_topic}}** to understand the technology landscape.
+Start with game technology stack research approach:
+"Now I'll conduct **game technology stack analysis** for **{{research_topic}}** to understand the game technology landscape.
 
-**Technology Stack Focus:**
+**Game Technology Stack Focus:**
 
-- Programming languages and their evolution
-- Development frameworks and libraries
-- Database and storage technologies
-- Development tools and platforms
-- Cloud infrastructure and deployment platforms
+- Game engines and their evolution (Unreal, Unity, Godot, proprietary)
+- Programming languages and scripting (C++, C#, GDScript, Lua, Blueprint)
+- Middleware and specialized game tech (physics, audio, animation, networking)
+- Game development tools and pipelines (IDEs, profilers, asset pipelines)
+- Target platform SDKs and deployment infrastructure
 
-**Let me search for current technology stack insights.**"
+**Let me search for current game technology stack insights.**"
 
-### 2. Parallel Technology Stack Research Execution
+### 2. Parallel Game Technology Stack Research Execution
 
 **Execute multiple web searches simultaneously:**
 
-Search the web: "{{research_topic}} programming languages frameworks"
-Search the web: "{{research_topic}} development tools platforms"
-Search the web: "{{research_topic}} database storage technologies"
-Search the web: "{{research_topic}} cloud infrastructure platforms"
+Search the web: "{{research_topic}} game engine technology comparison"
+Search the web: "{{research_topic}} game development tools middleware"
+Search the web: "{{research_topic}} game audio physics networking solutions"
+Search the web: "{{research_topic}} game platform SDK deployment"
 
 **Analysis approach:**
 
-- Look for recent technology trend reports and developer surveys
-- Search for technology documentation and best practices
-- Research open-source projects and their technology choices
-- Analyze technology adoption patterns and migration trends
-- Study platform and tool evolution in the domain
+- Look for recent game developer surveys (Unity/Unreal state of game dev, GDC surveys)
+- Search for game engine documentation, feature comparisons, and licensing details
+- Research middleware and specialized tech choices in comparable games
+- Analyze game development tool ecosystems and their evolution
+- Study platform SDK requirements and deployment considerations
 
 ### 3. Analyze and Aggregate Results
 
 **Collect and analyze findings from all parallel searches:**
 
-"After executing comprehensive parallel web searches, let me analyze and aggregate technology stack findings:
+"After executing comprehensive parallel web searches, let me analyze and aggregate game technology stack findings:
 
 **Research Coverage:**
 
-- Programming languages and frameworks analysis
-- Development tools and platforms evaluation
-- Database and storage technologies assessment
-- Cloud infrastructure and deployment platform analysis
+- Game engine and rendering framework analysis
+- Programming language and scripting evaluation
+- Middleware and specialized game tech assessment
+- Game development tools and pipeline analysis
 
 **Cross-Technology Analysis:**
-[Identify patterns connecting language choices, frameworks, and platform decisions]
+[Identify patterns connecting engine choices, language decisions, and platform requirements]
 
 **Quality Assessment:**
 [Overall confidence levels and research gaps identified]"
 
-### 4. Generate Technology Stack Content
+### 4. Generate Game Technology Stack Content
 
 **WRITE IMMEDIATELY TO DOCUMENT**
 
-Prepare technology stack analysis with web search citations:
+Prepare game technology stack analysis with web search citations:
 
 #### Content Structure:
 
 When saving to document, append these Level 2 and Level 3 sections:
 
 ```markdown
-## Technology Stack Analysis
+## Game Technology Stack Analysis
 
-### Programming Languages
+### Game Engines and Rendering Frameworks
 
-[Programming languages analysis with source citations]
-_Popular Languages: [Most widely used languages for {{research_topic}}]_
-_Emerging Languages: [Growing languages gaining adoption]_
-_Language Evolution: [How language preferences are changing]_
-_Performance Characteristics: [Language performance and suitability]_
+[Game engine analysis with source citations]
+_Dominant Game Engines: [Unreal, Unity, Godot, proprietary engines and their use cases]_
+_Engine Feature Comparison: [Key differentiators relevant to {{research_topic}}]_
+_Engine Licensing Models: [Cost, royalties, and commercial terms]_
+_Engine Community and Support: [Ecosystem maturity and learning resources]_
 _Source: [URL]_
 
-### Development Frameworks and Libraries
+### Programming Languages and Scripting
 
-[Frameworks analysis with source citations]
-_Major Frameworks: [Dominant frameworks and their use cases]_
-_Micro-frameworks: [Lightweight options and specialized libraries]_
-_Evolution Trends: [How frameworks are evolving and changing]_
-_Ecosystem Maturity: [Library availability and community support]_
+[Game programming language analysis with source citations]
+_Primary Languages: [C++, C#, GDScript, and other languages for {{research_topic}}]_
+_Scripting Solutions: [Blueprint, Lua, Python, and visual scripting approaches]_
+_Language Performance Characteristics: [Performance and suitability for this game type]_
+_Language Ecosystem: [Library availability and developer community]_
 _Source: [URL]_
 
-### Database and Storage Technologies
+### Middleware and Specialized Game Tech
 
-[Database analysis with source citations]
-_Relational Databases: [Traditional SQL databases and their evolution]_
-_NoSQL Databases: [Document, key-value, graph, and other NoSQL options]_
-_In-Memory Databases: [Redis, Memcached, and performance-focused solutions]_
-_Data Warehousing: [Analytics and big data storage solutions]_
+[Game middleware analysis with source citations]
+_Physics Engines: [PhysX, Havok, Bullet, Jolt and physics middleware options]_
+_Audio Middleware: [FMOD, Wwise, and audio system options]_
+_Animation Systems: [Mixamo, Motion Matching, and animation middleware]_
+_Networking Middleware: [Photon, Mirror, ENet, and networking solutions]_
 _Source: [URL]_
 
-### Development Tools and Platforms
+### Game Development Tools and Pipeline
 
-[Tools and platforms analysis with source citations]
-_IDE and Editors: [Development environments and their evolution]_
-_Version Control: [Git and related development tools]_
-_Build Systems: [Compilation, packaging, and automation tools]_
-_Testing Frameworks: [Unit testing, integration testing, and QA tools]_
+[Game development tools analysis with source citations]
+_IDEs and Editors: [Development environments for game programming]_
+_Profiling and Debugging: [RenderDoc, PIX, engine profilers, and performance tools]_
+_Asset Pipeline Tools: [DCC tools, asset optimization, and pipeline automation]_
+_Version Control for Game Teams: [Git LFS, Perforce, and game-specific VCS considerations]_
 _Source: [URL]_
 
-### Cloud Infrastructure and Deployment
+### Platform SDKs and Deployment Infrastructure
 
-[Cloud platforms analysis with source citations]
-_Major Cloud Providers: [AWS, Azure, GCP and their services]_
-_Container Technologies: [Docker, Kubernetes, and orchestration]_
-_Serverless Platforms: [FaaS and event-driven computing]_
-_CDN and Edge Computing: [Content delivery and distributed computing]_
+[Platform deployment analysis with source citations]
+_Console Platform SDKs: [PlayStation, Xbox, Nintendo SDK requirements and features]_
+_PC Platform Integration: [Steam, Epic, GOG SDK features and integration requirements]_
+_Mobile Platform SDKs: [iOS and Android SDK features relevant to this game type]_
+_Cloud and Streaming Infrastructure: [Backend services for online game features]_
 _Source: [URL]_
 
-### Technology Adoption Trends
+### Game Technology Adoption Trends
 
-[Adoption trends analysis with source citations]
-_Migration Patterns: [How technology choices are evolving]_
-_Emerging Technologies: [New technologies gaining traction]_
-_Legacy Technology: [Older technologies being phased out]_
-_Community Trends: [Developer preferences and open-source adoption]_
+[Game tech adoption trends analysis with source citations]
+_Engine Market Share Trends: [How developer adoption of engines is shifting]_
+_Emerging Game Technologies: [New tools and technologies gaining traction in game dev]_
+_Legacy Tech Deprecation: [Older game tech being phased out]_
+_Community Trends: [Developer preferences and open-source adoption in game dev]_
 _Source: [URL]_
 ```
 
@@ -161,17 +161,17 @@ _Source: [URL]_
 
 **Show analysis and present continue option:**
 
-"I've completed **technology stack analysis** of the technology landscape for {{research_topic}}.
+"I've completed **game technology stack analysis** of the technology landscape for {{research_topic}}.
 
-**Key Technology Stack Findings:**
+**Key Game Technology Stack Findings:**
 
-- Programming languages and frameworks thoroughly analyzed
-- Database and storage technologies evaluated
-- Development tools and platforms documented
-- Cloud infrastructure and deployment options mapped
-- Technology adoption trends identified
+- Game engines and rendering frameworks thoroughly analyzed
+- Programming languages and scripting options evaluated
+- Middleware and specialized game tech documented
+- Game development tools and pipeline options mapped
+- Platform SDK and deployment infrastructure requirements identified
 
-**Ready to proceed to integration patterns analysis?**
+**Ready to proceed to game integration patterns analysis?**
 [C] Continue - Save this to document and proceed to integration patterns
 
 ### 6. Handle Continue Selection
@@ -180,7 +180,7 @@ _Source: [URL]_
 
 - **CONTENT ALREADY WRITTEN TO DOCUMENT**
 - Update frontmatter: `stepsCompleted: [1, 2]`
-- Load: `${CLAUDE_PLUGIN_ROOT}/skills/research/technical-steps/step-03-integration-patterns.md`
+- Load: `{project-root}/_bmad/gds/workflows/1-preproduction/research/technical-steps/step-03-integration-patterns.md`
 
 ## APPEND TO DOCUMENT:
 
@@ -188,11 +188,11 @@ Content is already written to document when generated in step 4. No additional a
 
 ## SUCCESS METRICS:
 
-✅ Programming languages and frameworks thoroughly analyzed
-✅ Database and storage technologies evaluated
-✅ Development tools and platforms documented
-✅ Cloud infrastructure and deployment options mapped
-✅ Technology adoption trends identified
+✅ Game engines and rendering frameworks thoroughly analyzed
+✅ Programming languages and scripting options evaluated
+✅ Middleware and specialized game tech documented
+✅ Game development tools and pipeline options mapped
+✅ Platform SDK and deployment infrastructure identified
 ✅ Content written immediately to document
 ✅ [C] continue option presented and handled correctly
 ✅ Proper routing to next step (integration patterns)
@@ -200,11 +200,11 @@ Content is already written to document when generated in step 4. No additional a
 
 ## FAILURE MODES:
 
-❌ Relying solely on training data without web verification for current facts
+❌ Relying solely on training data without web verification for current game tech facts
 
-❌ Missing critical programming languages or frameworks
-❌ Incomplete database and storage technology analysis
-❌ Not identifying development tools and platforms
+❌ Missing critical game engines or rendering frameworks
+❌ Incomplete middleware or platform SDK analysis
+❌ Not identifying game development tools and pipeline options
 ❌ Not writing content immediately to document
 ❌ Not presenting [C] continue option after content generation
 ❌ Not routing to integration patterns step
@@ -213,27 +213,27 @@ Content is already written to document when generated in step 4. No additional a
 ❌ **CRITICAL**: Proceeding with 'C' without fully reading and understanding the next step file
 ❌ **CRITICAL**: Making decisions without complete understanding of step requirements and protocols
 
-## TECHNOLOGY STACK RESEARCH PROTOCOLS:
+## GAME TECHNOLOGY STACK RESEARCH PROTOCOLS:
 
-- Research technology trend reports and developer surveys
-- Use technology documentation and best practices guides
-- Analyze open-source projects and their technology choices
-- Study technology adoption patterns and migration trends
-- Focus on current technology data
+- Research game developer surveys and state-of-the-industry reports
+- Use game engine documentation, feature comparisons, and community forums
+- Analyze middleware provider documentation and game use cases
+- Study game development tool ecosystems and pipeline examples
+- Focus on current game technology data
 - Present conflicting information when sources disagree
 - Apply confidence levels appropriately
 
-## TECHNOLOGY STACK ANALYSIS STANDARDS:
+## GAME TECHNOLOGY STACK ANALYSIS STANDARDS:
 
 - Always cite URLs for web search results
-- Use authoritative technology research sources
+- Use authoritative game technology research sources
 - Note data currency and potential limitations
 - Present multiple perspectives when sources conflict
 - Apply confidence levels to uncertain data
-- Focus on actionable technology insights
+- Focus on actionable game technology insights
 
 ## NEXT STEP:
 
-After user selects 'C', load `${CLAUDE_PLUGIN_ROOT}/skills/research/technical-steps/step-03-integration-patterns.md` to analyze APIs, communication protocols, and system interoperability for {{research_topic}}.
+After user selects 'C', load `{project-root}/_bmad/gds/workflows/1-preproduction/research/technical-steps/step-03-integration-patterns.md` to analyze online service integration, platform APIs, analytics, and game system interoperability for {{research_topic}}.
 
-Remember: Always write research content to document immediately and emphasize current technology data with rigorous source verification!
+Remember: Always write research content to document immediately and emphasize current game technology data with rigorous source verification!

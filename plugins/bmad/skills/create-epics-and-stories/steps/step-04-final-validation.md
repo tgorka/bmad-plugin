@@ -3,7 +3,7 @@ name: 'step-04-final-validation'
 description: 'Validate complete coverage of all requirements and ensure implementation readiness'
 
 # Path Definitions
-workflow_path: '${CLAUDE_PLUGIN_ROOT}/skills/create-epics-and-stories'
+workflow_path: '{project-root}/_bmad/gds/workflows/3-technical/create-epics-and-stories'
 
 # File References
 thisStepFile: './step-04-final-validation.md'
@@ -11,8 +11,8 @@ workflowFile: '{workflow_path}/workflow.md'
 outputFile: '{planning_artifacts}/epics.md'
 
 # Task References
-advancedElicitationTask: '${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/workflow.xml'
-partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/party-mode/SKILL.md'
+advancedElicitationTask: 'skill:bmad-advanced-elicitation'
+partyModeWorkflow: '{project-root}/_bmad/core/workflows/bmad-party-mode/workflow.md'
 
 # Template References
 epicsTemplate: '{workflow_path}/templates/epics-template.md'
@@ -22,7 +22,7 @@ epicsTemplate: '{workflow_path}/templates/epics-template.md'
 
 ## STEP GOAL:
 
-To validate complete coverage of all requirements and ensure stories are ready for development.
+To validate complete coverage of all GDD requirements and ensure stories are ready for development.
 
 ## MANDATORY EXECUTION RULES (READ FIRST):
 
@@ -36,7 +36,7 @@ To validate complete coverage of all requirements and ensure stories are ready f
 
 ### Role Reinforcement:
 
-- ✅ You are a product strategist and technical specifications writer
+- ✅ You are a game product strategist and technical specifications writer
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
 - ✅ We engage in collaborative dialogue, not command-response
 - ✅ You bring validation expertise and quality assurance
@@ -51,7 +51,7 @@ To validate complete coverage of all requirements and ensure stories are ready f
 
 ## EXECUTION PROTOCOLS:
 
-- 🎯 Validate every requirement has story coverage
+- 🎯 Validate every GDD requirement has story coverage
 - 💾 Check story dependencies and flow
 - 📖 Verify architecture compliance
 - 🚫 FORBIDDEN to approve incomplete coverage
@@ -59,7 +59,7 @@ To validate complete coverage of all requirements and ensure stories are ready f
 ## CONTEXT BOUNDARIES:
 
 - Available context: Complete epic and story breakdown from previous steps
-- Focus: Final validation of requirements coverage and story readiness
+- Focus: Final validation of GDD requirements coverage and story readiness
 - Limits: Validation only, no new content creation
 - Dependencies: Completed story generation from Step 3
 
@@ -144,6 +144,6 @@ If all validations pass:
 
 When C is selected, the workflow is complete and the epics.md is ready for development.
 
-Epics and Stories complete. Read fully and follow: `${CLAUDE_PLUGIN_ROOT}/_shared/tasks/help.md`
+Epics and Stories complete. Invoke the `bmad-help` skill.
 
 Upon Completion of task output: offer to answer any questions about the Epics and Stories.

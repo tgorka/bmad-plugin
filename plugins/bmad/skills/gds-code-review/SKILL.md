@@ -1,13 +1,13 @@
 ---
 description:
-  Adversarial game dev code review. Use when the user says "lets review this c
-  ode for game dev issues"
+  Perform adversarial code review finding specific issues. Use when the user s
+  ays "run code review" or "review this code"
 user-invocable: true
 ---
 
 # Code Review Workflow
 
-**Goal:** Adversarial game dev code review.
+**Goal:** Perform adversarial code review finding specific issues.
 
 **Agent:** Game Developer (Link Freeman) **Module:** GDS
 

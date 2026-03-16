@@ -6,8 +6,8 @@ description: 'Deep Review & Analysis - Thoroughly review existing PRD and prepar
 nextStepFile: './step-e-03-edit.md'
 prdFile: '{prd_file_path}'
 validationReport: '{validation_report_path}'  # If provided
-prdPurpose: '${CLAUDE_PLUGIN_ROOT}/skills/create-prd/data/prd-purpose.md'
-advancedElicitationTask: '${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/workflow.xml'
+prdPurpose: '{project-root}/_bmad/gds/workflows/2-design/create-prd/data/prd-purpose.md'
+advancedElicitationTask: 'skill:bmad-advanced-elicitation'
 ---
 
 # Step E-2: Deep Review & Analysis

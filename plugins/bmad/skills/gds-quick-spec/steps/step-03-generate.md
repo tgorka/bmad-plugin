@@ -2,8 +2,6 @@
 name: 'step-03-generate'
 description: 'Build the implementation plan based on the technical mapping of constraints'
 
-workflow_path: '${CLAUDE_PLUGIN_ROOT}/skills/gds-quick-spec'
-nextStepFile: './step-04-review.md'
 wipFile: '{implementation_artifacts}/tech-spec-wip.md'
 ---
 
@@ -114,7 +112,7 @@ stepsCompleted: [1, 2, 3]
 ---
 ```
 
-c) **Load and execute `{nextStepFile}` (Step 4)**
+c) **Read fully and follow: `${CLAUDE_PLUGIN_ROOT}/skills/gds-quick-spec/steps/step-04-review.md` (Step 4)**
 
 ## REQUIRED OUTPUTS:
 

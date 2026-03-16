@@ -1,7 +1,7 @@
 ---
 description:
   Performance test strategy designer. Use when the user says "lets create a pe
-  rformance test plan"
+  rformance test plan" or "design game performance testing strategy"
 user-invocable: true
 ---
 
