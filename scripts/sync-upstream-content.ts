@@ -231,23 +231,32 @@ async function syncCoreExtras(map: WorkflowMap): Promise<number> {
   const coreRoot = join(ROOT, '.upstream', coreSource.localPath);
   let count = 0;
 
-  // 1. Core task files → _shared/tasks/
+  // 1. Core task entries → _shared/tasks/
   const tasksDir = join(coreRoot, 'src/core/tasks');
   if (await exists(tasksDir)) {
-    const taskFiles = await readdir(tasksDir);
+    const taskEntries = await readdir(tasksDir, { withFileTypes: true });
     const destDir = join(PLUGIN, '_shared', 'tasks');
     console.log('Syncing: [core] tasks → _shared/tasks/');
+    let taskFileCount = 0;
 
-    for (const file of taskFiles) {
-      const srcPath = join(tasksDir, file);
+    for (const entry of taskEntries) {
+      const srcPath = join(tasksDir, entry.name);
+      const destPath = join(destDir, entry.name);
       if (DRY_RUN) {
-        console.log(`  [dry-run] _shared/tasks/${file}`);
-      } else {
-        await copyWithRewrite(srcPath, join(destDir, file), map);
+        console.log(`  [dry-run] _shared/tasks/${entry.name}`);
+        taskFileCount++;
+        continue;
       }
-      count++;
+      if (entry.isDirectory()) {
+        await cp(srcPath, destPath, { recursive: true, force: true });
+        taskFileCount++;
+      } else {
+        await copyWithRewrite(srcPath, destPath, map);
+        taskFileCount++;
+      }
     }
-    if (!DRY_RUN) console.log(`  ✓ ${taskFiles.length} task files copied`);
+    count += taskFileCount;
+    if (!DRY_RUN) console.log(`  ✓ ${taskFileCount} task entries copied`);
   }
 
   // 2. Core special workflows → skills/<name>/

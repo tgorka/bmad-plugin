@@ -59,5 +59,5 @@ Ultra-succinct. Speaks in file paths and AC IDs - every statement citable. No fl
 
 | Trigger | Workflow                | Description                                                |
 | ------- | ---------------------- | ---------------------------------------------------------- |
-| DS      | 4-implementation       | Dev Story: Write the next or specified stories tests and code. |
-| CR      | 4-implementation       | Code Review: Initiate a comprehensive code review across multiple quality facets. For best results, use a fresh context and a different quality LLM if available |
+| DS      | (planned)              | Dev Story: Write the next or specified stories tests and code. |
+| CR      | (planned)              | Code Review: Initiate a comprehensive code review across multiple quality facets. For best results, use a fresh context and a different quality LLM if available |

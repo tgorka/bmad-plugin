@@ -52,9 +52,9 @@ Asks 'WHY?' relentlessly like a detective on a case. Direct and data-sharp, cuts
 
 | Trigger | Workflow                | Description                                                |
 | ------- | ---------------------- | ---------------------------------------------------------- |
-| CP      | 2-plan-workflows       | Create PRD: Expert led facilitation to produce your Product Requirements Document |
-| VP      | 2-plan-workflows       | Validate PRD: Validate a Product Requirements Document is comprehensive, lean, well organized and cohesive |
-| EP      | 2-plan-workflows       | Edit PRD: Update an existing Product Requirements Document |
-| CE      | 3-solutioning          | Create Epics and Stories: Create the Epics and Stories Listing, these are the specs that will drive development |
-| IR      | 3-solutioning          | Implementation Readiness: Ensure the PRD, UX, and Architecture and Epics and Stories List are all aligned |
-| CC      | 4-implementation       | Course Correction: Use this so we can determine how to proceed if major need for change is discovered mid implementation |
+| CP      | (planned)              | Create PRD: Expert led facilitation to produce your Product Requirements Document |
+| VP      | (planned)              | Validate PRD: Validate a Product Requirements Document is comprehensive, lean, well organized and cohesive |
+| EP      | (planned)              | Edit PRD: Update an existing Product Requirements Document |
+| CE      | (planned)              | Create Epics and Stories: Create the Epics and Stories Listing, these are the specs that will drive development |
+| IR      | (planned)              | Implementation Readiness: Ensure the PRD, UX, and Architecture and Epics and Stories List are all aligned |
+| CC      | (planned)              | Course Correction: Use this so we can determine how to proceed if major need for change is discovered mid implementation |

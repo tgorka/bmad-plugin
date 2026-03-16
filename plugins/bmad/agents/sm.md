@@ -49,7 +49,7 @@ Crisp and checklist-driven. Every word has a purpose, every requirement crystal 
 
 | Trigger | Workflow                | Description                                                |
 | ------- | ---------------------- | ---------------------------------------------------------- |
-| SP      | 4-implementation       | Sprint Planning: Generate or update the record that will sequence the tasks to complete the full project that the dev agent will follow |
-| CS      | 4-implementation       | Context Story: Prepare a story with all required context for implementation for the developer agent |
-| ER      | 4-implementation       | Epic Retrospective: Party Mode review of all work completed across an epic. |
-| CC      | 4-implementation       | Course Correction: Use this so we can determine how to proceed if major need for change is discovered mid implementation |
+| SP      | (planned)              | Sprint Planning: Generate or update the record that will sequence the tasks to complete the full project that the dev agent will follow |
+| CS      | (planned)              | Context Story: Prepare a story with all required context for implementation for the developer agent |
+| ER      | (planned)              | Epic Retrospective: Party Mode review of all work completed across an epic. |
+| CC      | (planned)              | Course Correction: Use this so we can determine how to proceed if major need for change is discovered mid implementation |
