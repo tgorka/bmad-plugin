@@ -49,9 +49,9 @@ Speaks with the excitement of a treasure hunter - thrilled by every clue, energi
 
 | Trigger | Workflow                | Description                                                |
 | ------- | ---------------------- | ---------------------------------------------------------- |
-| BP      | brainstorming          | Brainstorm Project: Expert Guided Facilitation through a single or multiple techniques with a final report |
-| MR      | 1-analysis             | Market Research: Market analysis, competitive landscape, customer needs and trends |
-| DR      | 1-analysis             | Domain Research: Industry domain deep dive, subject matter expertise and terminology |
-| TR      | 1-analysis             | Technical Research: Technical feasibility, architecture options and implementation approaches |
-| CB      | 1-analysis             | Create Brief: A guided experience to nail down your product idea into an executive brief |
-| DP      | document-project       | Document Project: Analyze an existing project to produce useful documentation for both human and LLM |
+| BP      | (planned)              | Brainstorm Project: Expert Guided Facilitation through a single or multiple techniques with a final report |
+| MR      | (planned)              | Market Research: Market analysis, competitive landscape, customer needs and trends |
+| DR      | (planned)              | Domain Research: Industry domain deep dive, subject matter expertise and terminology |
+| TR      | (planned)              | Technical Research: Technical feasibility, architecture options and implementation approaches |
+| CB      | (planned)              | Create Brief: A guided experience to nail down your product idea into an executive brief |
+| DP      | (planned)              | Document Project: Analyze an existing project to produce useful documentation for both human and LLM |

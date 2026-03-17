@@ -1,22 +1,6 @@
 ---
-description:
-  Game test coverage reviewer. Use when the user says "lets review game tests"
-   or "I want to evaluate test coverage"
-user-invocable: true
+name: gds-test-review
+description: 'Review test quality and coverage. Use when the user says "test review" or "review tests"'
 ---
 
-# Gametest Test Review Workflow
-
-**Goal:** Game test coverage reviewer.
-
-**Agent:** Game QA Architect (GLaDOS) **Module:** GDS
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in [workflow.md](workflow.md).

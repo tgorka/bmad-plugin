@@ -1,22 +1,6 @@
 ---
-description:
-  Brownfield project documentation scanner. Use when the user says "lets creat
-  e project documentation" or "I want to document a brownfield project"
-user-invocable: true
+name: gds-document-project
+description: 'Analyze existing game projects to produce useful documentation. Use when the user says "document project" or "generate docs"'
 ---
 
-# Document Project Workflow
-
-**Goal:** Brownfield project documentation scanner.
-
-**Agent:** Technical Writer (Paige) **Module:** GDS
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in [workflow.md](workflow.md).

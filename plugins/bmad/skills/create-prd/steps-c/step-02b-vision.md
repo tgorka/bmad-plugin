@@ -7,8 +7,8 @@ nextStepFile: '${CLAUDE_PLUGIN_ROOT}/skills/create-prd/steps-c/step-02c-executiv
 outputFile: '{planning_artifacts}/prd.md'
 
 # Task References
-advancedElicitationTask: '${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/workflow.xml'
-partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/party-mode/SKILL.md'
+advancedElicitationTask: 'skill:bmad-advanced-elicitation'
+partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/bmad-party-mode/SKILL.md'
 ---
 
 # Step 2b: Product Vision Discovery

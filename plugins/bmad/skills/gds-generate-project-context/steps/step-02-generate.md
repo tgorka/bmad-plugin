@@ -29,8 +29,8 @@ This step will generate content and present choices for each rule category:
 
 ## PROTOCOL INTEGRATION:
 
-- When 'A' selected: Execute ${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/workflow.xml
-- When 'P' selected: Execute ${CLAUDE_PLUGIN_ROOT}/skills/party-mode
+- When 'A' selected: Execute ${CLAUDE_PLUGIN_ROOT}/skills/bmad-advanced-elicitation/workflow.xml
+- When 'P' selected: Execute ${CLAUDE_PLUGIN_ROOT}/skills/bmad-party-mode
 - PROTOCOLS always return to display this step's A/P/C menu after the A or P have completed
 - User accepts/rejects protocol changes before proceeding
 

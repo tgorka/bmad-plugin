@@ -1,22 +1,6 @@
 ---
-description:
-  Sprint status tracking file generator. Use when the user says "I want to gen
-  erate sprint status" or "lets create sprint tracking"
-user-invocable: true
+name: gds-sprint-planning
+description: 'Generate or update sprint status from epic files for sprint planning. Use when the user says "plan the sprint" or "create sprint plan"'
 ---
 
-# Sprint Planning Workflow
-
-**Goal:** Sprint status tracking file generator.
-
-**Agent:** Game Dev Scrum Master (Max) **Module:** GDS
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in [workflow.md](workflow.md).

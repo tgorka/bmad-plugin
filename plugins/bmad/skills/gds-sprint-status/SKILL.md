@@ -1,22 +1,6 @@
 ---
-description:
-  Sprint status summary and risk surfacing. Use when the user says "Summarize 
-  sprint-status.yaml for game project and surface risks"
-user-invocable: true
+name: gds-sprint-status
+description: 'Summarize current sprint progress and surface risks. Use when the user says "sprint status" or "how is the sprint going"'
 ---
 
-# Sprint Status Workflow
-
-**Goal:** Sprint status summary and risk surfacing.
-
-**Agent:** Game Dev Scrum Master (Max) **Module:** GDS
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in [workflow.md](workflow.md).

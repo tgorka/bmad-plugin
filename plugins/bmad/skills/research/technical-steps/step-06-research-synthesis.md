@@ -1,4 +1,4 @@
-# Technical Research Step 6: Technical Synthesis and Completion
+# Game Technical Research Step 6: Technical Synthesis and Completion
 
 ## MANDATORY EXECUTION RULES (READ FIRST):
 
@@ -7,8 +7,8 @@
 - 📖 CRITICAL: ALWAYS read the complete step file before taking any action - partial understanding leads to incomplete decisions
 - 🔄 CRITICAL: When loading next step with 'C', ensure the entire file is read and understood before proceeding
 - ✅ Search the web to verify and supplement your knowledge with current facts
-- 📋 YOU ARE A TECHNICAL RESEARCH STRATEGIST, not content generator
-- 💬 FOCUS on comprehensive technical synthesis and authoritative conclusions
+- 📋 YOU ARE A GAME TECHNICAL RESEARCH STRATEGIST, not content generator
+- 💬 FOCUS on comprehensive game technical synthesis and authoritative conclusions
 - 🔍 WEB SEARCH REQUIRED - verify current facts against live sources
 - 📄 PRODUCE COMPREHENSIVE DOCUMENT with narrative intro, TOC, and summary
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
@@ -25,463 +25,462 @@
 ## CONTEXT BOUNDARIES:
 
 - Current document and frontmatter from previous steps are available
-- **Research topic = "{{research_topic}}"** - comprehensive technical analysis
-- **Research goals = "{{research_goals}}"** - achieved through exhaustive technical research
-- All technical research sections have been completed (overview, architecture, implementation)
+- **Research topic = "{{research_topic}}"** - comprehensive game technical analysis
+- **Research goals = "{{research_goals}}"** - achieved through exhaustive game technical research
+- All game technical research sections have been completed (tech stack, integration, architecture, implementation)
 - Web search capabilities with source verification are enabled
-- This is the final synthesis step producing the complete technical research document
+- This is the final synthesis step producing the complete game technical research document
 
 ## YOUR TASK:
 
-Produce a comprehensive, authoritative technical research document on **{{research_topic}}** with compelling narrative introduction, detailed TOC, and executive summary based on exhaustive technical research.
+Produce a comprehensive, authoritative game technical research document on **{{research_topic}}** with compelling narrative introduction, detailed TOC, and executive summary based on exhaustive game technical research.
 
-## COMPREHENSIVE TECHNICAL DOCUMENT SYNTHESIS:
+## COMPREHENSIVE GAME TECHNICAL DOCUMENT SYNTHESIS:
 
-### 1. Technical Document Structure Planning
+### 1. Game Technical Document Structure Planning
 
-**Complete Technical Research Document Structure:**
+**Complete Game Technical Research Document Structure:**
 
 ```markdown
-# [Compelling Technical Title]: Comprehensive {{research_topic}} Technical Research
+# [Compelling Game Technical Title]: Comprehensive {{research_topic}} Game Technical Research
 
 ## Executive Summary
 
-[Brief compelling overview of key technical findings and strategic implications]
+[Brief compelling overview of key game technical findings and strategic implications]
 
 ## Table of Contents
 
-- Technical Research Introduction and Methodology
-- Technical Landscape and Architecture Analysis
-- Implementation Approaches and Best Practices
-- Technology Stack Evolution and Trends
-- Integration and Interoperability Patterns
-- Performance and Scalability Analysis
-- Security and Compliance Considerations
-- Strategic Technical Recommendations
-- Implementation Roadmap and Risk Assessment
-- Future Technical Outlook and Innovation Opportunities
-- Technical Research Methodology and Source Documentation
-- Technical Appendices and Reference Materials
+- Game Technical Research Introduction and Methodology
+- Game Technology Landscape and Engine Analysis
+- Game Architecture and Design Patterns
+- Game Implementation Approaches and Best Practices
+- Game Integration Patterns and Online Services
+- Game Performance and Platform Optimization
+- Game Security and Compliance Considerations
+- Strategic Game Technical Recommendations
+- Game Development Roadmap and Risk Assessment
+- Future Game Technology Outlook and Innovation Opportunities
+- Game Technical Research Methodology and Source Documentation
+- Game Technical Appendices and Reference Materials
 ```
 
-### 2. Generate Compelling Technical Introduction
+### 2. Generate Compelling Game Technical Introduction
 
-**Technical Introduction Requirements:**
+**Game Technical Introduction Requirements:**
 
-- Hook reader with compelling technical opening about {{research_topic}}
-- Establish technical research significance and current relevance
-- Outline comprehensive technical research methodology
-- Preview key technical findings and strategic implications
-- Set authoritative, technical expert tone
+- Hook reader with compelling game technical opening about {{research_topic}}
+- Establish game technical research significance and current relevance for game dev
+- Outline comprehensive game technical research methodology
+- Preview key game technical findings and GDD-relevant implications
+- Set authoritative, game development expert tone
 
-**Web Search for Technical Introduction Context:**
-Search the web: "{{research_topic}} technical significance importance"
+**Web Search for Game Technical Introduction Context:**
+Search the web: "{{research_topic}} game technical significance importance"
 
-### 3. Synthesize All Technical Research Sections
+### 3. Synthesize All Game Technical Research Sections
 
-**Technical Section-by-Section Integration:**
+**Game Technical Section-by-Section Integration:**
 
-- Combine technical overview from step-02
-- Integrate architectural patterns from step-03
-- Incorporate implementation research from step-04
+- Combine game tech stack overview from step-02
+- Integrate game integration patterns from step-03
+- Incorporate game architectural patterns from step-04
+- Add game implementation research from step-05
 - Add cross-technical insights and connections
-- Ensure comprehensive technical coverage with no gaps
+- Ensure comprehensive game technical coverage with no gaps
 
-### 4. Generate Complete Technical Document Content
+### 4. Generate Complete Game Technical Document Content
 
-#### Final Technical Document Structure:
+#### Final Game Technical Document Structure:
 
 ```markdown
-# [Compelling Title]: Comprehensive {{research_topic}} Technical Research
+# [Compelling Title]: Comprehensive {{research_topic}} Game Technical Research
 
 ## Executive Summary
 
-[2-3 paragraph compelling summary of the most critical technical findings and strategic implications for {{research_topic}} based on comprehensive current technical research]
+[2-3 paragraph compelling summary of the most critical game technical findings and strategic implications for {{research_topic}} based on comprehensive current game technical research]
 
-**Key Technical Findings:**
+**Key Game Technical Findings:**
 
-- [Most significant architectural insights]
-- [Critical implementation considerations]
-- [Important technology trends]
-- [Strategic technical implications]
+- [Most significant game engine and architecture insights]
+- [Critical game implementation considerations]
+- [Important game technology trends]
+- [Strategic game technical implications for GDD]
 
-**Technical Recommendations:**
+**Game Technical Recommendations:**
 
-- [Top 3-5 actionable technical recommendations based on research]
+- [Top 3-5 actionable game technical recommendations based on research]
 
 ## Table of Contents
 
-1. Technical Research Introduction and Methodology
-2. {{research_topic}} Technical Landscape and Architecture Analysis
-3. Implementation Approaches and Best Practices
-4. Technology Stack Evolution and Current Trends
-5. Integration and Interoperability Patterns
-6. Performance and Scalability Analysis
-7. Security and Compliance Considerations
-8. Strategic Technical Recommendations
-9. Implementation Roadmap and Risk Assessment
-10. Future Technical Outlook and Innovation Opportunities
-11. Technical Research Methodology and Source Verification
-12. Technical Appendices and Reference Materials
+1. Game Technical Research Introduction and Methodology
+2. {{research_topic}} Game Technology Landscape and Engine Analysis
+3. Game Architecture and Design Patterns
+4. Game Implementation Approaches and Best Practices
+5. Game Integration Patterns and Online Services
+6. Game Performance and Platform Optimization
+7. Game Security and Compliance Considerations
+8. Strategic Game Technical Recommendations
+9. Game Development Roadmap and Risk Assessment
+10. Future Game Technology Outlook and Innovation Opportunities
+11. Game Technical Research Methodology and Source Verification
+12. Game Technical Appendices and Reference Materials
 
-## 1. Technical Research Introduction and Methodology
+## 1. Game Technical Research Introduction and Methodology
 
-### Technical Research Significance
+### Game Technical Research Significance
 
-[Compelling technical narrative about why {{research_topic}} research is critical right now]
-_Technical Importance: [Strategic technical significance with current context]_
-_Business Impact: [Business implications of technical research]_
+[Compelling game technical narrative about why {{research_topic}} game technical research is critical right now]
+_Technical Importance: [Strategic game technical significance with current game industry context]_
+_Studio Impact: [Business and development implications of this technical research]_
 _Source: [URL]_
 
-### Technical Research Methodology
+### Game Technical Research Methodology
 
-[Comprehensive description of technical research approach including:]
+[Comprehensive description of game technical research approach including:]
 
-- **Technical Scope**: [Comprehensive technical coverage areas]
-- **Data Sources**: [Authoritative technical sources and verification approach]
-- **Analysis Framework**: [Structured technical analysis methodology]
-- **Time Period**: [current focus and technical evolution context]
-- **Technical Depth**: [Level of technical detail and analysis]
+- **Technical Scope**: [Comprehensive game technical coverage areas]
+- **Data Sources**: [Authoritative game technical sources and verification approach]
+- **Analysis Framework**: [Structured game technical analysis methodology]
+- **Time Period**: [current focus and game technical evolution context]
+- **Technical Depth**: [Level of game technical detail and analysis]
 
-### Technical Research Goals and Objectives
+### Game Technical Research Goals and Objectives
 
-**Original Technical Goals:** {{research_goals}}
+**Original Game Technical Goals:** {{research_goals}}
 
-**Achieved Technical Objectives:**
+**Achieved Game Technical Objectives:**
 
-- [Technical Goal 1 achievement with supporting evidence]
-- [Technical Goal 2 achievement with supporting evidence]
-- [Additional technical insights discovered during research]
+- [Game Technical Goal 1 achievement with supporting evidence]
+- [Game Technical Goal 2 achievement with supporting evidence]
+- [Additional game technical insights discovered during research]
 
-## 2. {{research_topic}} Technical Landscape and Architecture Analysis
+## 2. {{research_topic}} Game Technology Landscape and Engine Analysis
 
-### Current Technical Architecture Patterns
+### Current Game Engine Landscape
 
-[Comprehensive architectural analysis synthesized from step-03 with current context]
-_Dominant Patterns: [Current architectural approaches]_
-_Architectural Evolution: [Historical and current evolution patterns]_
-_Architectural Trade-offs: [Key architectural decisions and implications]_
+[Comprehensive game engine analysis synthesized from step-02 with current context]
+_Dominant Engines: [Current game engine adoption for this game type]_
+_Engine Trade-offs: [Key architectural decisions engine choice entails]_
+_Engine Ecosystem: [Community, middleware support, and tooling maturity]_
 _Source: [URL]_
 
-### System Design Principles and Best Practices
+### Game Technology Stack and Middleware
 
-[Complete system design analysis]
-_Design Principles: [Core principles guiding {{research_topic}} implementations]_
-_Best Practice Patterns: [Industry-standard approaches and methodologies]_
-_Architectural Quality Attributes: [Performance, scalability, maintainability considerations]_
+[Complete game technology stack analysis]
+_Language and Scripting Stack: [Programming languages and scripting choices]_
+_Middleware Ecosystem: [Physics, audio, animation, and networking middleware]_
+_Tool Pipeline: [Development, profiling, and asset pipeline tools]_
 _Source: [URL]_
 
-## 3. Implementation Approaches and Best Practices
+## 3. Game Architecture and Design Patterns
 
-### Current Implementation Methodologies
+### Core Game Architecture Patterns
 
-[Implementation analysis from step-04 with current context]
-_Development Approaches: [Current development methodologies and approaches]_
-_Code Organization Patterns: [Structural patterns and organization strategies]_
-_Quality Assurance Practices: [Testing, validation, and quality approaches]_
-_Deployment Strategies: [Current deployment and operations practices]_
+[Game architectural analysis from step-04 with current context]
+_Architecture Approach: [ECS, OOP, data-oriented, and hybrid patterns]_
+_Game Loop Design: [Update pipeline and timestep architecture]_
+_World and Level Architecture: [Scene graph, streaming, and spatial systems]_
 _Source: [URL]_
 
-### Implementation Framework and Tooling
+### Rendering and Visual Architecture
 
-[Comprehensive implementation framework analysis]
-_Development Frameworks: [Popular frameworks and their characteristics]_
-_Tool Ecosystem: [Development tools and platform considerations]_
-_Build and Deployment Systems: [CI/CD and automation approaches]_
+[Comprehensive rendering architecture analysis]
+_Rendering Pipeline: [Forward vs deferred rendering choice and rationale]_
+_Lighting Architecture: [Real-time lighting, baked GI, and hybrid approaches]_
+_Platform-Specific Rendering: [How rendering architecture adapts across platforms]_
 _Source: [URL]_
 
-## 4. Technology Stack Evolution and Current Trends
+## 4. Game Implementation Approaches and Best Practices
 
-### Current Technology Stack Landscape
+### Current Game Development Methodologies
 
-[Technology stack analysis from step-02 with current updates]
-_Programming Languages: [Current language trends and adoption patterns]_
-_Frameworks and Libraries: [Popular frameworks and their use cases]_
-_Database and Storage Technologies: [Current data storage and management trends]_
-_API and Communication Technologies: [Integration and communication patterns]_
+[Game implementation analysis from step-05 with current context]
+_Development Workflow: [Agile, milestone-based, and iterative game development]_
+_Prototyping and Playtesting: [Rapid iteration and feedback integration approaches]_
+_QA and Certification: [Game testing pipeline and platform certification preparation]_
 _Source: [URL]_
 
-### Technology Adoption Patterns
+### Game Development Tools and Workflow
 
-[Comprehensive technology adoption analysis]
-_Adoption Trends: [Technology adoption rates and patterns]_
-_Migration Patterns: [Technology migration and evolution trends]_
-_Emerging Technologies: [New technologies and their potential impact]_
+[Comprehensive game development workflow analysis]
+_IDE and Authoring Tools: [Development environments and level editor workflows]_
+_Build and Deployment Pipeline: [CI/CD, build automation, and platform submission]_
+_Collaboration and Version Control: [Git LFS, Perforce, and remote team collaboration]_
 _Source: [URL]_
 
-## 5. Integration and Interoperability Patterns
+## 5. Game Integration Patterns and Online Services
 
-### Current Integration Approaches
+### Online and Multiplayer Integration
 
-[Integration patterns analysis with current context]
-_API Design Patterns: [Current API design and implementation patterns]_
-_Service Integration: [Microservices and service integration approaches]_
-_Data Integration: [Data exchange and integration patterns]_
+[Game integration patterns analysis from step-03 with current context]
+_Backend Services: [Game backend platform choices and integration patterns]_
+_Multiplayer Architecture: [Netcode, matchmaking, and server infrastructure]_
+_Platform Service Integration: [Steam, console, and mobile platform API integration]_
 _Source: [URL]_
 
-### Interoperability Standards and Protocols
+### Live Service and Analytics Integration
 
-[Comprehensive interoperability analysis]
-_Standards Compliance: [Industry standards and compliance requirements]_
-_Protocol Selection: [Communication protocols and selection criteria]_
-_Integration Challenges: [Common integration challenges and solutions]_
+[Comprehensive live service analysis]
+_Analytics and Telemetry: [Player behavior data collection and analysis]_
+_Live Operations Infrastructure: [Patching, content delivery, and live event systems]_
+_Anti-Cheat Integration: [Fair play enforcement and security patterns]_
 _Source: [URL]_
 
-## 6. Performance and Scalability Analysis
+## 6. Game Performance and Platform Optimization
 
-### Performance Characteristics and Optimization
+### Performance Targets and Budgets
 
-[Performance analysis based on research findings]
-_Performance Benchmarks: [Current performance characteristics and benchmarks]_
-_Optimization Strategies: [Performance optimization approaches and techniques]_
-_Monitoring and Measurement: [Performance monitoring and measurement practices]_
+[Game performance analysis based on research findings]
+_Performance Benchmarks: [Target frame rates and performance budgets by platform]_
+_CPU and GPU Optimization: [Draw call, shader, and CPU thread optimization strategies]_
+_Memory Management: [Memory allocation and streaming optimization]_
 _Source: [URL]_
 
-### Scalability Patterns and Approaches
+### Cross-Platform Performance Considerations
 
-[Comprehensive scalability analysis]
-_Scalability Patterns: [Architectural and design patterns for scalability]_
-_Capacity Planning: [Capacity planning and resource management approaches]_
-_Elasticity and Auto-scaling: [Dynamic scaling approaches and implementations]_
+[Comprehensive cross-platform analysis]
+_Console Optimization: [PS5, Xbox Series, and Nintendo platform-specific optimization]_
+_PC Scalability: [Low-end to high-end PC performance scaling strategies]_
+_Mobile Performance: [Mobile GPU constraints and battery-conscious optimization]_
 _Source: [URL]_
 
-## 7. Security and Compliance Considerations
+## 7. Game Security and Compliance Considerations
 
-### Security Best Practices and Frameworks
+### Game Security Best Practices
 
-[Security analysis with current context]
-_Security Frameworks: [Current security frameworks and best practices]_
-_Threat Landscape: [Current security threats and mitigation approaches]_
-_Secure Development Practices: [Secure coding and development lifecycle]_
+[Game security analysis with current context]
+_Anti-Cheat Architecture: [Server authority, client validation, and anti-cheat integration]_
+_Player Data Security: [Secure save, transaction, and account data handling]_
+_Network Security: [DDoS protection, packet validation, and connection security]_
 _Source: [URL]_
 
-### Compliance and Regulatory Considerations
+### Game Compliance Considerations
 
-[Comprehensive compliance analysis]
-_Industry Standards: [Relevant industry standards and compliance requirements]_
-_Regulatory Compliance: [Legal and regulatory considerations for {{research_topic}}]_
-_Audit and Governance: [Technical audit and governance practices]_
+[Comprehensive game compliance analysis]
+_Platform Certification Requirements: [Technical requirements for console and PC stores]_
+_Privacy and Age Compliance: [COPPA, GDPR, and age rating technical requirements]_
+_Accessibility Standards: [Technical accessibility requirements and best practices]_
 _Source: [URL]_
 
-## 8. Strategic Technical Recommendations
+## 8. Strategic Game Technical Recommendations
 
-### Technical Strategy and Decision Framework
+### Game Technical Strategy and Decision Framework
 
-[Strategic technical recommendations based on comprehensive research]
-_Architecture Recommendations: [Recommended architectural approaches and patterns]_
-_Technology Selection: [Recommended technology stack and selection criteria]_
-_Implementation Strategy: [Recommended implementation approaches and methodologies]_
+[Strategic game technical recommendations based on comprehensive research]
+_Engine Recommendation: [Recommended game engine with rationale based on research]_
+_Architecture Recommendation: [Recommended architectural approach for this game type]_
+_Implementation Strategy: [Recommended game development workflow and methodology]_
 _Source: [URL]_
 
-### Competitive Technical Advantage
+### Game Competitive Technical Advantage
 
-[Analysis of technical competitive positioning]
-_Technology Differentiation: [Technical approaches that provide competitive advantage]_
-_Innovation Opportunities: [Areas for technical innovation and differentiation]_
-_Strategic Technology Investments: [Recommended technology investments and priorities]_
+[Analysis of game technical competitive positioning]
+_Technology Differentiation: [Game technical approaches providing competitive advantage]_
+_Innovation Opportunities: [Areas for game technical innovation and differentiation]_
+_Strategic Technology Investments: [Recommended game technology investments and priorities]_
 _Source: [URL]_
 
-## 9. Implementation Roadmap and Risk Assessment
+## 9. Game Development Roadmap and Risk Assessment
 
-### Technical Implementation Framework
+### Game Technical Implementation Framework
 
-[Comprehensive implementation guidance based on research findings]
-_Implementation Phases: [Recommended phased implementation approach]_
-_Technology Migration Strategy: [Approach for technology adoption and migration]_
-_Resource Planning: [Technical resources and capabilities planning]_
+[Comprehensive game development guidance based on research findings]
+_Development Phases: [Recommended phased game development approach]_
+_Technology Adoption Timeline: [Approach for game technology selection and adoption]_
+_Team and Resource Planning: [Game technical resource and skill planning]_
 _Source: [URL]_
 
-### Technical Risk Management
+### Game Technical Risk Management
 
-[Comprehensive technical risk assessment]
-_Technical Risks: [Major technical risks and mitigation strategies]_
-_Implementation Risks: [Risks associated with implementation and deployment]_
-_Business Impact Risks: [Technical risks and their business implications]_
+[Comprehensive game technical risk assessment]
+_Engine and Technology Risks: [Risks from engine choice, middleware, and tech adoption]_
+_Implementation Risks: [Risks associated with game development and deployment]_
+_Platform and Certification Risks: [Risks from platform submission and compliance]_
 _Source: [URL]_
 
-## 10. Future Technical Outlook and Innovation Opportunities
+## 10. Future Game Technology Outlook and Innovation Opportunities
 
-### Emerging Technology Trends
+### Emerging Game Technology Trends
 
-[Forward-looking technical analysis based on comprehensive research]
-_Near-term Technical Evolution: [1-2 year technical development expectations]_
-_Medium-term Technology Trends: [3-5 year expected technical developments]_
-_Long-term Technical Vision: [5+ year technical outlook for {{research_topic}}]_
+[Forward-looking game technical analysis based on comprehensive research]
+_Near-term Game Technology Evolution: [1-2 year game tech development expectations]_
+_Medium-term Technology Trends: [3-5 year expected game technical developments]_
+_Long-term Game Technical Vision: [5+ year game technology outlook for {{research_topic}}]_
 _Source: [URL]_
 
-### Innovation and Research Opportunities
+### Game Innovation and Research Opportunities
 
-[Technical innovation analysis and recommendations]
-_Research Opportunities: [Areas for technical research and innovation]_
-_Emerging Technology Adoption: [Potential new technologies and adoption timelines]_
-_Innovation Framework: [Approach for fostering technical innovation]_
+[Game technical innovation analysis and recommendations]
+_Research Opportunities: [Areas for game technical research and innovation]_
+_Emerging Technology Adoption: [New game technologies and adoption timelines]_
+_Innovation Framework: [Approach for fostering game technical innovation]_
 _Source: [URL]_
 
-## 11. Technical Research Methodology and Source Verification
+## 11. Game Technical Research Methodology and Source Verification
 
-### Comprehensive Technical Source Documentation
+### Comprehensive Game Technical Source Documentation
 
-[Complete documentation of all technical research sources]
-_Primary Technical Sources: [Key authoritative technical sources used]_
-_Secondary Technical Sources: [Supporting technical research and analysis]_
-_Technical Web Search Queries: [Complete list of technical search queries used]_
+[Complete documentation of all game technical research sources]
+_Primary Game Technical Sources: [Key authoritative game technical sources used]_
+_Secondary Game Technical Sources: [Supporting game technical research and analysis]_
+_Game Technical Web Search Queries: [Complete list of game technical search queries used]_
 
-### Technical Research Quality Assurance
+### Game Technical Research Quality Assurance
 
-[Technical quality assurance and validation approach]
-_Technical Source Verification: [All technical claims verified with multiple sources]_
-_Technical Confidence Levels: [Confidence assessments for uncertain technical data]_
-_Technical Limitations: [Technical research limitations and areas for further investigation]_
-_Methodology Transparency: [Complete transparency about technical research approach]_
+[Game technical quality assurance and validation approach]
+_Game Technical Source Verification: [All game technical claims verified with multiple sources]_
+_Game Technical Confidence Levels: [Confidence assessments for uncertain game technical data]_
+_Game Technical Limitations: [Research limitations and areas for further investigation]_
+_Methodology Transparency: [Complete transparency about game technical research approach]_
 
-## 12. Technical Appendices and Reference Materials
+## 12. Game Technical Appendices and Reference Materials
 
-### Detailed Technical Data Tables
+### Detailed Game Technical Data Tables
 
-[Comprehensive technical data tables supporting research findings]
-_Architectural Pattern Tables: [Detailed architectural pattern comparisons]_
-_Technology Stack Analysis: [Detailed technology evaluation and comparison data]_
-_Performance Benchmark Data: [Comprehensive performance measurement data]_
+[Comprehensive game technical data tables supporting research findings]
+_Engine Comparison Tables: [Detailed game engine feature and cost comparisons]_
+_Technology Stack Analysis: [Detailed game technology evaluation and comparison data]_
+_Platform Performance Data: [Comprehensive platform performance characteristics data]_
 
-### Technical Resources and References
+### Game Technical Resources and References
 
-[Valuable technical resources for continued research and implementation]
-_Technical Standards: [Relevant technical standards and specifications]_
-_Open Source Projects: [Key open source projects and communities]_
-_Research Papers and Publications: [Academic and industry research sources]_
-_Technical Communities: [Professional networks and technical communities]_
+[Valuable game technical resources for continued research and implementation]
+_Game Development Standards: [Relevant game technical standards and platform specs]_
+_Open Source Game Projects: [Key open source game engines and libraries]_
+_GDC Talks and Publications: [Relevant Game Developers Conference talks and papers]_
+_Game Dev Communities: [Professional game development networks and technical communities]_
 
 ---
 
-## Technical Research Conclusion
+## Game Technical Research Conclusion
 
-### Summary of Key Technical Findings
+### Summary of Key Game Technical Findings
 
-[Comprehensive summary of the most important technical research findings]
+[Comprehensive summary of the most important game technical research findings]
 
-### Strategic Technical Impact Assessment
+### Strategic Game Technical Impact Assessment
 
-[Assessment of technical implications for {{research_topic}}]
+[Assessment of game technical implications for {{research_topic}}]
 
-### Next Steps Technical Recommendations
+### Next Steps Game Technical Recommendations
 
-[Specific next steps for leveraging this technical research]
+[Specific next steps for leveraging this game technical research in GDD and development]
 
 ---
 
-**Technical Research Completion Date:** {{date}}
-**Research Period:** current comprehensive technical analysis
-**Document Length:** As needed for comprehensive technical coverage
-**Source Verification:** All technical facts cited with current sources
-**Technical Confidence Level:** High - based on multiple authoritative technical sources
+**Game Technical Research Completion Date:** {{date}}
+**Research Period:** Current comprehensive game technical analysis
+**Document Length:** As needed for comprehensive game technical coverage
+**Source Verification:** All game technical facts cited with current sources
+**Game Technical Confidence Level:** High - based on multiple authoritative game technical sources
 
-_This comprehensive technical research document serves as an authoritative technical reference on {{research_topic}} and provides strategic technical insights for informed decision-making and implementation._
+_This comprehensive game technical research document serves as an authoritative game technical reference on {{research_topic}} and provides strategic game technical insights for informed GDD and game development decision-making._
 ```
 
-### 5. Present Complete Technical Document and Final Option
+### 5. Present Complete Game Technical Document and Final Option
 
-**Technical Document Completion Presentation:**
+**Game Technical Document Completion Presentation:**
 
-"I've completed the **comprehensive technical research document synthesis** for **{{research_topic}}**, producing an authoritative technical research document with:
+"I've completed the **comprehensive game technical research document synthesis** for **{{research_topic}}**, producing an authoritative game technical research document with:
 
-**Technical Document Features:**
+**Game Technical Document Features:**
 
-- **Compelling Technical Introduction**: Engaging technical opening that establishes research significance
-- **Comprehensive Technical TOC**: Complete navigation structure for technical reference
-- **Exhaustive Technical Research Coverage**: All technical aspects of {{research_topic}} thoroughly analyzed
-- **Executive Technical Summary**: Key technical findings and strategic implications highlighted
-- **Strategic Technical Recommendations**: Actionable technical insights based on comprehensive research
-- **Complete Technical Source Citations**: Every technical claim verified with current sources
+- **Compelling Game Technical Introduction**: Engaging opening that establishes game technical research significance
+- **Comprehensive Game Technical TOC**: Complete navigation structure for game technical reference
+- **Exhaustive Game Technical Research Coverage**: All game technical aspects of {{research_topic}} thoroughly analyzed
+- **Executive Game Technical Summary**: Key game technical findings and GDD-relevant implications highlighted
+- **Strategic Game Technical Recommendations**: Actionable game tech insights for development
+- **Complete Game Technical Source Citations**: Every game technical claim verified with current sources
 
-**Technical Research Completeness:**
+**Game Technical Research Completeness:**
 
-- Technical landscape and architecture analysis fully documented
-- Implementation approaches and best practices comprehensively covered
-- Technology stack evolution and trends detailed
-- Integration, performance, and security analysis complete
-- Strategic technical insights and implementation guidance provided
+- Game technology landscape and engine analysis fully documented
+- Game architecture and design patterns comprehensively covered
+- Game implementation approaches and best practices detailed
+- Game integration, performance, and security analysis complete
+- Strategic game technical insights and development guidance provided
 
-**Technical Document Standards Met:**
+**Game Technical Document Standards Met:**
 
-- Exhaustive technical research with no critical gaps
-- Professional technical structure and compelling narrative
-- As long as needed for comprehensive technical coverage
-- Multiple independent technical sources for all claims
-- current technical data throughout with proper citations
+- Exhaustive game technical research with no critical gaps
+- Professional game technical structure and compelling narrative
+- As long as needed for comprehensive game technical coverage
+- Multiple independent game technical sources for all claims
+- Current game technical data throughout with proper citations
 
-**Ready to complete this comprehensive technical research document?**
-[C] Complete Research - Save final comprehensive technical document
+**Ready to complete this comprehensive game technical research document?**
+[C] Complete Research - Save final comprehensive game technical document
 
-### 6. Handle Final Technical Completion
+### 6. Handle Final Game Technical Completion
 
 #### If 'C' (Complete Research):
 
 - **Replace** the template placeholder `[Research overview and methodology will be appended here]` in the `## Research Overview` section near the top of the document with a concise 2-3 paragraph overview summarizing the research scope, key findings, and a pointer to the full executive summary in the Research Synthesis section
-- Append the complete technical document to the research file
+- Append the complete game technical document to the research file
 - Update frontmatter: `stepsCompleted: [1, 2, 3, 4, 5, 6]`
-- Complete the technical research workflow
-- Provide final technical document delivery confirmation
+- Complete the game technical research workflow
+- Provide final game technical document delivery confirmation
 
 ## APPEND TO DOCUMENT:
 
-When user selects 'C', append the complete comprehensive technical research document using the full structure above. Also replace the `[Research overview and methodology will be appended here]` placeholder in the Research Overview section at the top of the document.
+When user selects 'C', append the complete comprehensive game technical research document using the full structure above. Also replace the `[Research overview and methodology will be appended here]` placeholder in the Research Overview section at the top of the document.
 
 ## SUCCESS METRICS:
 
-✅ Compelling technical introduction with research significance
-✅ Comprehensive technical table of contents with complete document structure
-✅ Exhaustive technical research coverage across all technical aspects
-✅ Executive technical summary with key findings and strategic implications
-✅ Strategic technical recommendations grounded in comprehensive research
-✅ Complete technical source verification with current citations
-✅ Professional technical document structure and compelling narrative
+✅ Compelling game technical introduction with research significance
+✅ Comprehensive game technical table of contents with complete document structure
+✅ Exhaustive game technical research coverage across all game technical aspects
+✅ Executive game technical summary with key findings and GDD-relevant implications
+✅ Strategic game technical recommendations grounded in comprehensive research
+✅ Complete game technical source verification with current citations
+✅ Professional game technical document structure and compelling narrative
 ✅ [C] complete option presented and handled correctly
-✅ Technical research workflow completed with comprehensive document
+✅ Game technical research workflow completed with comprehensive document
 
 ## FAILURE MODES:
 
-❌ Not producing compelling technical introduction
-❌ Missing comprehensive technical table of contents
-❌ Incomplete technical research coverage across technical aspects
-❌ Not providing executive technical summary with key findings
-❌ Missing strategic technical recommendations based on research
-❌ Relying solely on training data without web verification for current facts
-❌ Producing technical document without professional structure
-❌ Not presenting completion option for final technical document
+❌ Not producing compelling game technical introduction
+❌ Missing comprehensive game technical table of contents
+❌ Incomplete game technical research coverage across game technical aspects
+❌ Not providing executive game technical summary with key findings
+❌ Missing strategic game technical recommendations based on research
+❌ Relying solely on training data without web verification for current game facts
+❌ Producing game technical document without professional structure
+❌ Not presenting completion option for final game technical document
 
 ❌ **CRITICAL**: Reading only partial step file - leads to incomplete understanding and poor decisions
 ❌ **CRITICAL**: Proceeding with 'C' without fully reading and understanding the next step file
 ❌ **CRITICAL**: Making decisions without complete understanding of step requirements and protocols
 
-## COMPREHENSIVE TECHNICAL DOCUMENT STANDARDS:
+## COMPREHENSIVE GAME TECHNICAL DOCUMENT STANDARDS:
 
-This step ensures the final technical research document:
+This step ensures the final game technical research document:
 
-- Serves as an authoritative technical reference on {{research_topic}}
-- Provides strategic technical insights for informed decision-making
-- Includes comprehensive technical coverage with no gaps
-- Maintains rigorous technical source verification standards
-- Delivers strategic technical insights and actionable recommendations
-- Meets professional technical research document quality standards
+- Serves as an authoritative game technical reference on {{research_topic}}
+- Provides strategic game technical insights for informed GDD decision-making
+- Includes comprehensive game technical coverage with no gaps
+- Maintains rigorous game technical source verification standards
+- Delivers strategic game technical insights and actionable recommendations
+- Meets professional game technical research document quality standards
 
-## TECHNICAL RESEARCH WORKFLOW COMPLETION:
+## GAME TECHNICAL RESEARCH WORKFLOW COMPLETION:
 
 When 'C' is selected:
 
-- All technical research steps completed (1-5)
-- Comprehensive technical research document generated
-- Professional technical document structure with intro, TOC, and summary
-- All technical sections appended with source citations
-- Technical research workflow status updated to complete
-- Final comprehensive technical research document delivered to user
+- All game technical research steps completed (1-6)
+- Comprehensive game technical research document generated
+- Professional game technical document structure with intro, TOC, and summary
+- All game technical sections appended with source citations
+- Game technical research workflow status updated to complete
+- Final comprehensive game technical research document delivered to user
 
-## FINAL TECHNICAL DELIVERABLE:
+## FINAL GAME TECHNICAL DELIVERABLE:
 
-Complete authoritative technical research document on {{research_topic}} that:
+Complete authoritative game technical research document on {{research_topic}} that:
 
-- Establishes technical credibility through comprehensive research
-- Provides strategic technical insights for informed decision-making
-- Serves as technical reference document for continued use
-- Maintains highest technical research quality standards with current verification
+- Establishes game technical credibility through comprehensive research
+- Provides strategic game technical insights for informed GDD decision-making
+- Serves as game technical reference document for continued studio use
+- Maintains highest game technical research quality standards with current verification
 
-Congratulations on completing comprehensive technical research with professional documentation! 🎉
+Congratulations on completing comprehensive game technical research with professional documentation!

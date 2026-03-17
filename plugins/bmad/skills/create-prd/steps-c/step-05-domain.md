@@ -8,8 +8,8 @@ outputFile: '{planning_artifacts}/prd.md'
 domainComplexityCSV: '${CLAUDE_PLUGIN_ROOT}/skills/create-prd/data/domain-complexity.csv'
 
 # Task References
-advancedElicitationTask: '${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/workflow.xml'
-partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/party-mode/SKILL.md'
+advancedElicitationTask: 'skill:bmad-advanced-elicitation'
+partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/bmad-party-mode/SKILL.md'
 ---
 
 # Step 5: Domain-Specific Requirements (Optional)

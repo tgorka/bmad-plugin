@@ -28,17 +28,20 @@ interface ContentPair {
   source: UpstreamSource;
 }
 
-/** Get all workflow→skill pairs across all enabled sources (only existing plugin dirs). */
+/**
+ * Get all workflow→skill pairs across all enabled sources (only existing plugin dirs).
+ * When multiple sources map to the same plugin skill dir, the last source wins
+ * (matches sync order: later sources overwrite earlier content).
+ */
 async function getAllPairs(): Promise<ContentPair[]> {
-  const pairs: ContentPair[] = [];
+  const byPluginDir = new Map<string, ContentPair>();
   for (const source of getEnabledSources()) {
     const upstreamRoot = join(ROOT, '.upstream', source.localPath);
     const entries = await getWorkflowEntries(source, upstreamRoot);
 
     for (const entry of entries) {
-      // Content check only compares existing plugin dirs
       if (await exists(entry.pluginSkillDir)) {
-        pairs.push({
+        byPluginDir.set(entry.pluginSkillDir, {
           upstreamDir: entry.upstreamDir,
           pluginDir: entry.pluginSkillDir,
           label: `[${source.id}] ${entry.skillName}`,
@@ -47,7 +50,7 @@ async function getAllPairs(): Promise<ContentPair[]> {
       }
     }
   }
-  return pairs;
+  return [...byPluginDir.values()];
 }
 
 /** Apply path rewrites to upstream content for comparison. */

@@ -6,7 +6,7 @@ description: 'Holistic Quality Assessment - Assess PRD as cohesive, compelling d
 nextStepFile: './step-v-12-completeness-validation.md'
 prdFile: '{prd_file_path}'
 validationReportPath: '{validation_report_path}'
-advancedElicitationTask: '${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/workflow.xml'
+advancedElicitationTask: 'skill:bmad-advanced-elicitation'
 ---
 
 # Step 11: Holistic Quality Assessment

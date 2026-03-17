@@ -223,7 +223,7 @@ async function syncSource(
 /**
  * Sync core extras that live outside the normal contentRoot paths:
  * - Core task files → _shared/tasks/
- * - Core special workflows (advanced-elicitation, party-mode) → skills/
+ * - Core skills (src/core/skills/ or src/core/workflows/) → skills/
  * - TEA knowledge index → _shared/
  */
 async function syncCoreExtras(map: WorkflowMap): Promise<number> {
@@ -231,35 +231,50 @@ async function syncCoreExtras(map: WorkflowMap): Promise<number> {
   const coreRoot = join(ROOT, '.upstream', coreSource.localPath);
   let count = 0;
 
-  // 1. Core task files → _shared/tasks/
+  // 1. Core task entries → _shared/tasks/
   const tasksDir = join(coreRoot, 'src/core/tasks');
   if (await exists(tasksDir)) {
-    const taskFiles = await readdir(tasksDir);
+    const taskEntries = await readdir(tasksDir, { withFileTypes: true });
     const destDir = join(PLUGIN, '_shared', 'tasks');
     console.log('Syncing: [core] tasks → _shared/tasks/');
+    let taskFileCount = 0;
 
-    for (const file of taskFiles) {
-      const srcPath = join(tasksDir, file);
+    for (const entry of taskEntries) {
+      const srcPath = join(tasksDir, entry.name);
+      const destPath = join(destDir, entry.name);
       if (DRY_RUN) {
-        console.log(`  [dry-run] _shared/tasks/${file}`);
-      } else {
-        await copyWithRewrite(srcPath, join(destDir, file), map);
+        console.log(`  [dry-run] _shared/tasks/${entry.name}`);
+        taskFileCount++;
+        continue;
       }
-      count++;
+      if (entry.isDirectory()) {
+        await cp(srcPath, destPath, { recursive: true, force: true });
+        taskFileCount++;
+      } else {
+        await copyWithRewrite(srcPath, destPath, map);
+        taskFileCount++;
+      }
     }
-    if (!DRY_RUN) console.log(`  ✓ ${taskFiles.length} task files copied`);
+    count += taskFileCount;
+    if (!DRY_RUN) console.log(`  ✓ ${taskFileCount} task entries copied`);
   }
 
-  // 2. Core special workflows → skills/<name>/
-  // These live at src/core/workflows/ (not under the normal bmm contentRoot)
-  const specialWorkflows = ['advanced-elicitation', 'party-mode'];
+  // 2. Core skills → skills/<name>/
+  // These live at src/core/skills/ (v6.2.0+) or src/core/workflows/ (older)
+  const coreSkillsDir = join(coreRoot, 'src/core/skills');
   const coreWorkflowsDir = join(coreRoot, 'src/core/workflows');
+  const coreExtrasDir = (await exists(coreSkillsDir))
+    ? coreSkillsDir
+    : coreWorkflowsDir;
 
-  if (await exists(coreWorkflowsDir)) {
-    for (const name of specialWorkflows) {
-      const workflowDir = join(coreWorkflowsDir, name);
-      if (!(await exists(workflowDir))) continue;
+  if (await exists(coreExtrasDir)) {
+    const dirEntries = await readdir(coreExtrasDir, { withFileTypes: true });
 
+    for (const entry of dirEntries) {
+      if (!entry.isDirectory()) continue;
+
+      const name = entry.name;
+      const workflowDir = join(coreExtrasDir, name);
       const skillDir = join(PLUGIN, 'skills', name);
       const files = await listFilesRecursive(workflowDir);
       let pairCount = 0;

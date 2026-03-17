@@ -1,22 +1,6 @@
 ---
-description:
-  Sprint change impact analysis and planning. Use when the user says "I want t
-  o analyze and plan significant sprint changes"
-user-invocable: true
+name: gds-correct-course
+description: 'Manage significant changes when sprint implementation is off track. Use when the user says "correct course" or "we need a course correction"'
 ---
 
-# Correct Course Workflow
-
-**Goal:** Sprint change impact analysis and planning.
-
-**Agent:** Game Architect (Cloud Dragonborn) **Module:** GDS
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in [workflow.md](workflow.md).

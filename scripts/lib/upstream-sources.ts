@@ -24,7 +24,7 @@ export interface UpstreamSource {
   /** Path inside cloned repo to the workflows root */
   contentRoot: string;
   /** Path inside cloned repo to the agents directory */
-  agentsRoot: string;
+  agentsRoot?: string;
   /**
    * Whether contentRoot contains workflow dirs directly (true)
    * or has a category layer in between (false).
@@ -61,7 +61,7 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     // automate is owned by TEA module, not core
     skipWorkflows: new Set(['automate']),
     skipDirs: new Set(['_shared', 'templates', 'workflows']),
-    skipContentFiles: new Set(['workflow.md', 'workflow.yaml', 'SKILL.md']),
+    skipContentFiles: new Set(['workflow.md', 'workflow.yaml']),
     workflowWorkarounds: {},
     pluginOnlySkills: new Set(['help', 'init', 'status', 'brainstorming']),
     pluginOnlyAgents: new Set(['bmad-master', 'tech-writer']),
@@ -77,12 +77,23 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     agentsRoot: 'src/agents',
     flatWorkflows: true,
     skipDirs: new Set(['_shared', 'templates']),
-    skipContentFiles: new Set(['workflow.md', 'workflow.yaml', 'SKILL.md']),
+    skipContentFiles: new Set(['workflow.md', 'workflow.yaml']),
     skipContentPatterns: [
       /^validation-report-.*\.md$/,
       /^workflow-plan.*\.md$/,
     ],
-    workflowWorkarounds: {},
+    workflowWorkarounds: {
+      // TEA agent YAML still references old un-prefixed names
+      'teach-me-testing': 'bmad-teach-me-testing',
+      framework: 'bmad-testarch-framework',
+      atdd: 'bmad-testarch-atdd',
+      automate: 'bmad-testarch-automate',
+      'test-design': 'bmad-testarch-test-design',
+      trace: 'bmad-testarch-trace',
+      'nfr-assess': 'bmad-testarch-nfr',
+      ci: 'bmad-testarch-ci',
+      'test-review': 'bmad-testarch-test-review',
+    },
     pluginOnlySkills: new Set(),
     pluginOnlyAgents: new Set(),
     sharedFileTargets: {},
@@ -93,11 +104,11 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     repo: 'bmad-code-org/bmad-builder',
     localPath: 'bmad-builder',
     enabled: true,
-    contentRoot: 'src/workflows',
-    agentsRoot: 'src/agents',
+    contentRoot: 'src/skills',
+    agentsRoot: undefined,
     flatWorkflows: true,
     skipDirs: new Set(['_shared', 'templates']),
-    skipContentFiles: new Set(['workflow.md', 'workflow.yaml', 'SKILL.md']),
+    skipContentFiles: new Set(['workflow.md', 'workflow.yaml']),
     workflowWorkarounds: {},
     pluginOnlySkills: new Set(),
     pluginOnlyAgents: new Set(),
@@ -113,7 +124,7 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     agentsRoot: 'src/agents',
     flatWorkflows: true,
     skipDirs: new Set(['_shared', 'templates']),
-    skipContentFiles: new Set(['workflow.md', 'workflow.yaml', 'SKILL.md']),
+    skipContentFiles: new Set(['workflow.md', 'workflow.yaml']),
     workflowWorkarounds: {},
     pluginOnlySkills: new Set(),
     pluginOnlyAgents: new Set(),
@@ -129,7 +140,7 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     agentsRoot: 'src/agents',
     flatWorkflows: false,
     skipDirs: new Set(['_shared', 'templates']),
-    skipContentFiles: new Set(['workflow.md', 'workflow.yaml', 'SKILL.md']),
+    skipContentFiles: new Set(['workflow.md', 'workflow.yaml']),
     workflowWorkarounds: {
       'document-project': 'gds-document-project',
       'generate-project-context': 'gds-generate-project-context',

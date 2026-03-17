@@ -1,4 +1,4 @@
-# Technical Research Step 3: Integration Patterns
+# Game Technical Research Step 3: Game Integration Patterns
 
 ## MANDATORY EXECUTION RULES (READ FIRST):
 
@@ -7,8 +7,8 @@
 - 📖 CRITICAL: ALWAYS read the complete step file before taking any action - partial understanding leads to incomplete decisions
 - 🔄 CRITICAL: When loading next step with 'C', ensure the entire file is read and understood before proceeding
 - ✅ Search the web to verify and supplement your knowledge with current facts
-- 📋 YOU ARE AN INTEGRATION ANALYST, not content generator
-- 💬 FOCUS on APIs, protocols, and system interoperability
+- 📋 YOU ARE A GAME INTEGRATION ANALYST, not content generator
+- 💬 FOCUS on online services, platform APIs, analytics, and game system interoperability
 - 🔍 WEB SEARCH REQUIRED - verify current facts against live sources
 - 📝 WRITE CONTENT IMMEDIATELY TO DOCUMENT
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
@@ -17,7 +17,7 @@
 
 - 🎯 Show web search analysis before presenting findings
 - ⚠️ Present [C] continue option after integration patterns content generation
-- 📝 WRITE INTEGRATION PATTERNS ANALYSIS TO DOCUMENT IMMEDIATELY
+- 📝 WRITE GAME INTEGRATION PATTERNS ANALYSIS TO DOCUMENT IMMEDIATELY
 - 💾 ONLY proceed when user chooses C (Continue)
 - 📖 Update frontmatter `stepsCompleted: [1, 2, 3]` before loading next step
 - 🚫 FORBIDDEN to load next step until C is selected
@@ -27,142 +27,142 @@
 - Current document and frontmatter from previous steps are available
 - **Research topic = "{{research_topic}}"** - established from initial discussion
 - **Research goals = "{{research_goals}}"** - established from initial discussion
-- Focus on APIs, protocols, and system interoperability
+- Focus on online services, platform APIs, analytics, and game system interoperability
 - Web search capabilities with source verification are enabled
 
 ## YOUR TASK:
 
-Conduct integration patterns analysis focusing on APIs, communication protocols, and system interoperability. Search the web to verify and supplement current facts.
+Conduct game integration patterns analysis focusing on online services, platform APIs, game backend systems, and system interoperability. Search the web to verify and supplement current facts.
 
-## INTEGRATION PATTERNS ANALYSIS SEQUENCE:
+## GAME INTEGRATION PATTERNS ANALYSIS SEQUENCE:
 
-### 1. Begin Integration Patterns Analysis
+### 1. Begin Game Integration Patterns Analysis
 
-**UTILIZE SUBPROCESSES AND SUBAGENTS**: Use research subagents, subprocesses or parallel processing if available to thoroughly analyze different integration areas simultaneously and thoroughly.
+**UTILIZE SUBPROCESSES AND SUBAGENTS**: Use research subagents, subprocesses or parallel processing if available to thoroughly analyze different game integration areas simultaneously and thoroughly.
 
-Start with integration patterns research approach:
-"Now I'll conduct **integration patterns analysis** for **{{research_topic}}** to understand system integration approaches.
+Start with game integration patterns research approach:
+"Now I'll conduct **game integration patterns analysis** for **{{research_topic}}** to understand game system integration approaches.
 
-**Integration Patterns Focus:**
+**Game Integration Patterns Focus:**
 
-- API design patterns and protocols
-- Communication protocols and data formats
-- System interoperability approaches
-- Microservices integration patterns
-- Event-driven architectures and messaging
+- Online multiplayer and networking service integration
+- Platform achievement, leaderboard, and social API integration
+- Game analytics and telemetry systems
+- Live service backend and game operations infrastructure
+- Anti-cheat and fair play enforcement integration
 
-**Let me search for current integration patterns insights.**"
+**Let me search for current game integration patterns insights.**"
 
-### 2. Parallel Integration Patterns Research Execution
+### 2. Parallel Game Integration Patterns Research Execution
 
 **Execute multiple web searches simultaneously:**
 
-Search the web: "{{research_topic}} API design patterns protocols"
-Search the web: "{{research_topic}} communication protocols data formats"
-Search the web: "{{research_topic}} system interoperability integration"
-Search the web: "{{research_topic}} microservices integration patterns"
+Search the web: "{{research_topic}} game online services multiplayer backend"
+Search the web: "{{research_topic}} platform API achievements leaderboards integration"
+Search the web: "{{research_topic}} game analytics telemetry live operations"
+Search the web: "{{research_topic}} game anti-cheat security integration"
 
 **Analysis approach:**
 
-- Look for recent API design guides and best practices
-- Search for communication protocol documentation and standards
-- Research integration platform and middleware solutions
-- Analyze microservices architecture patterns and approaches
-- Study event-driven systems and messaging patterns
+- Look for game backend service documentation (PlayFab, GameSparks, Nakama, etc.)
+- Search for platform SDK documentation (Steam API, PSN SDK, Xbox Live, etc.)
+- Research game analytics platform documentation and best practices
+- Analyze live service operations infrastructure patterns
+- Study anti-cheat and security integration approaches
 
 ### 3. Analyze and Aggregate Results
 
 **Collect and analyze findings from all parallel searches:**
 
-"After executing comprehensive parallel web searches, let me analyze and aggregate integration patterns findings:
+"After executing comprehensive parallel web searches, let me analyze and aggregate game integration patterns findings:
 
 **Research Coverage:**
 
-- API design patterns and protocols analysis
-- Communication protocols and data formats evaluation
-- System interoperability approaches assessment
-- Microservices integration patterns documentation
+- Online services and multiplayer backend analysis
+- Platform API and achievement system integration
+- Game analytics and telemetry patterns
+- Live service operations and anti-cheat integration
 
 **Cross-Integration Analysis:**
-[Identify patterns connecting API choices, communication protocols, and system design]
+[Identify patterns connecting backend service choices, platform APIs, and analytics systems]
 
 **Quality Assessment:**
 [Overall confidence levels and research gaps identified]"
 
-### 4. Generate Integration Patterns Content
+### 4. Generate Game Integration Patterns Content
 
 **WRITE IMMEDIATELY TO DOCUMENT**
 
-Prepare integration patterns analysis with web search citations:
+Prepare game integration patterns analysis with web search citations:
 
 #### Content Structure:
 
 When saving to document, append these Level 2 and Level 3 sections:
 
 ```markdown
-## Integration Patterns Analysis
+## Game Integration Patterns Analysis
 
-### API Design Patterns
+### Online Multiplayer and Backend Services
 
-[API design patterns analysis with source citations]
-_RESTful APIs: [REST principles and best practices for {{research_topic}}]_
-_GraphQL APIs: [GraphQL adoption and implementation patterns]_
-_RPC and gRPC: [High-performance API communication patterns]_
-_Webhook Patterns: [Event-driven API integration approaches]_
+[Online service analysis with source citations]
+_Dedicated Server Solutions: [Server hosting options for multiplayer games]_
+_Game Backend Platforms: [PlayFab, Nakama, Heroic Labs, and similar BaaS for games]_
+_Matchmaking Services: [Matchmaking algorithms and service options]_
+_Real-time Communication: [WebSocket, UDP, and game networking protocols]_
 _Source: [URL]_
 
-### Communication Protocols
+### Platform API Integration
 
-[Communication protocols analysis with source citations]
-_HTTP/HTTPS Protocols: [Web-based communication patterns and evolution]_
-_WebSocket Protocols: [Real-time communication and persistent connections]_
-_Message Queue Protocols: [AMQP, MQTT, and messaging patterns]_
-_grpc and Protocol Buffers: [High-performance binary communication protocols]_
+[Platform API analysis with source citations]
+_Steam API Integration: [Steamworks features - achievements, leaderboards, DLC, etc.]_
+_Console Platform APIs: [PlayStation Network, Xbox Live, Nintendo Online features]_
+_Mobile Platform Integration: [GameCenter, Google Play Games services]_
+_Cross-Platform Identity: [Cross-platform account linking and progression]_
 _Source: [URL]_
 
-### Data Formats and Standards
+### Game Analytics and Telemetry
 
-[Data formats analysis with source citations]
-_JSON and XML: [Structured data exchange formats and their evolution]_
-_Protobuf and MessagePack: [Efficient binary serialization formats]_
-_CSV and Flat Files: [Legacy data integration and bulk transfer patterns]_
-_Custom Data Formats: [Domain-specific data exchange standards]_
+[Game analytics analysis with source citations]
+_In-Game Analytics Platforms: [Unity Analytics, GameAnalytics, Amplitude for games]_
+_Player Behavior Telemetry: [Event tracking patterns for game design insights]_
+_Performance Telemetry: [Frame rate, crash, and performance data collection]_
+_Monetization Analytics: [Revenue tracking, funnel analysis, and LTV modeling]_
 _Source: [URL]_
 
-### System Interoperability Approaches
+### Live Service Operations Infrastructure
 
-[Interoperability analysis with source citations]
-_Point-to-Point Integration: [Direct system-to-system communication patterns]_
-_API Gateway Patterns: [Centralized API management and routing]_
-_Service Mesh: [Service-to-service communication and observability]_
-_Enterprise Service Bus: [Traditional enterprise integration patterns]_
+[Live service analysis with source citations]
+_Content Delivery and Updates: [Patching systems, hot fix infrastructure, CDN for games]_
+_Live Event Systems: [Seasonal events, battle passes, and timed content delivery]_
+_Player Support Integration: [In-game support ticketing and reporting systems]_
+_Remote Configuration: [Feature flags, balance adjustment, and live tuning]_
 _Source: [URL]_
 
-### Microservices Integration Patterns
+### Anti-Cheat and Security Integration
 
-[Microservices integration analysis with source citations]
-_API Gateway Pattern: [External API management and routing]_
-_Service Discovery: [Dynamic service registration and discovery]_
-_Circuit Breaker Pattern: [Fault tolerance and resilience patterns]_
-_Saga Pattern: [Distributed transaction management]_
+[Security patterns analysis with source citations]
+_Anti-Cheat Solutions: [Easy Anti-Cheat, BattlEye, Valve Anti-Cheat patterns]_
+_Server-Side Validation: [Server authority patterns for competitive games]_
+_Player Reporting Systems: [Community-powered moderation integration]_
+_Data Security Patterns: [Secure game save, progress, and transaction handling]_
 _Source: [URL]_
 
-### Event-Driven Integration
+### Game Economy and Monetization Integration
 
-[Event-driven analysis with source citations]
-_Publish-Subscribe Patterns: [Event broadcasting and subscription models]_
-_Event Sourcing: [Event-based state management and persistence]_
-_Message Broker Patterns: [RabbitMQ, Kafka, and message routing]_
-_CQRS Patterns: [Command Query Responsibility Segregation]_
+[Monetization integration analysis with source citations]
+_In-App Purchase Systems: [Platform IAP APIs and receipt validation]_
+_Virtual Currency Systems: [Soft currency, premium currency, and economy management]_
+_Loot Box and Gacha Systems: [Random reward system implementation patterns]_
+_Battle Pass Implementation: [Seasonal progression and reward system patterns]_
 _Source: [URL]_
 
 ### Integration Security Patterns
 
-[Security patterns analysis with source citations]
-_OAuth 2.0 and JWT: [API authentication and authorization patterns]_
-_API Key Management: [Secure API access and key rotation]_
-_Mutual TLS: [Certificate-based service authentication]_
-_Data Encryption: [Secure data transmission and storage]_
+[Game security patterns analysis with source citations]
+_OAuth and Game Authentication: [Player authentication and account security]_
+_API Key Management: [Secure backend API access and key rotation for game services]_
+_Player Data Privacy: [GDPR, COPPA-compliant player data handling patterns]_
+_Data Encryption: [Secure game save and transaction data handling]_
 _Source: [URL]_
 ```
 
@@ -170,17 +170,17 @@ _Source: [URL]_
 
 **Show analysis and present continue option:**
 
-"I've completed **integration patterns analysis** of system integration approaches for {{research_topic}}.
+"I've completed **game integration patterns analysis** of system integration approaches for {{research_topic}}.
 
-**Key Integration Patterns Findings:**
+**Key Game Integration Patterns Findings:**
 
-- API design patterns and protocols thoroughly analyzed
-- Communication protocols and data formats evaluated
-- System interoperability approaches documented
-- Microservices integration patterns mapped
-- Event-driven integration strategies identified
+- Online multiplayer and backend service options thoroughly analyzed
+- Platform API and achievement system integration evaluated
+- Game analytics and telemetry patterns documented
+- Live service operations infrastructure mapped
+- Anti-cheat and security integration strategies identified
 
-**Ready to proceed to architectural patterns analysis?**
+**Ready to proceed to game architectural patterns analysis?**
 [C] Continue - Save this to document and proceed to architectural patterns
 
 ### 6. Handle Continue Selection
@@ -197,11 +197,11 @@ Content is already written to document when generated in step 4. No additional a
 
 ## SUCCESS METRICS:
 
-✅ API design patterns and protocols thoroughly analyzed
-✅ Communication protocols and data formats evaluated
-✅ System interoperability approaches documented
-✅ Microservices integration patterns mapped
-✅ Event-driven integration strategies identified
+✅ Online multiplayer and backend service options thoroughly analyzed
+✅ Platform API and achievement system integration evaluated
+✅ Game analytics and telemetry patterns documented
+✅ Live service operations infrastructure mapped
+✅ Anti-cheat and security integration strategies identified
 ✅ Content written immediately to document
 ✅ [C] continue option presented and handled correctly
 ✅ Proper routing to next step (architectural patterns)
@@ -209,11 +209,11 @@ Content is already written to document when generated in step 4. No additional a
 
 ## FAILURE MODES:
 
-❌ Relying solely on training data without web verification for current facts
+❌ Relying solely on training data without web verification for current game tech facts
 
-❌ Missing critical API design patterns or protocols
-❌ Incomplete communication protocols analysis
-❌ Not identifying system interoperability approaches
+❌ Missing critical online service or backend patterns
+❌ Incomplete platform API or analytics integration analysis
+❌ Not identifying anti-cheat or security integration approaches
 ❌ Not writing content immediately to document
 ❌ Not presenting [C] continue option after content generation
 ❌ Not routing to architectural patterns step
@@ -222,27 +222,27 @@ Content is already written to document when generated in step 4. No additional a
 ❌ **CRITICAL**: Proceeding with 'C' without fully reading and understanding the next step file
 ❌ **CRITICAL**: Making decisions without complete understanding of step requirements and protocols
 
-## INTEGRATION PATTERNS RESEARCH PROTOCOLS:
+## GAME INTEGRATION PATTERNS RESEARCH PROTOCOLS:
 
-- Research API design guides and best practices documentation
-- Use communication protocol specifications and standards
-- Analyze integration platform and middleware solutions
-- Study microservices architecture patterns and case studies
-- Focus on current integration data
+- Research game backend service documentation and best practice guides
+- Use platform SDK documentation as primary source for platform API details
+- Analyze live service game case studies and post-mortems
+- Study anti-cheat and security integration patterns from GDC talks
+- Focus on current game integration data
 - Present conflicting information when sources disagree
 - Apply confidence levels appropriately
 
-## INTEGRATION PATTERNS ANALYSIS STANDARDS:
+## GAME INTEGRATION PATTERNS ANALYSIS STANDARDS:
 
 - Always cite URLs for web search results
-- Use authoritative integration research sources
+- Use authoritative game integration research sources
 - Note data currency and potential limitations
 - Present multiple perspectives when sources conflict
 - Apply confidence levels to uncertain data
-- Focus on actionable integration insights
+- Focus on actionable game integration insights
 
 ## NEXT STEP:
 
-After user selects 'C', load `${CLAUDE_PLUGIN_ROOT}/skills/research/technical-steps/step-04-architectural-patterns.md` to analyze architectural patterns, design decisions, and system structures for {{research_topic}}.
+After user selects 'C', load `${CLAUDE_PLUGIN_ROOT}/skills/research/technical-steps/step-04-architectural-patterns.md` to analyze game architectural patterns, engine design decisions, and system structures for {{research_topic}}.
 
-Remember: Always write research content to document immediately and emphasize current integration data with rigorous source verification!
+Remember: Always write research content to document immediately and emphasize current game integration data with rigorous source verification!

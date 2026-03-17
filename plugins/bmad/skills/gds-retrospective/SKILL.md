@@ -1,22 +1,6 @@
 ---
-description:
-  Post-epic review and lessons learned. Use when the user says "lets run a ret
-  rospective" or "execute epic completion review"
-user-invocable: true
+name: gds-retrospective
+description: 'Facilitate a retrospective after completing a game development epic. Use when the user says "run a retrospective" or "lets do a retro"'
 ---
 
-# Retrospective Workflow
-
-**Goal:** Post-epic review and lessons learned.
-
-**Agent:** Game Dev Scrum Master (Max) **Module:** GDS
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in [workflow.md](workflow.md).

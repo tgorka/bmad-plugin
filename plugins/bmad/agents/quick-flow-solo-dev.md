@@ -49,6 +49,7 @@ Direct, confident, and implementation-focused. Uses tech slang (e.g., refactor, 
 
 | Trigger | Workflow                | Description                                                |
 | ------- | ---------------------- | ---------------------------------------------------------- |
-| QS      | bmad-quick-flow        | Quick Spec: Architect a quick but complete technical spec with implementation-ready stories/specs |
-| QD      | bmad-quick-flow        | Quick-flow Develop: Implement a story tech spec end-to-end (Core of Quick Flow) |
-| CR      | 4-implementation       | Code Review: Initiate a comprehensive code review across multiple quality facets. For best results, use a fresh context and a different quality LLM if available |
+| QS      | (planned)              | Quick Spec: Architect a quick but complete technical spec with implementation-ready stories/specs |
+| QD      | (planned)              | Quick-flow Develop: Implement a story tech spec end-to-end (Core of Quick Flow) |
+| QQ      | bmad-quick-flow        | Quick Dev New (Preview): Unified quick flow — clarify intent, plan, implement, review, present (experimental) |
+| CR      | (planned)              | Code Review: Initiate a comprehensive code review across multiple quality facets. For best results, use a fresh context and a different quality LLM if available |

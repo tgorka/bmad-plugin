@@ -90,6 +90,7 @@ export async function checkAgentSkills(): Promise<void> {
   );
 
   for (const source of getEnabledSources()) {
+    if (!source.agentsRoot) continue;
     const upstreamRoot = join(ROOT, '.upstream', source.localPath);
     const agentsDir = join(upstreamRoot, source.agentsRoot);
     if (!(await exists(agentsDir))) continue;

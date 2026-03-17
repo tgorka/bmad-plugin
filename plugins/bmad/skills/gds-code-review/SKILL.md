@@ -1,22 +1,6 @@
 ---
-description:
-  Adversarial game dev code review. Use when the user says "lets review this c
-  ode for game dev issues"
-user-invocable: true
+name: gds-code-review
+description: 'Perform thorough code review to find bugs and quality issues. Use when the user says "review this code" or "do a code review"'
 ---
 
-# Code Review Workflow
-
-**Goal:** Adversarial game dev code review.
-
-**Agent:** Game Developer (Link Freeman) **Module:** GDS
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in [workflow.md](workflow.md).

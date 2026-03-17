@@ -53,6 +53,7 @@ export async function checkAgents(): Promise<void> {
   const allPluginOnly = new Set<string>();
 
   for (const source of getEnabledSources()) {
+    if (!source.agentsRoot) continue;
     const upstreamRoot = join(ROOT, '.upstream', source.localPath);
     const agentsDir = join(upstreamRoot, source.agentsRoot);
 

@@ -11,6 +11,8 @@ outputFile: '{planning_artifacts}/prd.md'
 prdTemplate: '../templates/prd-template.md'
 ---
 
+> **Note:** This PRD workflow is optional for Game Dev Studio projects. The GDD is the primary design document. PRDs are useful when integrating with external tools like bmad-assist that expect PRD format.
+
 # Step 1: Workflow Initialization
 
 **Progress: Step 1 of 11** - Next: Project Discovery
@@ -95,6 +97,7 @@ Discover and load context documents using smart discovery. Documents can be in t
 Also - when searching - documents can be a single markdown file, or a folder with an index and multiple files. For Example, if searching for `*foo*.md` and not found, also search for a folder called *foo*/index.md (which indicates sharded content)
 
 Try to discover the following:
+- Game Design Document (`*gdd*.md`) - this is a KEY input for game-dev PRD generation
 - Product Brief (`*brief*.md`)
 - Research Documents (`/*research*.md`)
 - Project Documentation (generally multiple documents might be found for this in the `{product_knowledge}` or `docs` folder.)
@@ -109,6 +112,33 @@ Try to discover the following:
 - For sharded folders, load ALL files to get complete picture, using the index first to potentially know the potential of each document
 - index.md is a guide to what's relevant whenever available
 - Track all successfully loaded files in frontmatter `inputDocuments` array
+
+### GDD-Based PRD Generation
+
+If a GDD was discovered and loaded:
+
+**GDD-Assisted Mode:**
+
+"I found your Game Design Document. I can use it as the foundation for generating a PRD.
+
+The GDD covers game-specific design (mechanics, art, audio, progression), while the PRD will focus on:
+- Formal functional and non-functional requirements
+- User journeys and acceptance criteria
+- Technical constraints and integration points
+- Success metrics and KPIs
+- Scope boundaries and MVP definition
+
+**Mode Options:**
+1. **From GDD** (recommended) - Generate PRD sections using GDD content as source material, then refine collaboratively
+2. **From Scratch** - Ignore GDD and create PRD through full collaborative workflow
+
+Which mode?"
+
+If user chooses "From GDD":
+- Extract and map GDD sections to PRD structure
+- Pre-populate template sections where GDD provides relevant content
+- Mark sections that need additional requirements beyond what GDD covers
+- The subsequent steps will focus on refining and expanding rather than discovering from zero
 
 #### B. Create Initial Document
 
@@ -130,6 +160,7 @@ Try to discover the following:
 
 **Input Documents Discovered:**
 
+- Game Design Document: {{gddCount}} files {if gddCount > 0}✓ loaded{else}(none found){/if}
 - Product briefs: {{briefCount}} files {if briefCount > 0}✓ loaded{else}(none found){/if}
 - Research: {{researchCount}} files {if researchCount > 0}✓ loaded{else}(none found){/if}
 - Brainstorming: {{brainstormingCount}} files {if brainstormingCount > 0}✓ loaded{else}(none found){/if}
@@ -173,6 +204,8 @@ ONLY WHEN [C continue option] is selected and [frontmatter properly updated with
 - Existing workflow detected and properly handed off to step-01b
 - Fresh workflow initialized with template and proper frontmatter
 - Input documents discovered and loaded using sharded-first logic
+- GDD discovery prioritized as key input for game-dev PRD generation
+- GDD-based mode offered when GDD is found
 - All discovered files tracked in frontmatter `inputDocuments`
 - User clearly informed of brownfield vs greenfield status
 - Menu presented and user input handled correctly
@@ -186,6 +219,7 @@ ONLY WHEN [C continue option] is selected and [frontmatter properly updated with
 - Creating document without proper template structure
 - Not checking sharded folders first before whole files
 - Not reporting discovered documents to user clearly
+- Not offering GDD-based mode when GDD is discovered
 - Proceeding without user selecting 'C' (Continue)
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

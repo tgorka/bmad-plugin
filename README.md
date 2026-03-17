@@ -13,20 +13,32 @@
 <!-- upstream-badges-end -->
 
 <!-- upstream-version-start -->
-**Plugin version:** v6.0.4.3
+**Plugin version:** v6.2.0.0
 
 | Module | Version | Released | Last Synced |
 |---|---|---|---|
-| [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.0.4 | 2026-02-28 | 2026-03-05 |
-| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.5.2 | 2026-03-05 | 2026-03-05 |
-| [BMB](https://github.com/bmad-code-org/bmad-builder) | v0.1.6 | 2026-02-08 | 2026-02-11 |
-| [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.1.8 | 2026-02-23 | 2026-02-24 |
-| [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.1.10 | 2026-02-28 | 2026-03-05 |
+| [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.2.0 | 2026-03-15 | 2026-03-17 |
+| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.7.0 | 2026-03-13 | 2026-03-17 |
+| [BMB](https://github.com/bmad-code-org/bmad-builder) | v1.0.2 | 2026-03-15 | 2026-03-17 |
+| [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.1.8 | 2026-02-23 | 2026-03-17 |
+| [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.2.2 | 2026-03-16 | 2026-03-17 |
 <!-- upstream-version-end -->
 
 A Claude Code plugin that transforms Claude into a complete agile development
 environment with specialized agents, structured workflows, and intelligent
 context management.
+
+## Deprecation Notice
+
+The upstream BMAD repositories are migrating from their custom `workflow.yaml`
+format to Claude Code's native `SKILL.md` format. Once all upstream modules
+complete this migration, this plugin's sync and generation pipeline will become
+redundant — the upstream repos will ship Claude Code-compatible skills directly.
+
+At that point this plugin will be deprecated in favor of installing upstream
+BMAD packages directly. Until then, this plugin remains the only way to get all
+5 BMAD modules aggregated into a single installable Claude Code plugin with
+path rewrites, version tracking, and plugin-only additions.
 
 ## Features
 

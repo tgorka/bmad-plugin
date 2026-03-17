@@ -87,21 +87,44 @@ function getModuleAlias(source: UpstreamSource): string {
   return source.id;
 }
 
-/** Add core special workflows (advanced-elicitation, party-mode, brainstorming). */
+/**
+ * Add core special workflows and register 'core' as a module alias.
+ *
+ * Core v6.2.0 moved src/core/workflows/ → src/core/skills/ with bmad- prefix.
+ * Upstream files reference these via _bmad/core/workflows/<name>/... so we
+ * register both the old names and new bmad- prefixed names.
+ */
 async function addCoreSpecialWorkflows(map: WorkflowMap): Promise<void> {
-  const coreWorkflowsDir = join(
-    ROOT,
-    '.upstream/BMAD-METHOD/src/core/workflows',
-  );
-  if (!(await exists(coreWorkflowsDir))) return;
-
   if (!map.has('core')) map.set('core', new Map());
   const coreMap = map.get('core')!;
 
-  const entries = await readdir(coreWorkflowsDir, { withFileTypes: true });
+  // Try new path first (v6.2.0+), fall back to old path
+  const newDir = join(ROOT, '.upstream/BMAD-METHOD/src/core/skills');
+  const oldDir = join(ROOT, '.upstream/BMAD-METHOD/src/core/workflows');
+  const coreDir = (await exists(newDir)) ? newDir : oldDir;
+  if (!(await exists(coreDir))) return;
+
+  const entries = await readdir(coreDir, { withFileTypes: true });
   for (const entry of entries) {
     if (!entry.isDirectory()) continue;
-    coreMap.set(entry.name, entry.name);
+    const name = entry.name;
+    // Map bmad-prefixed dir name to skill name (strip bmad- for the upstream ref)
+    coreMap.set(name, name);
+    // Also map un-prefixed name for backwards compat with upstream refs
+    if (name.startsWith('bmad-')) {
+      coreMap.set(name.slice('bmad-'.length), name);
+    }
+  }
+
+  // Also copy bmm workflow entries into core map for cross-module refs
+  // (e.g., GDS files reference _bmad/core/workflows/brainstorming/)
+  const bmmMap = map.get('bmm');
+  if (bmmMap) {
+    for (const [dirName, skillName] of bmmMap) {
+      if (!coreMap.has(dirName)) {
+        coreMap.set(dirName, skillName);
+      }
+    }
   }
 }
 

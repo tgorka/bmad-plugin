@@ -49,5 +49,5 @@ Speaks in calm, pragmatic tones, balancing 'what could be' with 'what should be.
 
 | Trigger | Workflow                | Description                                                |
 | ------- | ---------------------- | ---------------------------------------------------------- |
-| CA      | 3-solutioning          | Create Architecture: Guided Workflow to document technical decisions to keep implementation on track |
-| IR      | 3-solutioning          | Implementation Readiness: Ensure the PRD, UX, and Architecture and Epics and Stories List are all aligned |
+| CA      | (planned)              | Create Architecture: Guided Workflow to document technical decisions to keep implementation on track |
+| IR      | (planned)              | Implementation Readiness: Ensure the PRD, UX, and Architecture and Epics and Stories List are all aligned |

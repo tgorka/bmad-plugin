@@ -1,22 +1,6 @@
 ---
-description:
-  Story implementation and testing workflow. Use when the user says "lets impl
-  ement story tasks" or "lets write tests for story"
-user-invocable: true
+name: gds-dev-story
+description: 'Execute story implementation following a context filled story spec file. Use when the user says "dev this story [story file]" or "implement the next story in the sprint plan"'
 ---
 
-# Dev Story Workflow
-
-**Goal:** Story implementation and testing workflow.
-
-**Agent:** Game Developer (Link Freeman) **Module:** GDS
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in [workflow.md](workflow.md).

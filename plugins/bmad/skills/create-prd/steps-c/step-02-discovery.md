@@ -11,8 +11,8 @@ projectTypesCSV: '../data/project-types.csv'
 domainComplexityCSV: '../data/domain-complexity.csv'
 
 # Task References
-advancedElicitationTask: '${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/workflow.xml'
-partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/party-mode/SKILL.md'
+advancedElicitationTask: 'skill:bmad-advanced-elicitation'
+partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/bmad-party-mode/SKILL.md'
 ---
 
 # Step 2: Project Discovery

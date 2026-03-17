@@ -10,8 +10,8 @@ outputFile: '{planning_artifacts}/prd.md'
 projectTypesCSV: '../data/project-types.csv'
 
 # Task References
-advancedElicitationTask: '${CLAUDE_PLUGIN_ROOT}/skills/advanced-elicitation/workflow.xml'
-partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/party-mode/SKILL.md'
+advancedElicitationTask: 'skill:bmad-advanced-elicitation'
+partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/bmad-party-mode/SKILL.md'
 ---
 
 # Step 7: Project-Type Deep Dive
