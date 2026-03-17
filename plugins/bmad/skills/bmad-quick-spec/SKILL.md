@@ -1,19 +1,6 @@
 ---
-description:
-  No description available.
-user-invocable: true
+name: bmad-quick-spec
+description: 'Very quick process to create implementation-ready quick specs for small changes or features. Use when the user says "create a quick spec" or "generate a quick tech spec"'
 ---
 
-#  Workflow
-
-**Goal:** .
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in ./workflow.md.

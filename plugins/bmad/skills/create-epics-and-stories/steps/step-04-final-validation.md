@@ -3,7 +3,7 @@ name: 'step-04-final-validation'
 description: 'Validate complete coverage of all requirements and ensure implementation readiness'
 
 # Path Definitions
-workflow_path: '{project-root}/_bmad/gds/workflows/3-technical/create-epics-and-stories'
+workflow_path: '${CLAUDE_PLUGIN_ROOT}/skills/create-epics-and-stories'
 
 # File References
 thisStepFile: './step-04-final-validation.md'

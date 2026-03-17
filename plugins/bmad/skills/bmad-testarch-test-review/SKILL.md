@@ -1,26 +1,6 @@
 ---
-description:
-  Review test quality using best practices validation. Use when the user says 
-  "lets review tests" or "I want to evaluate test quality"
-user-invocable: true
+name: bmad-testarch-test-review
+description: 'Review test quality using best practices validation. Use when user says "lets review tests" or "I want to evaluate test quality"'
 ---
 
-# Bmad Testarch Test Review Workflow
-
-**Goal:** Review test quality using best practices validation.
-
----
-
-## Execution
-
-Select a sub-workflow based on user intent:
-
-| Trigger | Sub-workflow | Description |
-| ------- | ------------ | ----------- |
-| PL | `./workflow-plan.md` | plan |
-
-Read and follow the selected sub-workflow file.
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in [workflow.md](workflow.md).

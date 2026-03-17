@@ -3,7 +3,7 @@ name: 'step-01-validate-prerequisites'
 description: 'Validate required documents exist and extract all requirements for epic and story creation'
 
 # Path Definitions
-workflow_path: '{project-root}/_bmad/gds/workflows/3-technical/create-epics-and-stories'
+workflow_path: '${CLAUDE_PLUGIN_ROOT}/skills/create-epics-and-stories'
 
 # File References
 thisStepFile: './step-01-validate-prerequisites.md'

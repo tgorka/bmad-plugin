@@ -1,7 +1,6 @@
 ---
 name: validate-prd
 description: 'Validate a PRD against standards. Use when the user says "validate this PRD" or "run PRD validation"'
-standalone: false
 main_config: '.claude/bmad.local.md'
 validateWorkflow: './steps-v/step-v-01-discovery.md'
 ---
@@ -52,11 +51,10 @@ This uses **step-file architecture** for disciplined execution:
 Load and read full config from {main_config} and resolve:
 
 - `project_name`, `output_folder`, `planning_artifacts`, `user_name`
-- `communication_language`, `document_output_language`, `user_skill_level`
+- `communication_language`, `document_output_language`, `game_dev_experience`
 - `date` as system-generated current datetime
 
 ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the configured `{communication_language}`.
-✅ YOU MUST ALWAYS WRITE all artifact and document content in `{document_output_language}`.
 
 ### 2. Route to Validate Workflow
 

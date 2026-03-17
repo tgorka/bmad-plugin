@@ -6,6 +6,7 @@ description: 'Holistic Quality Assessment - Assess PRD as cohesive, compelling d
 nextStepFile: './step-v-12-completeness-validation.md'
 prdFile: '{prd_file_path}'
 validationReportPath: '{validation_report_path}'
+advancedElicitationTask: 'skill:bmad-advanced-elicitation'
 ---
 
 # Step 11: Holistic Quality Assessment
@@ -23,7 +24,6 @@ Assess the PRD as a cohesive, compelling document - evaluating document flow, du
 - 🔄 CRITICAL: When loading next step with 'C', ensure entire file is read
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
-- ✅ YOU MUST ALWAYS WRITE all artifact and document content in `{document_output_language}`
 
 ### Role Reinforcement:
 
@@ -66,8 +66,8 @@ Assess the PRD as a cohesive, compelling document - evaluating document flow, du
 
 "Perform holistic quality assessment on this PRD using multi-perspective evaluation:
 
-**Advanced Elicitation workflow:**
-Invoke the `bmad-advanced-elicitation` skill
+**Read fully and follow the Advanced Elicitation workflow:**
+{advancedElicitationTask}
 
 **Evaluate the PRD from these perspectives:**
 

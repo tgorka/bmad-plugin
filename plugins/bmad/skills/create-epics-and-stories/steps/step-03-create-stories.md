@@ -3,7 +3,7 @@ name: 'step-03-create-stories'
 description: 'Generate all epics with their stories following the template structure'
 
 # Path Definitions
-workflow_path: '{project-root}/_bmad/gds/workflows/3-technical/create-epics-and-stories'
+workflow_path: '${CLAUDE_PLUGIN_ROOT}/skills/create-epics-and-stories'
 
 # File References
 thisStepFile: './step-03-create-stories.md'

@@ -1,19 +1,6 @@
 ---
-description:
-  No description available.
-user-invocable: true
+name: bmad-validate-prd
+description: 'Validate a PRD against standards. Use when the user says "validate this PRD" or "run PRD validation"'
 ---
 
-#  Workflow
-
-**Goal:** .
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in ./workflow.md.

@@ -1,20 +1,6 @@
 ---
-description:
-  Create UX design specifications for game UI/HUD elements. Use when the user 
-  says "lets create a UX design" or "create game UI design"
-user-invocable: true
+name: gds-create-ux-design
+description: 'Plan UX patterns and design specifications for game UI/HUD elements. Use when the user says "lets create UX design" or "create UX specifications" or "help me plan the game UX"'
 ---
 
-# Gds Create Ux Design Workflow
-
-**Goal:** Create UX design specifications for game UI/HUD elements.
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in [workflow.md](workflow.md).

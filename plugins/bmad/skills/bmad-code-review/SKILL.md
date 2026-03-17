@@ -1,19 +1,6 @@
 ---
-description:
-  No description available.
-user-invocable: true
+name: bmad-code-review
+description: 'Review code changes adversarially using parallel review layers (Blind Hunter, Edge Case Hunter, Acceptance Auditor) with structured triage into actionable categories. Use when the user says "run code review" or "review this code"'
 ---
 
-#  Workflow
-
-**Goal:** .
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in ./workflow.md.

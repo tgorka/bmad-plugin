@@ -1,19 +1,6 @@
 ---
-description:
-  No description available.
-user-invocable: true
+name: bmad-edit-prd
+description: 'Edit an existing PRD. Use when the user says "edit this PRD".'
 ---
 
-#  Workflow
-
-**Goal:** .
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in ./workflow.md.

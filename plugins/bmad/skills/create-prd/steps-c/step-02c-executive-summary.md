@@ -3,7 +3,7 @@ name: 'step-02c-executive-summary'
 description: 'Generate and append the Executive Summary section to the PRD document'
 
 # File References
-nextStepFile: '{project-root}/_bmad/gds/workflows/2-design/create-prd/steps-c/step-03-success.md'
+nextStepFile: '${CLAUDE_PLUGIN_ROOT}/skills/create-prd/steps-c/step-03-success.md'
 outputFile: '{planning_artifacts}/prd.md'
 
 # Task References

@@ -3,7 +3,7 @@ name: 'step-02-design-epics'
 description: 'Design and approve the epics_list that will organize all requirements into user-value-focused epics'
 
 # Path Definitions
-workflow_path: '{project-root}/_bmad/gds/workflows/3-technical/create-epics-and-stories'
+workflow_path: '${CLAUDE_PLUGIN_ROOT}/skills/create-epics-and-stories'
 
 # File References
 thisStepFile: './step-02-design-epics.md'
