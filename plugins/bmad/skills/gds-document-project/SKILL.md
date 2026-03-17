@@ -1,22 +1,6 @@
 ---
-description:
-  Document brownfield projects for AI context. Use when the user says "documen
-  t this project" or "generate project docs"
-user-invocable: true
+name: gds-document-project
+description: 'Analyze existing game projects to produce useful documentation. Use when the user says "document project" or "generate docs"'
 ---
 
-# Document Project Workflow
-
-**Goal:** Document brownfield projects for AI context.
-
-**Agent:** Technical Writer (Paige) **Module:** GDS
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in [workflow.md](workflow.md).

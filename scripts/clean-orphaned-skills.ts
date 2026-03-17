@@ -13,7 +13,7 @@
 import { exists, readdir, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { PLUGIN } from './lib/config.ts';
-import { getEnabledSources } from './lib/upstream-sources.ts';
+import { getCoreSource, getEnabledSources } from './lib/upstream-sources.ts';
 import { getWorkflowEntries } from './lib/workflow-iterator.ts';
 
 const DRY_RUN = process.argv.includes('--dry-run');
@@ -41,9 +41,21 @@ async function getValidSkillNames(): Promise<Set<string>> {
     }
   }
 
-  // Special workflows synced outside the normal contentRoot
-  valid.add('advanced-elicitation');
-  valid.add('party-mode');
+  // Core skills synced outside the normal contentRoot (src/core/skills/ or src/core/workflows/)
+  const coreSource = getCoreSource();
+  const coreRoot = join(ROOT, '.upstream', coreSource.localPath);
+  const coreSkillsDir = join(coreRoot, 'src/core/skills');
+  const coreWorkflowsDir = join(coreRoot, 'src/core/workflows');
+  const coreExtrasDir = (await exists(coreSkillsDir))
+    ? coreSkillsDir
+    : coreWorkflowsDir;
+
+  if (await exists(coreExtrasDir)) {
+    const entries = await readdir(coreExtrasDir, { withFileTypes: true });
+    for (const entry of entries) {
+      if (entry.isDirectory()) valid.add(entry.name);
+    }
+  }
 
   return valid;
 }

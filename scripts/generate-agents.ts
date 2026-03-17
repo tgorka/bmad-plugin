@@ -193,11 +193,16 @@ function generateAgentMd(
   return `${sections.join('\n')}\n`;
 }
 
-/** Find all .agent.yaml files under an agents directory (handles nested dirs). */
-async function findAgentYamls(
-  dir: string,
-): Promise<Array<{ path: string; slug: string }>> {
-  const results: Array<{ path: string; slug: string }> = [];
+interface AgentFile {
+  path: string;
+  slug: string;
+  /** 'yaml' = generated from .agent.yaml; 'skill' = copy SKILL.md directly */
+  format: 'yaml' | 'skill';
+}
+
+/** Find all agent definitions under an agents directory (handles both formats). */
+async function findAgentFiles(dir: string): Promise<AgentFile[]> {
+  const results: AgentFile[] = [];
   const entries = await readdir(dir, { withFileTypes: true });
 
   for (const entry of entries) {
@@ -205,15 +210,26 @@ async function findAgentYamls(
       results.push({
         path: join(dir, entry.name),
         slug: agentSlug(entry.name),
+        format: 'yaml',
       });
     } else if (entry.isDirectory()) {
-      // Look for .agent.yaml inside the subdirectory
-      const subEntries = await readdir(join(dir, entry.name));
+      const subDir = join(dir, entry.name);
+      const subEntries = await readdir(subDir);
+
+      // Prefer .agent.yaml if present
       const yamlFile = subEntries.find((f) => f.endsWith('.agent.yaml'));
       if (yamlFile) {
         results.push({
-          path: join(dir, entry.name, yamlFile),
+          path: join(subDir, yamlFile),
           slug: agentSlug(yamlFile),
+          format: 'yaml',
+        });
+      } else if (subEntries.includes('SKILL.md')) {
+        // SKILL.md-based agent (v0.2.2+ format)
+        results.push({
+          path: join(subDir, 'SKILL.md'),
+          slug: entry.name,
+          format: 'skill',
         });
       }
     }
@@ -236,15 +252,31 @@ async function processSource(source: UpstreamSource): Promise<number> {
   }
 
   const pluginOnlyAgents = source.pluginOnlyAgents ?? new Set();
-  const agentFiles = await findAgentYamls(agentsDir);
+  const agentFiles = await findAgentFiles(agentsDir);
   let count = 0;
 
-  for (const { path, slug } of agentFiles) {
+  for (const { path, slug, format } of agentFiles) {
     if (pluginOnlyAgents.has(slug)) {
       console.log(`  skip: ${slug} (plugin-only, owned by another source)`);
       continue;
     }
 
+    const outPath = join(AGENTS_DIR, `${slug}.md`);
+
+    if (format === 'skill') {
+      // SKILL.md-based agent — copy directly
+      if (DRY_RUN) {
+        console.log(`  [dry-run] would copy: agents/${slug}.md (from SKILL.md)`);
+      } else {
+        const content = await Bun.file(path).text();
+        await Bun.write(outPath, content);
+        console.log(`  ✓ agents/${slug}.md (from SKILL.md)`);
+      }
+      count++;
+      continue;
+    }
+
+    // .agent.yaml format — generate markdown
     const content = await Bun.file(path).text();
     const parsed = parseYaml(content) as AgentYaml;
 
@@ -254,7 +286,6 @@ async function processSource(source: UpstreamSource): Promise<number> {
     }
 
     const md = generateAgentMd(slug, parsed.agent, source);
-    const outPath = join(AGENTS_DIR, `${slug}.md`);
 
     if (DRY_RUN) {
       console.log(`  [dry-run] would write: agents/${slug}.md`);

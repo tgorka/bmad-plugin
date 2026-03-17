@@ -1,22 +1,6 @@
 ---
-description:
-  Generate AI-optimized project context file. Use when the user says "lets cre
-  ate project context for game dev"
-user-invocable: true
+name: gds-generate-project-context
+description: 'Create optimized project-context.md for AI agent consistency. Use when the user says "project context" or "generate context"'
 ---
 
-# Generate Project Context Workflow
-
-**Goal:** Generate AI-optimized project context file.
-
-**Agent:** Game Architect (Cloud Dragonborn) **Module:** GDS
-
----
-
-## Execution
-
-Read and follow: `./instructions.md`
-
-## Validation
-
-After completion, verify against: `./checklist.md`
+Follow the instructions in [workflow.md](workflow.md).
