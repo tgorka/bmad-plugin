@@ -262,9 +262,7 @@ async function processSource(source: UpstreamSource): Promise<number> {
     // Skip generation if upstream provides SKILL.md (sync already copied it)
     const upstreamSkillMd = join(entry.upstreamDir, 'SKILL.md');
     if (await exists(upstreamSkillMd)) {
-      console.log(
-        `  skip: ${entry.skillName} (upstream provides SKILL.md)`,
-      );
+      console.log(`  skip: ${entry.skillName} (upstream provides SKILL.md)`);
       continue;
     }
 
