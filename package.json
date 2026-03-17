@@ -15,6 +15,7 @@
     "generate:skills": "bun scripts/generate-skills.ts",
     "generate:manifest": "bun scripts/generate-agent-manifest.ts",
     "sync-all": "bun scripts/sync-all.ts",
+    "clean:orphaned": "bun scripts/clean-orphaned-skills.ts",
     "bump-core": "bun scripts/bump-core.ts",
     "bump-module": "bun scripts/bump-module.ts",
     "update-readme": "bun scripts/update-readme-version.ts",
