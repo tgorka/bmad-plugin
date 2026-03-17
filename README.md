@@ -28,6 +28,18 @@ A Claude Code plugin that transforms Claude into a complete agile development
 environment with specialized agents, structured workflows, and intelligent
 context management.
 
+## Deprecation Notice
+
+The upstream BMAD repositories are migrating from their custom `workflow.yaml`
+format to Claude Code's native `SKILL.md` format. Once all upstream modules
+complete this migration, this plugin's sync and generation pipeline will become
+redundant — the upstream repos will ship Claude Code-compatible skills directly.
+
+At that point this plugin will be deprecated in favor of installing upstream
+BMAD packages directly. Until then, this plugin remains the only way to get all
+5 BMAD modules aggregated into a single installable Claude Code plugin with
+path rewrites, version tracking, and plugin-only additions.
+
 ## Features
 
 - **9 Specialized Agents**: Business Analyst, Product Manager, UX Designer,
