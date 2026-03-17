@@ -259,6 +259,15 @@ async function processSource(source: UpstreamSource): Promise<number> {
   for (const entry of entries) {
     if (pluginOnlySkills.has(entry.skillName)) continue;
 
+    // Skip generation if upstream provides SKILL.md (sync already copied it)
+    const upstreamSkillMd = join(entry.upstreamDir, 'SKILL.md');
+    if (await exists(upstreamSkillMd)) {
+      console.log(
+        `  skip: ${entry.skillName} (upstream provides SKILL.md)`,
+      );
+      continue;
+    }
+
     const info = await collectWorkflowInfo(
       entry.upstreamDir,
       entry.dirName,
