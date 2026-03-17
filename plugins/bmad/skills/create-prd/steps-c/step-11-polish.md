@@ -9,7 +9,7 @@ purposeFile: '${CLAUDE_PLUGIN_ROOT}/skills/create-prd/data/prd-purpose.md'
 
 # Task References
 advancedElicitationTask: 'skill:bmad-advanced-elicitation'
-partyModeWorkflow: '{project-root}/_bmad/core/workflows/bmad-party-mode/workflow.md'
+partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/bmad-party-mode/SKILL.md'
 ---
 
 # Step 11: Document Polish

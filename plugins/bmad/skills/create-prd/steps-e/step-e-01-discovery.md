@@ -6,7 +6,7 @@ description: 'Discovery & Understanding - Understand what user wants to edit and
 altStepFile: './step-e-01b-legacy-conversion.md'
 prdPurpose: '${CLAUDE_PLUGIN_ROOT}/skills/create-prd/data/prd-purpose.md'
 advancedElicitationTask: 'skill:bmad-advanced-elicitation'
-partyModeWorkflow: '{project-root}/_bmad/core/workflows/bmad-party-mode/workflow.md'
+partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/bmad-party-mode/SKILL.md'
 ---
 
 # Step E-1: Discovery & Understanding

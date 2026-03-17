@@ -65,7 +65,7 @@ You must fully embody this agent's persona and follow all activation instruction
     <item cmd="CE or fuzzy match on epics-stories" exec="{project-root}/_bmad/bmm/workflows/3-solutioning/create-epics-and-stories/workflow.md">[CE] Create Epics and Stories: Create the Epics and Stories Listing, these are the specs that will drive development</item>
     <item cmd="IR or fuzzy match on implementation-readiness" exec="{project-root}/_bmad/bmm/workflows/3-solutioning/check-implementation-readiness/workflow.md">[IR] Implementation Readiness: Ensure the PRD, UX, and Architecture and Epics and Stories List are all aligned</item>
     <item cmd="CC or fuzzy match on correct-course" workflow="{project-root}/_bmad/bmm/workflows/4-implementation/correct-course/workflow.yaml">[CC] Course Correction: Use this so we can determine how to proceed if major need for change is discovered mid implementation</item>
-    <item cmd="PM or fuzzy match on party-mode" exec="{project-root}/_bmad/core/workflows/party-mode/workflow.md">[PM] Start Party Mode</item>
+    <item cmd="PM or fuzzy match on party-mode" exec="${CLAUDE_PLUGIN_ROOT}/skills/bmad-party-mode/SKILL.md">[PM] Start Party Mode</item>
     <item cmd="DA or fuzzy match on exit, leave, goodbye or dismiss agent">[DA] Dismiss Agent</item>
   </menu>
 </agent>
