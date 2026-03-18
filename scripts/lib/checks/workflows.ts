@@ -5,11 +5,11 @@
  * - Plugin.json manifest commands
  */
 
-import { readdir } from 'node:fs/promises';
+import { exists, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { PLUGIN, PLUGIN_JSON_PATH, ROOT } from '../config.ts';
 import { fail, pass, section, warn } from '../output.ts';
-import { getEnabledSources } from '../upstream-sources.ts';
+import { getCoreSource, getEnabledSources } from '../upstream-sources.ts';
 import { getWorkflowEntries } from '../workflow-iterator.ts';
 
 export interface SkillSets {
@@ -18,7 +18,7 @@ export interface SkillSets {
   manifest: Set<string>;
 }
 
-/** Collect upstream workflow names from all enabled sources. */
+/** Collect upstream workflow names from all enabled sources + core skills. */
 async function getUpstreamWorkflows(): Promise<Set<string>> {
   const names = new Set<string>();
 
@@ -27,6 +27,17 @@ async function getUpstreamWorkflows(): Promise<Set<string>> {
     const entries = await getWorkflowEntries(source, upstreamRoot);
     for (const entry of entries) {
       names.add(entry.skillName);
+    }
+  }
+
+  // Core skills synced via syncCoreExtras (src/core/skills/)
+  const coreSource = getCoreSource();
+  const coreRoot = join(ROOT, '.upstream', coreSource.localPath);
+  const coreSkillsDir = join(coreRoot, 'src/core/skills');
+  if (await exists(coreSkillsDir)) {
+    const entries = await readdir(coreSkillsDir, { withFileTypes: true });
+    for (const entry of entries) {
+      if (entry.isDirectory()) names.add(entry.name);
     }
   }
 
