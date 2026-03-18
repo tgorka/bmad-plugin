@@ -42,7 +42,12 @@ export interface UpstreamSource {
   skipContentPatterns?: RegExp[];
   /** Workflows referenced by agents but not yet implemented upstream (warn, not fail) */
   plannedWorkflows?: Set<string>;
-  workflowWorkarounds?: Record<string, string>;
+  /**
+   * Maps stale agent YAML workflow refs to current plugin skill names.
+   * Only needed when upstream agent YAML hasn't been updated to match
+   * renamed workflow directories. Remove entries when upstream catches up.
+   */
+  agentRefMappings?: Record<string, string>;
   pluginOnlySkills?: Set<string>;
   pluginOnlyAgents?: Set<string>;
   sharedFileTargets?: Record<string, string[]>;
@@ -62,7 +67,7 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     skipWorkflows: new Set(['automate']),
     skipDirs: new Set(['_shared', 'templates', 'workflows']),
     skipContentFiles: new Set(['workflow.md', 'workflow.yaml']),
-    workflowWorkarounds: {},
+    agentRefMappings: {},
     pluginOnlySkills: new Set(['help', 'init', 'status', 'brainstorming']),
     pluginOnlyAgents: new Set(['bmad-master', 'tech-writer']),
     sharedFileTargets: {},
@@ -82,8 +87,9 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
       /^validation-report-.*\.md$/,
       /^workflow-plan.*\.md$/,
     ],
-    workflowWorkarounds: {
-      // TEA agent YAML still references old un-prefixed names
+    agentRefMappings: {
+      // TEA agent YAML still references old un-prefixed names.
+      // Remove when upstream updates refs to match actual dir names.
       'teach-me-testing': 'bmad-teach-me-testing',
       framework: 'bmad-testarch-framework',
       atdd: 'bmad-testarch-atdd',
@@ -109,7 +115,7 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     flatWorkflows: true,
     skipDirs: new Set(['_shared', 'templates']),
     skipContentFiles: new Set(['workflow.md', 'workflow.yaml']),
-    workflowWorkarounds: {},
+    agentRefMappings: {},
     pluginOnlySkills: new Set(),
     pluginOnlyAgents: new Set(),
     sharedFileTargets: {},
@@ -125,7 +131,7 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     flatWorkflows: true,
     skipDirs: new Set(['_shared', 'templates']),
     skipContentFiles: new Set(['workflow.md', 'workflow.yaml']),
-    workflowWorkarounds: {},
+    agentRefMappings: {},
     pluginOnlySkills: new Set(),
     pluginOnlyAgents: new Set(),
     sharedFileTargets: {},
@@ -141,24 +147,9 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     flatWorkflows: false,
     skipDirs: new Set(['_shared', 'templates']),
     skipContentFiles: new Set(['workflow.md', 'workflow.yaml']),
-    workflowWorkarounds: {
-      'document-project': 'gds-document-project',
-      'generate-project-context': 'gds-generate-project-context',
-      // Collisions with core (4-implementation + bmad-quick-flow)
-      'code-review': 'gds-code-review',
-      'correct-course': 'gds-correct-course',
-      'create-story': 'gds-create-story',
-      'dev-story': 'gds-dev-story',
-      'quick-dev': 'gds-quick-dev',
-      'quick-spec': 'gds-quick-spec',
-      retrospective: 'gds-retrospective',
-      'sprint-planning': 'gds-sprint-planning',
-      'sprint-status': 'gds-sprint-status',
-      // Collisions with TEA (gametest workflows)
-      automate: 'gds-automate',
-      'test-design': 'gds-test-design',
-      'test-review': 'gds-test-review',
-    },
+    // GDS v0.2.2 dirs already use gds- prefix; agents are SKILL.md (no YAML refs).
+    // No agent ref mappings needed.
+    agentRefMappings: {},
     plannedWorkflows: new Set(['quick-prototype']),
     pluginOnlySkills: new Set(),
     pluginOnlyAgents: new Set(['tech-writer']),

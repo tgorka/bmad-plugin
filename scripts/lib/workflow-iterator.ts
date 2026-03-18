@@ -40,7 +40,7 @@ async function getFlatEntries(
   const dirEntries = await readdir(workflowsRoot, { withFileTypes: true });
   const skipDirs = source.skipDirs ?? new Set();
   const skipWorkflows = source.skipWorkflows ?? new Set();
-  const workarounds = source.workflowWorkarounds ?? {};
+  const workarounds = source.agentRefMappings ?? {};
 
   for (const entry of dirEntries) {
     if (!entry.isDirectory() || skipDirs.has(entry.name)) continue;
@@ -69,7 +69,7 @@ async function getCategorizedEntries(
   const categories = await readdir(workflowsRoot, { withFileTypes: true });
   const skipDirs = source.skipDirs ?? new Set();
   const skipWorkflows = source.skipWorkflows ?? new Set();
-  const workarounds = source.workflowWorkarounds ?? {};
+  const workarounds = source.agentRefMappings ?? {};
 
   for (const cat of categories) {
     if (!cat.isDirectory() || skipDirs.has(cat.name)) continue;

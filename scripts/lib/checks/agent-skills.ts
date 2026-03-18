@@ -54,19 +54,14 @@ function checkAgentWorkflows(
   agentName: string,
   workflows: string[],
   skillDirs: Set<string>,
-  workarounds: Record<string, string>,
+  mappings: Record<string, string>,
   planned: Set<string>,
 ): void {
   for (const wf of workflows) {
-    const skillName = workarounds[wf] ?? wf;
+    const skillName = mappings[wf] ?? wf;
     if (skillDirs.has(skillName)) {
-      if (workarounds[wf]) {
-        warn(
-          `[${sourceId}] ${agentName} → ${skillName} (workaround — upstream "${wf}" ≠ plugin "${skillName}")`,
-        );
-      } else {
-        pass(`[${sourceId}] ${agentName} → ${skillName}`);
-      }
+      // Mapped refs are expected — pass silently like direct matches
+      pass(`[${sourceId}] ${agentName} → ${skillName}`);
     } else if (planned.has(wf)) {
       warn(
         `[${sourceId}] ${agentName} references planned workflow "${wf}" (not yet implemented upstream)`,
@@ -96,7 +91,7 @@ export async function checkAgentSkills(): Promise<void> {
     if (!(await exists(agentsDir))) continue;
 
     const entries = await readdir(agentsDir, { withFileTypes: true });
-    const workarounds = source.workflowWorkarounds ?? {};
+    const workarounds = source.agentRefMappings ?? {};
     const planned = source.plannedWorkflows ?? new Set<string>();
 
     for (const entry of entries) {

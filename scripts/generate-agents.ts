@@ -68,7 +68,7 @@ function extractSkillName(
   if (!match) return undefined;
 
   const workflowName = match[1]!;
-  const workarounds = source.workflowWorkarounds ?? {};
+  const workarounds = source.agentRefMappings ?? {};
   return workarounds[workflowName] ?? workflowName;
 }
 
