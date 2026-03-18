@@ -44,19 +44,6 @@ function getAllPluginOnlySkills(): Set<string> {
   return all;
 }
 
-/** Build inverse workaround map: mapped name → original name (for display only). */
-function getInverseWorkarounds(): Record<string, string> {
-  const inverse: Record<string, string> = {};
-  for (const source of getEnabledSources()) {
-    for (const [original, mapped] of Object.entries(
-      source.workflowWorkarounds ?? {},
-    )) {
-      inverse[mapped] = original;
-    }
-  }
-  return inverse;
-}
-
 /** Collect plugin skill directory names. */
 async function getPluginDirectories(): Promise<Set<string>> {
   const entries = await readdir(join(PLUGIN, 'skills'), {
@@ -97,21 +84,15 @@ function sorted(set: Set<string>): string[] {
 }
 
 /** Check upstream workflows have corresponding plugin directories.
- * Names in `upstream` are already mapped via per-source workarounds.
- * Use inverse map for display only. */
+ * Names in `upstream` are already mapped via per-source agent ref mappings. */
 function checkUpstreamToDirs(
   upstream: Set<string>,
   directories: Set<string>,
-  inverse: Record<string, string>,
 ): void {
   section('Skills: Upstream → Plugin Directories');
   for (const name of sorted(upstream)) {
     if (directories.has(name)) {
-      if (inverse[name]) {
-        warn(`${inverse[name]} → ${name} (workaround)`);
-      } else {
-        pass(name);
-      }
+      pass(name);
     } else {
       fail(`Missing directory: skills/${name}`);
     }
@@ -176,10 +157,9 @@ export async function checkWorkflows(): Promise<SkillSets> {
   const upstream = await getUpstreamWorkflows();
   const directories = await getPluginDirectories();
   const manifest = await getManifestCommands();
-  const inverse = getInverseWorkarounds();
   const pluginOnly = getAllPluginOnlySkills();
 
-  checkUpstreamToDirs(upstream, directories, inverse);
+  checkUpstreamToDirs(upstream, directories);
   checkUpstreamToManifest(upstream, manifest);
   checkDirsManifestAlignment(directories, manifest);
   checkPluginOnlySkills(upstream, directories, pluginOnly);

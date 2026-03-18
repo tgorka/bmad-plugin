@@ -10,7 +10,6 @@
  * 5. Naming consistency — SKILL.md frontmatter name ↔ directory name
  * 6. Agent–skill cross-reference — agent menu workflows ↔ plugin skill dirs
  *
- * Known workarounds are documented in config.ts and printed with ⚠ markers.
  * Exit 0 = pass, Exit 1 = gaps found.
  */
 
@@ -23,14 +22,7 @@ import {
   checkVersion,
   checkWorkflows,
 } from './lib/checks/index.ts';
-import {
-  GREEN,
-  hasFailed,
-  RED,
-  RESET,
-  setVerbose,
-  YELLOW,
-} from './lib/output.ts';
+import { GREEN, hasFailed, RED, RESET, setVerbose } from './lib/output.ts';
 import { getEnabledSources } from './lib/upstream-sources.ts';
 
 setVerbose(process.argv.includes('--verbose'));
@@ -48,20 +40,11 @@ await checkVersion();
 await checkAgentSkills();
 await checkPaths();
 
-const workaroundCount = getEnabledSources().reduce(
-  (sum, s) => sum + Object.keys(s.workflowWorkarounds ?? {}).length,
-  0,
-);
-
 console.log('');
 
 if (hasFailed()) {
   console.log(`${RED}✗ Validation failed — gaps found above.${RESET}`);
   process.exit(1);
-} else if (workaroundCount > 0) {
-  console.log(
-    `${GREEN}✓ All upstream content covered.${RESET} ${YELLOW}(${workaroundCount} workarounds — see ⚠ above)${RESET}`,
-  );
 } else {
   console.log(
     `${GREEN}✓ All upstream content covered — agents, skills, and files in sync.${RESET}`,

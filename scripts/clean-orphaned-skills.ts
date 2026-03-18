@@ -22,7 +22,7 @@ const SKILLS_DIR = join(PLUGIN, 'skills');
 
 /**
  * Build a set of all valid skill names by iterating upstream sources.
- * Includes plugin-only skills and workaround-mapped names.
+ * Includes plugin-only skills and agent ref mapped names.
  */
 async function getValidSkillNames(): Promise<Set<string>> {
   const valid = new Set<string>();
