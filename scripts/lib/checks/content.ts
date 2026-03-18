@@ -26,21 +26,31 @@ interface ContentPair {
   pluginDir: string;
   label: string;
   source: UpstreamSource;
+  /** All upstream dirs that map to this plugin dir (for overlapping skills). */
+  allUpstreamDirs?: string[];
 }
 
 /**
  * Get all workflow→skill pairs across all enabled sources (only existing plugin dirs).
  * When multiple sources map to the same plugin skill dir, the last source wins
- * (matches sync order: later sources overwrite earlier content).
+ * for content comparison (matches sync order). All upstream dirs for a plugin dir
+ * are tracked so extra-file checks can consult all sources.
  */
 async function getAllPairs(): Promise<ContentPair[]> {
+  // Track all upstream dirs per plugin dir (for multi-source overlap checking)
+  const allUpstreamDirs = new Map<string, string[]>();
   const byPluginDir = new Map<string, ContentPair>();
+
   for (const source of getEnabledSources()) {
     const upstreamRoot = join(ROOT, '.upstream', source.localPath);
     const entries = await getWorkflowEntries(source, upstreamRoot);
 
     for (const entry of entries) {
       if (await exists(entry.pluginSkillDir)) {
+        const dirs = allUpstreamDirs.get(entry.pluginSkillDir) ?? [];
+        dirs.push(entry.upstreamDir);
+        allUpstreamDirs.set(entry.pluginSkillDir, dirs);
+
         byPluginDir.set(entry.pluginSkillDir, {
           upstreamDir: entry.upstreamDir,
           pluginDir: entry.pluginSkillDir,
@@ -50,6 +60,12 @@ async function getAllPairs(): Promise<ContentPair[]> {
       }
     }
   }
+
+  // Attach all upstream dirs to each pair
+  for (const pair of byPluginDir.values()) {
+    pair.allUpstreamDirs = allUpstreamDirs.get(pair.pluginDir) ?? [];
+  }
+
   return [...byPluginDir.values()];
 }
 
@@ -101,21 +117,38 @@ async function compareUpstreamFiles(
   return { checked, drifted };
 }
 
-/** Check for extra files in plugin that don't exist upstream. */
-function checkExtraPluginFiles(
+/** Check for extra files in plugin that don't exist upstream.
+ * @param primaryUpstreamDir - the upstream dir used for content comparison
+ * @param allUpstreamDirs - all upstream dirs that map to this plugin dir
+ */
+async function checkExtraPluginFiles(
   label: string,
   skillName: string,
   pluginFiles: string[],
   upstreamFiles: string[],
   source: UpstreamSource,
-): void {
+  primaryUpstreamDir: string,
+  allUpstreamDirs: string[],
+): Promise<void> {
   const pluginOnlyData = source.pluginOnlyData ?? new Set();
   const sharedTargets = source.sharedFileTargets ?? {};
+
+  // Build combined upstream file set from all sources that map to this dir
+  const combinedUpstream = new Set(upstreamFiles);
+  for (const dir of allUpstreamDirs) {
+    if (dir === primaryUpstreamDir) continue; // Already in upstreamFiles
+    if (await exists(dir)) {
+      const files = await listFilesRecursive(dir);
+      for (const f of files) combinedUpstream.add(f);
+    }
+  }
 
   for (const relPath of pluginFiles) {
     const fileName = relPath.split('/').at(-1) ?? relPath;
     if (shouldSkipContentFile(source, fileName)) continue;
-    if (upstreamFiles.includes(relPath)) continue;
+    // Skip SKILL.md — always generated or synced separately
+    if (fileName === 'SKILL.md') continue;
+    if (combinedUpstream.has(relPath)) continue;
 
     const qualifiedPath = `${skillName}/${relPath}`;
     if (pluginOnlyData.has(qualifiedPath)) {
@@ -211,7 +244,13 @@ export async function checkContent(): Promise<void> {
   let checkedCount = 0;
   let driftCount = 0;
 
-  for (const { upstreamDir, pluginDir, label, source } of pairs) {
+  for (const {
+    upstreamDir,
+    pluginDir,
+    label,
+    source,
+    allUpstreamDirs,
+  } of pairs) {
     const upstreamFiles = await listFilesRecursive(upstreamDir);
     const pluginFiles = await listFilesRecursive(pluginDir);
     const pluginFileSet = new Set(pluginFiles);
@@ -229,7 +268,15 @@ export async function checkContent(): Promise<void> {
     driftCount += drifted;
 
     const skillName = pluginDir.split('/').at(-1) ?? pluginDir;
-    checkExtraPluginFiles(label, skillName, pluginFiles, upstreamFiles, source);
+    await checkExtraPluginFiles(
+      label,
+      skillName,
+      pluginFiles,
+      upstreamFiles,
+      source,
+      upstreamDir,
+      allUpstreamDirs ?? [],
+    );
   }
 
   if (driftCount === 0) {
