@@ -266,7 +266,9 @@ async function processSource(source: UpstreamSource): Promise<number> {
     if (format === 'skill') {
       // SKILL.md-based agent — copy directly
       if (DRY_RUN) {
-        console.log(`  [dry-run] would copy: agents/${slug}.md (from SKILL.md)`);
+        console.log(
+          `  [dry-run] would copy: agents/${slug}.md (from SKILL.md)`,
+        );
       } else {
         const content = await Bun.file(path).text();
         await Bun.write(outPath, content);
