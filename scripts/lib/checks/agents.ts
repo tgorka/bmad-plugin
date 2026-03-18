@@ -53,6 +53,11 @@ export async function checkAgents(): Promise<void> {
   const allPluginOnly = new Set<string>();
 
   for (const source of getEnabledSources()) {
+    // Collect plugin-only agents from ALL sources (even those without agentsRoot)
+    for (const name of source.pluginOnlyAgents ?? []) {
+      allPluginOnly.add(name);
+    }
+
     if (!source.agentsRoot) continue;
     const upstreamRoot = join(ROOT, '.upstream', source.localPath);
     const agentsDir = join(upstreamRoot, source.agentsRoot);
@@ -73,10 +78,6 @@ export async function checkAgents(): Promise<void> {
         );
       }
       coveredNames.add(upstream);
-    }
-
-    for (const name of source.pluginOnlyAgents ?? []) {
-      allPluginOnly.add(name);
     }
   }
 

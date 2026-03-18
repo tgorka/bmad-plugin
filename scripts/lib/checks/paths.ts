@@ -11,7 +11,9 @@ import { join } from 'node:path';
 import { PLUGIN } from '../config.ts';
 import { pass, section, warn } from '../output.ts';
 
-/** Patterns that are expected to remain unrewritten. */
+/** Patterns that are expected to remain unrewritten.
+ * These are valid runtime paths in the user's {project-root}/_bmad/ directory,
+ * not paths that the sync pipeline should have transformed. */
 const EXPECTED_PATTERNS = [
   /_bmad\/_memory\//,
   /_bmad\/_config\//,
@@ -19,6 +21,9 @@ const EXPECTED_PATTERNS = [
   /_bmad\/\[/, // bracket templates like [module-path]
   /_bmad\/foo\//, // example placeholder
   /_bmad\/\.\.\./, // documentation ellipsis
+  /_bmad\/bmm\//, // core BMM module runtime paths
+  /_bmad\/gds\//, // GDS module runtime paths
+  /_bmad\/planning\//, // project planning artifacts
 ];
 
 async function listAllFiles(dir: string): Promise<string[]> {
@@ -49,6 +54,9 @@ export async function checkPaths(): Promise<void> {
   for (const filePath of files) {
     const ext = filePath.slice(filePath.lastIndexOf('.'));
     if (!textExts.has(ext)) continue;
+
+    // Skip test fixtures — intentionally contain old-format paths
+    if (filePath.includes('/tests/')) continue;
 
     const content = await Bun.file(filePath).text();
     const matches = content.match(/\{project-root\}\/_bmad\/[^\s'"<>{}()`]+/g);
