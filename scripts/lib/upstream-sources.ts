@@ -130,8 +130,9 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     repo: 'bmad-code-org/bmad-module-creative-intelligence-suite',
     localPath: 'bmad-module-creative-intelligence-suite',
     enabled: true,
-    contentRoot: 'src/workflows',
-    agentsRoot: 'src/agents',
+    // CIS v0.1.9: restructured from src/workflows/ + src/agents/ to unified src/skills/
+    contentRoot: 'src/skills',
+    agentsRoot: undefined,
     flatWorkflows: true,
     skipDirs: new Set(['_shared', 'templates']),
     skipContentFiles: new Set(['workflow.md', 'workflow.yaml']),
