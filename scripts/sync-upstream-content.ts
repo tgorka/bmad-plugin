@@ -231,41 +231,9 @@ async function syncCoreExtras(map: WorkflowMap): Promise<number> {
   const coreRoot = join(ROOT, '.upstream', coreSource.localPath);
   let count = 0;
 
-  // 1. Core task entries → _shared/tasks/
-  const tasksDir = join(coreRoot, 'src/core/tasks');
-  if (await exists(tasksDir)) {
-    const taskEntries = await readdir(tasksDir, { withFileTypes: true });
-    const destDir = join(PLUGIN, '_shared', 'tasks');
-    console.log('Syncing: [core] tasks → _shared/tasks/');
-    let taskFileCount = 0;
-
-    for (const entry of taskEntries) {
-      const srcPath = join(tasksDir, entry.name);
-      const destPath = join(destDir, entry.name);
-      if (DRY_RUN) {
-        console.log(`  [dry-run] _shared/tasks/${entry.name}`);
-        taskFileCount++;
-        continue;
-      }
-      if (entry.isDirectory()) {
-        await cp(srcPath, destPath, { recursive: true, force: true });
-        taskFileCount++;
-      } else {
-        await copyWithRewrite(srcPath, destPath, map);
-        taskFileCount++;
-      }
-    }
-    count += taskFileCount;
-    if (!DRY_RUN) console.log(`  ✓ ${taskFileCount} task entries copied`);
-  }
-
-  // 2. Core skills → skills/<name>/
-  // These live at src/core/skills/ (v6.2.0+) or src/core/workflows/ (older)
-  const coreSkillsDir = join(coreRoot, 'src/core/skills');
-  const coreWorkflowsDir = join(coreRoot, 'src/core/workflows');
-  const coreExtrasDir = (await exists(coreSkillsDir))
-    ? coreSkillsDir
-    : coreWorkflowsDir;
+  // 1. Core skills → skills/<name>/
+  // Core v6.2.2: src/core/skills/ → src/core-skills/ (top-level under src/)
+  const coreExtrasDir = join(coreRoot, 'src/core-skills');
 
   if (await exists(coreExtrasDir)) {
     const dirEntries = await readdir(coreExtrasDir, { withFileTypes: true });

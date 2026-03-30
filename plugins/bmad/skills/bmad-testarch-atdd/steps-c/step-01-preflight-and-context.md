@@ -117,7 +117,7 @@ Load fragments based on their `tier` classification in `tea-index.csv`:
 
 **If `tea_use_pactjs_utils` is enabled** (and `{detected_stack}` is `backend` or `fullstack`, or microservices indicators detected):
 
-Load: `pactjs-utils-overview.md`, `pactjs-utils-consumer-helpers.md`, `pactjs-utils-provider-verifier.md`, `pactjs-utils-request-filter.md`
+Load: `pactjs-utils-overview.md`, `pactjs-utils-consumer-helpers.md`, `pactjs-utils-provider-verifier.md`, `pactjs-utils-request-filter.md`, `pact-consumer-di.md`
 
 **If `tea_use_pactjs_utils` is disabled** but contract testing is relevant:
 
@@ -170,7 +170,7 @@ Use `{knowledgeIndex}` to load:
 
 **Pact.js Utils (if enabled):**
 
-- `pactjs-utils-overview.md`, `pactjs-utils-consumer-helpers.md`, `pactjs-utils-provider-verifier.md`, `pactjs-utils-request-filter.md`
+- `pactjs-utils-overview.md`, `pactjs-utils-consumer-helpers.md`, `pactjs-utils-provider-verifier.md`, `pactjs-utils-request-filter.md`, `pact-consumer-di.md`
 
 **Contract Testing (if pactjs-utils disabled but relevant):**
 

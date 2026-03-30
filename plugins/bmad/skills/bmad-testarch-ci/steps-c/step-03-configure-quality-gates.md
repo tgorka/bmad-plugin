@@ -83,6 +83,11 @@ Define:
 
 **Contract testing gate** (if `tea_use_pactjs_utils` is enabled):
 
+Use `{knowledgeIndex}` to load:
+
+- `pactjs-utils-provider-verifier.md` — `buildVerifierOptions`, broker config, and breaking change patterns for provider verification gates
+- `pactjs-utils-request-filter.md` — `createRequestFilter` auth injection patterns for CI pipeline auth setup
+
 - **can-i-deploy must pass** before any deployment to staging or production
 - Block the deployment pipeline if contract verification fails
 - Treat consumer pact publishing failures as CI failures (contracts must stay up-to-date)

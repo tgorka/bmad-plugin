@@ -6,8 +6,8 @@ progressFile: '{test_artifacts}/teaching-progress/{user_name}-tea-progress.yaml'
 sessionNotesTemplate: '../templates/session-notes-template.md'
 sessionNotesFile: '{test_artifacts}/tea-academy/{user_name}/session-01-notes.md'
 nextStepFile: './step-03-session-menu.md'
-advancedElicitationTask: '${CLAUDE_PLUGIN_ROOT}/skills/bmad-advanced-elicitation/workflow.xml'
-partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/bmad-party-mode/SKILL.md'
+advancedElicitationTask: '{project-root}/_bmad/core/workflows/advanced-elicitation/workflow.xml'
+partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 ---
 
 # Step 4: Session 1 - Quick Start
@@ -175,7 +175,7 @@ Present this content:
 
 **4. Engagement models:** Choose how much TEA you need (Lite → Solo → Integrated → Enterprise → Brownfield)
 
-**5. Knowledge fragments:** 35 fragments for deep-dive topics when you need them
+**5. Knowledge fragments:** 42 fragments for deep-dive topics when you need them
 
 - Testing patterns (fixtures, network-first, data factories)
 - Playwright Utils (api-request, network-recorder, recurse)
@@ -308,7 +308,7 @@ duration: '30 min'
 
 ## Key Concepts Covered
 
-1. **TEA Framework:** 9 workflows + 35 knowledge fragments + quality standards
+1. **TEA Framework:** 9 workflows + 42 knowledge fragments + quality standards
 2. **Risk-Based Testing:** P0-P3 prioritization matrix
 3. **Quality Standards:** Definition of Done (no flaky tests, no hard waits, stateless, self-cleaning)
 4. **Engagement Models:** Lite, Solo, Integrated, Enterprise, Brownfield
@@ -366,7 +366,7 @@ duration: '30 min'
 **Session 2 or 3** - Review concepts or dive into architecture patterns
 
 {If experience_level == 'experienced':}
-**Session 7: Advanced Patterns** - Explore 35 knowledge fragments
+**Session 7: Advanced Patterns** - Explore 42 knowledge fragments
 
 ---
 
