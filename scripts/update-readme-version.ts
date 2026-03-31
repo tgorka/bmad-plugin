@@ -54,7 +54,7 @@ for (const source of sources) {
 }
 
 const table = [
-  '| Module | Version | Released | Last Synced |',
+  '| Module | Version | Released | Last Checked |',
   '|---|---|---|---|',
   ...rows,
 ].join('\n');

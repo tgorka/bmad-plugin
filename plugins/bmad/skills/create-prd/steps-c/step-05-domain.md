@@ -9,7 +9,7 @@ domainComplexityCSV: '${CLAUDE_PLUGIN_ROOT}/skills/create-prd/data/domain-comple
 
 # Task References
 advancedElicitationTask: 'skill:bmad-advanced-elicitation'
-partyModeWorkflow: '${CLAUDE_PLUGIN_ROOT}/skills/bmad-party-mode/SKILL.md'
+partyModeWorkflow: '{project-root}/_bmad/core/workflows/bmad-party-mode/workflow.md'
 ---
 
 # Step 5: Domain-Specific Requirements (Optional)

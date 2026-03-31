@@ -13,15 +13,15 @@
 <!-- upstream-badges-end -->
 
 <!-- upstream-version-start -->
-**Plugin version:** v6.2.0.4
+**Plugin version:** v6.2.2.0
 
-| Module | Version | Released | Last Synced |
+| Module | Version | Released | Last Checked |
 |---|---|---|---|
-| [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.2.0 | 2026-03-15 | 2026-03-17 |
-| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.7.1 | 2026-03-19 | 2026-03-23 |
-| [BMB](https://github.com/bmad-code-org/bmad-builder) | v1.1.0 | 2026-03-19 | 2026-03-23 |
-| [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.1.9 | 2026-03-18 | 2026-03-23 |
-| [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.2.2 | 2026-03-16 | 2026-03-17 |
+| [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.2.2 | 2026-03-26 | 2026-03-30 |
+| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.7.3 | 2026-03-27 | 2026-03-30 |
+| [BMB](https://github.com/bmad-code-org/bmad-builder) | v1.4.0 | 2026-03-29 | 2026-03-30 |
+| [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.1.9 | 2026-03-18 | 2026-03-30 |
+| [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.2.2 | 2026-03-16 | 2026-03-30 |
 <!-- upstream-version-end -->
 
 A Claude Code plugin that transforms Claude into a complete agile development
