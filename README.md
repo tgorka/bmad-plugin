@@ -13,12 +13,12 @@
 <!-- upstream-badges-end -->
 
 <!-- upstream-version-start -->
-**Plugin version:** v6.3.0.0
+**Plugin version:** v6.3.0.1
 
 | Module | Version | Released | Last Checked |
 |---|---|---|---|
 | [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.3.0 | 2026-04-10 | 2026-04-19 |
-| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.7.3 | 2026-03-27 | 2026-03-30 |
+| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.12.2 | 2026-04-17 | 2026-04-19 |
 | [BMB](https://github.com/bmad-code-org/bmad-builder) | v1.4.0 | 2026-03-29 | 2026-03-30 |
 | [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.1.9 | 2026-03-18 | 2026-03-30 |
 | [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.2.2 | 2026-03-16 | 2026-03-30 |
