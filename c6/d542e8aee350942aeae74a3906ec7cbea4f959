@@ -1,0 +1,25 @@
+.upstream-versions/cis.json
+  53f5fd546066c045 2-3
+.github/badges/upstream-version-cis.json
+  53f5fd546066c045 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "c6d542e8aee350942aeae74a3906ec7cbea4f959",
+  "prompts": {
+    "53f5fd546066c045": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "eb914947-4db1-47f3-bd89-1f4b33173301",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "tgorka",
+      "messages": [],
+      "total_additions": 86,
+      "total_deletions": 68,
+      "accepted_lines": 86,
+      "overriden_lines": 0
+    }
+  }
+}
