@@ -1,0 +1,21 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "ea384ba835024fc03311bad5731baf48a3c3483b",
+  "prompts": {
+    "53f5fd546066c045": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "eb914947-4db1-47f3-bd89-1f4b33173301",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "tgorka",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 315731,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
