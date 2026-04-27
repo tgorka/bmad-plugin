@@ -367,10 +367,7 @@ if (!DRY_RUN && !SOURCE_FILTER) {
   // Bump plugin version: <upstream>.0 (reset patch on upstream change)
   const newPluginVersion = `${pkgJson.version}.0`;
   const newPluginVersionPrefixed = `v${newPluginVersion}`;
-  await Bun.write(
-    VERSION_FILES.pluginVersion,
-    `${newPluginVersionPrefixed}\n`,
-  );
+  await Bun.write(VERSION_FILES.pluginVersion, `${newPluginVersionPrefixed}\n`);
   console.log(`Updated .plugin-version to ${newPluginVersionPrefixed}`);
 
   // Bump package.json + plugin.json + marketplace.json in one shared call
