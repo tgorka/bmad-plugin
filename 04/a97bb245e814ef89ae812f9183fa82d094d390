@@ -1,0 +1,603 @@
+plugins/bmad/skills/research/market-steps/step-03-customer-pain-points.md
+  53f5fd546066c045 1-249
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-02b-parity-check.md
+  53f5fd546066c045 1-206
+plugins/bmad/skills/bmad-validate-prd/SKILL.md
+  53f5fd546066c045 1-104
+plugins/bmad/skills/research/bmad-market-research/research.template.md
+  53f5fd546066c045 1-29
+plugins/bmad/skills/research/gds-domain-research/domain-steps/step-06-research-synthesis.md
+  53f5fd546066c045 1-451
+plugins/bmad/skills/bmad-quick-dev/step-04-review.md
+  53f5fd546066c045 1-50
+plugins/bmad/skills/bmad-edit-prd/steps-e/step-e-01b-legacy-conversion.md
+  53f5fd546066c045 1-204
+plugins/bmad/skills/research/bmad-domain-research/research.template.md
+  53f5fd546066c045 1-29
+plugins/bmad/skills/bmad-create-ux-design/steps/step-06-design-system.md
+  53f5fd546066c045 1-253
+plugins/bmad/skills/research/bmad-market-research/steps/step-04-customer-decisions.md
+  53f5fd546066c045 1-261
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-07-implementation-leakage-validation.md
+  53f5fd546066c045 1-202
+plugins/bmad/skills/bmad-brainstorming/brain-methods.csv
+  53f5fd546066c045 1-62
+plugins/bmad/skills/bmad-quick-dev/spec-template.md
+  53f5fd546066c045 1-88
+plugins/bmad/skills/research/bmad-market-research/SKILL.md
+  53f5fd546066c045 1-96
+plugins/bmad/skills/bmad-create-prd/data/project-types.csv
+  53f5fd546066c045 1-11
+plugins/bmad/skills/bmad-generate-project-context/steps/step-03-complete.md
+  53f5fd546066c045 1-284
+plugins/bmad/skills/bmad-distillator/agents/round-trip-reconstructor.md
+  53f5fd546066c045 1-68
+plugins/bmad/skills/research/bmad-market-research/steps/step-01-init.md
+  53f5fd546066c045 1-184
+plugins/bmad/skills/bmad-quick-dev/step-oneshot.md
+  53f5fd546066c045 1-71
+plugins/bmad/skills/research/workflow-market-research.md
+  53f5fd546066c045 1-54
+plugins/bmad/skills/bmad-brainstorming/SKILL.md
+  53f5fd546066c045 1-6
+plugins/bmad/skills/research/bmad-domain-research/domain-steps/step-01-init.md
+  53f5fd546066c045 1-137
+plugins/bmad/skills/bmad-agent-architect/customize.toml
+  53f5fd546066c045 1-65
+plugins/bmad/skills/bmad-generate-project-context/SKILL.md
+  53f5fd546066c045 1-81
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-04-brief-coverage-validation.md
+  53f5fd546066c045 1-211
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-11-holistic-quality-validation.md
+  53f5fd546066c045 1-261
+plugins/bmad/skills/research/gds-domain-research/research.template.md
+  53f5fd546066c045 1-29
+plugins/bmad/skills/bmad-create-prd/steps-c/step-05-domain.md
+  53f5fd546066c045 1-194
+plugins/bmad/skills/bmad-sprint-status/SKILL.md
+  53f5fd546066c045 1-297
+plugins/bmad/skills/bmad-create-architecture/steps/step-01-init.md
+  53f5fd546066c045 1-153
+plugins/bmad/skills/bmad-distillator/scripts/analyze_sources.py
+  53f5fd546066c045 1-300
+plugins/bmad/skills/bmad-prfaq/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-brainstorming/steps/step-02c-random-selection.md
+  53f5fd546066c045 1-211
+plugins/bmad/skills/research/bmad-domain-research/domain-steps/step-02-domain-analysis.md
+  53f5fd546066c045 1-229
+plugins/bmad/skills/bmad-product-brief/prompts/contextual-discovery.md
+  53f5fd546066c045 1-58
+plugins/bmad/skills/bmad-create-epics-and-stories/steps/step-02-design-epics.md
+  53f5fd546066c045 1-212
+plugins/bmad/skills/bmad-create-story/discover-inputs.md
+  53f5fd546066c045 1-88
+plugins/bmad/skills/bmad-distillator/resources/compression-rules.md
+  53f5fd546066c045 1-51
+plugins/bmad/skills/research/bmad-domain-research/SKILL.md
+  53f5fd546066c045 1-96
+.upstream-versions/core.json
+  53f5fd546066c045 2-3
+plugins/bmad/skills/bmad-shard-doc/SKILL.md
+  53f5fd546066c045 1-105
+plugins/bmad/skills/bmad-product-brief/prompts/finalize.md
+  53f5fd546066c045 1-78
+plugins/bmad/skills/bmad-quick-dev/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-create-story/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-agent-tech-writer/explain-concept.md
+  53f5fd546066c045 1-20
+plugins/bmad/skills/bmad-index-docs/SKILL.md
+  53f5fd546066c045 1-66
+plugins/bmad/skills/research/bmad-technical-research/technical-steps/step-03-integration-patterns.md
+  53f5fd546066c045 1-248
+plugins/bmad/skills/bmad-distillator/SKILL.md
+  53f5fd546066c045 1-177
+.claude-plugin/marketplace.json
+  53f5fd546066c045 14
+plugins/bmad/skills/bmad-brainstorming/steps/step-01-session-setup.md
+  53f5fd546066c045 1-214
+plugins/bmad/skills/bmad-correct-course/checklist.md
+  53f5fd546066c045 1-288
+plugins/bmad/skills/bmad-product-brief/prompts/draft-and-review.md
+  53f5fd546066c045 1-87
+plugins/bmad/skills/research/market-steps/step-06-research-completion.md
+  53f5fd546066c045 1-499
+plugins/bmad/skills/research/technical-steps/step-04-architectural-patterns.md
+  53f5fd546066c045 1-230
+plugins/bmad/skills/bmad-create-ux-design/steps/step-13-responsive-accessibility.md
+  53f5fd546066c045 1-265
+plugins/bmad/skills/bmad-document-project/templates/index-template.md
+  53f5fd546066c045 1-169
+plugins/bmad/skills/bmad-create-architecture/steps/step-05-patterns.md
+  53f5fd546066c045 1-359
+plugins/bmad/skills/bmad-edit-prd/steps-e/step-e-04-complete.md
+  53f5fd546066c045 1-165
+plugins/bmad/skills/bmad-quick-dev/SKILL.md
+  53f5fd546066c045 1-111
+plugins/bmad/skills/bmad-advanced-elicitation/SKILL.md
+  53f5fd546066c045 1-142
+plugins/bmad/skills/bmad-document-project/templates/source-tree-template.md
+  53f5fd546066c045 1-135
+plugins/bmad/skills/bmad-prfaq/assets/prfaq-template.md
+  53f5fd546066c045 1-62
+plugins/bmad/skills/bmad-agent-pm/customize.toml
+  53f5fd546066c045 1-85
+plugins/bmad/skills/bmad-create-ux-design/steps/step-01-init.md
+  53f5fd546066c045 1-135
+plugins/bmad/skills/bmad-create-prd/data/domain-complexity.csv
+  53f5fd546066c045 1-15
+plugins/bmad/skills/bmad-customize/scripts/list_customizable_skills.py
+  53f5fd546066c045 1-231
+plugins/bmad/skills/bmad-create-architecture/data/project-types.csv
+  53f5fd546066c045 1-7
+plugins/bmad/skills/bmad-code-review/steps/step-03-triage.md
+  53f5fd546066c045 1-49
+plugins/bmad/skills/bmad-create-ux-design/steps/step-09-design-directions.md
+  53f5fd546066c045 1-225
+plugins/bmad/skills/bmad-document-project/workflows/deep-dive-instructions.md
+  53f5fd546066c045 1-300
+plugins/bmad/skills/bmad-quick-dev/step-02-plan.md
+  53f5fd546066c045 1-47
+plugins/bmad/skills/bmad-product-brief/SKILL.md
+  53f5fd546066c045 1-117
+plugins/bmad/skills/research/technical-steps/step-06-research-synthesis.md
+  53f5fd546066c045 1-486
+plugins/bmad/skills/bmad-code-review/steps/step-02-review.md
+  53f5fd546066c045 1-35
+plugins/bmad/skills/research/gds-domain-research/domain-steps/step-02-domain-analysis.md
+  53f5fd546066c045 1-229
+plugins/bmad/skills/research/market-steps/step-05-competitive-analysis.md
+  53f5fd546066c045 1-198
+plugins/bmad/skills/research/bmad-technical-research/technical-steps/step-06-research-synthesis.md
+  53f5fd546066c045 1-493
+plugins/bmad/skills/bmad-dev-story/SKILL.md
+  53f5fd546066c045 1-485
+plugins/bmad/skills/bmad-create-ux-design/steps/step-10-user-journeys.md
+  53f5fd546066c045 1-242
+plugins/bmad/skills/bmad-create-architecture/steps/step-04-decisions.md
+  53f5fd546066c045 1-318
+plugins/bmad/skills/bmad-create-story/checklist.md
+  53f5fd546066c045 1-357
+plugins/bmad/skills/bmad-code-review/steps/step-01-gather-context.md
+  53f5fd546066c045 1-85
+plugins/bmad/skills/bmad-agent-dev/SKILL.md
+  53f5fd546066c045 1-74
+plugins/bmad/skills/bmad-edit-prd/SKILL.md
+  53f5fd546066c045 1-102
+plugins/bmad/skills/bmad-edit-prd/steps-e/step-e-02-review.md
+  53f5fd546066c045 1-245
+plugins/bmad/skills/bmad-create-epics-and-stories/steps/step-03-create-stories.md
+  53f5fd546066c045 1-255
+plugins/bmad/skills/bmad-create-architecture/steps/step-07-validation.md
+  53f5fd546066c045 1-359
+.plugin-version
+  53f5fd546066c045 1
+plugins/bmad/skills/bmad-validate-prd/data/prd-purpose.md
+  53f5fd546066c045 1-197
+plugins/bmad/skills/bmad-create-architecture/architecture-decision-template.md
+  53f5fd546066c045 1-12
+plugins/bmad/skills/bmad-create-prd/data/prd-purpose.md
+  53f5fd546066c045 1-197
+plugins/bmad/skills/bmad-validate-prd/customize.toml
+  53f5fd546066c045 1-42
+plugins/bmad/skills/bmad-create-ux-design/steps/step-12-ux-patterns.md
+  53f5fd546066c045 1-238
+plugins/bmad/skills/bmad-distillator/agents/distillate-compressor.md
+  53f5fd546066c045 1-116
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-09-project-type-validation.md
+  53f5fd546066c045 1-260
+plugins/bmad/skills/bmad-document-project/templates/project-scan-report-schema.json
+  53f5fd546066c045 1-160
+plugins/bmad/skills/bmad-create-prd/steps-c/step-12-complete.md
+  53f5fd546066c045 1-121
+plugins/bmad/skills/bmad-agent-pm/SKILL.md
+  53f5fd546066c045 1-74
+plugins/bmad/skills/bmad-quick-dev/compile-epic-context.md
+  53f5fd546066c045 1-62
+plugins/bmad/skills/bmad-create-prd/templates/prd-template.md
+  53f5fd546066c045 1-10
+plugins/bmad/skills/bmad-help/SKILL.md
+  53f5fd546066c045 1-75
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-10-smart-validation.md
+  53f5fd546066c045 1-206
+plugins/bmad/skills/bmad-prfaq/SKILL.md
+  53f5fd546066c045 1-135
+plugins/bmad/skills/bmad-create-ux-design/steps/step-08-visual-foundation.md
+  53f5fd546066c045 1-225
+package.json
+  53f5fd546066c045 3
+plugins/bmad/skills/bmad-edit-prd/steps-e/step-e-01-discovery.md
+  53f5fd546066c045 1-242
+plugins/bmad/skills/bmad-create-architecture/steps/step-01b-continue.md
+  53f5fd546066c045 1-173
+plugins/bmad/skills/bmad-code-review/SKILL.md
+  53f5fd546066c045 1-90
+plugins/bmad/skills/bmad-sprint-planning/checklist.md
+  53f5fd546066c045 1-33
+plugins/bmad/skills/research/technical-steps/step-05-implementation-research.md
+  53f5fd546066c045 1-260
+plugins/bmad/skills/bmad-editorial-review-prose/SKILL.md
+  53f5fd546066c045 1-86
+plugins/bmad/skills/bmad-quick-dev/sync-sprint-status.md
+  53f5fd546066c045 1-19
+plugins/bmad/skills/workflows/full-scan-workflow.md
+  53f5fd546066c045 1-42
+plugins/bmad/skills/bmad-checkpoint-preview/step-04-testing.md
+  53f5fd546066c045 1-74
+plugins/bmad/skills/research/technical-steps/step-01-init.md
+  53f5fd546066c045 1-137
+plugins/bmad/skills/bmad-sprint-planning/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-product-brief/resources/brief-template.md
+  53f5fd546066c045 1-60
+plugins/bmad/skills/bmad-check-implementation-readiness/steps/step-03-epic-coverage-validation.md
+  53f5fd546066c045 1-169
+plugins/bmad/skills/bmad-distillator/scripts/tests/test_analyze_sources.py
+  53f5fd546066c045 1-204
+plugins/bmad/skills/bmad-prfaq/references/internal-faq.md
+  53f5fd546066c045 1-51
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-05-measurability-validation.md
+  53f5fd546066c045 1-225
+plugins/bmad/skills/research/research.template.md
+  53f5fd546066c045 1-29
+plugins/bmad/skills/bmad-create-architecture/steps/step-08-complete.md
+  53f5fd546066c045 1-82
+plugins/bmad/skills/bmad-quick-dev/step-01-clarify-and-route.md
+  53f5fd546066c045 1-100
+plugins/bmad/skills/research/bmad-technical-research/technical-steps/step-05-implementation-research.md
+  53f5fd546066c045 1-233
+plugins/bmad/skills/research/technical-steps/step-02-technical-overview.md
+  53f5fd546066c045 1-239
+plugins/bmad/skills/workflows/deep-dive-instructions.md
+  53f5fd546066c045 1-299
+plugins/bmad/.claude-plugin/plugin.json
+  53f5fd546066c045 3
+plugins/bmad/skills/bmad-edit-prd/data/prd-purpose.md
+  53f5fd546066c045 1-197
+plugins/bmad/skills/research/gds-domain-research/domain-steps/step-04-regulatory-focus.md
+  53f5fd546066c045 1-234
+plugins/bmad/skills/bmad-checkpoint-preview/step-01-orientation.md
+  53f5fd546066c045 1-105
+plugins/bmad/skills/bmad-create-epics-and-stories/steps/step-01-validate-prerequisites.md
+  53f5fd546066c045 1-255
+plugins/bmad/skills/bmad-document-project/templates/deep-dive-template.md
+  53f5fd546066c045 1-345
+plugins/bmad/skills/bmad-edit-prd/customize.toml
+  53f5fd546066c045 1-42
+plugins/bmad/skills/bmad-create-ux-design/steps/step-14-complete.md
+  53f5fd546066c045 1-177
+plugins/bmad/skills/bmad-agent-ux-designer/SKILL.md
+  53f5fd546066c045 1-74
+plugins/bmad/skills/bmad-check-implementation-readiness/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-validate-prd/data/project-types.csv
+  53f5fd546066c045 1-11
+plugins/bmad/skills/research/bmad-domain-research/domain-steps/step-03-competitive-landscape.md
+  53f5fd546066c045 1-238
+plugins/bmad/skills/bmad-document-project/documentation-requirements.csv
+  53f5fd546066c045 1-12
+plugins/bmad/skills/bmad-sprint-planning/sprint-status-template.yaml
+  53f5fd546066c045 1-56
+plugins/bmad/skills/bmad-checkpoint-preview/step-02-walkthrough.md
+  53f5fd546066c045 1-89
+plugins/bmad/skills/bmad-brainstorming/steps/step-02d-progressive-flow.md
+  53f5fd546066c045 1-266
+plugins/bmad/skills/bmad-check-implementation-readiness/steps/step-05-epic-quality-review.md
+  53f5fd546066c045 1-241
+.github/badges/upstream-version.json
+  53f5fd546066c045 4
+plugins/bmad/skills/bmad-product-brief/agents/artifact-analyzer.md
+  53f5fd546066c045 1-60
+plugins/bmad/skills/research/gds-domain-research/domain-steps/step-03-competitive-landscape.md
+  53f5fd546066c045 1-238
+plugins/bmad/_shared/agent-manifest.csv
+  53f5fd546066c045 1-17
+plugins/bmad/skills/bmad-check-implementation-readiness/steps/step-04-ux-alignment.md
+  53f5fd546066c045 1-129
+plugins/bmad/skills/bmad-create-story/SKILL.md
+  53f5fd546066c045 1-429
+plugins/bmad/skills/bmad-create-ux-design/steps/step-11-component-strategy.md
+  53f5fd546066c045 1-249
+plugins/bmad/skills/research/bmad-domain-research/domain-steps/step-05-technical-trends.md
+  53f5fd546066c045 1-234
+plugins/bmad/skills/research/bmad-technical-research/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/research/bmad-technical-research/technical-steps/step-02-technical-overview.md
+  53f5fd546066c045 1-239
+plugins/bmad/skills/bmad-quick-dev/step-05-present.md
+  53f5fd546066c045 1-78
+plugins/bmad/skills/research/gds-domain-research/domain-steps/step-01-init.md
+  53f5fd546066c045 1-137
+plugins/bmad/skills/bmad-create-ux-design/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-validate-prd/data/domain-complexity.csv
+  53f5fd546066c045 1-15
+plugins/bmad/skills/workflows/full-scan-instructions.md
+  53f5fd546066c045 1-1108
+plugins/bmad/skills/bmad-editorial-review-structure/SKILL.md
+  53f5fd546066c045 1-179
+plugins/bmad/skills/bmad-create-architecture/steps/step-02-context.md
+  53f5fd546066c045 1-224
+plugins/bmad/skills/bmad-create-prd/steps-c/step-02c-executive-summary.md
+  53f5fd546066c045 1-158
+plugins/bmad/skills/bmad-agent-tech-writer/mermaid-gen.md
+  53f5fd546066c045 1-20
+plugins/bmad/skills/bmad-code-review/steps/step-04-present.md
+  53f5fd546066c045 1-132
+plugins/bmad/skills/bmad-prfaq/references/customer-faq.md
+  53f5fd546066c045 1-55
+plugins/bmad/skills/bmad-create-ux-design/steps/step-03-core-experience.md
+  53f5fd546066c045 1-217
+plugins/bmad/skills/bmad-document-project/workflows/full-scan-workflow.md
+  53f5fd546066c045 1-34
+plugins/bmad/skills/bmad-document-project/templates/project-overview-template.md
+  53f5fd546066c045 1-103
+plugins/bmad/skills/bmad-document-project/instructions.md
+  53f5fd546066c045 1-128
+plugins/bmad/skills/bmad-document-project/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-dev-story/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-prfaq/references/verdict.md
+  53f5fd546066c045 1-83
+plugins/bmad/skills/bmad-checkpoint-preview/generate-trail.md
+  53f5fd546066c045 1-38
+plugins/bmad/skills/bmad-product-brief/agents/web-researcher.md
+  53f5fd546066c045 1-49
+plugins/bmad/skills/bmad-agent-tech-writer/SKILL.md
+  53f5fd546066c045 1-74
+plugins/bmad/skills/bmad-create-architecture/steps/step-06-structure.md
+  53f5fd546066c045 1-379
+plugins/bmad/skills/bmad-agent-architect/SKILL.md
+  53f5fd546066c045 1-74
+plugins/bmad/skills/research/bmad-market-research/steps/step-02-customer-behavior.md
+  53f5fd546066c045 1-239
+plugins/bmad/skills/bmad-document-project/workflows/full-scan-instructions.md
+  53f5fd546066c045 1-1108
+plugins/bmad/skills/bmad-document-project/checklist.md
+  53f5fd546066c045 1-245
+plugins/bmad/skills/bmad-customize/SKILL.md
+  53f5fd546066c045 1-111
+plugins/bmad/skills/bmad-create-prd/steps-c/step-04-journeys.md
+  53f5fd546066c045 1-201
+plugins/bmad/skills/research/bmad-technical-research/SKILL.md
+  53f5fd546066c045 1-96
+plugins/bmad/skills/research/bmad-technical-research/research.template.md
+  53f5fd546066c045 1-29
+plugins/bmad/skills/bmad-create-epics-and-stories/steps/step-04-final-validation.md
+  53f5fd546066c045 1-137
+plugins/bmad/skills/research/bmad-market-research/steps/step-05-competitive-analysis.md
+  53f5fd546066c045 1-173
+plugins/bmad/skills/bmad-agent-tech-writer/write-document.md
+  53f5fd546066c045 1-20
+plugins/bmad/skills/bmad-code-review/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-correct-course/SKILL.md
+  53f5fd546066c045 1-301
+plugins/bmad/skills/bmad-create-architecture/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-product-brief/prompts/guided-elicitation.md
+  53f5fd546066c045 1-71
+plugins/bmad/skills/research/gds-domain-research/SKILL.md
+  53f5fd546066c045 1-102
+plugins/bmad/skills/bmad-create-prd/steps-c/step-08-scoping.md
+  53f5fd546066c045 1-263
+plugins/bmad/skills/bmad-review-adversarial-general/SKILL.md
+  53f5fd546066c045 1-37
+plugins/bmad/skills/bmad-checkpoint-preview/SKILL.md
+  53f5fd546066c045 1-68
+plugins/bmad/skills/research/bmad-technical-research/technical-steps/step-04-architectural-patterns.md
+  53f5fd546066c045 1-202
+plugins/bmad/skills/bmad-create-epics-and-stories/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-create-epics-and-stories/SKILL.md
+  53f5fd546066c045 1-93
+plugins/bmad/skills/bmad-create-ux-design/steps/step-02-discovery.md
+  53f5fd546066c045 1-190
+plugins/bmad/skills/bmad-advanced-elicitation/methods.csv
+  53f5fd546066c045 1-51
+plugins/bmad/skills/bmad-create-prd/steps-c/step-07-project-type.md
+  53f5fd546066c045 1-222
+plugins/bmad/skills/bmad-brainstorming/steps/step-02b-ai-recommended.md
+  53f5fd546066c045 1-239
+plugins/bmad/skills/bmad-retrospective/SKILL.md
+  53f5fd546066c045 1-1512
+plugins/bmad/skills/bmad-create-prd/steps-c/step-11-polish.md
+  53f5fd546066c045 1-221
+plugins/bmad/skills/bmad-prfaq/agents/artifact-analyzer.md
+  53f5fd546066c045 1-60
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-13-report-complete.md
+  53f5fd546066c045 1-230
+plugins/bmad/skills/bmad-product-brief/agents/opportunity-reviewer.md
+  53f5fd546066c045 1-44
+plugins/bmad/skills/research/bmad-market-research/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-create-prd/steps-c/step-06-innovation.md
+  53f5fd546066c045 1-211
+plugins/bmad/skills/bmad-distillator/resources/distillate-format-reference.md
+  53f5fd546066c045 1-227
+plugins/bmad/skills/bmad-create-architecture/steps/step-03-starter.md
+  53f5fd546066c045 1-329
+plugins/bmad/skills/research/bmad-technical-research/technical-steps/step-01-init.md
+  53f5fd546066c045 1-137
+plugins/bmad/skills/research/workflow-technical-research.md
+  53f5fd546066c045 1-54
+plugins/bmad/skills/bmad-sprint-status/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-08-domain-compliance-validation.md
+  53f5fd546066c045 1-240
+plugins/bmad/skills/bmad-agent-dev/customize.toml
+  53f5fd546066c045 1-90
+plugins/bmad/skills/bmad-check-implementation-readiness/steps/step-02-prd-analysis.md
+  53f5fd546066c045 1-168
+plugins/bmad/skills/bmad-prfaq/agents/web-researcher.md
+  53f5fd546066c045 1-49
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-02-format-detection.md
+  53f5fd546066c045 1-188
+plugins/bmad/skills/bmad-create-ux-design/ux-design-template.md
+  53f5fd546066c045 1-13
+plugins/bmad/skills/bmad-prfaq/references/press-release.md
+  53f5fd546066c045 1-60
+plugins/bmad/skills/research/bmad-domain-research/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-create-prd/steps-c/step-02b-vision.md
+  53f5fd546066c045 1-142
+plugins/bmad/skills/bmad-product-brief/customize.toml
+  53f5fd546066c045 1-47
+plugins/bmad/skills/bmad-create-architecture/SKILL.md
+  53f5fd546066c045 1-74
+plugins/bmad/skills/bmad-agent-ux-designer/customize.toml
+  53f5fd546066c045 1-60
+plugins/bmad/skills/bmad-brainstorming/steps/step-04-idea-organization.md
+  53f5fd546066c045 1-305
+plugins/bmad/skills/bmad-distillator/resources/splitting-strategy.md
+  53f5fd546066c045 1-78
+plugins/bmad/skills/research/bmad-domain-research/domain-steps/step-04-regulatory-focus.md
+  53f5fd546066c045 1-206
+plugins/bmad/skills/research/bmad-market-research/steps/step-06-research-completion.md
+  53f5fd546066c045 1-484
+plugins/bmad/skills/bmad-brainstorming/steps/step-03-technique-execution.md
+  53f5fd546066c045 1-401
+plugins/bmad/skills/bmad-edit-prd/steps-e/step-e-03-edit.md
+  53f5fd546066c045 1-250
+plugins/bmad/skills/bmad-generate-project-context/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-party-mode/SKILL.md
+  53f5fd546066c045 1-128
+plugins/bmad/skills/bmad-create-prd/steps-c/step-09-functional.md
+  53f5fd546066c045 1-219
+plugins/bmad/skills/bmad-create-story/template.md
+  53f5fd546066c045 1-49
+plugins/bmad/skills/research/bmad-market-research/steps/step-03-customer-pain-points.md
+  53f5fd546066c045 1-251
+plugins/bmad/skills/bmad-create-prd/SKILL.md
+  53f5fd546066c045 1-104
+plugins/bmad/skills/bmad-sprint-planning/SKILL.md
+  53f5fd546066c045 1-299
+plugins/bmad/skills/bmad-product-brief/agents/skeptic-reviewer.md
+  53f5fd546066c045 1-44
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-01-discovery.md
+  53f5fd546066c045 1-221
+plugins/bmad/skills/bmad-brainstorming/steps/step-01b-continue.md
+  53f5fd546066c045 1-124
+plugins/bmad/skills/bmad-create-ux-design/steps/step-05-inspiration.md
+  53f5fd546066c045 1-235
+plugins/bmad/skills/bmad-document-project/workflows/deep-dive-workflow.md
+  53f5fd546066c045 1-34
+README.md
+  53f5fd546066c045 16,20-24
+plugins/bmad/skills/bmad-brainstorming/template.md
+  53f5fd546066c045 1-15
+plugins/bmad/skills/bmad-create-prd/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-agent-analyst/customize.toml
+  53f5fd546066c045 1-90
+plugins/bmad/skills/bmad-brainstorming/steps/step-02a-user-selected.md
+  53f5fd546066c045 1-229
+plugins/bmad/skills/research/gds-domain-research/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-create-ux-design/steps/step-04-emotional-response.md
+  53f5fd546066c045 1-220
+plugins/bmad/skills/workflows/deep-dive-workflow.md
+  53f5fd546066c045 1-42
+plugins/bmad/skills/bmad-create-ux-design/SKILL.md
+  53f5fd546066c045 1-75
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-06-traceability-validation.md
+  53f5fd546066c045 1-214
+plugins/bmad/skills/bmad-check-implementation-readiness/SKILL.md
+  53f5fd546066c045 1-91
+plugins/bmad/skills/bmad-check-implementation-readiness/steps/step-06-final-assessment.md
+  53f5fd546066c045 1-132
+plugins/bmad/skills/bmad-check-implementation-readiness/templates/readiness-report-template.md
+  53f5fd546066c045 1-4
+plugins/bmad/skills/bmad-create-epics-and-stories/templates/epics-template.md
+  53f5fd546066c045 1-61
+plugins/bmad/skills/bmad-create-ux-design/steps/step-01b-continue.md
+  53f5fd546066c045 1-127
+plugins/bmad/skills/research/market-steps/step-02-customer-behavior.md
+  53f5fd546066c045 1-236
+plugins/bmad/skills/bmad-review-edge-case-hunter/SKILL.md
+  53f5fd546066c045 1-67
+plugins/bmad/skills/bmad-create-prd/steps-c/step-10-nonfunctional.md
+  53f5fd546066c045 1-230
+plugins/bmad/skills/bmad-checkpoint-preview/step-05-wrapup.md
+  53f5fd546066c045 1-30
+plugins/bmad/skills/research/gds-domain-research/domain-steps/step-05-technical-trends.md
+  53f5fd546066c045 1-268
+plugins/bmad/skills/bmad-checkpoint-preview/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/research/market-steps/step-04-customer-decisions.md
+  53f5fd546066c045 1-259
+plugins/bmad/skills/bmad-generate-project-context/steps/step-02-generate.md
+  53f5fd546066c045 1-321
+plugins/bmad/skills/bmad-customize/scripts/tests/test_list_customizable_skills.py
+  53f5fd546066c045 1-249
+plugins/bmad/skills/bmad-dev-story/checklist.md
+  53f5fd546066c045 1-80
+plugins/bmad/skills/bmad-agent-tech-writer/customize.toml
+  53f5fd546066c045 1-81
+plugins/bmad/skills/bmad-check-implementation-readiness/steps/step-01-document-discovery.md
+  53f5fd546066c045 1-179
+plugins/bmad/skills/bmad-correct-course/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-agent-analyst/SKILL.md
+  53f5fd546066c045 1-74
+plugins/bmad/skills/research/market-steps/step-01-init.md
+  53f5fd546066c045 1-184
+plugins/bmad/skills/bmad-checkpoint-preview/step-03-detail-pass.md
+  53f5fd546066c045 1-106
+plugins/bmad/skills/bmad-generate-project-context/steps/step-01-discover.md
+  53f5fd546066c045 1-186
+plugins/bmad/skills/research/technical-steps/step-03-integration-patterns.md
+  53f5fd546066c045 1-248
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-03-density-validation.md
+  53f5fd546066c045 1-171
+plugins/bmad/skills/bmad-quick-dev/step-03-implement.md
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-create-prd/steps-c/step-02-discovery.md
+  53f5fd546066c045 1-208
+plugins/bmad/skills/bmad-validate-prd/steps-v/step-v-12-completeness-validation.md
+  53f5fd546066c045 1-239
+plugins/bmad/skills/bmad-create-prd/steps-c/step-01-init.md
+  53f5fd546066c045 1-178
+plugins/bmad/skills/bmad-agent-tech-writer/validate-doc.md
+  53f5fd546066c045 1-19
+plugins/bmad/skills/bmad-create-prd/steps-c/step-03-success.md
+  53f5fd546066c045 1-214
+plugins/bmad/skills/bmad-create-prd/steps-c/step-01b-continue.md
+  53f5fd546066c045 1-161
+plugins/bmad/skills/bmad-document-project/SKILL.md
+  53f5fd546066c045 1-62
+plugins/bmad/skills/bmad-create-architecture/data/domain-complexity.csv
+  53f5fd546066c045 1-13
+plugins/bmad/skills/bmad-generate-project-context/project-context-template.md
+  53f5fd546066c045 1-21
+plugins/bmad/skills/research/bmad-domain-research/domain-steps/step-06-research-synthesis.md
+  53f5fd546066c045 1-450
+plugins/bmad/skills/bmad-retrospective/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/bmad-create-ux-design/steps/step-07-defining-experience.md
+  53f5fd546066c045 1-255
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "04a97bb245e814ef89ae812f9183fa82d094d390",
+  "prompts": {
+    "53f5fd546066c045": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "eb914947-4db1-47f3-bd89-1f4b33173301",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "tgorka",
+      "messages": [],
+      "total_additions": 45205,
+      "total_deletions": 0,
+      "accepted_lines": 45218,
+      "overriden_lines": 0
+    }
+  }
+}
