@@ -1,0 +1,597 @@
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-12-completeness-validation.md
+  53f5fd546066c045 1-242
+plugins/bmad/skills/gds-game-architecture/steps/step-09-complete.md
+  53f5fd546066c045 1-381
+plugins/bmad/skills/gds-create-narrative/steps/step-08-delivery.md
+  53f5fd546066c045 1-265
+plugins/bmad/skills/gds-create-gdd/checklist.md
+  53f5fd546066c045 1-148
+plugins/bmad/skills/gds-create-narrative/steps/step-03-story.md
+  53f5fd546066c045 1-239
+plugins/bmad/skills/gds-create-gdd/game-types.csv
+  53f5fd546066c045 1-25
+plugins/bmad/skills/gds-create-epics-and-stories/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-create-prd/data/prd-purpose.md
+  53f5fd546066c045 1-197
+plugins/bmad/skills/gds-create-prd/SKILL.md
+  53f5fd546066c045 1-107
+plugins/bmad/skills/gds-quick-dev/sync-sprint-status.md
+  53f5fd546066c045 1-19
+plugins/bmad/skills/gds-create-ux-design/steps/step-09-design-directions.md
+  53f5fd546066c045 1-224
+plugins/bmad/skills/gds-create-narrative/steps/step-06-dialogue.md
+  53f5fd546066c045 1-251
+plugins/bmad/skills/gds-code-review/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-create-gdd/game-types/action-platformer.md
+  53f5fd546066c045 1-45
+plugins/bmad/skills/gds-game-architecture/steps/step-02-context.md
+  53f5fd546066c045 1-263
+plugins/bmad/skills/gds-create-ux-design/steps/step-12-ux-patterns.md
+  53f5fd546066c045 1-237
+plugins/bmad/skills/gds-create-ux-design/steps/step-10-user-journeys.md
+  53f5fd546066c045 1-241
+plugins/bmad/skills/gds-create-narrative/steps/step-11-complete.md
+  53f5fd546066c045 1-338
+plugins/bmad/skills/gds-test-automate/SKILL.md
+  53f5fd546066c045 1-389
+plugins/bmad/skills/gds-game-architecture/knowledge/godot-engine.md
+  53f5fd546066c045 1-504
+plugins/bmad/skills/gds-create-gdd/steps-c/step-11-technical.md
+  53f5fd546066c045 1-276
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-06-traceability-validation.md
+  53f5fd546066c045 1-248
+plugins/bmad/skills/gds-create-gdd/steps-c/step-10-art-audio.md
+  53f5fd546066c045 1-256
+plugins/bmad/skills/gds-quick-dev/step-01-clarify-and-route.md
+  53f5fd546066c045 1-100
+plugins/bmad/skills/gds-create-ux-design/steps/step-03-core-experience.md
+  53f5fd546066c045 1-216
+plugins/bmad/skills/gds-check-implementation-readiness/templates/readiness-report-template.md
+  53f5fd546066c045 1-4
+plugins/bmad/skills/gds-edit-prd/steps-e/step-e-02-review.md
+  53f5fd546066c045 1-250
+plugins/bmad/skills/gds-validate-prd/data/prd-purpose.md
+  53f5fd546066c045 1-197
+plugins/bmad/skills/gds-create-prd/steps-c/step-06-innovation.md
+  53f5fd546066c045 1-226
+plugins/bmad/skills/gds-create-game-brief/steps/step-03-market.md
+  53f5fd546066c045 1-219
+plugins/bmad/skills/gds-create-epics-and-stories/templates/epics-template.md
+  53f5fd546066c045 1-61
+plugins/bmad/skills/gds-game-architecture/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-02-format-detection.md
+  53f5fd546066c045 1-191
+plugins/bmad/skills/gds-test-review/test-review-template.md
+  53f5fd546066c045 1-203
+plugins/bmad/skills/gds-create-gdd/game-types/sports.md
+  53f5fd546066c045 1-75
+plugins/bmad/skills/gds-correct-course/checklist.md
+  53f5fd546066c045 1-288
+plugins/bmad/skills/gds-edit-prd/steps-e/step-e-01-discovery.md
+  53f5fd546066c045 1-248
+plugins/bmad/skills/gds-create-ux-design/steps/step-05-inspiration.md
+  53f5fd546066c045 1-234
+plugins/bmad/skills/gds-code-review/checklist.md
+  53f5fd546066c045 1-23
+plugins/bmad/skills/gds-edit-gdd/SKILL.md
+  53f5fd546066c045 1-110
+plugins/bmad/skills/gds-brainstorm-game/game-brain-methods.csv
+  53f5fd546066c045 1-26
+plugins/bmad/skills/gds-check-implementation-readiness/steps/step-05-epic-quality-review.md
+  53f5fd546066c045 1-245
+plugins/bmad/skills/gds-sprint-planning/SKILL.md
+  53f5fd546066c045 1-304
+plugins/bmad/skills/gds-create-prd/steps-c/step-04-journeys.md
+  53f5fd546066c045 1-213
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-01-discovery.md
+  53f5fd546066c045 1-226
+plugins/bmad/skills/gds-brainstorm-game/game-context.md
+  53f5fd546066c045 1-115
+plugins/bmad/skills/gds-edit-gdd/steps-e/step-e-02-review.md
+  53f5fd546066c045 1-264
+plugins/bmad/skills/gds-create-game-brief/steps/step-01b-continue.md
+  53f5fd546066c045 1-152
+plugins/bmad/skills/gds-create-gdd/game-types/sandbox.md
+  53f5fd546066c045 1-79
+plugins/bmad/skills/gds-game-architecture/decision-catalog.yaml
+  53f5fd546066c045 1-340
+plugins/bmad/skills/gds-create-gdd/steps-c/step-01b-continue.md
+  53f5fd546066c045 1-174
+plugins/bmad/skills/gds-create-prd/steps-c/step-08-scoping.md
+  53f5fd546066c045 1-283
+plugins/bmad/skills/gds-quick-dev/SKILL.md
+  53f5fd546066c045 1-123
+plugins/bmad/skills/gds-e2e-scaffold/SKILL.md
+  53f5fd546066c045 1-304
+plugins/bmad/skills/gds-edit-prd/data/prd-purpose.md
+  53f5fd546066c045 1-197
+plugins/bmad/skills/gds-create-gdd/steps-c/step-01-init.md
+  53f5fd546066c045 1-249
+plugins/bmad/skills/gds-game-architecture/pattern-categories.csv
+  53f5fd546066c045 1-13
+plugins/bmad/skills/gds-dev-story/checklist.md
+  53f5fd546066c045 1-80
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-02b-parity-check.md
+  53f5fd546066c045 1-238
+plugins/bmad/skills/gds-quick-dev/step-02-plan.md
+  53f5fd546066c045 1-47
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-13-report-complete.md
+  53f5fd546066c045 1-237
+plugins/bmad/skills/gds-create-story/SKILL.md
+  53f5fd546066c045 1-444
+.github/badges/upstream-version-gds.json
+  53f5fd546066c045 4
+plugins/bmad/skills/gds-create-prd/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-create-ux-design/steps/step-13-responsive-accessibility.md
+  53f5fd546066c045 1-264
+plugins/bmad/skills/gds-game-architecture/checklist.md
+  53f5fd546066c045 1-247
+plugins/bmad/skills/gds-check-implementation-readiness/steps/step-06-final-assessment.md
+  53f5fd546066c045 1-135
+plugins/bmad/skills/gds-quick-dev/step-05-present.md
+  53f5fd546066c045 1-78
+plugins/bmad/skills/gds-create-gdd/game-types/racing.md
+  53f5fd546066c045 1-88
+plugins/bmad/skills/gds-game-architecture/knowledge/unity-engine.md
+  53f5fd546066c045 1-572
+plugins/bmad/skills/gds-create-ux-design/steps/step-01b-continue.md
+  53f5fd546066c045 1-127
+plugins/bmad/skills/gds-create-narrative/steps/step-10-production.md
+  53f5fd546066c045 1-263
+plugins/bmad/skills/gds-create-epics-and-stories/steps/step-03-create-stories.md
+  53f5fd546066c045 1-276
+plugins/bmad/skills/gds-create-gdd/steps-c/step-14-complete.md
+  53f5fd546066c045 1-342
+plugins/bmad/skills/gds-quick-dev/step-03-implement.md
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-sprint-planning/checklist.md
+  53f5fd546066c045 1-33
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-08-domain-compliance-validation.md
+  53f5fd546066c045 1-243
+plugins/bmad/skills/gds-create-prd/steps-c/step-01b-continue.md
+  53f5fd546066c045 1-152
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-04-brief-coverage-validation.md
+  53f5fd546066c045 1-229
+plugins/bmad/skills/gds-playtest-plan/playtest-template.md
+  53f5fd546066c045 1-208
+plugins/bmad/skills/gds-create-prd/steps-c/step-01-init.md
+  53f5fd546066c045 1-225
+plugins/bmad/skills/gds-create-ux-design/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-06-traceability-validation.md
+  53f5fd546066c045 1-217
+plugins/bmad/skills/gds-edit-prd/steps-e/step-e-01b-legacy-conversion.md
+  53f5fd546066c045 1-208
+plugins/bmad/skills/gds-check-implementation-readiness/steps/step-04-ux-alignment.md
+  53f5fd546066c045 1-133
+plugins/bmad/skills/gds-brainstorm-game/SKILL.md
+  53f5fd546066c045 1-109
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-07-implementation-leakage-validation.md
+  53f5fd546066c045 1-205
+plugins/bmad/skills/gds-create-ux-design/ux-design-template.md
+  53f5fd546066c045 1-13
+plugins/bmad/skills/gds-create-narrative/steps/step-01b-continue.md
+  53f5fd546066c045 1-164
+plugins/bmad/skills/gds-game-architecture/knowledge/unreal-engine.md
+  53f5fd546066c045 1-536
+plugins/bmad/skills/gds-create-gdd/game-types/strategy.md
+  53f5fd546066c045 1-71
+plugins/bmad/skills/gds-edit-prd/steps-e/step-e-03-edit.md
+  53f5fd546066c045 1-254
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-12-completeness-validation.md
+  53f5fd546066c045 1-291
+plugins/bmad/skills/gds-edit-prd/steps-e/step-e-04-complete.md
+  53f5fd546066c045 1-173
+plugins/bmad/skills/gds-brainstorm-game/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-brainstorm-game/steps/step-04-complete.md
+  53f5fd546066c045 1-282
+plugins/bmad/skills/gds-create-prd/steps-c/step-10-nonfunctional.md
+  53f5fd546066c045 1-242
+plugins/bmad/skills/gds-create-narrative/SKILL.md
+  53f5fd546066c045 1-107
+plugins/bmad/skills/gds-create-epics-and-stories/steps/step-02-design-epics.md
+  53f5fd546066c045 1-233
+plugins/bmad/skills/gds-brainstorm-game/steps/step-02-context.md
+  53f5fd546066c045 1-211
+plugins/bmad/skills/gds-playtest-plan/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-quick-dev/step-oneshot.md
+  53f5fd546066c045 1-65
+plugins/bmad/skills/gds-check-implementation-readiness/steps/step-03-epic-coverage-validation.md
+  53f5fd546066c045 1-173
+plugins/bmad/skills/gds-test-design/checklist.md
+  53f5fd546066c045 1-98
+plugins/bmad/skills/gds-create-gdd/game-types/rhythm.md
+  53f5fd546066c045 1-79
+plugins/bmad/skills/gds-create-story/checklist.md
+  53f5fd546066c045 1-357
+plugins/bmad/skills/gds-create-gdd/game-types/metroidvania.md
+  53f5fd546066c045 1-87
+plugins/bmad/skills/gds-sprint-status/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-create-gdd/steps-c/step-07-game-type.md
+  53f5fd546066c045 1-267
+plugins/bmad/skills/gds-create-gdd/game-types/simulation.md
+  53f5fd546066c045 1-73
+plugins/bmad/agents/gds-agent-game-architect.md
+  53f5fd546066c045 6,10,12,14-17,19,21,23,25,27-29,31,33,35,37,39,41-62,64,66,68,70,72
+plugins/bmad/skills/gds-create-gdd/game-types/idle-incremental.md
+  53f5fd546066c045 1-78
+plugins/bmad/skills/gds-game-architecture/steps/step-04-decisions.md
+  53f5fd546066c045 1-302
+plugins/bmad/skills/gds-test-review/SKILL.md
+  53f5fd546066c045 1-363
+plugins/bmad/skills/gds-test-review/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-game-architecture/engine-mcps.yaml
+  53f5fd546066c045 1-270
+plugins/bmad/skills/gds-create-gdd/game-types/visual-novel.md
+  53f5fd546066c045 1-89
+plugins/bmad/skills/gds-create-game-brief/steps/step-05-scope.md
+  53f5fd546066c045 1-243
+plugins/bmad/skills/gds-generate-project-context/project-context-template.md
+  53f5fd546066c045 1-20
+plugins/bmad/skills/gds-validate-gdd/data/gdd-purpose.md
+  53f5fd546066c045 1-224
+plugins/bmad/skills/gds-create-narrative/steps/step-02-foundation.md
+  53f5fd546066c045 1-263
+plugins/bmad/agents/gds-agent-game-solo-dev.md
+  53f5fd546066c045 6,10,12,14-17,19,21,23,25,27-29,31,33,35,37,39,41-62,64,66,68,70,72
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-02-format-detection.md
+  53f5fd546066c045 1-202
+plugins/bmad/skills/gds-create-narrative/steps/step-05-world.md
+  53f5fd546066c045 1-263
+plugins/bmad/skills/gds-create-gdd/SKILL.md
+  53f5fd546066c045 1-104
+plugins/bmad/skills/gds-test-design/SKILL.md
+  53f5fd546066c045 1-428
+plugins/bmad/skills/gds-create-gdd/steps-c/step-02-context.md
+  53f5fd546066c045 1-333
+plugins/bmad/skills/gds-create-narrative/steps/step-07-environmental.md
+  53f5fd546066c045 1-245
+plugins/bmad/skills/gds-create-prd/steps-c/step-05-domain.md
+  53f5fd546066c045 1-207
+plugins/bmad/skills/gds-playtest-plan/SKILL.md
+  53f5fd546066c045 1-393
+plugins/bmad/skills/gds-create-ux-design/steps/step-06-design-system.md
+  53f5fd546066c045 1-252
+plugins/bmad/skills/gds-create-gdd/game-types/shooter.md
+  53f5fd546066c045 1-62
+plugins/bmad/skills/gds-e2e-scaffold/checklist.md
+  53f5fd546066c045 1-95
+plugins/bmad/skills/gds-game-architecture/steps/step-07-patterns.md
+  53f5fd546066c045 1-353
+plugins/bmad/skills/gds-game-architecture/architecture-patterns.yaml
+  53f5fd546066c045 1-507
+plugins/bmad/agents/gds-agent-tech-writer.md
+  53f5fd546066c045 3,6,10,12,14-17,19,21,23,25,27-29,31,33,35,37-62,64,66,68,70,72
+plugins/bmad/skills/gds-create-game-brief/steps/step-06-references.md
+  53f5fd546066c045 1-225
+plugins/bmad/skills/gds-create-gdd/game-types/card-game.md
+  53f5fd546066c045 1-76
+plugins/bmad/skills/gds-test-automate/checklist.md
+  53f5fd546066c045 1-93
+plugins/bmad/skills/gds-game-architecture/steps/step-01-init.md
+  53f5fd546066c045 1-224
+plugins/bmad/skills/gds-game-architecture/steps/step-03-starter.md
+  53f5fd546066c045 1-350
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-02b-parity-check.md
+  53f5fd546066c045 1-209
+plugins/bmad/skills/gds-code-review/backlog-template.md
+  53f5fd546066c045 1-12
+plugins/bmad/skills/gds-create-epics-and-stories/steps/step-04-final-validation.md
+  53f5fd546066c045 1-155
+plugins/bmad/skills/gds-validate-gdd/SKILL.md
+  53f5fd546066c045 1-107
+plugins/bmad/skills/gds-create-prd/steps-c/step-09-functional.md
+  53f5fd546066c045 1-231
+plugins/bmad/skills/gds-create-game-brief/templates/game-brief-template.md
+  53f5fd546066c045 1-205
+plugins/bmad/skills/gds-create-narrative/steps/step-09-integration.md
+  53f5fd546066c045 1-255
+plugins/bmad/skills/gds-game-architecture/SKILL.md
+  53f5fd546066c045 1-99
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-05-measurability-validation.md
+  53f5fd546066c045 1-228
+plugins/bmad/skills/gds-correct-course/SKILL.md
+  53f5fd546066c045 1-315
+plugins/bmad/skills/gds-create-ux-design/steps/step-02-discovery.md
+  53f5fd546066c045 1-190
+plugins/bmad/skills/gds-create-gdd/game-types/horror.md
+  53f5fd546066c045 1-86
+plugins/bmad/agents/gds-agent-game-dev.md
+  53f5fd546066c045 6,10,14,16-19,21,23,25,27,29-31,33,35-49,51-54,56,58,60,62-82
+plugins/bmad/skills/gds-performance-test/SKILL.md
+  53f5fd546066c045 1-380
+plugins/bmad/skills/gds-create-ux-design/steps/step-01-init.md
+  53f5fd546066c045 1-135
+plugins/bmad/skills/gds-create-gdd/game-types/tower-defense.md
+  53f5fd546066c045 1-79
+plugins/bmad/skills/gds-create-ux-design/steps/step-11-component-strategy.md
+  53f5fd546066c045 1-248
+plugins/bmad/skills/gds-edit-gdd/steps-e/step-e-03-edit.md
+  53f5fd546066c045 1-273
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-10-smart-validation.md
+  53f5fd546066c045 1-208
+plugins/bmad/skills/gds-edit-prd/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-create-story/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-generate-project-context/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-03-density-validation.md
+  53f5fd546066c045 1-206
+plugins/bmad/skills/gds-code-review/discover-inputs.md
+  53f5fd546066c045 1-88
+plugins/bmad/skills/gds-create-game-brief/SKILL.md
+  53f5fd546066c045 1-106
+plugins/bmad/skills/gds-generate-project-context/steps/step-02-generate.md
+  53f5fd546066c045 1-374
+plugins/bmad/skills/gds-edit-gdd/steps-e/step-e-01-discovery.md
+  53f5fd546066c045 1-264
+plugins/bmad/skills/gds-create-narrative/checklist.md
+  53f5fd546066c045 1-139
+plugins/bmad/agents/gds-agent-game-designer.md
+  53f5fd546066c045 6,10,12,14-17,19,21,23,25,27-29,31,33,35,37,39,41-62,64,66,68,70,72
+plugins/bmad/skills/gds-generate-project-context/steps/step-03-complete.md
+  53f5fd546066c045 1-286
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-13-report-complete.md
+  53f5fd546066c045 1-263
+plugins/bmad/skills/gds-create-gdd/steps-c/step-13-metrics.md
+  53f5fd546066c045 1-251
+plugins/bmad/skills/gds-game-architecture/knowledge/phaser-engine.md
+  53f5fd546066c045 1-652
+plugins/bmad/skills/gds-quick-dev/compile-epic-context.md
+  53f5fd546066c045 1-62
+plugins/bmad/skills/gds-code-review/steps/step-04-present.md
+  53f5fd546066c045 1-132
+plugins/bmad/skills/gds-create-gdd/game-types/rpg.md
+  53f5fd546066c045 1-70
+plugins/bmad/skills/gds-test-automate/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-create-gdd/steps-c/step-03-platforms.md
+  53f5fd546066c045 1-246
+plugins/bmad/skills/gds-create-game-brief/steps/step-01-init.md
+  53f5fd546066c045 1-224
+plugins/bmad/skills/gds-create-game-brief/checklist.md
+  53f5fd546066c045 1-128
+plugins/bmad/skills/gds-create-game-brief/steps/step-08-complete.md
+  53f5fd546066c045 1-303
+plugins/bmad/skills/gds-code-review/SKILL.md
+  53f5fd546066c045 1-103
+plugins/bmad/skills/gds-check-implementation-readiness/steps/step-01-document-discovery.md
+  53f5fd546066c045 1-184
+plugins/bmad/skills/gds-create-game-brief/steps/step-07-content.md
+  53f5fd546066c045 1-283
+plugins/bmad/skills/gds-create-gdd/steps-c/step-05-core-gameplay.md
+  53f5fd546066c045 1-259
+plugins/bmad/skills/gds-validate-prd/SKILL.md
+  53f5fd546066c045 1-107
+plugins/bmad/skills/gds-code-review/steps/step-03-triage.md
+  53f5fd546066c045 1-49
+plugins/bmad/skills/gds-create-narrative/steps/step-01-init.md
+  53f5fd546066c045 1-229
+plugins/bmad/skills/gds-edit-prd/SKILL.md
+  53f5fd546066c045 1-109
+plugins/bmad/skills/gds-validate-prd/data/project-types.csv
+  53f5fd546066c045 1-11
+plugins/bmad/skills/gds-test-design/test-design-template.md
+  53f5fd546066c045 1-205
+plugins/bmad/skills/gds-create-gdd/game-types/moba.md
+  53f5fd546066c045 1-74
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-11-holistic-quality-validation.md
+  53f5fd546066c045 1-264
+plugins/bmad/skills/gds-create-story/template.md
+  53f5fd546066c045 1-54
+plugins/bmad/skills/gds-performance-test/performance-template.md
+  53f5fd546066c045 1-256
+plugins/bmad/skills/gds-create-gdd/game-types/adventure.md
+  53f5fd546066c045 1-84
+plugins/bmad/skills/gds-edit-gdd/steps-e/step-e-01b-legacy-conversion.md
+  53f5fd546066c045 1-226
+plugins/bmad/skills/gds-create-gdd/game-types/puzzle.md
+  53f5fd546066c045 1-58
+plugins/bmad/skills/gds-create-game-brief/steps/step-02-vision.md
+  53f5fd546066c045 1-219
+plugins/bmad/skills/gds-create-ux-design/steps/step-07-defining-experience.md
+  53f5fd546066c045 1-254
+plugins/bmad/skills/gds-check-implementation-readiness/steps/step-02-gdd-analysis.md
+  53f5fd546066c045 1-174
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-08-genre-compliance-validation.md
+  53f5fd546066c045 1-291
+plugins/bmad/skills/gds-validate-gdd/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-03-density-validation.md
+  53f5fd546066c045 1-174
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-11-holistic-quality-validation.md
+  53f5fd546066c045 1-278
+plugins/bmad/skills/gds-game-architecture/steps/step-08-validation.md
+  53f5fd546066c045 1-294
+plugins/bmad/skills/gds-edit-gdd/data/gdd-purpose.md
+  53f5fd546066c045 1-224
+plugins/bmad/skills/gds-create-ux-design/steps/step-04-emotional-response.md
+  53f5fd546066c045 1-219
+plugins/bmad/skills/gds-create-ux-design/steps/step-08-visual-foundation.md
+  53f5fd546066c045 1-224
+plugins/bmad/skills/gds-retrospective/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-create-gdd/game-types/text-based.md
+  53f5fd546066c045 1-91
+plugins/bmad/skills/gds-create-gdd/steps-c/step-12-epics.md
+  53f5fd546066c045 1-285
+plugins/bmad/skills/gds-correct-course/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-game-architecture/steps/step-06-structure.md
+  53f5fd546066c045 1-310
+plugins/bmad/skills/gds-create-gdd/game-types/party-game.md
+  53f5fd546066c045 1-79
+plugins/bmad/skills/gds-create-prd/steps-c/step-11-polish.md
+  53f5fd546066c045 1-235
+plugins/bmad/skills/gds-test-framework/checklist.md
+  53f5fd546066c045 1-103
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-10-smart-validation.md
+  53f5fd546066c045 1-224
+plugins/bmad/skills/gds-create-narrative/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-create-prd/steps-c/step-03-success.md
+  53f5fd546066c045 1-226
+plugins/bmad/skills/gds-create-gdd/game-types/turn-based-tactics.md
+  53f5fd546066c045 1-88
+plugins/bmad/skills/gds-test-review/checklist.md
+  53f5fd546066c045 1-87
+plugins/bmad/skills/gds-create-prd/templates/prd-template.md
+  53f5fd546066c045 1-10
+plugins/bmad/skills/gds-quick-dev/spec-template.md
+  53f5fd546066c045 1-88
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-05-measurability-validation.md
+  53f5fd546066c045 1-279
+plugins/bmad/skills/gds-validate-gdd/data/genre-complexity.csv
+  53f5fd546066c045 1-26
+plugins/bmad/skills/gds-validate-prd/data/domain-complexity.csv
+  53f5fd546066c045 1-15
+plugins/bmad/skills/gds-test-framework/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-create-story/discover-inputs.md
+  53f5fd546066c045 1-88
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-01-discovery.md
+  53f5fd546066c045 1-239
+plugins/bmad/skills/gds-game-architecture/steps/step-01b-continue.md
+  53f5fd546066c045 1-154
+plugins/bmad/skills/gds-create-gdd/game-types/fighting.md
+  53f5fd546066c045 1-89
+plugins/bmad/skills/gds-create-gdd/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-retrospective/SKILL.md
+  53f5fd546066c045 1-1525
+plugins/bmad/skills/gds-dev-story/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-create-prd/steps-c/step-02c-executive-summary.md
+  53f5fd546066c045 1-170
+plugins/bmad/skills/gds-test-design/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-code-review/steps/step-01-gather-context.md
+  53f5fd546066c045 1-85
+plugins/bmad/skills/gds-performance-test/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-07-implementation-leakage-validation.md
+  53f5fd546066c045 1-212
+plugins/bmad/skills/gds-create-prd/steps-c/step-07-project-type.md
+  53f5fd546066c045 1-237
+plugins/bmad/skills/gds-generate-project-context/steps/step-01-discover.md
+  53f5fd546066c045 1-202
+plugins/bmad/skills/gds-create-gdd/templates/gdd-template.md
+  53f5fd546066c045 1-153
+plugins/bmad/skills/gds-create-prd/data/project-types.csv
+  53f5fd546066c045 1-11
+plugins/bmad/skills/gds-create-gdd/steps-c/step-04-vision.md
+  53f5fd546066c045 1-230
+plugins/bmad/skills/gds-create-prd/data/domain-complexity.csv
+  53f5fd546066c045 1-15
+plugins/bmad/skills/gds-sprint-status/SKILL.md
+  53f5fd546066c045 1-306
+plugins/bmad/skills/gds-brainstorm-game/steps/step-01-init.md
+  53f5fd546066c045 1-166
+plugins/bmad/skills/gds-create-prd/steps-c/step-02-discovery.md
+  53f5fd546066c045 1-224
+plugins/bmad/skills/gds-check-implementation-readiness/SKILL.md
+  53f5fd546066c045 1-99
+plugins/bmad/skills/gds-create-epics-and-stories/SKILL.md
+  53f5fd546066c045 1-103
+plugins/bmad/skills/gds-create-gdd/steps-c/step-08-progression.md
+  53f5fd546066c045 1-273
+plugins/bmad/skills/gds-create-epics-and-stories/steps/step-01-validate-prerequisites.md
+  53f5fd546066c045 1-277
+plugins/bmad/skills/gds-check-implementation-readiness/customize.toml
+  53f5fd546066c045 1-41
+.upstream-versions/gds.json
+  53f5fd546066c045 2-3
+plugins/bmad/skills/gds-create-game-brief/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-edit-gdd/steps-e/step-e-04-complete.md
+  53f5fd546066c045 1-178
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-09-project-type-validation.md
+  53f5fd546066c045 1-263
+plugins/bmad/skills/gds-generate-project-context/SKILL.md
+  53f5fd546066c045 1-84
+plugins/bmad/skills/gds-performance-test/checklist.md
+  53f5fd546066c045 1-96
+plugins/bmad/skills/gds-dev-story/SKILL.md
+  53f5fd546066c045 1-505
+plugins/bmad/skills/gds-create-ux-design/steps/step-14-complete.md
+  53f5fd546066c045 1-177
+plugins/bmad/skills/gds-create-narrative/steps/step-04-characters.md
+  53f5fd546066c045 1-298
+plugins/bmad/skills/gds-create-prd/steps-c/step-12-complete.md
+  53f5fd546066c045 1-130
+plugins/bmad/skills/gds-create-game-brief/steps/step-04-fundamentals.md
+  53f5fd546066c045 1-232
+plugins/bmad/skills/gds-validate-prd/steps-v/step-v-04-brief-coverage-validation.md
+  53f5fd546066c045 1-214
+plugins/bmad/skills/gds-game-architecture/steps/step-05-crosscutting.md
+  53f5fd546066c045 1-320
+plugins/bmad/skills/gds-create-prd/steps-c/step-02b-vision.md
+  53f5fd546066c045 1-154
+plugins/bmad/skills/gds-quick-dev/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-create-narrative/templates/narrative-template.md
+  53f5fd546066c045 1-195
+plugins/bmad/skills/gds-test-framework/SKILL.md
+  53f5fd546066c045 1-442
+plugins/bmad/skills/gds-create-gdd/game-types/survival.md
+  53f5fd546066c045 1-79
+plugins/bmad/skills/gds-playtest-plan/checklist.md
+  53f5fd546066c045 1-93
+plugins/bmad/skills/gds-validate-gdd/steps-v/step-v-09-game-type-validation.md
+  53f5fd546066c045 1-281
+plugins/bmad/skills/gds-create-gdd/steps-c/step-09-levels.md
+  53f5fd546066c045 1-265
+plugins/bmad/skills/gds-sprint-planning/sprint-status-template.yaml
+  53f5fd546066c045 1-55
+plugins/bmad/skills/gds-create-ux-design/SKILL.md
+  53f5fd546066c045 1-78
+plugins/bmad/skills/gds-create-gdd/game-types/roguelike.md
+  53f5fd546066c045 1-69
+plugins/bmad/skills/gds-edit-gdd/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-code-review/steps/step-02-review.md
+  53f5fd546066c045 1-35
+plugins/bmad/skills/gds-e2e-scaffold/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-game-architecture/templates/architecture-template.md
+  53f5fd546066c045 1-107
+plugins/bmad/skills/gds-validate-prd/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-brainstorm-game/steps/step-03-ideation.md
+  53f5fd546066c045 1-295
+plugins/bmad/skills/gds-sprint-planning/customize.toml
+  53f5fd546066c045 1-41
+plugins/bmad/skills/gds-create-gdd/steps-c/step-06-mechanics.md
+  53f5fd546066c045 1-250
+plugins/bmad/skills/gds-quick-dev/step-04-review.md
+  53f5fd546066c045 1-50
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "91aff34746f00f3eb67f466afe67631b3604d2f8",
+  "prompts": {
+    "53f5fd546066c045": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "eb914947-4db1-47f3-bd89-1f4b33173301",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "tgorka",
+      "messages": [],
+      "total_additions": 8087,
+      "total_deletions": 273,
+      "accepted_lines": 338645,
+      "overriden_lines": 0
+    }
+  }
+}
