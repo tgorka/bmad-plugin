@@ -1,0 +1,25 @@
+scripts/sync-upstream-content.ts
+  53f5fd546066c045 370
+scripts/lib/path-rewriter.ts
+  53f5fd546066c045 96-99,111-116,207-214
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "b80e6089176da13691a1d3cb9f1a961b150f5148",
+  "prompts": {
+    "53f5fd546066c045": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "eb914947-4db1-47f3-bd89-1f4b33173301",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "tgorka",
+      "messages": [],
+      "total_additions": 330914,
+      "total_deletions": 281,
+      "accepted_lines": 330895,
+      "overriden_lines": 0
+    }
+  }
+}
