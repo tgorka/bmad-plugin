@@ -158,10 +158,21 @@ walks through a complete project from scratch.
 
 ## Agents
 
-22 agents across 5 modules. Invoke via `Use the <agent> agent…` or via slash
-commands the agent registers.
+**22 agents** across 5 modules. Invoke via `Use the <agent> agent…` or via the
+slash commands each agent registers.
 
-### Core (BMM) — 10 agents
+Two flavours of provenance, both fully shipped:
+
+- **Generated from upstream SKILL.md** (6) — TEA's `bmad-tea` plus 5 GDS
+  agents are produced by `bun run generate:agents` from each upstream's
+  agent SKILL.md. They re-generate cleanly on every sync.
+- **Plugin-owned, hand-maintained** (16) — the BMM personas (Mary, John,
+  Sally, Winston, Bob, Amelia, Quinn, Paige, Barry), `bmad-master`,
+  the `quinn` lightweight QA flavour, the 3 BMB builder agents, and 2 GDS
+  plugin-additions (`gds-agent-game-qa`, `gds-agent-game-scrum-master`).
+  These live in `plugins/bmad/agents/*.md` and persist across syncs.
+
+### Core (BMM) — 9 personas + 1 orchestrator (plugin-owned)
 
 | Agent | Persona | Role | Key Skills |
 |---|---|---|---|
@@ -171,12 +182,12 @@ commands the agent registers.
 | architect | Winston | System design | bmad-create-architecture |
 | sm | Bob | Sprint management | bmad-sprint-planning, bmad-create-story |
 | dev | Amelia | Implementation | bmad-dev-story, bmad-code-review |
-| qa | Quinn | QA engineering | bmad-qa-generate-e2e-tests |
+| qa | Quinn | QA Engineer (broad BMM persona) | bmad-qa-generate-e2e-tests |
 | tech-writer | Paige | Documentation | bmad-document-project |
 | quick-flow-solo-dev | Barry | Solo dev quick flow | bmad-quick-spec, bmad-quick-dev |
-| bmad-master | Orchestrator | Cross-module orchestration | (any skill) |
+| bmad-master | Orchestrator (BMad Master) | Cross-module orchestration, knowledge custodian | (any skill) |
 
-### BMB (BMad Builder) — 3 agents
+### BMB (BMad Builder) — 3 agents (plugin-owned)
 
 | Agent | Persona | Role |
 |---|---|---|
@@ -184,29 +195,35 @@ commands the agent registers.
 | workflow-builder | Wendy | Build BMAD-compatible workflows |
 | module-builder | Morgan | Build complete BMAD modules |
 
-### TEA (Test Architecture Enterprise) — 1 agent
+### TEA (Test Architecture Enterprise) — 1 agent (generated)
 
 | Agent | Persona | Role |
 |---|---|---|
-| bmad-tea | Murat | Master test architect (atdd, ci, framework, nfr, trace, …) |
+| bmad-tea | Murat | Master Test Architect — atdd, ci, framework, nfr, trace, test-design, test-review, automate, teach-me-testing |
 
 ### Plugin-only — 1 agent
 
 | Agent | Persona | Role |
 |---|---|---|
-| quinn | Quinn | Rapid test automation (E2E + API generation) |
+| quinn | Quinn (lightweight) | Rapid E2E + API test generation. Simpler, more direct alternative to the full TEA Test Architect — same name, narrower tool surface (adds `Bash`, drops the deep test-architecture workflows) |
 
-### GDS (Game Dev Studio) — 7 agents
+### GDS (Game Dev Studio) — 7 agents (5 generated + 2 plugin-only)
 
-| Agent | Persona | Role |
-|---|---|---|
-| gds-agent-game-architect | Cloud Dragonborn | Game systems architecture |
-| gds-agent-game-designer | Samus Shepard | Game design / GDD |
-| gds-agent-game-dev | Link Freeman | Game development |
-| gds-agent-game-qa | GLaDOS | Game QA architecture |
-| gds-agent-game-scrum-master | Max | Game-dev scrum master |
-| gds-agent-game-solo-dev | Indie | Solo indie game dev |
-| gds-agent-tech-writer | Paige | Game technical writing |
+| Agent | Persona | Role | Source |
+|---|---|---|---|
+| gds-agent-game-architect | Cloud Dragonborn | Game systems architecture | generated |
+| gds-agent-game-designer | Samus Shepard | Game design / GDD | generated |
+| gds-agent-game-dev | Link Freeman | Game development | generated |
+| gds-agent-game-solo-dev | Indie | Solo indie game dev | generated |
+| gds-agent-tech-writer | Paige (game-scoped) | Game technical writing | generated |
+| gds-agent-game-qa | GLaDOS | Game QA architecture | plugin-only |
+| gds-agent-game-scrum-master | Max | Game-dev scrum master | plugin-only |
+
+> **Note on duplicate persona names:** Quinn appears as both `qa` (broad BMM
+> QA Engineer) and `quinn` (focused automation flavour). Paige appears as
+> both `tech-writer` (general docs) and `gds-agent-tech-writer` (game-scoped
+> docs). Both pairs are intentional — each delegates to a different skill set
+> and module context.
 
 ## Workflow Phases
 
