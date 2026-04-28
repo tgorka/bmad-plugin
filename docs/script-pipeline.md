@@ -1,6 +1,17 @@
 # Script Pipeline
 
-How the sync, generation, validation, and release scripts work together.
+> **📌 Historical document (pre-v6.5.0+).** This describes the
+> sync-upstream-content / generate-agents / generate-skills /
+> generate-manifest / clean-orphaned-skills / find-orphan-files
+> pipeline that ran on top of multiple git clones. All those scripts
+> have been deleted as of v6.5.0.1; the plugin now uses a single
+> `scripts/sync-from-installer.ts` that delegates to the official
+> `npx bmad-method install --tools claude-code` CLI. See
+> [`AGENTS.md`](../AGENTS.md) for the current command reference and
+> [`docs/plan-npx-resync.md`](plan-npx-resync.md) for migration notes.
+> This document is kept for archaeological reference.
+
+How the sync, generation, validation, and release scripts USED TO work together.
 
 ## Data Flow
 

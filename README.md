@@ -15,51 +15,43 @@
 <!-- upstream-version-start -->
 **Plugin version:** v6.5.0.0
 
-| Module | Version | Released | Last Checked |
-|---|---|---|---|
-| [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.5.0 | 2026-04-26 | 2026-04-28 |
-| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.15.1 | 2026-04-24 | 2026-04-27 |
-| [BMB](https://github.com/bmad-code-org/bmad-builder) | v1.7.0 | 2026-04-23 | 2026-04-27 |
-| [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.2.0 | 2026-04-23 | 2026-04-27 |
-| [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.4.0 | 2026-04-23 | 2026-04-27 |
+| Module | Version | Last Checked |
+|---|---|---|
+| [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.5.0 | 2026-04-28 |
+| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.15.1 | 2026-04-27 |
+| [BMB](https://github.com/bmad-code-org/bmad-builder) | v1.7.0 | 2026-04-27 |
+| [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.2.0 | 2026-04-27 |
+| [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.4.0 | 2026-04-27 |
 <!-- upstream-version-end -->
 
 A Claude Code plugin that transforms Claude into a complete agile development
 environment with specialized agents, structured workflows, and intelligent
 context management.
 
-## Deprecation Notice
+## How it's built
 
-The upstream BMAD repositories are migrating from their custom `workflow.yaml`
-format to Claude Code's native `SKILL.md` format. As of v6.5.0:
-
-- **TEA** ships its agent natively as `SKILL.md` (v1.15.1).
-- **GDS** ships agents and most workflows as `SKILL.md` (v0.4.0).
-- **BMM (core)** still uses `workflow.yaml` with separate `customize.toml`.
-- **BMB / CIS** are partial-migration.
-
-Once all 5 upstream modules complete the SKILL.md migration, this plugin's
-sync and generation pipeline becomes redundant — the upstream repos will
-ship Claude Code-compatible skills directly.
-
-At that point this plugin will be deprecated in favor of installing upstream
-BMAD packages directly. Until then, this plugin remains the only way to get
-all 5 BMAD modules aggregated into a single installable Claude Code plugin
-with path rewrites, version tracking, customization layering, and plugin-only
-additions.
+This plugin is a **thin wrapper around the official `npx bmad-method
+install --tools claude-code`** output. On every sync (`bun run sync`),
+the entire `plugins/bmad/skills/` tree is regenerated from a fresh
+installer run, so every file is exactly what an end-user would get from
+the upstream installer. There is no custom merge / rewrite layer.
 
 ## Features
 
-- **22 Specialized Agents** across 5 modules (Core BMM, BMB, TEA, GDS, plus plugin-only)
-- **93 Guided Skills** — full BMAD coverage:
-  - 40 Core (BMM): analysis → planning → solutioning → implementation
-  - 10 TEA: test architecture (atdd, ci, framework, nfr, trace, …)
-  - 4 BMB: build BMAD agents / workflows / modules
-  - 10 CIS: creative-intelligence (design thinking, storytelling, problem-solving)
-  - 29 GDS: full game-development studio
-- **4 Development Phases**: Analysis, Planning, Solutioning, Implementation
-- **Customization Layer (v6.5.0+)**: per-skill `[agent]` / `[workflow]` TOML overrides via the new `bmad-customize` skill
-- **Progressive Disclosure**: step-by-step workflow execution with resumable state
+- **102 skills across 5 BMAD modules**, including all agent personas as
+  Claude Code-native skills:
+  - **6 BMM agents** — `bmad-agent-{analyst,pm,ux-designer,architect,dev,tech-writer}`
+  - **35 BMM workflow skills** — analysis → planning → solutioning → implementation
+  - **11 TEA skills** — `bmad-tea` (Murat) + 8 `bmad-testarch-*` + 2 helpers
+  - **4 BMB skills** — `bmad-{agent,workflow,module}-builder`, `bmad-bmb-setup`
+  - **10 CIS skills** — `bmad-cis-*` (design thinking, storytelling,
+    problem-solving, brainstorming, innovation strategy, presentation)
+  - **36 GDS skills** — full game-development studio including 5
+    `gds-agent-*` personas
+- **`customize.toml` per skill** — each skill ships an override surface;
+  the new `bmad-customize` skill drives skill / agent customization
+- **Progressive Disclosure** — step-by-step workflow execution with
+  resumable state per skill
 
 ## Usage
 
@@ -156,81 +148,45 @@ methodology overview, workflow explanations, and best practices. The
 [Getting Started Tutorial](http://docs.bmad-method.org/tutorials/getting-started/)
 walks through a complete project from scratch.
 
-## Agents
+## Agent Personas
 
-**22 agents** across 5 modules. Invoke via `Use the <agent> agent…` or via the
-slash commands each agent registers.
+As of v6.5.0+, agent personas are shipped as **skills**, not as
+separate agent files. Invoke `/bmad:bmad-agent-pm` (John, the PM) or
+`/bmad:bmad-tea` (Murat, the Test Architect) the same way you invoke
+any other skill. The full agent roster is declared in each module's
+upstream `module.yaml`; the table below lists the canonical personas.
 
-Two flavours of provenance, both fully shipped:
-
-- **Generated from upstream SKILL.md** (6) — TEA's `bmad-tea` plus 5 GDS
-  agents are produced by `bun run generate:agents` from each upstream's
-  agent SKILL.md. They re-generate cleanly on every sync.
-- **Plugin-owned, hand-maintained** (16) — the BMM personas (Mary, John,
-  Sally, Winston, Bob, Amelia, Quinn, Paige, Barry), `bmad-master`,
-  the `quinn` lightweight QA flavour, the 3 BMB builder agents, and 2 GDS
-  plugin-additions (`gds-agent-game-qa`, `gds-agent-game-scrum-master`).
-  These live in `plugins/bmad/agents/*.md` and persist across syncs.
-
-### Core (BMM) — 9 personas + 1 orchestrator (plugin-owned)
-
-| Agent | Persona | Role | Key Skills |
+| Skill | Persona | Module | Role |
 |---|---|---|---|
-| analyst | Mary | Business analysis | bmad-product-brief, research, bmad-brainstorming |
-| pm | John | Product requirements | bmad-create-prd, bmad-create-epics-and-stories |
-| ux-designer | Sally | User experience | bmad-create-ux-design |
-| architect | Winston | System design | bmad-create-architecture |
-| sm | Bob | Sprint management | bmad-sprint-planning, bmad-create-story |
-| dev | Amelia | Implementation | bmad-dev-story, bmad-code-review |
-| qa | Quinn | QA Engineer (broad BMM persona) | bmad-qa-generate-e2e-tests |
-| tech-writer | Paige | Documentation | bmad-document-project |
-| quick-flow-solo-dev | Barry | Solo dev quick flow | bmad-quick-spec, bmad-quick-dev |
-| bmad-master | Orchestrator (BMad Master) | Cross-module orchestration, knowledge custodian | (any skill) |
-
-### BMB (BMad Builder) — 3 agents (plugin-owned)
-
-| Agent | Persona | Role |
-|---|---|---|
-| agent-builder | Bond | Build BMAD-compatible agents |
-| workflow-builder | Wendy | Build BMAD-compatible workflows |
-| module-builder | Morgan | Build complete BMAD modules |
-
-### TEA (Test Architecture Enterprise) — 1 agent (generated)
-
-| Agent | Persona | Role |
-|---|---|---|
-| bmad-tea | Murat | Master Test Architect — atdd, ci, framework, nfr, trace, test-design, test-review, automate, teach-me-testing |
-
-### Plugin-only — 1 agent
-
-| Agent | Persona | Role |
-|---|---|---|
-| quinn | Quinn (lightweight) | Rapid E2E + API test generation. Simpler, more direct alternative to the full TEA Test Architect — same name, narrower tool surface (adds `Bash`, drops the deep test-architecture workflows) |
-
-### GDS (Game Dev Studio) — 7 agents (5 generated + 2 plugin-only)
-
-| Agent | Persona | Role | Source |
-|---|---|---|---|
-| gds-agent-game-architect | Cloud Dragonborn | Game systems architecture | generated |
-| gds-agent-game-designer | Samus Shepard | Game design / GDD | generated |
-| gds-agent-game-dev | Link Freeman | Game development | generated |
-| gds-agent-game-solo-dev | Indie | Solo indie game dev | generated |
-| gds-agent-tech-writer | Paige (game-scoped) | Game technical writing | generated |
-| gds-agent-game-qa | GLaDOS | Game QA architecture | plugin-only |
-| gds-agent-game-scrum-master | Max | Game-dev scrum master | plugin-only |
-
-> **Note on duplicate persona names:** Quinn appears as both `qa` (broad BMM
-> QA Engineer) and `quinn` (focused automation flavour). Paige appears as
-> both `tech-writer` (general docs) and `gds-agent-tech-writer` (game-scoped
-> docs). Both pairs are intentional — each delegates to a different skill set
-> and module context.
+| `bmad-agent-analyst` | Mary | BMM | Business Analyst |
+| `bmad-agent-pm` | John | BMM | Product Manager |
+| `bmad-agent-ux-designer` | Sally | BMM | UX Designer |
+| `bmad-agent-architect` | Winston | BMM | System Architect |
+| `bmad-agent-dev` | Amelia | BMM | Senior Software Engineer |
+| `bmad-agent-tech-writer` | Paige | BMM | Technical Writer |
+| `bmad-tea` | Murat | TEA | Master Test Architect |
+| `bmad-cis-agent-brainstorming-coach` | Carson | CIS | Brainstorming Coach |
+| `bmad-cis-agent-creative-problem-solver` | Dr. Quinn | CIS | Problem-Solving Expert |
+| `bmad-cis-agent-design-thinking-coach` | Maya | CIS | Design Thinking Coach |
+| `bmad-cis-agent-innovation-strategist` | Victor | CIS | Innovation Strategist |
+| `bmad-cis-agent-presentation-master` | Caravaggio | CIS | Presentation Expert |
+| `bmad-cis-agent-storyteller` | Sophia | CIS | Master Storyteller |
+| `bmad-agent-builder` | Bond | BMB | Agent Building Expert |
+| `bmad-workflow-builder` | Wendy | BMB | Workflow Building Master |
+| `bmad-module-builder` | Morgan | BMB | Module Creation Master |
+| `gds-agent-game-architect` | Cloud Dragonborn | GDS | Principal Game Systems Architect |
+| `gds-agent-game-designer` | Samus Shepard | GDS | Lead Game Designer |
+| `gds-agent-game-dev` | Link Freeman | GDS | Senior Game Developer |
+| `gds-agent-game-solo-dev` | Indie | GDS | Elite Indie Game Developer |
+| `gds-agent-tech-writer` | Paige (game-scoped) | GDS | Game Technical Writer |
 
 ## Workflow Phases
 
 ### Phase 1: Analysis
 
 - Brainstorming and ideation (`bmad-brainstorming`)
-- Market, domain, technical research (`research/*`)
+- Market, domain, and technical research (`bmad-market-research`,
+  `bmad-domain-research`, `bmad-technical-research`)
 - Product brief creation (`bmad-product-brief`)
 
 ### Phase 2: Planning
@@ -282,7 +238,7 @@ bun install          # install dependencies (Husky hooks set up automatically)
 bun run validate     # run upstream coverage validation
 ```
 
-The validation script checks three-way consistency: upstream BMAD-METHOD repo, plugin files, and `plugin.json` manifest. It runs automatically as a pre-push git hook via Husky.
+The validation script checks version consistency (each `.upstream-versions/<id>.json` is well-formed and the plugin version is anchored to the core version) and confirms `plugins/bmad/skills/` has been populated. It runs automatically as a pre-push git hook via Husky.
 
 ## Why This Plugin
 
@@ -292,32 +248,28 @@ with 221 stars. Here is how this plugin differs:
 
 | | **bmad-plugin** (this repo) | aj-geddes/claude-code-bmad-skills |
 |---|---|---|
-| Upstream version tracked | v6.5.0 (explicit, all 5 modules) | v6 (approximate) |
-| Skills | 93 (40 core + 10 TEA + 4 BMB + 10 CIS + 29 GDS) | 4 |
-| Agents | 22 (10 core + 3 BMB + 1 TEA + 7 GDS + 1 plugin-only) | 12 |
+| Upstream version tracked | v6.5.0 (all 5 modules pinned via `.upstream-versions/*.json`) | v6 (approximate) |
+| Skills | 102 (41 BMM + 11 TEA + 4 BMB + 10 CIS + 36 GDS) | 4 |
+| Agents | 21 personas (shipped as skills) | 12 |
+| Source of truth | The official `npx bmad-method install --tools claude-code` output (1:1 mirror) | Manual shell-script copy |
 | Automated upstream sync | Yes (GitHub Actions, weekly) | No |
-| Version tracking | Explicit, per-module `.upstream-versions/<id>.json` | None |
-| CI & validation | Biome, Husky, three-way upstream coverage validation | None |
 | Plugin marketplace | Yes (`marketplace.json`) | No (Smithery only) |
-| Architecture | Roles → agents, workflows → skills (correct mapping) | Roles → skills (incorrect mapping) |
 | Last updated | 2026-04-27 (v6.5.0.0) | 2026-01-01 |
 
 **Key advantages:**
 
-- **Full coverage** — all 93 skills across 5 BMAD modules (core, TEA, BMB,
-  CIS, GDS), not just a sample of 4. Every workflow from each upstream repo
-  has a matching skill, including v6.5.0's new `bmad-customize`.
-- **Correct role mapping** — BMAD roles (PM, Architect, etc.) are modeled as
-  agents with isolated context, not lumped into skills. The alternative treats
-  roles and workflows the same way, which breaks Claude Code's agent model.
-- **Stays up to date** — a GitHub Actions workflow checks all 5 upstreams
-  weekly and creates a sync issue when any release ships. No manual checking.
-- **Catches drift** — a pre-push hook validates that every agent, skill, and
-  file in this plugin matches its upstream source. If something is missing
-  or out of date, the push is blocked.
-- **Tracks versions** — the plugin version (`6.5.0.0`) anchors to the core
-  BMAD-METHOD release so you always know which generation you're running, and
-  every module has its own pinned tag in `.upstream-versions/`.
+- **Full coverage** — all 102 skills across 5 BMAD modules (core, TEA,
+  BMB, CIS, GDS), including v6.5.0's new `bmad-customize` and the
+  6 BMM agent personas as agent skills. Mirrors the upstream installer's
+  output byte-for-byte.
+- **Single source of truth** — every sync regenerates the plugin tree
+  from `npx bmad-method install`, so what users get is exactly what
+  upstream ships. No custom merge / rewrite layer to drift.
+- **Stays up to date** — a GitHub Actions workflow watches all 5
+  upstream repos weekly and creates a sync issue on new releases.
+- **Tracks versions** — the plugin version (`6.5.0.0`) anchors to the
+  core BMAD-METHOD release, and every module has its own pinned tag in
+  `.upstream-versions/`.
 
 ## License
 
