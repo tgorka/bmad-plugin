@@ -4,6 +4,90 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [6.5.0.1] - 2026-04-28
+
+Architectural refactor: the plugin now sources its content directly
+from the official `npx bmad-method install --tools claude-code`
+output, replacing the multi-source git-clone-based sync pipeline.
+**No upstream version change** — this release is purely a refactor of
+how the plugin is built. The shipped skill content matches what
+end-users get from the upstream installer byte-for-byte.
+
+### Changed
+
+- **Sync pipeline rewritten** as a thin wrapper around
+  `npx bmad-method@<version> install --tools claude-code`. The
+  installer is the single source of truth; the plugin does not perform
+  any custom merging, path-rewriting, or per-source iteration.
+- `plugins/bmad/skills/` regenerated from the installer output. Skill
+  count: **102** (was 93). The 9 net new entries are: 3 research
+  skills (`bmad-domain-research`, `bmad-market-research`,
+  `bmad-technical-research`) that used to live nested under
+  `skills/research/`; `bmad-tea` and 5 `gds-agent-*` skills that used
+  to live as flat .md files in `agents/`; and `gds-document-project`
+  which the old sync was missing entirely.
+- `customize.toml` files: 86 → 90 (no longer missing for agent skills).
+
+### Removed
+
+- `plugins/bmad/agents/` directory (22 files). Agents are skills now;
+  invoke via `/bmad:bmad-agent-pm` etc. instead of `Use the pm
+  agent…`.
+- `plugins/bmad/_shared/` directory. Replaced by per-skill
+  `resources/` (e.g., each TEA testarch skill now ships its own
+  `resources/tea-index.csv` instead of all sharing one in `_shared/`).
+- `plugins/bmad/templates/` directory. Templates are inside their
+  individual skill directories now.
+- 4 zombie agents that were retired upstream in v6.3.0 and should
+  never have survived the v6.5.0.0 wipe-and-regenerate: `sm.md`
+  (Bob), `qa.md` (Quinn-as-broad-QA), `quick-flow-solo-dev.md`
+  (Barry), `bmad-master.md` (BMad Master Orchestrator).
+- 16 deleted scripts (≈3455 net lines removed). The old multi-source
+  pipeline is gone:
+  `sync-upstream-content.ts`, `sync-all.ts`, `generate-agents.ts`,
+  `generate-skills.ts`, `generate-agent-manifest.ts`,
+  `clean-orphaned-skills.ts`, `find-orphan-files.ts`, `bump-core.ts`,
+  `bump-module.ts`, `lib/path-rewriter.ts`,
+  `lib/workflow-iterator.ts`, plus 7 `lib/checks/*.ts` files.
+- `package.json` scripts that backed the deleted scripts:
+  `generate:agents`, `generate:skills`, `generate:manifest`,
+  `sync-all`, `sync:source`, `clean:orphaned`, `find-orphans`,
+  `find-orphans:delete`, `bump-core`, `bump-module`.
+
+### Added
+
+- `scripts/sync-from-installer.ts` — the new sync script (one
+  command: `bun run sync`).
+- `.upstream-install/` — git-ignored install output, fresh on each
+  sync.
+- `docs/plan-npx-resync.md` — the migration plan that drove this
+  refactor.
+
+### Fixed
+
+- README's upstream-version table: drop "Released" column (we no
+  longer keep git clones to read tag dates from).
+- All references in source comments and example scripts updated to
+  v6.5.0+ versions; legacy "v6.0.0-Beta.X" / "v6.2.2" / "v6.3.0"
+  examples either bumped or labeled as historical.
+- Test suite (`tests/e2e/skill-load.test.ts`) updated to use current
+  prefixed skill names (`bmad-help`, `bmad-brainstorming`,
+  `bmad-customize`, `bmad-tea`, `bmad-agent-pm`, …).
+
+### Migration notes
+
+If you previously installed the plugin and want the v6.5.0.1 layout:
+
+```sh
+claude plugin uninstall bmad@bmad-method
+claude plugin install bmad@bmad-method@v6.5.0.1
+```
+
+The installed cache will then contain only `skills/` (plus the
+`.claude-plugin/` manifest and the marketplace README) — no
+`agents/`, no `_shared/`, no `templates/`. Agent personas are
+invoked via slash commands like `/bmad:bmad-tea`.
+
 ## [6.5.0.0] - 2026-04-27
 
 Regression-style upgrade: no backward compatibility with pre-v6.5 layouts.
@@ -268,6 +352,7 @@ sources to guarantee zero leftover artifacts from earlier versions.
 
 - Initial BMAD plugin POC
 
+[6.5.0.1]: https://github.com/tgorka/bmad-plugin/compare/v6.5.0.0...v6.5.0.1
 [6.5.0.0]: https://github.com/tgorka/bmad-plugin/compare/v6.3.0.2...v6.5.0.0
 [6.3.0.2]: https://github.com/PabloLION/bmad-plugin/compare/v6.2.2.0...v6.3.0.2
 [6.2.2.0]: https://github.com/PabloLION/bmad-plugin/compare/v6.2.0.4...v6.2.2.0
