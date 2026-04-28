@@ -10,7 +10,12 @@
 
 import { cp, exists, readdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
-import { PLUGIN, PLUGIN_JSON_PATH, ROOT } from './lib/config.ts';
+import {
+  updateJsonVersionFiles,
+  updateReadmeBadge,
+  VERSION_FILES,
+} from './lib/bump-utils.ts';
+import { PLUGIN, ROOT } from './lib/config.ts';
 import { listFilesRecursive } from './lib/fs-utils.ts';
 import { gitInUpstream } from './lib/git-utils.ts';
 import {
@@ -223,7 +228,7 @@ async function syncSource(
 /**
  * Sync core extras that live outside the normal contentRoot paths:
  * - Core task files → _shared/tasks/
- * - Core skills (src/core/skills/ or src/core/workflows/) → skills/
+ * - Core skills (src/core-skills/) → skills/
  * - TEA knowledge index → _shared/
  */
 async function syncCoreExtras(map: WorkflowMap): Promise<number> {
@@ -232,7 +237,7 @@ async function syncCoreExtras(map: WorkflowMap): Promise<number> {
   let count = 0;
 
   // 1. Core skills → skills/<name>/
-  // Core v6.2.2: src/core/skills/ → src/core-skills/ (top-level under src/)
+  // v6.5.0: src/core-skills/ is the canonical (and only) location
   const coreExtrasDir = join(coreRoot, 'src/core-skills');
 
   if (await exists(coreExtrasDir)) {
@@ -342,9 +347,9 @@ if (rewriteStats.warnings.length > 0) {
 }
 
 // Update version files (core-anchored strategy) — skip when filtering to a single source.
-// This block uses ad-hoc version logic (read upstream package.json, write .0 patch)
-// rather than bump-utils.ts because sync derives versions from the checked-out upstream
-// state, while bump scripts resolve versions from git tags + user input.
+// Reads the new core version from the checked-out upstream package.json, derives
+// plugin version as <upstream>.0, and delegates the all-JSON-files bump (package.json,
+// plugin.json, marketplace.json) to bump-utils.ts so all version anchors stay in sync.
 if (!DRY_RUN && !SOURCE_FILTER) {
   const core = getCoreSource();
   const coreRoot = join(ROOT, '.upstream', core.localPath);
@@ -353,33 +358,22 @@ if (!DRY_RUN && !SOURCE_FILTER) {
   await writeVersionInfo(core.id, newUpstream);
   console.log(`\nUpdated .upstream-versions/${core.id}.json to ${newUpstream}`);
 
+  // Read current plugin version (needed for the find-and-replace in updateJsonVersionFiles)
+  const currentPluginRaw = (
+    await Bun.file(VERSION_FILES.pluginVersion).text()
+  ).trim();
+  const currentPluginVersion = currentPluginRaw.replace(/^v/, '');
+
   // Bump plugin version: <upstream>.0 (reset patch on upstream change)
-  const newPlugin = `${newUpstream}.0`;
-  await Bun.write(join(ROOT, '.plugin-version'), `${newPlugin}\n`);
-  console.log(`Updated .plugin-version to ${newPlugin}`);
+  const newPluginVersion = `${pkgJson.version}.0`;
+  const newPluginVersionPrefixed = `v${newPluginVersion}`;
+  await Bun.write(VERSION_FILES.pluginVersion, `${newPluginVersionPrefixed}\n`);
+  console.log(`Updated .plugin-version to ${newPluginVersionPrefixed}`);
 
-  // Update package.json version (strip leading v)
-  const pluginVersionNov = newPlugin.slice(1);
-  const localPkg = await Bun.file(join(ROOT, 'package.json')).json();
-  localPkg.version = pluginVersionNov;
-  await Bun.write(
-    join(ROOT, 'package.json'),
-    `${JSON.stringify(localPkg, null, 2)}\n`,
-  );
-  console.log(`Updated package.json version to ${pluginVersionNov}`);
+  // Bump package.json + plugin.json + marketplace.json in one shared call
+  await updateJsonVersionFiles(currentPluginVersion, newPluginVersion);
 
-  // Update plugin manifest version
-  const manifestJson = await Bun.file(PLUGIN_JSON_PATH).json();
-  manifestJson.version = pluginVersionNov;
-  await Bun.write(
-    PLUGIN_JSON_PATH,
-    `${JSON.stringify(manifestJson, null, 2)}\n`,
-  );
-  console.log(`Updated plugin.json version to ${pluginVersionNov}`);
-
-  // Update README badge
-  await Bun.$`bun scripts/update-readme-version.ts`.quiet();
-  console.log('Updated README version badge');
+  await updateReadmeBadge();
 
   // Update external module version files
   for (const source of getEnabledSources()) {

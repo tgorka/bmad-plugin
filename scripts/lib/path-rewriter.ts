@@ -90,27 +90,27 @@ function getModuleAlias(source: UpstreamSource): string {
 /**
  * Add core special workflows and register 'core' as a module alias.
  *
- * Core v6.2.0 moved src/core/workflows/ → src/core/skills/ with bmad- prefix.
- * Upstream files reference these via _bmad/core/workflows/<name>/... so we
- * register both the old names and new bmad- prefixed names.
+ * v6.5.0: core skills live at src/core-skills/ (top-level under src/), all
+ * directories use the bmad- prefix. Pre-v6.2 layouts (src/core/workflows/,
+ * src/core/skills/) are no longer supported.
+ *
+ * Cross-module callers (TEA v1.15.1, GDS) still reference core skills via
+ * un-prefixed names (e.g., _bmad/core/workflows/advanced-elicitation/),
+ * so we map both the prefixed dir name and the un-prefixed alias.
  */
 async function addCoreSpecialWorkflows(map: WorkflowMap): Promise<void> {
   if (!map.has('core')) map.set('core', new Map());
   const coreMap = map.get('core')!;
 
-  // Try new path first (v6.2.0+), fall back to old path
-  const newDir = join(ROOT, '.upstream/BMAD-METHOD/src/core/skills');
-  const oldDir = join(ROOT, '.upstream/BMAD-METHOD/src/core/workflows');
-  const coreDir = (await exists(newDir)) ? newDir : oldDir;
+  const coreDir = join(ROOT, '.upstream/BMAD-METHOD/src/core-skills');
   if (!(await exists(coreDir))) return;
 
   const entries = await readdir(coreDir, { withFileTypes: true });
   for (const entry of entries) {
     if (!entry.isDirectory()) continue;
     const name = entry.name;
-    // Map bmad-prefixed dir name to skill name (strip bmad- for the upstream ref)
     coreMap.set(name, name);
-    // Also map un-prefixed name for backwards compat with upstream refs
+    // Cross-module references still use un-prefixed names
     if (name.startsWith('bmad-')) {
       coreMap.set(name.slice('bmad-'.length), name);
     }
@@ -203,6 +203,14 @@ function rewriteSinglePath(
   }
   if (alias === '_config' || rest.startsWith('_config/')) {
     return rewriteConfigDirPath(alias, rest);
+  }
+  // v6.5.0+: User-side tooling and project paths — these reference the user's
+  // project, not plugin content, so pass through unchanged.
+  // - _bmad/scripts/   — resolve_config.py, resolve_customization.py (upstream tooling)
+  // - _bmad/custom/    — user-authored config.toml overrides
+  // - _bmad/planning/  — user-authored PRD/architecture docs
+  if (alias === 'scripts' || alias === 'custom' || alias === 'planning') {
+    return { replacement: '', changed: false };
   }
 
   // Task paths: <alias>/tasks/<file>
