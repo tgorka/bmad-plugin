@@ -77,7 +77,8 @@ const currentPluginRaw = (
 const currentPluginVersion = currentPluginRaw.replace(/^v/, '');
 
 // Parse current plugin version to increment .X
-// Format: <core>.<X> e.g. "6.0.0-Beta.8.1" → core="6.0.0-Beta.8", X=1
+// Format: <core>.<X> e.g. "6.5.0.1" → core="6.5.0", X=1
+// (Also handles legacy beta-style tags such as "6.0.0-Beta.8.1" → core="6.0.0-Beta.8".)
 const lastDot = currentPluginVersion.lastIndexOf('.');
 if (lastDot < 0) {
   console.error(`Cannot parse plugin version: ${currentPluginRaw}`);

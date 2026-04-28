@@ -210,8 +210,8 @@ Four files must stay in sync:
 
 ```csv
 File,Format,Prefix
-.plugin-version,plain text,v (e.g. v6.2.0.0)
-package.json,JSON version field,no prefix (6.2.0.0)
+.plugin-version,plain text,v (e.g. v6.5.0.0)
+package.json,JSON version field,no prefix (6.5.0.0)
 plugins/bmad/.claude-plugin/plugin.json,JSON version field,no prefix
 .claude-plugin/marketplace.json,JSON version field,no prefix
 ```
@@ -242,6 +242,6 @@ Release:
 
 ```sh
 ./scripts/release.sh          # current version
-./scripts/release.sh 6.2.1.0  # bump + release
+./scripts/release.sh 6.5.1.0  # bump + release
 ./scripts/release.sh --after-ci  # resume after CI fix
 ```

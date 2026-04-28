@@ -59,7 +59,7 @@ Run from **dev** branch with clean working tree:
 
 ```sh
 ./scripts/release.sh                  # release current version (full run)
-./scripts/release.sh 6.0.0-Beta.9.0  # bump version first, then release
+./scripts/release.sh 6.5.1.0         # bump version first, then release
 ./scripts/release.sh --after-ci       # finish release after CI passes
 ```
 

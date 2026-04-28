@@ -51,6 +51,142 @@ sources to guarantee zero leftover artifacts from earlier versions.
   `package.json` and `plugin.json`. Now bumps to v6.5.0.0 like the
   others.
 
+> **Reconstructed entries (6.0.3.4 → 6.3.0.2)** — these releases were tagged
+> on the upstream `PabloLION/bmad-plugin` fork during the Feb–Apr 2026 window
+> while the CHANGELOG was unmaintained. Entries are reconstructed from git
+> log + tag metadata.
+
+## [6.3.0.2] - 2026-04-18
+
+### Changed
+
+- Sync core BMAD-METHOD v6.2.2 → v6.3.0
+- Sync TEA v1.7.3 → v1.12.2
+- Sync GDS v0.2.2 → v0.3.0
+
+### Added
+
+- `find-orphan-files.ts` script — detects stale files inside surviving plugin
+  skill directories (orphaned by upstream renames mid-skill, not caught by
+  `clean-orphaned-skills.ts` which only handles whole directories)
+- `bmad-checkpoint-preview` skill (NEW in core v6.3.0)
+- `bmad-prfaq` skill (Working Backwards PRFAQ challenge)
+
+### Removed
+
+- `bmad-init` skill (config now loads from `_bmad/bmm/config.yaml`)
+- `bmad-agent-qa`, `bmad-agent-quick-flow-solo-dev`, `bmad-agent-sm` skill
+  dirs (Barry/Quinn/Bob personas consolidated into Developer Amelia upstream)
+
+> **Note:** this tag was merged "for local testing" so the user's fork could
+> be used as a Claude Code marketplace before the upstream PR landed. There
+> is no v6.3.0.0 / v6.3.0.1 — the plugin patch jumped to .2 to reflect the
+> two iteration commits during the test cycle.
+
+## [6.2.2.0] - 2026-03-31
+
+### Changed
+
+- Sync core BMAD-METHOD v6.2.0 → v6.2.2
+- Sync BMB v1.1.0 → v1.4.0
+- Sync TEA v1.7.1 → v1.7.3
+
+### Fixed
+
+- Update upstream version badges for bmb, cis, tea
+
+## [6.2.0.4] - 2026-03-23
+
+### Changed
+
+- Sync TEA v1.7.0 → v1.7.1
+- Sync BMB v1.0.2 → v1.1.0
+- Sync CIS v0.1.6 → v0.1.9
+
+## [6.2.0.3] - 2026-03-18
+
+### Fixed
+
+- Resolve all validation warnings: plugin-only agents register correctly,
+  path checker no longer flags expected paths
+
+## [6.2.0.2] - 2026-03-18
+
+### Fixed
+
+- Clean stale files left over after upstream renames
+- Content / workflow validation false positives
+
+## [6.2.0.1] - 2026-03-18
+
+### Changed
+
+- Resolve 23 `workflowWorkarounds` (remove 14 obsolete GDS entries, rename
+  field for clarity)
+
+### Added
+
+- `docs/script-pipeline.md` — full script-pipeline reference
+- Pre-push hook hardening: `set -e` so lint failures block pushes
+
+## [6.2.0.0] - 2026-03-18
+
+### Changed
+
+- Sync core to upstream v6.2.0 (path migration: `src/bmm/workflows/` →
+  `src/bmm-skills/`, agents now embedded in skill dirs)
+- Bump GDS to v0.2.2
+
+### Added
+
+- Path rewriter handles new core-module layout
+- Content checker deduplication
+- TEA workflow workarounds for stale upstream agent refs
+- `gds-domain-research` skill from upstream sync
+
+### Fixed
+
+- Skip `SKILL.md` generation when upstream provides it (prevent overwrite)
+- Remove stale GDS files left over from prior sync
+
+## [6.0.4.3] - 2026-03-09
+
+### Changed
+
+- Consolidate version files into a single `.upstream-versions/` directory
+  (was previously scattered across `.upstream-version-*` dotfiles)
+- Replace `_bmad/_memory/` sidecar paths with Claude Code's native
+  `agent-memory` infrastructure
+- Rewrite `_bmad-output/` paths to plain `bmad-output/` in plugin files
+
+### Added
+
+- `docs/terminology.md` — plugin storage conventions
+- BMAD sidecar memory system analysis research note
+
+## [6.0.4.2] - 2026-03-06
+
+### Changed
+
+- Bump upstreams: core v6.0.4, TEA v1.5.2, GDS v0.1.10
+
+### Added
+
+- `_config/` path rewrites in sync pipeline
+- `agent-manifest.csv` generated alongside the rest of the sync
+- `docs/plugin-distribution.md` — distribution reference
+
+### Fixed
+
+- Roll back issue-tracker store to SQLite, remove duplicate tombstones and
+  stale statuses
+
+## [6.0.3.4] - 2026-02-26
+
+### Changed
+
+- Beads issue-tracker sync before release
+
 ## [6.0.0-Beta.4.1] - 2026-01-29
 
 ### Added
@@ -132,6 +268,17 @@ sources to guarantee zero leftover artifacts from earlier versions.
 
 - Initial BMAD plugin POC
 
+[6.5.0.0]: https://github.com/tgorka/bmad-plugin/compare/v6.3.0.2...v6.5.0.0
+[6.3.0.2]: https://github.com/PabloLION/bmad-plugin/compare/v6.2.2.0...v6.3.0.2
+[6.2.2.0]: https://github.com/PabloLION/bmad-plugin/compare/v6.2.0.4...v6.2.2.0
+[6.2.0.4]: https://github.com/PabloLION/bmad-plugin/compare/v6.2.0.3...v6.2.0.4
+[6.2.0.3]: https://github.com/PabloLION/bmad-plugin/compare/v6.2.0.2...v6.2.0.3
+[6.2.0.2]: https://github.com/PabloLION/bmad-plugin/compare/v6.2.0.1...v6.2.0.2
+[6.2.0.1]: https://github.com/PabloLION/bmad-plugin/compare/v6.2.0.0...v6.2.0.1
+[6.2.0.0]: https://github.com/PabloLION/bmad-plugin/compare/v6.0.4.3...v6.2.0.0
+[6.0.4.3]: https://github.com/PabloLION/bmad-plugin/compare/v6.0.4.2...v6.0.4.3
+[6.0.4.2]: https://github.com/PabloLION/bmad-plugin/compare/v6.0.3.4...v6.0.4.2
+[6.0.3.4]: https://github.com/PabloLION/bmad-plugin/compare/v6.0.0-Beta.4.1...v6.0.3.4
 [6.0.0-Beta.4.1]: https://github.com/PabloLION/bmad-plugin/compare/v6.0.0-Beta.4.0...v6.0.0-Beta.4.1
 [6.0.0-Beta.4.0]: https://github.com/PabloLION/bmad-plugin/compare/v6.0.0-Beta.2.2...v6.0.0-Beta.4.0
 [6.0.0-Beta.2.2]: https://github.com/PabloLION/bmad-plugin/compare/v6.0.0-Beta.2.0...v6.0.0-Beta.2.2

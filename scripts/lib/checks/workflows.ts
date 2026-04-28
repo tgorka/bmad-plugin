@@ -30,7 +30,7 @@ async function getUpstreamWorkflows(): Promise<Set<string>> {
     }
   }
 
-  // Core skills synced via syncCoreExtras (src/core-skills/ since v6.2.2)
+  // Core skills synced via syncCoreExtras from src/core-skills/
   const coreSource = getCoreSource();
   const coreRoot = join(ROOT, '.upstream', coreSource.localPath);
   const coreSkillsDir = join(coreRoot, 'src/core-skills');

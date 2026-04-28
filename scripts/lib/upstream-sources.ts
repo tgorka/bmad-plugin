@@ -60,7 +60,8 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     repo: 'bmadcode/BMAD-METHOD',
     localPath: 'BMAD-METHOD',
     enabled: true,
-    // Core v6.2.2: src/bmm/workflows/ → src/bmm-skills/, agents embedded in skill dirs
+    // src/bmm-skills/ is the canonical workflow root; agents are embedded
+    // in skill dirs (no separate agentsRoot).
     contentRoot: 'src/bmm-skills',
     agentsRoot: undefined,
     flatWorkflows: false,
@@ -84,8 +85,9 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
       'bmad-quick-dev-new-preview',
       'bmad-quick-spec',
     ]),
-    // Core v6.2.2: agents no longer in separate agentsRoot — embedded in skill dirs.
-    // All plugin agent .md files are maintained manually.
+    // Core agents no longer live in a separate agentsRoot — they are embedded
+    // in skill dirs upstream. All plugin agent .md files are maintained
+    // manually under plugins/bmad/agents/.
     pluginOnlyAgents: new Set([
       'bmad-master',
       'tech-writer',

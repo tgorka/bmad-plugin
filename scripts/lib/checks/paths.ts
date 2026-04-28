@@ -25,7 +25,7 @@ const EXPECTED_PATTERNS = [
   /_bmad\/gds\//, // GDS module runtime paths
   /_bmad\/planning\//, // project planning artifacts
   /_bmad\/core\//, // core module runtime paths
-  /_bmad\/bmm-skills\//, // core BMM skills (v6.2.2+ layout)
+  /_bmad\/bmm-skills\//, // core BMM skills layout
   /_bmad\/memory\//, // runtime memory paths (non-underscore variant)
   /_bmad\/config\./, // runtime config files (config.yaml, config.user.yaml)
   /_bmad\/module-help\.csv/, // runtime module help index
