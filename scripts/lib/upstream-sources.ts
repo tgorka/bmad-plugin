@@ -205,12 +205,17 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
       'bmad-skill-manifest.yaml',
       'bmad-manifest.json',
     ]),
-    // GDS v0.2.2 dirs already use gds- prefix; agents are SKILL.md (no YAML refs).
+    // GDS v0.4.0 dirs already use gds- prefix; agents are SKILL.md (no YAML refs).
     // No agent ref mappings needed.
     agentRefMappings: {},
     plannedWorkflows: new Set(['quick-prototype']),
     pluginOnlySkills: new Set(),
-    pluginOnlyAgents: new Set(['tech-writer']),
+    pluginOnlyAgents: new Set([
+      'tech-writer',
+      // Plugin-maintained — no upstream counterpart in GDS v0.4.0
+      'gds-agent-game-qa',
+      'gds-agent-game-scrum-master',
+    ]),
     sharedFileTargets: {},
     pluginOnlyData: new Set(),
   },
