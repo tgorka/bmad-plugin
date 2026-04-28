@@ -1,0 +1,23 @@
+README.md
+  53f5fd546066c045 34-43,46-49,53-59,61-62,80,139-140,142-143,145-146,149-151,161-209,215-217,221-223,227-229,233-242,278-283,286,290-292,295-297,299-303
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "74ecc8cdf1ab409b774010d38cc56c3b10e3f3ef",
+  "prompts": {
+    "53f5fd546066c045": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "eb914947-4db1-47f3-bd89-1f4b33173301",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "tgorka",
+      "messages": [],
+      "total_additions": 17575,
+      "total_deletions": 116,
+      "accepted_lines": 17517,
+      "overriden_lines": 0
+    }
+  }
+}
