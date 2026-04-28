@@ -17,7 +17,7 @@
 
 | Module | Version | Released | Last Checked |
 |---|---|---|---|
-| [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.5.0 | 2026-04-26 | 2026-04-27 |
+| [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.5.0 | 2026-04-26 | 2026-04-28 |
 | [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.15.1 | 2026-04-24 | 2026-04-27 |
 | [BMB](https://github.com/bmad-code-org/bmad-builder) | v1.7.0 | 2026-04-23 | 2026-04-27 |
 | [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.2.0 | 2026-04-23 | 2026-04-27 |

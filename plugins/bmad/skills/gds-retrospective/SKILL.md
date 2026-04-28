@@ -44,7 +44,7 @@ description: 'Post-epic review to extract lessons and assess success. Use when t
 
 ## Required Inputs
 
-- `agent_manifest` = `${CLAUDE_PLUGIN_ROOT}/_shared/agent-manifest.csv`
+- `agent_manifest` = `{project-root}/_bmad/_config/agent-manifest.csv`
 
 ## Context
 
@@ -83,7 +83,7 @@ Treat every entry in `{workflow.persistent_facts}` as foundational context you c
 
 ### Step 4: Load Config
 
-Load config from `.claude/bmad.local.md` and resolve:
+Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 
 - `user_name`
 - `communication_language`

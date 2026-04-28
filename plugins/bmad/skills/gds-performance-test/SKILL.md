@@ -42,7 +42,7 @@ Treat every entry in `{workflow.persistent_facts}` as foundational context you c
 
 ### Step 4: Load Config
 
-Load config from `.claude/bmad.local.md` and resolve:
+Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 
 - `project_name`
 - `user_name`

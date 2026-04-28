@@ -15,7 +15,7 @@
  *   bun scripts/sync-from-installer.ts --keep-install  # don't wipe .upstream-install/
  */
 
-import { rm } from 'node:fs/promises';
+import { exists, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import {
   updateJsonVersionFiles,
@@ -49,10 +49,6 @@ const MODULES = ['bmm', 'bmb', 'cis', 'gds', 'tea'] as const;
 // ────────────────────────────────────────────────────────────────────────
 // Helpers
 // ────────────────────────────────────────────────────────────────────────
-
-async function exists(path: string): Promise<boolean> {
-  return await Bun.file(path).exists();
-}
 
 async function resolveTargetVersion(): Promise<string> {
   if (TAG_OVERRIDE) return TAG_OVERRIDE;
@@ -181,10 +177,7 @@ async function bumpVersionAnchors(version: string): Promise<void> {
   const currentVersion = currentRaw.replace(/^v/, '');
 
   // .plugin-version
-  await Bun.write(
-    VERSION_FILES.pluginVersion,
-    `${newPluginVersionPrefixed}\n`,
-  );
+  await Bun.write(VERSION_FILES.pluginVersion, `${newPluginVersionPrefixed}\n`);
   console.log(`Updated .plugin-version → ${newPluginVersionPrefixed}`);
 
   // package.json + plugin.json + marketplace.json (via shared helper)
