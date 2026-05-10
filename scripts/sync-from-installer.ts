@@ -17,6 +17,7 @@
 
 import { exists, rm } from 'node:fs/promises';
 import { join } from 'node:path';
+import { parse as parseYaml } from 'yaml';
 import {
   updateJsonVersionFiles,
   updateReadmeBadge,
@@ -187,8 +188,9 @@ async function bumpVersionAnchors(version: string): Promise<void> {
   await writeVersionInfo('core', `v${coreVersion}`);
   console.log(`Updated .upstream-versions/core.json → v${coreVersion}`);
 
-  // README badge
-  await updateReadmeBadge();
+  // README badge is regenerated AFTER bumpModuleVersions() writes the
+  // remaining .upstream-versions/<mod>.json files; otherwise the badge
+  // and version table reflect stale module versions.
 }
 
 async function bumpModuleVersions(): Promise<void> {
@@ -197,18 +199,35 @@ async function bumpModuleVersions(): Promise<void> {
     return;
   }
 
-  // Read each module version from the installer's _bmad/<module>/config.yaml
-  // (the installer pins these to whatever it actually installed)
+  // The installer writes canonical module versions to
+  // `_bmad/_config/manifest.yaml` — that's the single source of truth for
+  // what was actually pinned. Per-module `_bmad/<mod>/config.yaml` files
+  // hold runtime config, not version metadata.
+  const manifestPath = join(INSTALL_DIR, '_bmad/_config/manifest.yaml');
+  if (!(await exists(manifestPath))) {
+    console.warn(
+      `  ⚠ ${manifestPath} not found; skipping module version bumps`,
+    );
+    return;
+  }
+
+  const manifest = parseYaml(await Bun.file(manifestPath).text()) as {
+    modules?: Array<{ name: string; version: string }>;
+  };
+  const entries = manifest.modules ?? [];
+
   for (const mod of MODULES) {
-    const cfgPath = join(INSTALL_DIR, `_bmad/${mod}/config.yaml`);
-    if (!(await exists(cfgPath))) continue;
-    const text = await Bun.file(cfgPath).text();
-    // Naive YAML: look for version: <ver>
-    const m = text.match(/^version:\s*"?([^"\n]+)"?/m);
-    if (!m || !m[1]) continue;
-    const ver = m[1].trim();
-    const tag = ver.startsWith('v') ? ver : `v${ver}`;
     if (mod === 'bmm') continue; // 'bmm' is core, handled separately
+    const entry = entries.find((m) => m.name === mod);
+    if (!entry?.version) {
+      console.warn(
+        `  ⚠ no manifest entry for module '${mod}', leaving version untouched`,
+      );
+      continue;
+    }
+    const tag = entry.version.startsWith('v')
+      ? entry.version
+      : `v${entry.version}`;
     await writeVersionInfo(mod, tag);
     console.log(`Updated .upstream-versions/${mod}.json → ${tag}`);
   }
@@ -228,6 +247,9 @@ await wipePluginTree();
 const fileCount = await copyInstallerSkills();
 await bumpVersionAnchors(version);
 await bumpModuleVersions();
+// Regenerate README + badge files after both core and module versions
+// have been written (the badge generator reads .upstream-versions/*.json).
+if (!DRY_RUN) await updateReadmeBadge();
 
 console.log('');
 console.log(`✓ Sync complete: ${fileCount} files in plugins/bmad/skills/`);

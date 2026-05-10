@@ -1,21 +1,21 @@
 # BMAD Ecosystem
 
 > Inventory of all repositories in the `bmad-code-org` GitHub organization,
-> classified by role. Last audited: 2026-04-27.
+> classified by role. Last audited: 2026-05-10.
 
 ## Content Modules
 
 Repos that contain agents and workflows to sync into the plugin. Each module
 follows a standard layout under `src/`.
 
-Counts below reflect **plugin output** at v6.5.0.0 (post-sync, post-prefix-rename
+Counts below reflect **plugin output** at v6.6.0.0 (post-sync, post-prefix-rename
 — some upstream skills get `bmad-` / `gds-` prefixes when synced).
 
 | Module | Code | Repo | Plugin Agents | Plugin Skills | Tracked Version |
 |--------|------|------|---------------|---------------|-----------------|
-| BMM (core method) | `bmm` | `BMAD-METHOD` | 10 | 40 | v6.5.0 |
-| Core (shared) | `core` | `BMAD-METHOD` (same monorepo) | included above | included above | v6.5.0 |
-| TEA | `tea` | `bmad-method-test-architecture-enterprise` | 1 | 10 | v1.15.1 |
+| BMM (core method) | `bmm` | `BMAD-METHOD` | 10 | 40 | v6.6.0 |
+| Core (shared) | `core` | `BMAD-METHOD` (same monorepo) | included above | included above | v6.6.0 |
+| TEA | `tea` | `bmad-method-test-architecture-enterprise` | 1 | 10 | v1.17.0 |
 | BMB | `bmb` | `bmad-builder` | 3 | 4 | v1.7.0 |
 | CIS | `cis` | `bmad-module-creative-intelligence-suite` | 0 | 10 | v0.2.0 |
 | GDS | `gds` | `bmad-module-game-dev-studio` | 7 | 29 | v0.4.0 |
@@ -32,7 +32,7 @@ WDS (`bmad-method-wds-expansion`) is intentionally not integrated — see
   `src/bmm-skills/`; the smaller core skill set (`bmad-help`,
   `bmad-customize`, `bmad-brainstorming`, …) lives under `src/core-skills/`
   and is synced via `syncCoreExtras()`.
-- **TEA** as of v1.15.1 ships its agent natively as `SKILL.md` (instead of
+- **TEA** as of v1.15.1+ ships its agent natively as `SKILL.md` (instead of
   YAML), so no agent-ref mapping is needed for it.
 - **GDS v0.4.0** has fully adopted the `bmad-` prefix and `customize.toml`
   authoring pattern.
@@ -105,8 +105,8 @@ Which modules are configured in our plugin (`scripts/lib/upstream-sources.ts`):
 
 | Module | Source ID | Status | Notes |
 |--------|-----------|--------|-------|
-| BMM + Core | `core` | Configured | v6.5.0 |
-| TEA | `tea` | Configured | v1.15.1 — agent now SKILL.md format |
+| BMM + Core | `core` | Configured | v6.6.0 |
+| TEA | `tea` | Configured | v1.17.0 — agent ships as SKILL.md |
 | BMB | `bmb` | Configured | v1.7.0 |
 | CIS | `cis` | Configured | v0.2.0 |
 | GDS | `gds` | Configured | v0.4.0 — uses `gds-` prefix and `customize.toml` |
