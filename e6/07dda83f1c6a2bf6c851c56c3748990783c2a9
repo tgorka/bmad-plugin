@@ -1,0 +1,19 @@
+scripts/sync-from-installer.ts
+  s_258b3c65b9843d::t_80e38bae81f2fb 208-210,223-225,228-230
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "e607dda83f1c6a2bf6c851c56c3748990783c2a9",
+  "prompts": {},
+  "sessions": {
+    "s_258b3c65b9843d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fdfdcb2d-df67-4ded-a76f-2d2d95855d81",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "tgorka <tomasz@gorka.org.pl>"
+    }
+  }
+}
