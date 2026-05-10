@@ -1,0 +1,78 @@
+plugins/bmad/skills/bmad-create-epics-and-stories/steps/step-02-design-epics.md
+  s_258b3c65b9843d::t_03fdad4890635e 58-59,78-89,98-105,112-113,120-129
+plugins/bmad/skills/bmad-create-epics-and-stories/steps/step-04-final-validation.md
+  s_258b3c65b9843d::t_03fdad4890635e 93-98
+.upstream-versions/core.json
+  s_258b3c65b9843d::t_03fdad4890635e 2-3
+.upstream-versions/gds.json
+  s_258b3c65b9843d::t_92fdca5adc0acf 3
+.upstream-versions/bmb.json
+  s_258b3c65b9843d::t_92fdca5adc0acf 3
+.claude-plugin/marketplace.json
+  s_258b3c65b9843d::t_03fdad4890635e 14
+docs/research.md
+  s_258b3c65b9843d::t_b951a3f0df2f2c 11
+plugins/bmad/skills/bmad-create-architecture/steps/step-07-validation.md
+  s_258b3c65b9843d::t_03fdad4890635e 230,232,234-237,239,241-244,246,248-251,253-258,262
+.github/badges/upstream-version-tea.json
+  s_258b3c65b9843d::t_a44cfd10e4c277 4
+README.md
+  s_258b3c65b9843d::t_4de965c9ba1aad 257
+  s_258b3c65b9843d::t_7420c855c03add 270
+  s_258b3c65b9843d::t_4772f8707a75a6 72
+  s_258b3c65b9843d::t_08393579c1c13e 251
+scripts/sync-from-installer.ts
+  s_258b3c65b9843d::t_d859802669e769 20
+  s_258b3c65b9843d::t_4bfc5d3beba710 191-193
+  ai_agent 208-210,223-224
+  s_258b3c65b9843d::t_521ce5ef809756 202-207,211-216,219-222
+  s_258b3c65b9843d::t_6d116aec11e0e5 246
+.plugin-version
+  s_258b3c65b9843d::t_03fdad4890635e 1
+CHANGELOG.md
+  s_258b3c65b9843d::t_2b59f22bd724fb 413
+  s_258b3c65b9843d::t_ccaf3da1d0cde7 7-64
+.github/badges/upstream-version.json
+  s_258b3c65b9843d::t_03fdad4890635e 4
+plugins/bmad/.claude-plugin/plugin.json
+  s_258b3c65b9843d::t_03fdad4890635e 3
+.upstream-versions/tea.json
+  s_258b3c65b9843d::t_92fdca5adc0acf 2-3
+package.json
+  s_258b3c65b9843d::t_03fdad4890635e 3
+docs/bmad-ecosystem.md
+  s_258b3c65b9843d::t_c8ee7ad54fe00c 4,11,16-18
+  s_258b3c65b9843d::t_2ad9ff66c45798 35
+  s_258b3c65b9843d::t_e79cd8f6007fdd 108-109
+.upstream-versions/cis.json
+  s_258b3c65b9843d::t_92fdca5adc0acf 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "b55fb4d96e2ff4f189b0e789e174d28ce6ea2b24",
+  "prompts": {
+    "53f5fd546066c045": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "eb914947-4db1-47f3-bd89-1f4b33173301",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "tgorka <tomasz@gorka.org.pl>",
+      "total_additions": 17845,
+      "total_deletions": 0,
+      "accepted_lines": 17835,
+      "overriden_lines": 0
+    }
+  },
+  "sessions": {
+    "s_258b3c65b9843d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fdfdcb2d-df67-4ded-a76f-2d2d95855d81",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "tgorka <tomasz@gorka.org.pl>"
+    }
+  }
+}
