@@ -205,7 +205,9 @@ async function bumpModuleVersions(): Promise<void> {
   // hold runtime config, not version metadata.
   const manifestPath = join(INSTALL_DIR, '_bmad/_config/manifest.yaml');
   if (!(await exists(manifestPath))) {
-    console.warn(`  ⚠ ${manifestPath} not found; skipping module version bumps`);
+    console.warn(
+      `  ⚠ ${manifestPath} not found; skipping module version bumps`,
+    );
     return;
   }
 
@@ -218,10 +220,14 @@ async function bumpModuleVersions(): Promise<void> {
     if (mod === 'bmm') continue; // 'bmm' is core, handled separately
     const entry = entries.find((m) => m.name === mod);
     if (!entry?.version) {
-      console.warn(`  ⚠ no manifest entry for module '${mod}', leaving version untouched`);
+      console.warn(
+        `  ⚠ no manifest entry for module '${mod}', leaving version untouched`,
+      );
       continue;
     }
-    const tag = entry.version.startsWith('v') ? entry.version : `v${entry.version}`;
+    const tag = entry.version.startsWith('v')
+      ? entry.version
+      : `v${entry.version}`;
     await writeVersionInfo(mod, tag);
     console.log(`Updated .upstream-versions/${mod}.json → ${tag}`);
   }
