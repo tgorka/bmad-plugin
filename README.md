@@ -13,15 +13,15 @@
 <!-- upstream-badges-end -->
 
 <!-- upstream-version-start -->
-**Plugin version:** v6.5.0.1
+**Plugin version:** v6.6.0.0
 
 | Module | Version | Last Checked |
 |---|---|---|
-| [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.5.0 | 2026-04-28 |
-| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.15.1 | 2026-04-27 |
-| [BMB](https://github.com/bmad-code-org/bmad-builder) | v1.7.0 | 2026-04-27 |
-| [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.2.0 | 2026-04-27 |
-| [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.4.0 | 2026-04-27 |
+| [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.6.0 | 2026-05-10 |
+| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.17.0 | 2026-05-10 |
+| [BMB](https://github.com/bmad-code-org/bmad-builder) | v1.7.0 | 2026-05-10 |
+| [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.2.0 | 2026-05-10 |
+| [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.4.0 | 2026-05-10 |
 <!-- upstream-version-end -->
 
 A Claude Code plugin that transforms Claude into a complete agile development
@@ -69,7 +69,7 @@ In-session (inside Claude Code):
 /plugin
 
 # Pin to a specific version
-/plugin marketplace add PabloLION/bmad-plugin#v6.5.0.0
+/plugin marketplace add PabloLION/bmad-plugin#v6.6.0.0
 ```
 
 External CLI (outside Claude Code):
@@ -248,13 +248,13 @@ with 221 stars. Here is how this plugin differs:
 
 | | **bmad-plugin** (this repo) | aj-geddes/claude-code-bmad-skills |
 |---|---|---|
-| Upstream version tracked | v6.5.0 (all 5 modules pinned via `.upstream-versions/*.json`) | v6 (approximate) |
+| Upstream version tracked | v6.6.0 (all 5 modules pinned via `.upstream-versions/*.json`) | v6 (approximate) |
 | Skills | 102 (41 BMM + 11 TEA + 4 BMB + 10 CIS + 36 GDS) | 4 |
 | Agents | 21 personas (shipped as skills) | 12 |
 | Source of truth | The official `npx bmad-method install --tools claude-code` output (1:1 mirror) | Manual shell-script copy |
 | Automated upstream sync | Yes (GitHub Actions, weekly) | No |
 | Plugin marketplace | Yes (`marketplace.json`) | No (Smithery only) |
-| Last updated | 2026-04-27 (v6.5.0.0) | 2026-01-01 |
+| Last updated | 2026-05-10 (v6.6.0.0) | 2026-01-01 |
 
 **Key advantages:**
 
@@ -267,7 +267,7 @@ with 221 stars. Here is how this plugin differs:
   upstream ships. No custom merge / rewrite layer to drift.
 - **Stays up to date** — a GitHub Actions workflow watches all 5
   upstream repos weekly and creates a sync issue on new releases.
-- **Tracks versions** — the plugin version (`6.5.0.0`) anchors to the
+- **Tracks versions** — the plugin version (`6.6.0.0`) anchors to the
   core BMAD-METHOD release, and every module has its own pinned tag in
   `.upstream-versions/`.
 

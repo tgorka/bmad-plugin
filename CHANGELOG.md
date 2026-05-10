@@ -4,6 +4,64 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [6.6.0.0] - 2026-05-10
+
+Upstream sync: bumps BMAD-METHOD core from v6.5.0 to v6.6.0 and TEA from
+v1.15.1 to v1.17.0. BMB / CIS / GDS were already at the latest stable
+GitHub tag (v1.7.0 / v0.2.0 / v0.4.0) and remain unchanged. Skill count
+holds at **102**; only 3 skill files saw upstream content updates (the
+new "Implementation Efficiency" guidance for `bmad-create-epics-and-stories`).
+
+### Changed
+
+- `plugins/bmad/skills/` regenerated from `npx bmad-method@6.6.0 install
+  --tools claude-code`. The 3 modified skill files all live under
+  `bmad-create-epics-and-stories` and `bmad-create-architecture` —
+  upstream's brownfield epic-scoping enhancement (file-overlap detection
+  + design-completeness gate).
+- `.upstream-versions/tea.json`: v1.15.1 → v1.17.0 (skips v1.16.0).
+  TEA v1.16.0 added Claude cowork support and renamed catalog
+  relationships `after`/`before` → `preceded-by`/`followed-by`. v1.17.0
+  bumped TEA's own GitHub Actions deps. Both are non-breaking from this
+  plugin's perspective; the regenerated TEA skill content already
+  reflects the renamed catalog columns.
+- `scripts/sync-from-installer.ts:bumpModuleVersions()`: rewritten to
+  read the canonical `_bmad/_config/manifest.yaml` produced by the
+  v6.6.0 installer. The previous implementation matched a `version:`
+  field in the per-module `_bmad/<mod>/config.yaml`, which no longer
+  carries module-version metadata — those files now hold runtime config
+  only. Without this fix, module bumps were silently no-ops, so TEA
+  v1.16/v1.17 would not have been picked up.
+- Sync flow re-ordered so `updateReadmeBadge()` runs *after*
+  `bumpModuleVersions()` — otherwise the README badge and version table
+  reflected stale module versions.
+
+### Added
+
+- Brownfield epic scoping principle in `bmad-create-epics-and-stories`
+  (Implementation Efficiency: detect file-overlap between epics and
+  consolidate when the same component is touched repeatedly). Upstream
+  v6.6.0 feature.
+- Upstream installer flags available transparently to end users running
+  the installer directly: `--list-tools`, `--set <module>.<key>=<value>`
+  (repeatable, with prototype-pollution defenses), `--list-options
+  [module]`. Plugin builds keep using `--tools claude-code` exclusively.
+
+### Removed
+
+- Nothing on the plugin side. Upstream v6.6.0 auto-removes legacy
+  pre-v6.2.0 wrapper skills (`bmad-bmm-*`, `bmad-agent-bmm-*`) on user
+  install, but those have not been part of this plugin's tree since
+  v6.5.0.0.
+
+### Breaking-change matrix (from upstream v6.6.0)
+
+| Upstream breaking change | Impact on this plugin |
+| --- | --- |
+| `--tools none` no longer accepted on fresh `--yes` installs | None — sync uses `--tools claude-code` (`scripts/sync-from-installer.ts:90-91`). |
+| `project_name` moved from `[modules.bmm]` to `[core]` in `config.toml`; auto-migrated on user install | None — plugin tree carries no `config.toml`; this affects end-user installs only. |
+| Pre-v6.2.0 wrapper skills `bmad-bmm-*` / `bmad-agent-bmm-*` auto-removed on upgrade | None — none of those names exist in `plugins/bmad/skills/`. |
+
 ## [6.5.0.1] - 2026-04-28
 
 Architectural refactor: the plugin now sources its content directly
@@ -352,6 +410,7 @@ sources to guarantee zero leftover artifacts from earlier versions.
 
 - Initial BMAD plugin POC
 
+[6.6.0.0]: https://github.com/tgorka/bmad-plugin/compare/v6.5.0.1...v6.6.0.0
 [6.5.0.1]: https://github.com/tgorka/bmad-plugin/compare/v6.5.0.0...v6.5.0.1
 [6.5.0.0]: https://github.com/tgorka/bmad-plugin/compare/v6.3.0.2...v6.5.0.0
 [6.3.0.2]: https://github.com/PabloLION/bmad-plugin/compare/v6.2.2.0...v6.3.0.2
