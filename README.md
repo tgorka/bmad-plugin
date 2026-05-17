@@ -139,7 +139,16 @@ claude plugin update bmad@bmad-method
 ```
 
 > **Note (v6.5.0):** the dedicated `init` and `status` skills were removed.
-> Project config now loads automatically from `_bmad/bmm/config.yaml` on first use.
+> Project config now loads from `_bmad/bmm/config.yaml`.
+
+> **Note (v6.6.0.1):** the first time you invoke a `bmad-*` or `gds-*`
+> skill in a project, the plugin auto-seeds `{project-root}/_bmad/` from
+> a bundled template (scripts, configs, module assets). This is what
+> makes the skill's `python3 {project-root}/_bmad/scripts/resolve_customization.py`
+> step succeed without a separate `npx bmad-method install` run. To
+> personalize, edit `_bmad/config.user.toml` and `_bmad/bmm/config.yaml`,
+> or re-run `npx bmad-method install` to walk through the installer
+> prompts (your edits to `_bmad/custom/` are preserved on re-install).
 
 ## Learn BMAD Method
 

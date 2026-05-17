@@ -4,6 +4,47 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [6.6.0.1] - 2026-05-17
+
+Plugin-only patch: auto-seed `_bmad/` runtime scaffolding into the user's
+project on first BMAD skill invocation, so skills no longer fail with
+`python3 … _bmad/scripts/resolve_customization.py: No such file or
+directory` when the user hasn't run `npx bmad-method install` separately.
+No upstream version change.
+
+### Added
+
+- `plugins/bmad/_bmad-template/` — bundled snapshot of the installer's
+  `_bmad/` tree (configs, scripts, module assets). Identity fields
+  baked in by the local installer run (`user_name`, `project_name`)
+  are sanitized to neutral defaults during sync.
+- `plugins/bmad/hooks/scaffold-bmad.py` — Python hook script that
+  idempotently copies `_bmad-template/` into `${CLAUDE_PROJECT_DIR}/_bmad/`
+  when a `bmad-*` or `gds-*` skill is invoked and the directory is
+  missing. Silent for non-BMAD tool calls; never blocks the original
+  call.
+- `hooks.PreToolUse` entry in `plugins/bmad/.claude-plugin/plugin.json`
+  matched on the `Skill` tool, wired to the scaffold script via
+  `${CLAUDE_PLUGIN_ROOT}`.
+
+### Changed
+
+- `scripts/sync-from-installer.ts`: adds `bundleBmadTemplate()` step
+  that wipes and regenerates `plugins/bmad/_bmad-template/` from
+  `.upstream-install/_bmad/` on every sync, with identity-field
+  sanitization. The template now refreshes alongside the skill tree
+  whenever upstream changes.
+
+### Fixed
+
+- First-use UX gap: invoking any BMAD/GDS skill in a project without
+  prior `npx bmad-method install` previously surfaced a Python "no
+  such file" trace. The skill's documented fallback path ("If the
+  script fails, resolve the workflow block yourself…") still works,
+  but users hit the error first. Scaffolding lazily on first
+  invocation eliminates the error without forcing intrusion in
+  non-BMAD projects.
+
 ## [6.6.0.0] - 2026-05-10
 
 Upstream sync: bumps BMAD-METHOD core from v6.5.0 to v6.6.0 and TEA from

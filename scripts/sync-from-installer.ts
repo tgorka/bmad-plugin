@@ -39,11 +39,13 @@ const TAG_OVERRIDE = (() => {
 
 const INSTALL_DIR = join(ROOT, '.upstream-install');
 const INSTALL_SKILLS_DIR = join(INSTALL_DIR, '.claude/skills');
+const INSTALL_BMAD_DIR = join(INSTALL_DIR, '_bmad');
 
 const PLUGIN_SKILLS_DIR = join(PLUGIN, 'skills');
 const PLUGIN_SHARED_DIR = join(PLUGIN, '_shared');
 const PLUGIN_AGENTS_DIR = join(PLUGIN, 'agents');
 const PLUGIN_TEMPLATES_DIR = join(PLUGIN, 'templates');
+const PLUGIN_BMAD_TEMPLATE_DIR = join(PLUGIN, '_bmad-template');
 
 const MODULES = ['bmm', 'bmb', 'cis', 'gds', 'tea'] as const;
 
@@ -119,6 +121,7 @@ async function wipePluginTree(): Promise<void> {
     PLUGIN_SHARED_DIR,
     PLUGIN_AGENTS_DIR,
     PLUGIN_TEMPLATES_DIR,
+    PLUGIN_BMAD_TEMPLATE_DIR,
   ]) {
     if (await exists(dir)) {
       if (DRY_RUN) {
@@ -129,6 +132,77 @@ async function wipePluginTree(): Promise<void> {
       }
     }
   }
+}
+
+/**
+ * Bundle the installer's `_bmad/` runtime scaffolding under
+ * `plugins/bmad/_bmad-template/` so the `scaffold-bmad.py` PreToolUse hook
+ * can seed it into the user's project on first BMAD skill invocation.
+ *
+ * Identity fields are sanitized (the installer baked our local install
+ * directory's name + macOS short username into them). Users can override
+ * by editing `_bmad/config.user.toml` or re-running `npx bmad-method
+ * install`.
+ */
+async function bundleBmadTemplate(): Promise<void> {
+  console.log(`Bundling ${INSTALL_BMAD_DIR} → ${PLUGIN_BMAD_TEMPLATE_DIR}`);
+
+  if (DRY_RUN) {
+    console.log(
+      '  [dry-run] would copy _bmad/ template + sanitize identity fields',
+    );
+    return;
+  }
+
+  if (!(await exists(INSTALL_BMAD_DIR))) {
+    console.warn(`  ⚠ ${INSTALL_BMAD_DIR} not found; skipping template bundle`);
+    return;
+  }
+
+  await Bun.$`mkdir -p ${PLUGIN_BMAD_TEMPLATE_DIR}`.quiet();
+  await Bun.$`cp -R ${INSTALL_BMAD_DIR}/. ${PLUGIN_BMAD_TEMPLATE_DIR}/`.quiet();
+
+  // Sanitize: the installer captured our local cwd basename + macOS short
+  // username. Replace with neutral defaults so users don't inherit them.
+  const findProc = Bun.spawn(['find', PLUGIN_BMAD_TEMPLATE_DIR, '-type', 'f'], {
+    stdout: 'pipe',
+  });
+  const files = (await new Response(findProc.stdout).text())
+    .trim()
+    .split('\n')
+    .filter(Boolean);
+
+  const macUser = (process.env.USER ?? '').trim();
+  let sanitizedCount = 0;
+  for (const file of files) {
+    const original = await Bun.file(file).text();
+    let replaced = original
+      .replace(/user_name: \.upstream-install/g, 'user_name: Friend')
+      .replace(/project_name: \.upstream-install/g, 'project_name: ""')
+      .replace(/project_name = "\.upstream-install"/g, 'project_name = ""');
+    if (macUser) {
+      // Capitalized form is what the installer wrote (e.g. "Tgorka").
+      const macUserCap =
+        macUser.charAt(0).toUpperCase() + macUser.slice(1).toLowerCase();
+      replaced = replaced
+        .replace(
+          new RegExp(`user_name: ${macUserCap}\\b`, 'g'),
+          'user_name: Friend',
+        )
+        .replace(
+          new RegExp(`user_name = "${macUserCap}"`, 'g'),
+          'user_name = "Friend"',
+        );
+    }
+    if (replaced !== original) {
+      await Bun.write(file, replaced);
+      sanitizedCount += 1;
+    }
+  }
+
+  console.log(
+    `  ✓ ${files.length} files bundled (${sanitizedCount} sanitized)`,
+  );
 }
 
 async function copyInstallerSkills(): Promise<number> {
@@ -245,6 +319,7 @@ console.log(DRY_RUN ? '\nDry run — no changes will be made\n' : '');
 await runInstaller(version);
 await wipePluginTree();
 const fileCount = await copyInstallerSkills();
+await bundleBmadTemplate();
 await bumpVersionAnchors(version);
 await bumpModuleVersions();
 // Regenerate README + badge files after both core and module versions
