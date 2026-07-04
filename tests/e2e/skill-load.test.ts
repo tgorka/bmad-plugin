@@ -66,7 +66,7 @@ describe('skill loading', () => {
   );
 
   test.concurrent(
-    'bmad-customize skill loads (NEW v6.5.0)',
+    'bmad-customize skill loads',
     async () => {
       const output = await runClaude('/bmad:bmad-customize');
       expect(output.toLowerCase()).toMatch(/customiz|override|toml|skill/);
@@ -107,15 +107,17 @@ describe('random smoke test', () => {
 
   const SMOKE_POOL = [
     { skill: 'bmad-product-brief', expect: /brief|product/i },
-    { skill: 'bmad-create-prd', expect: /prd|requirement/i },
+    { skill: 'bmad-prd', expect: /prd|requirement/i },
     { skill: 'bmad-code-review', expect: /review|code/i },
     { skill: 'bmad-sprint-status', expect: /sprint|status/i },
     { skill: 'bmad-retrospective', expect: /retro|sprint/i },
     { skill: 'bmad-testarch-automate', expect: /test|automat/i },
     { skill: 'bmad-quick-dev', expect: /quick|implement/i },
     { skill: 'bmad-document-project', expect: /document/i },
-    { skill: 'bmad-create-architecture', expect: /architect/i },
+    { skill: 'bmad-architecture', expect: /architect/i },
     { skill: 'bmad-market-research', expect: /research|market/i },
+    { skill: 'bmad-spec', expect: /spec/i },
+    { skill: 'bmad-forge-idea', expect: /idea|question/i },
   ];
 
   const pick = SMOKE_POOL[Math.floor(Math.random() * SMOKE_POOL.length)];
