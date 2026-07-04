@@ -15,7 +15,7 @@
  *   bun scripts/sync-from-installer.ts --keep-install  # don't wipe .upstream-install/
  */
 
-import { exists, rm } from 'node:fs/promises';
+import { exists, readdir, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
 import {
@@ -40,10 +40,21 @@ const TAG_OVERRIDE = (() => {
 const INSTALL_DIR = join(ROOT, '.upstream-install');
 const INSTALL_SKILLS_DIR = join(INSTALL_DIR, '.claude/skills');
 
+const INSTALL_RUNTIME_DIR = join(INSTALL_DIR, '_bmad');
+
 const PLUGIN_SKILLS_DIR = join(PLUGIN, 'skills');
 const PLUGIN_SHARED_DIR = join(PLUGIN, '_shared');
 const PLUGIN_AGENTS_DIR = join(PLUGIN, 'agents');
 const PLUGIN_TEMPLATES_DIR = join(PLUGIN, 'templates');
+const PLUGIN_RUNTIME_DIR = join(PLUGIN, 'runtime');
+
+/**
+ * Placeholder written into the captured runtime template wherever the
+ * installer baked in the throwaway install-dir name. `scripts/init.sh`
+ * (shipped inside the plugin) replaces it with the real project name
+ * when a working repo is initialized.
+ */
+const PROJECT_NAME_PLACEHOLDER = '__BMAD_PROJECT_NAME__';
 
 const MODULES = ['bmm', 'bmb', 'cis', 'gds', 'tea'] as const;
 
@@ -119,6 +130,7 @@ async function wipePluginTree(): Promise<void> {
     PLUGIN_SHARED_DIR,
     PLUGIN_AGENTS_DIR,
     PLUGIN_TEMPLATES_DIR,
+    PLUGIN_RUNTIME_DIR,
   ]) {
     if (await exists(dir)) {
       if (DRY_RUN) {
@@ -131,15 +143,17 @@ async function wipePluginTree(): Promise<void> {
   }
 }
 
+async function countFiles(dir: string): Promise<number> {
+  const proc = Bun.spawn(['find', dir, '-type', 'f'], { stdout: 'pipe' });
+  const stdout = await new Response(proc.stdout).text();
+  return stdout.trim().split('\n').filter(Boolean).length;
+}
+
 async function copyInstallerSkills(): Promise<number> {
   console.log(`Copying ${INSTALL_SKILLS_DIR} → ${PLUGIN_SKILLS_DIR}`);
 
   if (DRY_RUN) {
-    const proc = Bun.spawn(['find', INSTALL_SKILLS_DIR, '-type', 'f'], {
-      stdout: 'pipe',
-    });
-    const stdout = await new Response(proc.stdout).text();
-    const count = stdout.trim().split('\n').filter(Boolean).length;
+    const count = await countFiles(INSTALL_SKILLS_DIR);
     console.log(`  [dry-run] would copy ${count} files`);
     return count;
   }
@@ -149,13 +163,138 @@ async function copyInstallerSkills(): Promise<number> {
   await Bun.$`mkdir -p ${PLUGIN_SKILLS_DIR}`.quiet();
   await Bun.$`cp -R ${INSTALL_SKILLS_DIR}/. ${PLUGIN_SKILLS_DIR}/`.quiet();
 
-  const proc = Bun.spawn(['find', PLUGIN_SKILLS_DIR, '-type', 'f'], {
-    stdout: 'pipe',
-  });
-  const stdout = await new Response(proc.stdout).text();
-  const count = stdout.trim().split('\n').filter(Boolean).length;
+  const count = await countFiles(PLUGIN_SKILLS_DIR);
   console.log(`  ✓ ${count} files copied`);
   return count;
+}
+
+/**
+ * Remove upstream deprecated compatibility shims from the plugin tree.
+ *
+ * Upstream ships thin forwarder skills (e.g. `bmad-create-prd` →
+ * `bmad-prd`) whose frontmatter description starts with "DEPRECATED".
+ * This plugin intentionally does NOT keep backwards compatibility —
+ * only the current skill surface is published.
+ */
+async function pruneDeprecatedSkills(): Promise<string[]> {
+  console.log('Pruning deprecated compatibility shims...');
+  const pruned: string[] = [];
+
+  if (DRY_RUN) {
+    console.log('  [dry-run] would prune skills with DEPRECATED descriptions');
+    return pruned;
+  }
+
+  const entries = await readdir(PLUGIN_SKILLS_DIR, { withFileTypes: true });
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    const skillMd = join(PLUGIN_SKILLS_DIR, entry.name, 'SKILL.md');
+    if (!(await exists(skillMd))) continue;
+
+    const text = await Bun.file(skillMd).text();
+    const fm = text.match(/^---\n([\s\S]*?)\n---/);
+    if (!fm?.[1]) continue;
+    const meta = parseYaml(fm[1]) as { description?: string };
+    if (meta.description?.trimStart().startsWith('DEPRECATED')) {
+      await rm(join(PLUGIN_SKILLS_DIR, entry.name), {
+        recursive: true,
+        force: true,
+      });
+      pruned.push(entry.name);
+      console.log(`  ✓ removed ${entry.name} (deprecated upstream shim)`);
+    }
+  }
+
+  if (pruned.length === 0) console.log('  (none found)');
+  return pruned;
+}
+
+/**
+ * Capture the installer's `_bmad/` runtime tree as a template inside
+ * the plugin (`plugins/bmad/runtime/_bmad/`).
+ *
+ * Skills resolve config and shared scripts from
+ * `{project-root}/_bmad/...` at run time — files the immutable plugin
+ * cannot provide in the user's working repo. `scripts/init.sh` copies
+ * this template into a working repo (see /bmad:init).
+ */
+async function captureRuntimeTemplate(pruned: string[]): Promise<void> {
+  console.log(`Capturing runtime template → ${PLUGIN_RUNTIME_DIR}/_bmad`);
+
+  if (DRY_RUN) {
+    console.log('  [dry-run] would copy _bmad/ runtime tree into plugin');
+    return;
+  }
+
+  if (!(await exists(INSTALL_RUNTIME_DIR))) {
+    console.error(`Installer output ${INSTALL_RUNTIME_DIR} not found.`);
+    process.exit(1);
+  }
+
+  const dest = join(PLUGIN_RUNTIME_DIR, '_bmad');
+  await Bun.$`mkdir -p ${dest}`.quiet();
+  await Bun.$`cp -R ${INSTALL_RUNTIME_DIR}/. ${dest}/`.quiet();
+
+  // The installer bakes the throwaway install-dir name into config
+  // files as the project name; templatize it for init.sh.
+  const installDirName = INSTALL_DIR.split('/').at(-1) ?? '.upstream-install';
+  const proc = Bun.spawn(['find', dest, '-type', 'f'], { stdout: 'pipe' });
+  const files = (await new Response(proc.stdout).text())
+    .trim()
+    .split('\n')
+    .filter(Boolean);
+  let templatized = 0;
+  for (const file of files) {
+    const text = await Bun.file(file).text();
+    if (!text.includes(installDirName)) continue;
+    await Bun.write(
+      file,
+      text.replaceAll(installDirName, PROJECT_NAME_PLACEHOLDER),
+    );
+    templatized++;
+  }
+  console.log(
+    `  ✓ ${files.length} runtime files captured (${templatized} templatized)`,
+  );
+
+  // Nested .gitignore files (e.g. custom/.gitignore ignoring
+  // *.user.toml) would exclude sibling template files from THIS repo's
+  // git tree — and marketplace installs are git clones, so those files
+  // would vanish from the shipped plugin. Store them as dot.gitignore;
+  // init.sh restores the real name on materialization.
+  for (const file of files) {
+    if (file.split('/').at(-1) === '.gitignore') {
+      const renamed = `${file.slice(0, -'.gitignore'.length)}dot.gitignore`;
+      await Bun.$`mv ${file} ${renamed}`.quiet();
+      console.log(`  ✓ ${file.slice(dest.length + 1)} stored as dot.gitignore`);
+    }
+  }
+
+  // Drop pruned deprecated shims from the installer manifests so the
+  // template carries no references to skills the plugin doesn't ship.
+  if (pruned.length > 0) {
+    const manifests = [
+      join(dest, '_config/skill-manifest.csv'),
+      join(dest, '_config/files-manifest.csv'),
+      join(dest, '_config/bmad-help.csv'),
+    ];
+    for (const manifest of manifests) {
+      if (!(await exists(manifest))) continue;
+      const lines = (await Bun.file(manifest).text()).split('\n');
+      const kept = lines.filter(
+        (line) =>
+          !pruned.some(
+            (name) => line.includes(`"${name}"`) || line.includes(`/${name}/`),
+          ),
+      );
+      if (kept.length !== lines.length) {
+        await Bun.write(manifest, kept.join('\n'));
+        console.log(
+          `  ✓ ${manifest.split('/').at(-1)}: ${lines.length - kept.length} deprecated rows removed`,
+        );
+      }
+    }
+  }
 }
 
 async function bumpVersionAnchors(version: string): Promise<void> {
@@ -244,7 +383,12 @@ console.log(DRY_RUN ? '\nDry run — no changes will be made\n' : '');
 
 await runInstaller(version);
 await wipePluginTree();
-const fileCount = await copyInstallerSkills();
+let fileCount = await copyInstallerSkills();
+const prunedSkills = await pruneDeprecatedSkills();
+if (!DRY_RUN && prunedSkills.length > 0) {
+  fileCount = await countFiles(PLUGIN_SKILLS_DIR);
+}
+await captureRuntimeTemplate(prunedSkills);
 await bumpVersionAnchors(version);
 await bumpModuleVersions();
 // Regenerate README + badge files after both core and module versions
