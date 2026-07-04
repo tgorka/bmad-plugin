@@ -10,11 +10,13 @@ Upstream sync: bumps BMAD-METHOD core from v6.6.0 to v6.10.0 (through
 v6.7 intent-based PRD/Brief, v6.8 planning-shape rework, v6.9
 reasoning/orchestration upgrades, v6.10 bmad-loop era). Module bumps:
 TEA v1.17.0 → v1.19.0, BMB v1.7.0 → v2.1.0, CIS v0.2.0 → v0.2.1, GDS
-v0.4.0 → v0.6.0. Skill count: **102 → 100** (42 BMM + 11 TEA + 4 BMB +
-10 CIS + 33 GDS) — upstream added 11 skills, retired 9, and this
+v0.4.0 → v0.6.0, plus the **new Loop module** (bmad-loop v0.8.0).
+Skill count: **102 → 103** (42 BMM + 11 TEA + 4 BMB + 10 CIS + 33 GDS
++ 3 Loop) — upstream added 11 core-side skills, retired 9, this
 plugin now **prunes upstream's 4 deprecated compatibility shims**
-instead of shipping them. 645 skill files changed (166 added, 265
-deleted, 186 modified, 28 renamed).
+instead of shipping them, and the bmad-loop skill module contributes
+3 more. 645 installer skill files changed (166 added, 265 deleted,
+186 modified, 28 renamed).
 
 ### Added
 
@@ -41,6 +43,17 @@ deleted, 186 modified, 28 renamed).
   `bmad-spec`, `bmad-forge-idea`, `bmad-dev-auto` (unattended dev
   loop), `bmad-eval-runner`, and intent-based GDS consolidations
   `gds-gdd`, `gds-prd`, `gds-ux`, plus `gds-investigate`.
+- **Loop module** (`bmad-code-org/bmad-loop` v0.8.0 — upstream v6.10's
+  successor to bmad-automator). Not an npx-installer module: it is a
+  Python orchestrator tool whose skill module ships inside its repo
+  (`src/bmad_loop/data/skills/`). The sync clones the repo at the tag
+  pinned in `.upstream-versions/loop.json` (`--loop-tag` to override)
+  and copies `bmad-loop-setup` (installs/upgrades the orchestrator
+  tool via `uv` and registers `_bmad/` config + help),
+  `bmad-loop-resolve` (interactive CRITICAL-escalation resolution),
+  and `bmad-loop-sweep` (deferred-work triage, automation-only). The
+  release watcher (`sync-upstream.yml`) gained a `check-loop` job and
+  the README version table / badges a Loop row.
 - `scripts/sync-from-installer.ts`: `pruneDeprecatedSkills()` (drops
   any skill whose frontmatter description starts with `DEPRECATED`)
   and `captureRuntimeTemplate()` (copies `.upstream-install/_bmad/`
@@ -102,7 +115,7 @@ deleted, 186 modified, 28 renamed).
 | `bmad-distillator` retired (v6.8), `bmad-investigate` retired (v6.10) | Removed from the plugin tree; use `bmad-spec` (and `gds-investigate` for game projects). |
 | Python helpers standardized on `uv run` (v6.9; hard requirement in v7) | Skills invoke `uv run _bmad/scripts/*.py`; `/bmad:init` provisions the scripts, `uv` must be on PATH. |
 | Community-modules picker + remote marketplace registry removed from installer (v6.7) | None — sync pins exact module set via `--modules bmm,bmb,cis,gds,tea`. |
-| bmad-automator replaced by bmad-loop module (v6.10) | Neither was ever part of this plugin's module set; `bmad-dev-auto` (in core) is included. |
+| bmad-automator replaced by bmad-loop module (v6.10) | bmad-automator was never shipped; the bmad-loop skill module (v0.8.0) is now included, alongside core's `bmad-dev-auto`. The orchestrator tool installs via `/bmad:bmad-loop-setup`. |
 
 ## [6.6.0.0] - 2026-05-10
 

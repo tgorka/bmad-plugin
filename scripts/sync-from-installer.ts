@@ -7,10 +7,15 @@
  * native tree (correct flat layout, `customize.toml` per skill,
  * agents-as-skills, etc.), so the plugin is a thin wrapper over it.
  *
+ * The bmad-loop skill module is synced separately (it is not an
+ * npx-installer module): the repo is cloned at the tag pinned in
+ * `.upstream-versions/loop.json` and its bundled skills are copied in.
+ *
  * Run:
  *   bun scripts/sync-from-installer.ts                 # use core version
  *                                                       # from .upstream-versions/core.json
  *   bun scripts/sync-from-installer.ts --tag v6.5.0    # pin
+ *   bun scripts/sync-from-installer.ts --loop-tag v0.8.0  # pin bmad-loop
  *   bun scripts/sync-from-installer.ts --dry-run       # preview only
  *   bun scripts/sync-from-installer.ts --keep-install  # don't wipe .upstream-install/
  */
@@ -24,7 +29,7 @@ import {
   VERSION_FILES,
 } from './lib/bump-utils.ts';
 import { PLUGIN, ROOT } from './lib/config.ts';
-import { writeVersionInfo } from './lib/upstream-sources.ts';
+import { readVersion, writeVersionInfo } from './lib/upstream-sources.ts';
 
 // ────────────────────────────────────────────────────────────────────────
 // Args + paths
@@ -36,11 +41,19 @@ const TAG_OVERRIDE = (() => {
   const idx = process.argv.indexOf('--tag');
   return idx >= 0 ? process.argv[idx + 1] : undefined;
 })();
+const LOOP_TAG_OVERRIDE = (() => {
+  const idx = process.argv.indexOf('--loop-tag');
+  return idx >= 0 ? process.argv[idx + 1] : undefined;
+})();
 
 const INSTALL_DIR = join(ROOT, '.upstream-install');
 const INSTALL_SKILLS_DIR = join(INSTALL_DIR, '.claude/skills');
 
 const INSTALL_RUNTIME_DIR = join(INSTALL_DIR, '_bmad');
+
+const LOOP_REPO_URL = 'https://github.com/bmad-code-org/bmad-loop.git';
+const LOOP_CLONE_DIR = join(ROOT, '.upstream-loop');
+const LOOP_SKILLS_SUBDIR = 'src/bmad_loop/data/skills';
 
 const PLUGIN_SKILLS_DIR = join(PLUGIN, 'skills');
 const PLUGIN_SHARED_DIR = join(PLUGIN, '_shared');
@@ -166,6 +179,71 @@ async function copyInstallerSkills(): Promise<number> {
   const count = await countFiles(PLUGIN_SKILLS_DIR);
   console.log(`  ✓ ${count} files copied`);
   return count;
+}
+
+/**
+ * Sync the bmad-loop skill module (bmad-loop-{resolve,sweep,setup}).
+ *
+ * bmad-loop is not an npx-installer module — it is a Python
+ * orchestrator tool (successor to bmad-automator, upstream v6.10)
+ * whose Claude Code skills ship inside its own repo under
+ * `src/bmad_loop/data/skills/` (BMAD module code `bmad-loop`). Clone
+ * the repo at the pinned tag and copy the skill directories 1:1. The
+ * orchestrator tool itself is installed per-project by the
+ * `/bmad:bmad-loop-setup` skill (via `uv tool install`).
+ */
+async function syncLoopSkills(): Promise<number> {
+  const tag = LOOP_TAG_OVERRIDE ?? (await readVersion('loop'));
+  console.log(`Syncing bmad-loop skill module (${tag})...`);
+
+  if (DRY_RUN) {
+    console.log(
+      `  [dry-run] would clone ${LOOP_REPO_URL}@${tag} and copy ${LOOP_SKILLS_SUBDIR}/*`,
+    );
+    return 0;
+  }
+
+  await rm(LOOP_CLONE_DIR, { recursive: true, force: true });
+  const proc = Bun.spawn(
+    [
+      'git',
+      'clone',
+      '--depth',
+      '1',
+      '--branch',
+      tag,
+      LOOP_REPO_URL,
+      LOOP_CLONE_DIR,
+    ],
+    { stdout: 'pipe', stderr: 'pipe' },
+  );
+  const exitCode = await proc.exited;
+  if (exitCode !== 0) {
+    const stderr = await new Response(proc.stderr).text();
+    console.error(`bmad-loop clone failed (exit ${exitCode}):`);
+    console.error(stderr);
+    process.exit(1);
+  }
+
+  const skillsSrc = join(LOOP_CLONE_DIR, LOOP_SKILLS_SUBDIR);
+  if (!(await exists(skillsSrc))) {
+    console.error(`bmad-loop clone has no ${LOOP_SKILLS_SUBDIR}. Aborting.`);
+    process.exit(1);
+  }
+
+  let copied = 0;
+  const entries = await readdir(skillsSrc, { withFileTypes: true });
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue; // skip the tree-level README.md
+    await Bun.$`cp -R ${join(skillsSrc, entry.name)} ${PLUGIN_SKILLS_DIR}/`.quiet();
+    copied++;
+    console.log(`  ✓ ${entry.name}`);
+  }
+
+  await writeVersionInfo('loop', tag);
+  console.log(`Updated .upstream-versions/loop.json → ${tag}`);
+  await rm(LOOP_CLONE_DIR, { recursive: true, force: true });
+  return copied;
 }
 
 /**
@@ -384,8 +462,9 @@ console.log(DRY_RUN ? '\nDry run — no changes will be made\n' : '');
 await runInstaller(version);
 await wipePluginTree();
 let fileCount = await copyInstallerSkills();
+const loopSkillCount = await syncLoopSkills();
 const prunedSkills = await pruneDeprecatedSkills();
-if (!DRY_RUN && prunedSkills.length > 0) {
+if (!DRY_RUN && (prunedSkills.length > 0 || loopSkillCount > 0)) {
   fileCount = await countFiles(PLUGIN_SKILLS_DIR);
 }
 await captureRuntimeTemplate(prunedSkills);

@@ -1,14 +1,19 @@
 # BMAD Method Plugin for Claude Code
 
 Breakthrough Method for Agile AI-Driven Development — a Claude Code plugin
-that provides 100 skills (including 21 agent personas shipped as skills)
-across the 5 BMAD modules: BMM (core method), TEA (test architecture),
-BMB (builder), CIS (creative intelligence), and GDS (game dev studio).
+that provides 103 skills (including 21 agent personas shipped as skills)
+across 6 BMAD modules: BMM (core method), TEA (test architecture),
+BMB (builder), CIS (creative intelligence), GDS (game dev studio), and
+Loop (unattended dev-loop orchestration).
 
 The skill tree is the output of the official
 `npx bmad-method install --tools claude-code` installer, regenerated on
 every sync — with upstream's deprecated compatibility shims pruned, so
-only the current skill surface is published.
+only the current skill surface is published — plus the
+[bmad-loop](https://github.com/bmad-code-org/bmad-loop) skill module
+(`bmad-loop-{setup,resolve,sweep}`), synced from its own repo at a
+pinned tag. `/bmad:bmad-loop-setup` installs the bmad-loop orchestrator
+tool itself (via `uv`).
 
 ## Installation
 
@@ -41,12 +46,13 @@ lives in `runtime/_bmad/` and the initializer in `scripts/init.sh`.
 ## Getting started
 
 ```sh
-/bmad:bmad-help           # skill catalog + module map
-/bmad:bmad-forge-idea     # sharpen a half-formed idea
-/bmad:bmad-product-brief  # draft a product brief
-/bmad:bmad-prd            # create / update / validate a PRD
-/bmad:bmad-architecture   # architecture spine
-/bmad:bmad-customize      # per-skill TOML overrides
+/bmad:bmad-help            # skill catalog + module map
+/bmad:bmad-forge-idea      # sharpen a half-formed idea
+/bmad:bmad-product-brief   # draft a product brief
+/bmad:bmad-prd             # create / update / validate a PRD
+/bmad:bmad-architecture    # architecture spine
+/bmad:bmad-customize       # per-skill TOML overrides
+/bmad:bmad-loop-setup      # install the bmad-loop orchestrator tool
 ```
 
 Agent personas are skills too — e.g. `/bmad:bmad-agent-pm` (John, PM),

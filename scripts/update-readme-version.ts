@@ -27,6 +27,7 @@ const SOURCE_LABELS: Record<string, string> = {
   bmb: 'BMB',
   cis: 'CIS',
   gds: 'GDS',
+  loop: 'Loop',
 };
 
 const GITHUB_RAW_BASE =

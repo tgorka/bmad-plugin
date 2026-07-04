@@ -20,7 +20,8 @@ shims are pruned at sync time and not counted.
 | BMB | `bmb` | `bmad-builder` | 3 (Bond, Wendy, Morgan) | 4 | v2.1.0 |
 | CIS | `cis` | `bmad-module-creative-intelligence-suite` | 6 | 10 | v0.2.1 |
 | GDS | `gds` | `bmad-module-game-dev-studio` | 5 | 33 | v0.6.0 |
-| **Total** | | | **21** | **100** | |
+| Loop | `loop` | `bmad-loop` | 0 | 3 | v0.8.0 |
+| **Total** | | | **21** | **103** | |
 
 WDS (`bmad-method-wds-expansion`) is intentionally not integrated — see
 [Not Ready](#not-ready).
@@ -35,6 +36,13 @@ WDS (`bmad-method-wds-expansion`) is intentionally not integrated — see
 - **GDS v0.6.0** consolidated its planning skills into intent-based
   `gds-gdd` / `gds-prd` / `gds-ux` (the create/edit/validate trios are
   gone) and added `gds-investigate`.
+- **Loop** (`bmad-loop`, upstream v6.10's successor to bmad-automator)
+  is not an npx-installer module. It is a Python orchestrator tool; its
+  skill module (`bmad-loop-{setup,resolve,sweep}`) ships inside the
+  repo under `src/bmad_loop/data/skills/` and is synced via a
+  pinned-tag git clone (`.upstream-versions/loop.json`). The
+  orchestrator tool itself is installed per-project by
+  `/bmad:bmad-loop-setup` (via `uv tool install`).
 - **WDS** still has a placeholder package name (`bmad-module-name`) and no
   release. Not ready for integration.
 
@@ -109,4 +117,5 @@ Which modules are configured in our plugin (`scripts/lib/upstream-sources.ts`):
 | BMB | `bmb` | Configured | v2.1.0 |
 | CIS | `cis` | Configured | v0.2.1 |
 | GDS | `gds` | Configured | v0.6.0 — intent-based `gds-gdd` / `gds-prd` / `gds-ux` |
+| Loop | `loop` | Configured | v0.8.0 — synced via pinned-tag git clone, not the npx installer |
 | WDS | — | Not planned | Not mature enough |

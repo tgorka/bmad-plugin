@@ -62,6 +62,10 @@ describe('skill tree', () => {
       'gds-prd',
       'gds-ux',
       'gds-investigate',
+      // bmad-loop skill module (synced from bmad-code-org/bmad-loop)
+      'bmad-loop-resolve',
+      'bmad-loop-sweep',
+      'bmad-loop-setup',
     ];
     const missing = expected.filter(
       (name) => !existsSync(join(SKILLS_DIR, name, 'SKILL.md')),

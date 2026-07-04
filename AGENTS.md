@@ -50,18 +50,23 @@ The `sync` script:
    `plugins/bmad/runtime/`
 3. Copies `.upstream-install/.claude/skills/*` 1:1 into
    `plugins/bmad/skills/`
-4. Prunes deprecated upstream compatibility shims (any skill whose
+4. Syncs the bmad-loop skill module: clones
+   `bmad-code-org/bmad-loop` at the tag pinned in
+   `.upstream-versions/loop.json` (`--loop-tag` to override) and
+   copies `src/bmad_loop/data/skills/*` (bmad-loop is a Python
+   orchestrator tool, not an npx-installer module)
+5. Prunes deprecated upstream compatibility shims (any skill whose
    frontmatter description starts with `DEPRECATED`) — the plugin
    ships only the current skill surface
-5. Captures `.upstream-install/_bmad/` into `plugins/bmad/runtime/_bmad/`
+6. Captures `.upstream-install/_bmad/` into `plugins/bmad/runtime/_bmad/`
    (the working-repo template consumed by `plugins/bmad/scripts/init.sh`
    / the `/bmad:init` command), templatizing the project name as
    `__BMAD_PROJECT_NAME__` and stripping pruned-shim rows from the
    `_config/*.csv` manifests
-6. Bumps `.plugin-version`, `package.json`, `plugin.json`,
+7. Bumps `.plugin-version`, `package.json`, `plugin.json`,
    `marketplace.json`, and every `.upstream-versions/<id>.json` to
    match the installed module versions
-7. Updates the README version table
+8. Updates the README version table
 
 **Never hand-edit `plugins/bmad/skills/` or `plugins/bmad/runtime/`** —
 both are wiped and regenerated on every sync, and both are excluded
