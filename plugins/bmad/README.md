@@ -1,15 +1,27 @@
 # BMAD Method Plugin for Claude Code
 
 Breakthrough Method for Agile AI-Driven Development — a Claude Code plugin
-that provides structured agents and skills for the full software development
-lifecycle.
+that provides 103 skills (including 21 agent personas shipped as skills)
+across 6 BMAD modules: BMM (core method), TEA (test architecture),
+BMB (builder), CIS (creative intelligence), GDS (game dev studio), and
+Loop (unattended dev-loop orchestration).
+
+The skill tree is the output of the official
+`npx bmad-method install --tools claude-code` installer, regenerated on
+every sync — with upstream's deprecated compatibility shims pruned, so
+only the current skill surface is published — plus the
+[bmad-loop](https://github.com/bmad-code-org/bmad-loop) skill module
+(`bmad-loop-{setup,resolve,sweep}`), synced from its own repo at a
+pinned tag. `/bmad:bmad-loop-setup` installs the bmad-loop orchestrator
+tool itself (via `uv`).
 
 ## Installation
 
 ### From marketplace
 
 ```sh
-claude plugin add bmad
+claude plugin marketplace add PabloLION/bmad-plugin
+claude plugin install bmad@bmad-method
 ```
 
 ### From local directory
@@ -18,36 +30,38 @@ claude plugin add bmad
 claude --plugin-dir /path/to/bmad-plugin/plugins/bmad
 ```
 
-## Agents
+## Initialize your project
 
-| Agent | Role |
-|-------|------|
-| analyst | Business & requirements analyst |
-| architect | Software architect |
-| bmad-master | Orchestrator across all BMAD roles |
-| dev | Developer |
-| pm | Product manager |
-| quick-flow-solo-dev | Solo developer quick-start flow |
-| sm | Scrum master |
-| tea | Test engineering analyst |
-| tech-writer | Technical writer |
-| ux-designer | UX designer |
+Skills resolve per-project files from `{project-root}/_bmad/` (module
+config, shared scripts such as `memlog.py`, help catalogs) and write
+artifacts to configured output folders. Provision them once per repo:
 
-## Skill categories
+```sh
+/bmad:init
+```
 
-- **Planning** — create-product-brief, create-prd, create-architecture,
-  create-epics-and-stories, create-story, sprint-planning
-- **Development** — dev-story, quick-dev, quick-spec, code-review
-- **Design** — create-ux-design, create-wireframe, create-dataflow,
-  create-diagram, create-flowchart
-- **Testing** — atdd, test-design, test-review, trace, nfr-assess, ci
-- **Process** — init, status, sprint-status, retrospective, correct-course,
-  check-implementation-readiness
-- **Utilities** — help, research, brainstorming, document-project, framework,
-  automate
+Idempotent — fills in missing files only, never overwrites. The template
+lives in `runtime/_bmad/` and the initializer in `scripts/init.sh`.
+
+## Getting started
+
+```sh
+/bmad:bmad-help            # skill catalog + module map
+/bmad:bmad-forge-idea      # sharpen a half-formed idea
+/bmad:bmad-product-brief   # draft a product brief
+/bmad:bmad-prd             # create / update / validate a PRD
+/bmad:bmad-architecture    # architecture spine
+/bmad:bmad-customize       # per-skill TOML overrides
+/bmad:bmad-loop-setup      # install the bmad-loop orchestrator tool
+```
+
+Agent personas are skills too — e.g. `/bmad:bmad-agent-pm` (John, PM),
+`/bmad:bmad-tea` (Murat, Test Architect), `/bmad:gds-agent-game-designer`
+(Samus Shepard).
 
 ## Upstream
 
 This plugin is derived from
-[bmadcode/BMAD-METHOD](https://github.com/bmadcode/BMAD-METHOD). See that
-repository for full methodology documentation.
+[bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD).
+See that repository and <http://docs.bmad-method.org> for full
+methodology documentation.

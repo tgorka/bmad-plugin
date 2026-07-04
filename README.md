@@ -10,18 +10,20 @@
 [![BMB Module version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/PabloLION/bmad-plugin/main/.github/badges/upstream-version-bmb.json)](https://github.com/bmad-code-org/bmad-builder)
 [![CIS Module version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/PabloLION/bmad-plugin/main/.github/badges/upstream-version-cis.json)](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite)
 [![GDS Module version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/PabloLION/bmad-plugin/main/.github/badges/upstream-version-gds.json)](https://github.com/bmad-code-org/bmad-module-game-dev-studio)
+[![Loop Module version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/PabloLION/bmad-plugin/main/.github/badges/upstream-version-loop.json)](https://github.com/bmad-code-org/bmad-loop)
 <!-- upstream-badges-end -->
 
 <!-- upstream-version-start -->
-**Plugin version:** v6.6.0.0
+**Plugin version:** v6.10.0.0
 
 | Module | Version | Last Checked |
 |---|---|---|
-| [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.6.0 | 2026-05-10 |
-| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.17.0 | 2026-05-10 |
-| [BMB](https://github.com/bmad-code-org/bmad-builder) | v1.7.0 | 2026-05-10 |
-| [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.2.0 | 2026-05-10 |
-| [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.4.0 | 2026-05-10 |
+| [BMAD Method](https://github.com/bmadcode/BMAD-METHOD) | v6.10.0 | 2026-07-04 |
+| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.19.0 | 2026-07-04 |
+| [BMB](https://github.com/bmad-code-org/bmad-builder) | v2.1.0 | 2026-07-04 |
+| [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.2.1 | 2026-07-04 |
+| [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.6.0 | 2026-07-04 |
+| [Loop](https://github.com/bmad-code-org/bmad-loop) | v0.8.0 | 2026-07-04 |
 <!-- upstream-version-end -->
 
 A Claude Code plugin that transforms Claude into a complete agile development
@@ -36,20 +38,56 @@ the entire `plugins/bmad/skills/` tree is regenerated from a fresh
 installer run, so every file is exactly what an end-user would get from
 the upstream installer. There is no custom merge / rewrite layer.
 
+Three deliberate divergences from the raw installer output:
+
+1. **No backwards-compatibility shims.** Upstream ships deprecated
+   forwarder skills (e.g. `bmad-create-prd` → `bmad-prd`, slated for
+   removal in v7). The sync prunes anything whose frontmatter
+   description starts with `DEPRECATED` — the plugin publishes only
+   the current skill surface.
+2. **Runtime template + initializer.** The installer also writes a
+   per-project `_bmad/` tree (module config, shared scripts like
+   `memlog.py`, help catalogs) that skills resolve from
+   `{project-root}/_bmad/` at run time. The sync captures that tree
+   into `plugins/bmad/runtime/_bmad/`, and `/bmad:init` materializes
+   it into your working repo (see [Step 3](#step-3-initialize-your-project)).
+3. **The bmad-loop skill module.** [bmad-loop](https://github.com/bmad-code-org/bmad-loop)
+   is not an npx-installer module — it is a Python orchestrator tool
+   whose skills ship inside its own repo. The sync clones that repo at
+   the tag pinned in `.upstream-versions/loop.json` and copies its
+   `bmad-loop-{setup,resolve,sweep}` skills into the plugin.
+
 ## Features
 
-- **102 skills across 5 BMAD modules**, including all agent personas as
+- **103 skills across 6 BMAD modules**, including all agent personas as
   Claude Code-native skills:
   - **6 BMM agents** — `bmad-agent-{analyst,pm,ux-designer,architect,dev,tech-writer}`
-  - **35 BMM workflow skills** — analysis → planning → solutioning → implementation
+  - **36 BMM workflow skills** — analysis → planning → solutioning →
+    implementation, including v6.7–v6.10's intent-based `bmad-prd`,
+    `bmad-architecture`, `bmad-ux`, plus `bmad-spec`,
+    `bmad-forge-idea`, `bmad-dev-auto`, and `bmad-eval-runner`
   - **11 TEA skills** — `bmad-tea` (Murat) + 8 `bmad-testarch-*` + 2 helpers
   - **4 BMB skills** — `bmad-{agent,workflow,module}-builder`, `bmad-bmb-setup`
   - **10 CIS skills** — `bmad-cis-*` (design thinking, storytelling,
     problem-solving, brainstorming, innovation strategy, presentation)
-  - **36 GDS skills** — full game-development studio including 5
-    `gds-agent-*` personas
+  - **33 GDS skills** — full game-development studio including 5
+    `gds-agent-*` personas and intent-based `gds-gdd` / `gds-prd` /
+    `gds-ux`
+  - **3 Loop skills** — `bmad-loop-{setup,resolve,sweep}`, the skill
+    module of [bmad-loop](https://github.com/bmad-code-org/bmad-loop)
+    (v6.10's successor to bmad-automator): a deterministic
+    orchestrator that drives `bmad-dev-auto` through pick story →
+    implement → review → verify → commit. `/bmad:bmad-loop-setup`
+    installs the Python orchestrator tool itself (via `uv`)
+- **Intent-based planning skills (v6.7+)** — `bmad-prd`,
+  `bmad-architecture`, `bmad-ux`, `gds-gdd` detect create / update /
+  validate intent from the conversation; the old `create-*` / `edit-*`
+  / `validate-*` skill trios are gone
+- **`/bmad:init` project initializer** — one command provisions the
+  working-repo files skills depend on (`_bmad/` config, shared
+  `memlog.py` / customization-resolver scripts, output folders)
 - **`customize.toml` per skill** — each skill ships an override surface;
-  the new `bmad-customize` skill drives skill / agent customization
+  the `bmad-customize` skill drives skill / agent customization
 - **Progressive Disclosure** — step-by-step workflow execution with
   resumable state per skill
 
@@ -69,7 +107,7 @@ In-session (inside Claude Code):
 /plugin
 
 # Pin to a specific version
-/plugin marketplace add PabloLION/bmad-plugin#v6.6.0.0
+/plugin marketplace add PabloLION/bmad-plugin#v6.10.0.0
 ```
 
 External CLI (outside Claude Code):
@@ -111,6 +149,31 @@ claude plugin install bmad@bmad-method --scope local
 | **Project** | All collaborators | `.claude/settings.json` (in repo) |
 | **Local** | You, this repo only | `.claude/settings.local.json` |
 
+### Step 3: Initialize Your Project
+
+The plugin's skill files are immutable, but skills read per-project
+files from `{project-root}/_bmad/` (module config, the shared
+`memlog.py` / `resolve_customization.py` scripts, help catalogs) and
+write artifacts to configured output folders. Run once per repo:
+
+```sh
+/bmad:init
+```
+
+The initializer is idempotent — it only fills in missing files, never
+overwrites existing ones, so it is also safe to re-run after a plugin
+update to pick up newly added runtime files. It creates:
+
+- `_bmad/` — module config (`config.toml`, per-module `config.yaml`),
+  shared scripts, help catalogs, and the `custom/` override layer
+- `_bmad-output/planning-artifacts/`, `_bmad-output/implementation-artifacts/`
+- `docs/`, `skills/{planning,implementation,test}-artifacts/` — default
+  knowledge and module output folders
+
+Commit `_bmad/` to version control so your team shares one
+configuration (`_bmad/custom/*.user.toml` files are gitignored by the
+shipped `_bmad/custom/.gitignore`).
+
 ### Troubleshooting: Plugin Update Shows Stale Version
 
 `claude plugin update` may report the plugin is "already at the latest version"
@@ -128,18 +191,22 @@ claude plugin update bmad@bmad-method
 ### Quick Start
 
 ```bash
+# Initialize the repo (once): _bmad/ config + output folders
+/bmad:init
+
 # Show available BMAD skills + module map
 /bmad:bmad-help
 
-# Start a workflow (e.g., draft a product brief)
-/bmad:bmad-product-brief
+# Sharpen a half-formed idea (new in v6.9)
+/bmad:bmad-forge-idea
 
-# Customize a skill (v6.5.0+: per-skill TOML overrides)
+# Start a workflow (e.g., draft a product brief, then a PRD)
+/bmad:bmad-product-brief
+/bmad:bmad-prd
+
+# Customize a skill (per-skill TOML overrides)
 /bmad:bmad-customize
 ```
-
-> **Note (v6.5.0):** the dedicated `init` and `status` skills were removed.
-> Project config now loads automatically from `_bmad/bmm/config.yaml` on first use.
 
 ## Learn BMAD Method
 
@@ -184,6 +251,8 @@ upstream `module.yaml`; the table below lists the canonical personas.
 
 ### Phase 1: Analysis
 
+- Idea forging — Socratic interrogation of half-formed ideas
+  (`bmad-forge-idea`, new in v6.9)
 - Brainstorming and ideation (`bmad-brainstorming`)
 - Market, domain, and technical research (`bmad-market-research`,
   `bmad-domain-research`, `bmad-technical-research`)
@@ -191,13 +260,18 @@ upstream `module.yaml`; the table below lists the canonical personas.
 
 ### Phase 2: Planning
 
-- Product Requirements Document (`bmad-create-prd`, `bmad-edit-prd`)
+- Product Requirements Document — create / update / validate in one
+  intent-based skill (`bmad-prd`)
+- Spec kernel — distill messy intent into a tight SPEC.md
+  (`bmad-spec`, new in v6.8)
 - PRFAQ working-backwards (`bmad-prfaq`)
-- UX design specifications (`bmad-create-ux-design`)
+- UX design — DESIGN.md + EXPERIENCE.md (`bmad-ux`, replaces
+  `bmad-create-ux-design`)
 
 ### Phase 3: Solutioning
 
-- System architecture (`bmad-create-architecture`)
+- System architecture — lean ARCHITECTURE-SPINE.md as source of truth
+  (`bmad-architecture`, rewritten in v6.9)
 - Epic and story breakdown (`bmad-create-epics-and-stories`)
 - Implementation readiness check (`bmad-check-implementation-readiness`)
 
@@ -205,11 +279,12 @@ upstream `module.yaml`; the table below lists the canonical personas.
 
 - Sprint planning + status (`bmad-sprint-planning`, `bmad-sprint-status`)
 - Story development (`bmad-dev-story`, `bmad-create-story`)
+- Unattended dev loop (`bmad-dev-auto`, new in v6.10)
 - Code review (`bmad-code-review`)
 - Sprint correction (`bmad-correct-course`)
 - Retrospective (`bmad-retrospective`)
 
-### Phase 5 (v6.5.0+): Customization
+### Phase 5: Customization
 
 - Per-skill `[agent]` and `[workflow]` TOML overrides (`bmad-customize`)
 - Layered config: base `customize.toml` → team `.toml` → user `.user.toml`
@@ -238,7 +313,7 @@ bun install          # install dependencies (Husky hooks set up automatically)
 bun run validate     # run upstream coverage validation
 ```
 
-The validation script checks version consistency (each `.upstream-versions/<id>.json` is well-formed and the plugin version is anchored to the core version) and confirms `plugins/bmad/skills/` has been populated. It runs automatically as a pre-push git hook via Husky.
+The validation script checks version consistency (each `.upstream-versions/<id>.json` is well-formed and the plugin version is anchored to the core version), confirms `plugins/bmad/skills/` has been populated with no deprecated upstream shims, and verifies the runtime template + init assets (`plugins/bmad/runtime/_bmad/`, `scripts/init.sh`, `commands/init.md`) are in place. It runs automatically as a pre-push git hook via Husky.
 
 ## Why This Plugin
 
@@ -248,26 +323,31 @@ with 221 stars. Here is how this plugin differs:
 
 | | **bmad-plugin** (this repo) | aj-geddes/claude-code-bmad-skills |
 |---|---|---|
-| Upstream version tracked | v6.6.0 (all 5 modules pinned via `.upstream-versions/*.json`) | v6 (approximate) |
-| Skills | 102 (41 BMM + 11 TEA + 4 BMB + 10 CIS + 36 GDS) | 4 |
+| Upstream version tracked | v6.10.0 (all 6 modules pinned via `.upstream-versions/*.json`) | v6 (approximate) |
+| Skills | 103 (42 BMM + 11 TEA + 4 BMB + 10 CIS + 33 GDS + 3 Loop) | 4 |
 | Agents | 21 personas (shipped as skills) | 12 |
-| Source of truth | The official `npx bmad-method install --tools claude-code` output (1:1 mirror) | Manual shell-script copy |
+| Source of truth | The official `npx bmad-method install --tools claude-code` output (deprecated shims pruned) | Manual shell-script copy |
+| Project initializer | Yes (`/bmad:init` — `_bmad/` runtime + output folders) | No |
 | Automated upstream sync | Yes (GitHub Actions, weekly) | No |
 | Plugin marketplace | Yes (`marketplace.json`) | No (Smithery only) |
-| Last updated | 2026-05-10 (v6.6.0.0) | 2026-01-01 |
+| Last updated | 2026-07-04 (v6.10.0.0) | 2026-01-01 |
 
 **Key advantages:**
 
-- **Full coverage** — all 102 skills across 5 BMAD modules (core, TEA,
-  BMB, CIS, GDS), including v6.5.0's new `bmad-customize` and the
-  6 BMM agent personas as agent skills. Mirrors the upstream installer's
-  output byte-for-byte.
+- **Full coverage** — all 103 current-surface skills across 6 BMAD
+  modules (core, TEA, BMB, CIS, GDS, Loop), including the intent-based
+  planning skills from v6.7–v6.10 and the 6 BMM agent personas as
+  agent skills. Mirrors the upstream installer's output byte-for-byte
+  — minus upstream's deprecated compatibility shims, which are pruned.
 - **Single source of truth** — every sync regenerates the plugin tree
   from `npx bmad-method install`, so what users get is exactly what
   upstream ships. No custom merge / rewrite layer to drift.
-- **Stays up to date** — a GitHub Actions workflow watches all 5
+- **Works out of the box** — `/bmad:init` provisions the per-project
+  `_bmad/` runtime (config, shared scripts, help catalogs) that skills
+  depend on and that a plugin alone cannot deliver.
+- **Stays up to date** — a GitHub Actions workflow watches all 6
   upstream repos weekly and creates a sync issue on new releases.
-- **Tracks versions** — the plugin version (`6.6.0.0`) anchors to the
+- **Tracks versions** — the plugin version (`6.10.0.0`) anchors to the
   core BMAD-METHOD release, and every module has its own pinned tag in
   `.upstream-versions/`.
 

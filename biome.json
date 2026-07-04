@@ -9,8 +9,8 @@
     "includes": [
       "**",
       "!.beads",
-      "!plugins/bmad/skills/**/templates",
-      "!plugins/bmad/skills/**/data"
+      "!plugins/bmad/skills",
+      "!plugins/bmad/runtime"
     ]
   },
   "javascript": {

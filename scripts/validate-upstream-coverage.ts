@@ -44,11 +44,46 @@ if (!(await exists(skillsDir))) {
   fail(`plugins/bmad/skills/ does not exist — run \`bun run sync\` first`);
 } else {
   const entries = await readdir(skillsDir, { withFileTypes: true });
-  const skillCount = entries.filter((e) => e.isDirectory()).length;
-  if (skillCount === 0) {
+  const skillDirs = entries.filter((e) => e.isDirectory());
+  if (skillDirs.length === 0) {
     fail(`plugins/bmad/skills/ is empty — run \`bun run sync\` first`);
   } else {
-    pass(`plugins/bmad/skills/ contains ${skillCount} skill directories`);
+    pass(`plugins/bmad/skills/ contains ${skillDirs.length} skill directories`);
+  }
+
+  // No deprecated upstream shims — the plugin ships only the current
+  // skill surface (sync prunes DEPRECATED forwarders).
+  const deprecated: string[] = [];
+  for (const dir of skillDirs) {
+    const skillMd = join(skillsDir, dir.name, 'SKILL.md');
+    if (!(await exists(skillMd))) continue;
+    const fm = (await Bun.file(skillMd).text()).match(/^---\n([\s\S]*?)\n---/);
+    if (fm?.[1]?.includes('DEPRECATED')) deprecated.push(dir.name);
+  }
+  if (deprecated.length > 0) {
+    fail(
+      `deprecated upstream shims present: ${deprecated.join(', ')} — run \`bun run sync\``,
+    );
+  } else {
+    pass('no deprecated upstream shims in the skill tree');
+  }
+}
+
+// 3. Runtime template + init assets (working-repo initialization)
+section('Runtime Template');
+const runtimeChecks = [
+  'runtime/_bmad/config.toml',
+  'runtime/_bmad/scripts/memlog.py',
+  'runtime/_bmad/scripts/resolve_customization.py',
+  'runtime/_bmad/_config/bmad-help.csv',
+  'scripts/init.sh',
+  'commands/init.md',
+];
+for (const rel of runtimeChecks) {
+  if (await exists(join(PLUGIN, rel))) {
+    pass(`plugins/bmad/${rel} present`);
+  } else {
+    fail(`plugins/bmad/${rel} missing — run \`bun run sync\``);
   }
 }
 

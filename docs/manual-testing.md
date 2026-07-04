@@ -12,22 +12,35 @@ cd "$(mktemp -d)" && claude --plugin-dir /absolute/path/to/bmad-plugin/plugins/b
 
 ### Skill registration
 
-Type `/bmad-` and verify autocomplete appears. Focus on representative cases:
+Type `/bmad:` and verify autocomplete appears. Focus on representative cases:
 
-- **A core skill** (e.g., `/bmad-dev`) — confirms core upstream sync works
-- **A TEA skill** (e.g., `/bmad-teach-me-testing`) — confirms external module sync works
-- **A skill that exists in both upstreams** (e.g., `/bmad-automate`) — confirms ownership resolution
+- **A core skill** (e.g., `/bmad:bmad-prd`) — confirms core sync works
+- **A TEA skill** (e.g., `/bmad:bmad-teach-me-testing`) — confirms external module sync works
+- **A GDS skill** (e.g., `/bmad:gds-gdd`) — confirms the second categorized module works
 
 If these appear, the rest will too since they use the same registration mechanism.
 
+### Project initialization
+
+Run `/bmad:init` in the empty temp dir. Expected: `_bmad/` (config +
+scripts + `_config` catalogs), `_bmad-output/`, `docs/`, and
+`skills/*-artifacts/` are created, and `project_name` in
+`_bmad/config.toml` matches the directory name. Re-run it — expected:
+`Done: 0 created`, nothing overwritten.
+
 ### Skill execution
 
-Run `/bmad-teach-me-testing` and verify it reads its `instructions.md` and presents the workflow intro. Expected: agent asks what testing topic you want to learn about.
+Run `/bmad:bmad-help` and verify it reads the catalog from
+`_bmad/_config/bmad-help.csv` and presents the module map. The catalog
+must NOT offer deprecated skills (`bmad-create-prd`,
+`bmad-create-architecture`, …) — those are pruned at sync time.
 
-Run `/bmad-atdd` and verify it reads its step files. Expected: agent begins the ATDD workflow and asks about the project context.
+Run `/bmad:bmad-forge-idea` and verify it starts the one-question-at-a-time
+interrogation.
 
 ### What NOT to test manually
 
 - Exhaustive skill listing (covered by E2E tests)
-- File content correctness (covered by `bun run validate`)
+- Deprecated-shim pruning, runtime template, init idempotency (covered
+  by `bun test` and `bun run validate`)
 - Upstream sync integrity (covered by validation checks)

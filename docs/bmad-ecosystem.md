@@ -1,41 +1,48 @@
 # BMAD Ecosystem
 
 > Inventory of all repositories in the `bmad-code-org` GitHub organization,
-> classified by role. Last audited: 2026-05-10.
+> classified by role. Last audited: 2026-07-04.
 
 ## Content Modules
 
 Repos that contain agents and workflows to sync into the plugin. Each module
 follows a standard layout under `src/`.
 
-Counts below reflect **plugin output** at v6.6.0.0 (post-sync, post-prefix-rename
-— some upstream skills get `bmad-` / `gds-` prefixes when synced).
+Counts below reflect **plugin output** at v6.10.0.0. Agent personas ship
+as skills (there is no separate agents/ directory), so the persona count
+is a subset of the skill count. Upstream's deprecated compatibility
+shims are pruned at sync time and not counted.
 
-| Module | Code | Repo | Plugin Agents | Plugin Skills | Tracked Version |
-|--------|------|------|---------------|---------------|-----------------|
-| BMM (core method) | `bmm` | `BMAD-METHOD` | 10 | 40 | v6.6.0 |
-| Core (shared) | `core` | `BMAD-METHOD` (same monorepo) | included above | included above | v6.6.0 |
-| TEA | `tea` | `bmad-method-test-architecture-enterprise` | 1 | 10 | v1.17.0 |
-| BMB | `bmb` | `bmad-builder` | 3 | 4 | v1.7.0 |
-| CIS | `cis` | `bmad-module-creative-intelligence-suite` | 0 | 10 | v0.2.0 |
-| GDS | `gds` | `bmad-module-game-dev-studio` | 7 | 29 | v0.4.0 |
-| Plugin-only | — | (this repo) | 1 (Quinn) | — | — |
-| **Total** | | | **22** | **93** | |
+| Module | Code | Repo | Personas (as skills) | Plugin Skills | Tracked Version |
+|--------|------|------|----------------------|---------------|-----------------|
+| BMM + Core | `bmm` / `core` | `BMAD-METHOD` (same monorepo) | 6 | 42 | v6.10.0 |
+| TEA | `tea` | `bmad-method-test-architecture-enterprise` | 1 (Murat) | 11 | v1.19.0 |
+| BMB | `bmb` | `bmad-builder` | 3 (Bond, Wendy, Morgan) | 4 | v2.1.0 |
+| CIS | `cis` | `bmad-module-creative-intelligence-suite` | 6 | 10 | v0.2.1 |
+| GDS | `gds` | `bmad-module-game-dev-studio` | 5 | 33 | v0.6.0 |
+| Loop | `loop` | `bmad-loop` | 0 | 3 | v0.8.0 |
+| **Total** | | | **21** | **103** | |
 
 WDS (`bmad-method-wds-expansion`) is intentionally not integrated — see
 [Not Ready](#not-ready).
 
 ### Notes
 
-- **BMM + Core** live in the same monorepo (`BMAD-METHOD`). Our plugin config
-  treats them as a single `core` source. BMM workflows live under
-  `src/bmm-skills/`; the smaller core skill set (`bmad-help`,
-  `bmad-customize`, `bmad-brainstorming`, …) lives under `src/core-skills/`
-  and is synced via `syncCoreExtras()`.
+- **BMM + Core** live in the same monorepo (`BMAD-METHOD`). The version
+  pin in `.upstream-versions/core.json` drives the whole sync — the
+  installer resolves compatible versions of the other modules itself.
 - **TEA** as of v1.15.1+ ships its agent natively as `SKILL.md` (instead of
   YAML), so no agent-ref mapping is needed for it.
-- **GDS v0.4.0** has fully adopted the `bmad-` prefix and `customize.toml`
-  authoring pattern.
+- **GDS v0.6.0** consolidated its planning skills into intent-based
+  `gds-gdd` / `gds-prd` / `gds-ux` (the create/edit/validate trios are
+  gone) and added `gds-investigate`.
+- **Loop** (`bmad-loop`, upstream v6.10's successor to bmad-automator)
+  is not an npx-installer module. It is a Python orchestrator tool; its
+  skill module (`bmad-loop-{setup,resolve,sweep}`) ships inside the
+  repo under `src/bmad_loop/data/skills/` and is synced via a
+  pinned-tag git clone (`.upstream-versions/loop.json`). The
+  orchestrator tool itself is installed per-project by
+  `/bmad:bmad-loop-setup` (via `uv tool install`).
 - **WDS** still has a placeholder package name (`bmad-module-name`) and no
   release. Not ready for integration.
 
@@ -105,9 +112,10 @@ Which modules are configured in our plugin (`scripts/lib/upstream-sources.ts`):
 
 | Module | Source ID | Status | Notes |
 |--------|-----------|--------|-------|
-| BMM + Core | `core` | Configured | v6.6.0 |
-| TEA | `tea` | Configured | v1.17.0 — agent ships as SKILL.md |
-| BMB | `bmb` | Configured | v1.7.0 |
-| CIS | `cis` | Configured | v0.2.0 |
-| GDS | `gds` | Configured | v0.4.0 — uses `gds-` prefix and `customize.toml` |
+| BMM + Core | `core` | Configured | v6.10.0 |
+| TEA | `tea` | Configured | v1.19.0 — agent ships as SKILL.md |
+| BMB | `bmb` | Configured | v2.1.0 |
+| CIS | `cis` | Configured | v0.2.1 |
+| GDS | `gds` | Configured | v0.6.0 — intent-based `gds-gdd` / `gds-prd` / `gds-ux` |
+| Loop | `loop` | Configured | v0.8.0 — synced via pinned-tag git clone, not the npx installer |
 | WDS | — | Not planned | Not mature enough |

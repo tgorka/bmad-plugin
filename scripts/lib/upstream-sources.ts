@@ -19,7 +19,7 @@ import { join } from 'node:path';
 import { ROOT } from './config.ts';
 
 export interface UpstreamSource {
-  /** Unique identifier: "core", "tea", "bmb", "cis", "gds" */
+  /** Unique identifier: "core", "tea", "bmb", "cis", "gds", "loop" */
   id: string;
   /** GitHub org/repo (used by sync-upstream.yml release watcher) */
   repo: string;
@@ -45,6 +45,11 @@ export const UPSTREAM_SOURCES: UpstreamSource[] = [
     repo: 'bmad-code-org/bmad-module-game-dev-studio',
     enabled: true,
   },
+  // Not an npx-installer module: bmad-loop is a Python orchestrator
+  // tool whose skill module ships inside its repo
+  // (src/bmad_loop/data/skills). sync-from-installer.ts syncs it via
+  // a pinned-tag git clone.
+  { id: 'loop', repo: 'bmad-code-org/bmad-loop', enabled: true },
 ];
 
 // --- Version file helpers ---

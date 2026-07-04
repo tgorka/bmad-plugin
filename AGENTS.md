@@ -18,7 +18,8 @@ All scripts use `bun run <script>`. For local tooling (biome, tsc), use
 | sync | `bun run sync` | Regenerate plugin tree from `npx bmad-method install` |
 | sync:dry | `bun run sync:dry` | Preview a sync without writing files |
 | update-readme | `bun run update-readme` | Update README version table + badge files |
-| test | `bun run test` | Run tests |
+| test | `bun run test` | Run all tests (incl. e2e — needs the `claude` CLI) |
+| test:unit | `bun run test:unit` | Run unit tests only (plugin tree + init script; runs in CI) |
 | release | `./scripts/release.sh [version]` | Full release workflow (see Release below) |
 
 ## Upstream Sync
@@ -29,12 +30,12 @@ upstream version:
 
 ```sh
 # 1. Pin the new core version
-echo '{"version":"v6.5.1","syncedAt":"2026-04-28"}' > .upstream-versions/core.json
+echo '{"version":"v6.10.0","syncedAt":"2026-07-04"}' > .upstream-versions/core.json
 
 # 2. Run the installer-based sync
-bun run sync                    # uses .upstream-versions/core.json
+bun run sync                     # uses .upstream-versions/core.json
 # OR
-bun run sync -- --tag v6.5.1    # ad-hoc tag override
+bun run sync -- --tag v6.10.0    # ad-hoc tag override
 
 # 3. Verify
 bun run typecheck && bun run lint && bun run validate && bun run test
@@ -45,13 +46,32 @@ The `sync` script:
 1. Runs `npx -y bmad-method@<version> install --yes --directory
    .upstream-install --modules bmm,bmb,cis,gds,tea --tools claude-code`
 2. Wipes `plugins/bmad/skills/`, `plugins/bmad/_shared/`,
-   `plugins/bmad/agents/`, `plugins/bmad/templates/`
+   `plugins/bmad/agents/`, `plugins/bmad/templates/`,
+   `plugins/bmad/runtime/`
 3. Copies `.upstream-install/.claude/skills/*` 1:1 into
    `plugins/bmad/skills/`
-4. Bumps `.plugin-version`, `package.json`, `plugin.json`,
+4. Syncs the bmad-loop skill module: clones
+   `bmad-code-org/bmad-loop` at the tag pinned in
+   `.upstream-versions/loop.json` (`--loop-tag` to override) and
+   copies `src/bmad_loop/data/skills/*` (bmad-loop is a Python
+   orchestrator tool, not an npx-installer module)
+5. Prunes deprecated upstream compatibility shims (any skill whose
+   frontmatter description starts with `DEPRECATED`) — the plugin
+   ships only the current skill surface
+6. Captures `.upstream-install/_bmad/` into `plugins/bmad/runtime/_bmad/`
+   (the working-repo template consumed by `plugins/bmad/scripts/init.sh`
+   / the `/bmad:init` command), templatizing the project name as
+   `__BMAD_PROJECT_NAME__` and stripping pruned-shim rows from the
+   `_config/*.csv` manifests
+7. Bumps `.plugin-version`, `package.json`, `plugin.json`,
    `marketplace.json`, and every `.upstream-versions/<id>.json` to
    match the installed module versions
-5. Updates the README version table
+8. Updates the README version table
+
+**Never hand-edit `plugins/bmad/skills/` or `plugins/bmad/runtime/`** —
+both are wiped and regenerated on every sync, and both are excluded
+from biome so upstream content stays byte-for-byte identical to the
+installer output.
 
 If only a non-core module changed, the installer still pulls the
 latest matching versions for that core release — there's no separate
@@ -121,7 +141,8 @@ Script everything repeatable — never do manually what a script can do.
   and rebuilds the entire plugin tree from its output)
 - Preview a sync → `bun run sync:dry`
 - README badge / version table refresh → `bun run update-readme`
-- Validate → `bun run validate` (version consistency + skill-tree sanity)
+- Validate → `bun run validate` (version consistency + skill-tree
+  sanity + no-deprecated-shims + runtime-template/init assets)
 - All scripts are **idempotent** — running them twice produces the same
   result. Always run a script twice to verify idempotency after
   changes.
