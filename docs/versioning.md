@@ -6,9 +6,10 @@ The plugin version is **anchored to the core BMAD-METHOD upstream version**.
 
 Current format: `<upstream-version>.X` where:
 
-- `<upstream-version>` is the core BMAD-METHOD release verbatim (e.g., `6.5.0`)
-- `.X` is a plugin patch counter, reset to 1 on each new upstream release, incremented
-  on additional plugin releases within the same upstream version
+- `<upstream-version>` is the core BMAD-METHOD release verbatim (e.g., `6.10.0`)
+- `.X` is a plugin patch counter, reset to 0 on each new upstream release
+  (e.g., `6.10.0.0`), incremented on additional plugin releases within the
+  same upstream version
 
 The plugin version lives in `plugins/bmad/.claude-plugin/plugin.json`.
 

@@ -4,6 +4,106 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [6.10.0.0] - 2026-07-04
+
+Upstream sync: bumps BMAD-METHOD core from v6.6.0 to v6.10.0 (through
+v6.7 intent-based PRD/Brief, v6.8 planning-shape rework, v6.9
+reasoning/orchestration upgrades, v6.10 bmad-loop era). Module bumps:
+TEA v1.17.0 → v1.19.0, BMB v1.7.0 → v2.1.0, CIS v0.2.0 → v0.2.1, GDS
+v0.4.0 → v0.6.0. Skill count: **102 → 100** (42 BMM + 11 TEA + 4 BMB +
+10 CIS + 33 GDS) — upstream added 11 skills, retired 9, and this
+plugin now **prunes upstream's 4 deprecated compatibility shims**
+instead of shipping them. 645 skill files changed (166 added, 265
+deleted, 186 modified, 28 renamed).
+
+### Added
+
+- **Working-repo initializer.** Skills resolve per-project files from
+  `{project-root}/_bmad/` (module config, shared scripts like
+  `memlog.py` / `resolve_customization.py` — mandatory since v6.9's
+  canonical memlog) which the immutable plugin cannot provide. New:
+  - `plugins/bmad/runtime/_bmad/` — the installer's runtime tree
+    (40 files), captured at sync time with the project name
+    templatized as `__BMAD_PROJECT_NAME__` and deprecated-shim rows
+    stripped from the `_config/*.csv` manifests. Nested `.gitignore`
+    files are stored as `dot.gitignore` (a real one would exclude
+    sibling template files from this repo — and marketplace installs
+    are git clones); init.sh restores the real name.
+  - `plugins/bmad/scripts/init.sh` — idempotent initializer: fills in
+    missing `_bmad/` files (never overwrites), substitutes the real
+    project name, creates the default output folders
+    (`_bmad-output/*`, `docs/`, `skills/*-artifacts`). Supports
+    `--dry-run` and a target-dir argument.
+  - `plugins/bmad/commands/init.md` — `/bmad:init` slash command
+    wrapping the script (plugin.json now declares `commands`).
+- New upstream skills since v6.6.0: `bmad-prd`, `bmad-architecture`
+  (ARCHITECTURE-SPINE rewrite), `bmad-ux` (DESIGN.md + EXPERIENCE.md),
+  `bmad-spec`, `bmad-forge-idea`, `bmad-dev-auto` (unattended dev
+  loop), `bmad-eval-runner`, and intent-based GDS consolidations
+  `gds-gdd`, `gds-prd`, `gds-ux`, plus `gds-investigate`.
+- `scripts/sync-from-installer.ts`: `pruneDeprecatedSkills()` (drops
+  any skill whose frontmatter description starts with `DEPRECATED`)
+  and `captureRuntimeTemplate()` (copies `.upstream-install/_bmad/`
+  into the plugin and templatizes it). `plugins/bmad/runtime/` is part
+  of the wipe-and-regenerate cycle.
+- Tests: `tests/plugin-tree.test.ts` (no deprecated shims, retired
+  skills absent, new surface present, runtime template complete) and
+  `tests/init-script.test.ts` (structure, name substitution,
+  idempotency, `--dry-run`). `bun run validate` now also checks the
+  runtime template, init assets, and the no-deprecated-shims
+  invariant.
+
+### Changed
+
+- `plugins/bmad/skills/` regenerated from `npx bmad-method@6.10.0
+  install --tools claude-code`. Headline upstream changes: PRD /
+  Product Brief / Architecture / UX / GDD are single intent-based
+  skills (create / update / validate detected from conversation);
+  party-mode gained custom parties and persistent memory; shared
+  append-only memlog (`uv run _bmad/scripts/memlog.py`) replaces
+  per-skill decision logs; Edge Case Hunter gained severity triage.
+- `plugins/bmad/README.md` rewritten — it still described the
+  pre-v6.3 agent roster (`bmad-master`, `sm`, `quick-flow-solo-dev`)
+  and old skill categories.
+- `tests/e2e/skill-load.test.ts` smoke pool: `bmad-create-prd` →
+  `bmad-prd`, `bmad-create-architecture` → `bmad-architecture`; added
+  `bmad-spec` and `bmad-forge-idea`.
+- `biome.json`: `plugins/bmad/skills/` and `plugins/bmad/runtime/`
+  are fully excluded. Upstream v6.10 ships lintable assets (e.g.
+  `report-shell.html`, `adapter-claude-code.json`) that biome would
+  otherwise reformat, breaking the byte-for-byte mirror.
+- `scripts/lib/bump-utils.ts`: idempotent re-sync no longer emits
+  spurious `version not found` warnings when old == new version.
+- Sync summary recounts files after pruning (was reporting the
+  pre-prune copy count).
+
+### Removed
+
+- **Upstream deprecated shims are no longer shipped** (plugin policy:
+  current surface only, no backwards compatibility):
+  `bmad-create-prd`, `bmad-edit-prd`, `bmad-validate-prd`,
+  `bmad-create-architecture` — all four are thin forwarders to
+  `bmad-prd` / `bmad-architecture` slated for removal in upstream v7.
+  Their rows are also stripped from the runtime template manifests.
+- Retired upstream between v6.6.0 and v6.10.0 (absent from the
+  regenerated tree): `bmad-distillator` (superseded by `bmad-spec`,
+  v6.8), `bmad-create-ux-design` (replaced by `bmad-ux`, v6.8),
+  `gds-create-gdd` / `gds-edit-gdd` / `gds-validate-gdd` /
+  `gds-create-prd` / `gds-edit-prd` / `gds-validate-prd` /
+  `gds-create-ux-design` (consolidated into `gds-gdd` / `gds-prd` /
+  `gds-ux`, GDS v0.6.0). `bmad-investigate` (added v6.7, retired
+  v6.10) never appeared in a plugin release.
+
+### Breaking-change matrix (upstream v6.7.0 → v6.10.0)
+
+| Upstream breaking change | Impact on this plugin |
+| --- | --- |
+| PRD/Brief/Architecture/UX consolidated into intent-based skills; old names shipped only as deprecated shims | Shims are pruned — invoke `bmad-prd`, `bmad-architecture`, `bmad-ux` directly. Existing `_bmad/custom/bmad-create-*.toml` overrides must be migrated to the new skill names. |
+| `bmad-distillator` retired (v6.8), `bmad-investigate` retired (v6.10) | Removed from the plugin tree; use `bmad-spec` (and `gds-investigate` for game projects). |
+| Python helpers standardized on `uv run` (v6.9; hard requirement in v7) | Skills invoke `uv run _bmad/scripts/*.py`; `/bmad:init` provisions the scripts, `uv` must be on PATH. |
+| Community-modules picker + remote marketplace registry removed from installer (v6.7) | None — sync pins exact module set via `--modules bmm,bmb,cis,gds,tea`. |
+| bmad-automator replaced by bmad-loop module (v6.10) | Neither was ever part of this plugin's module set; `bmad-dev-auto` (in core) is included. |
+
 ## [6.6.0.0] - 2026-05-10
 
 Upstream sync: bumps BMAD-METHOD core from v6.5.0 to v6.6.0 and TEA from
