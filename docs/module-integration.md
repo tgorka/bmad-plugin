@@ -289,6 +289,37 @@ skill's prose: `mc-graphics`, `mc-setup` and `mc-stream-pack` all delegate
 sound work to `mc-audio` by name. Check for those by hand when a module
 under-installs.
 
+### A module can depend on a skill the installer stops installing by default
+
+The sibling of the case above, and the reason the sync passes `--shims` —
+its one deliberate divergence from the installer's defaults.
+
+Core v6.12.0 made the v6 deprecation shims opt-in: `--shims` /
+`--no-shims`, declined by default in a non-interactive install, and the
+interactive prompt recommends declining. Upstream's own
+`v6-shims/README.md` was not updated and still says they ship by default,
+so it cannot be used to decide this either way.
+
+What decides it is what the bundled modules actually reference. GDS v0.7.2
+names three shim IDs in content that is executed, not narrated:
+
+```sh
+# live instructions
+grep -rn 'bmad-review-adversarial-general' plugins/bmad/skills/gds-*
+# live configuration
+grep -rn '"skill:bmad-editorial-review' plugins/bmad/skills/*/customize.toml
+```
+
+Without `--shims` the tree drops from 111 skills to 90, and five game-dev
+skills instruct the agent to invoke skills that are not installed.
+
+`bun run validate` turns this from a comment into a check: it resolves
+every `"skill:<id>"` value in every `customize.toml` against the shipped
+skill set. Those values are live config the skill dispatches on, unlike
+prose that merely mentions an old name — which is why the check reads
+TOML and not Markdown. When GDS stops naming them, the gate goes quiet and
+the flag can be dropped.
+
 ### Per-module artifact defaults can point at `{project-root}/skills/`
 
 Some modules ship output paths that collide with the working repo's own
@@ -315,7 +346,7 @@ the collision called out in the plugin README and overridden in the user's
 | Command | Purpose |
 |---|---|
 | `bun run sync` | Full regeneration: clone custom sources, run the installer, wipe and rebuild every plugin tree, bump versions, refresh README and badges |
-| `bun run sync -- --tag v6.11.0` | Pin the core release for this run |
+| `bun run sync -- --tag v6.12.0` | Pin the core release for this run |
 | `bun run sync -- --manticore-tag v1.0.1` | Pin one custom source (`--<id>-tag`) |
 | `bun run sync:dry` | Preview only (`--dry-run`) |
 | `bun run sync -- --keep-install` | Keep the throwaway `.upstream-install*` dirs and custom-source clones |
@@ -324,5 +355,5 @@ the collision called out in the plugin README and overridden in the user's
 | `bun run update-readme` | Regenerate README badges/table and `.github/badges/*.json` alone |
 | `bun scripts/list-sources.ts` | Emit the watcher matrix as JSON |
 
-The current surface: 110 skills in `plugins/bmad/skills/`, 15 in
+The current surface: 111 skills in `plugins/bmad/skills/`, 15 in
 `plugins/bmad-manticore/skills/`.

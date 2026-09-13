@@ -4,7 +4,64 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [Unreleased]
+## [6.12.0.0] - 2026-09-13
+
+Upstream sync: BMAD-METHOD **v6.11.0 → v6.12.0**. Module bumps, all read
+back from the installer's own `_bmad/_config/manifest.yaml`: BMB v2.2.1 →
+**v2.2.2**, CIS v0.3.1 → **v0.3.2**, GDS v0.7.1 → **v0.7.2**, TEA v1.23.3
+→ **v1.26.0**, BMad Loop v0.11.0 → **v0.11.1**. BMad Manticore stays on
+**v1.0.1** and the module template on **f1440ec8** — neither has moved
+upstream. Skill count **110 → 111**.
+
+### Changed
+
+- **The sync now passes `--shims`, and that is the pipeline's one
+  deliberate divergence from the installer's defaults.** v6.12.0 made the
+  v6 deprecation shims opt-in; the installer gained `--shims` /
+  `--no-shims`, a non-interactive install defaults to declining them, and
+  the interactive prompt says "Recommended: No".
+
+  That default is right for a single-module install and wrong for this
+  bundle, because GDS v0.7.2 still depends on three shim IDs — in live
+  instructions and live configuration, not in prose:
+
+  - `gds-quick-dev/step-oneshot.md:22` — "Invoke the
+    `bmad-review-adversarial-general` skill in a subagent"
+  - `gds-code-review/steps/step-02-review.md:21`,
+    `gds-quick-dev/step-04-review.md:28`
+  - `gds-ux/customize.toml:80-81`,
+    `gds-create-game-brief/customize.toml:67-68` — `doc_standards`
+    listing `"skill:bmad-editorial-review-structure"` and
+    `"skill:bmad-editorial-review-prose"`
+
+  Installing with the new default produced a 90-skill tree in which five
+  game-dev skills instruct the agent to invoke skills the plugin does not
+  contain. Note this is **not** the v6.11.0.0 argument restated: that one
+  quoted upstream's `v6-shims/README.md`, which v6.12.0 has left stale.
+  This one is measured from the shipped GDS files.
+- `bmad-checkpoint-preview` is renamed `bmad-walkthrough` (`CK` → `WT`)
+  upstream; the old ID forwards, so both ship.
+
+### Added
+
+- **A gate for the divergence.** `bun run validate` resolves every
+  `"skill:<id>"` value in every `customize.toml` against the shipped
+  skill set. Those are live config a skill dispatches on, unlike prose
+  that merely mentions an old name, so a dangling one is a broken
+  cross-module call. Mutation-verified: removing
+  `bmad-editorial-review-structure` fails validate and names both GDS
+  files that depend on it. When GDS stops referencing them the gate goes
+  quiet and `--shims` can be dropped.
+
+### Upstream notes worth knowing
+
+Two v6.12.0 renames break custom overrides: `persistent_facts` now ships
+empty (re-add `project-context.md` to your override if you relied on the
+auto-load), and `{diff_output}` is now `{diff_file}`. Build no longer
+auto-triggers on interactive edits, git bookkeeping or formatting chores
+and sizes its own ceremony after investigating; review triage logs a
+verdict and evidence per finding; `bmad-project-context` adopts a
+handwritten `AGENTS.md` rather than rewriting it.
 
 ### Fixed
 

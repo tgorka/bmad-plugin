@@ -30,7 +30,7 @@ upstream version:
 
 ```sh
 # Regenerate against a new core release (also rewrites the pin)
-bun run sync -- --tag v6.11.0
+bun run sync -- --tag v6.12.0
 
 # …or re-run against the currently pinned versions
 bun run sync
@@ -63,9 +63,13 @@ The `sync` script:
    `plugins/bmad/templates/module-template`, and each sibling plugin's
    `skills/` + `runtime/`.
 4. Copies `.upstream-install/.claude/skills/*` 1:1 into
-   `plugins/bmad/skills/`. **Deprecated shims are not pruned** — upstream
-   keeps them because external module repos still invoke those IDs, and
-   removes them at the v7 cut.
+   `plugins/bmad/skills/`. The installer runs with `--shims`, the one
+   deliberate divergence from its defaults: v6.12.0 made the v6
+   deprecation shims opt-in, but GDS still invokes three of them from live
+   instructions and live `customize.toml` values, so a default install
+   leaves five game-dev skills calling skills that are not there.
+   `bun run validate` resolves every `"skill:<id>"` reference against the
+   shipped set, so the day that stops being true the gate says so.
 5. Captures `.upstream-install/_bmad/` into `plugins/bmad/runtime/_bmad/`,
    replacing the installing machine's values with
    `__BMAD_PROJECT_NAME__`, `__BMAD_USER_NAME__` and

@@ -11,7 +11,7 @@
       "name": "bmad",
       "source": "./plugins/bmad",
       "description": "BMAD Method - Breakthrough Method for Agile AI-Driven Development. Core, BMM, BMad Builder, Creative Intelligence Suite, Game Dev Studio, Test Architect and BMad Loop in one plugin, plus /bmad:init to set a repo up.",
-      "version": "6.11.0.0"
+      "version": "6.12.0.0"
     },
     {
       "name": "bmad-manticore",

@@ -1,8 +1,8 @@
 # BMAD Ecosystem
 
 > What this bundle ships, and the state of the wider `bmad-code-org`
-> organization. Last audited: **2026-08-20** against plugin v6.11.0.0 /
-> core BMAD v6.11.0.
+> organization. Last audited: **2026-09-13** against plugin v6.12.0.0 /
+> core BMAD v6.12.0.
 >
 > Every count, version and repo claim below was derived in the audit —
 > from this tree or from `gh api`. The derivation is named beside the
@@ -17,10 +17,10 @@ marketplace name `bmad-method`:
 
 | Plugin | Source | Version | Skills |
 |--------|--------|---------|--------|
-| `bmad` | `./plugins/bmad` | 6.11.0.0 | 110 |
+| `bmad` | `./plugins/bmad` | 6.12.0.0 | 111 |
 | `bmad-manticore` | `./plugins/bmad-manticore` | 1.0.1 | 15 |
 
-Skill counts: `ls plugins/bmad/skills | wc -l` → 110,
+Skill counts: `ls plugins/bmad/skills | wc -l` → 111,
 `ls plugins/bmad-manticore/skills | wc -l` → 15. Versions cross-checked
 against each plugin's `.claude-plugin/plugin.json`; a `bun run validate`
 gate asserts every declared plugin's `plugin.json` name and version equal
@@ -44,20 +44,20 @@ sources. Its `kind` field is the delivery vocabulary used below:
 
 | Module | Code | Repo | Delivery | Pinned version | Personas | Skills |
 |--------|------|------|----------|----------------|----------|--------|
-| Core | `core` | `BMAD-METHOD` | installer | v6.11.0 | 0 | 14 |
-| BMM | `bmm` | `BMAD-METHOD` (same monorepo) | installer | 6.11.0 | 5 | 35 |
-| TEA | `tea` | `bmad-method-test-architecture-enterprise` | installer module | v1.23.3 | 1 (Murat) | 10 |
-| BMB | `bmb` | `bmad-builder` | installer module | v2.2.1 | 0 in roster (see below) | 5 |
-| CIS | `cis` | `bmad-module-creative-intelligence-suite` | installer module | v0.3.1 | 6 | 10 |
-| GDS | `gds` | `bmad-module-game-dev-studio` | installer module | v0.7.1 | 5 | 33 |
-| Loop | `bmad-loop` | `bmad-loop` | installer module | v0.11.0 | 0 | 3 |
-| **Total** | | | | | **17** | **110** |
+| Core | `core` | `BMAD-METHOD` | installer | v6.12.0 | 0 | 14 |
+| BMM | `bmm` | `BMAD-METHOD` (same monorepo) | installer | 6.12.0 | 5 | 36 |
+| TEA | `tea` | `bmad-method-test-architecture-enterprise` | installer module | v1.26.0 | 1 (Murat) | 10 |
+| BMB | `bmb` | `bmad-builder` | installer module | v2.2.2 | 0 in roster (see below) | 5 |
+| CIS | `cis` | `bmad-module-creative-intelligence-suite` | installer module | v0.3.2 | 6 | 10 |
+| GDS | `gds` | `bmad-module-game-dev-studio` | installer module | v0.7.2 | 5 | 33 |
+| Loop | `bmad-loop` | `bmad-loop` | installer module | v0.11.1 | 0 | 3 |
+| **Total** | | | | | **17** | **111** |
 
 Derivations:
 
 - Skills per module — the `module` column of the installer's own
   `plugins/bmad/runtime/_bmad/_config/skill-manifest.csv`
-  (111 lines = header + 110 rows; the same file is what the skill-surface
+  (112 lines = header + 111 rows; the same file is what the skill-surface
   gate compares `plugins/bmad/skills/` against, in both directions).
 - Versions — `plugins/bmad/runtime/_bmad/_config/manifest.yaml`, which
   the installer writes itself, cross-checked against
@@ -70,7 +70,7 @@ Derivations:
 
 Notes:
 
-- **CIS v0.2.1 -> v0.3.1 and GDS v0.6.0 -> v0.7.1 are not the bumps they
+- **CIS v0.2.1 -> v0.3.2 and GDS v0.6.0 -> v0.7.2 are not the bumps they
   look like.** The v6.10 sync wrote `cis.json` and `gds.json` transposed
   against the installer manifest, so the previously published numbers were
   each other's. The manifest is now the sole authority for both.
@@ -93,22 +93,40 @@ Notes:
 - **Paige is gone from BMM.** `bmad-agent-tech-writer` no longer exists in
   `plugins/bmad/skills/`. GDS still ships its own `gds-agent-tech-writer`,
   which is why the roster still shows a technical writer under `gds`.
-- **20 of the 110 skills announce themselves as deprecated, and they ship
-  on purpose.** This reverses the v6.5.0 pruning policy. Upstream
-  `v6-shims/README.md` (vendored at
-  `plugins/bmad/runtime/_bmad/{core,bmm}/v6-shims/README.md`) states:
-  "External module repos (gds, loop, tea, bmb, os-utils) still invoke
-  these IDs, so they ship by default. Removal rides the v7 cut — never a
-  6.x minor."
+- **21 of the 111 skills announce themselves as deprecated, and they ship
+  because this bundle explicitly asks for them.** Core v6.12.0 made the v6
+  shims **opt-in**: the installer gained `--shims` / `--no-shims`, a
+  non-interactive install declines them, and the interactive prompt says
+  "Recommended: No". The sync passes `--shims` anyway.
+
+  The reason changed with the release, so do not read the old one across.
+  At v6.11.0.0 the justification was a quote from upstream's
+  `v6-shims/README.md`; v6.12.0 left that file stale — it still claims the
+  shims "ship by default" while the installer no longer does. The
+  justification now is measured: **GDS v0.7.2 still depends on three shim
+  IDs**, in live instructions and live configuration:
+
+  | Where | What it names |
+  |---|---|
+  | `gds-quick-dev/step-oneshot.md:22` | "Invoke the `bmad-review-adversarial-general` skill in a subagent" |
+  | `gds-code-review/steps/step-02-review.md:21` | same skill, Blind Hunter layer |
+  | `gds-quick-dev/step-04-review.md:28` | same skill, blind hunter |
+  | `gds-ux/customize.toml:80-81` | `doc_standards` = `"skill:bmad-editorial-review-structure"`, `"skill:bmad-editorial-review-prose"` |
+  | `gds-create-game-brief/customize.toml:67-68` | the same two |
+
+  A default install gives 90 skills and five game-dev skills that call
+  skills which are not there. `bun run validate` resolves every
+  `"skill:<id>"` in every `customize.toml` against the shipped set, so the
+  day GDS stops naming them, the gate says so and `--shims` can go.
+
   Two counts exist and they differ by one, which matters if you are
-  writing a gate: `grep -c v6-shims` on the skill manifest gives **19**
-  (6 under `core/v6-shims/`, 13 under `bmm/v6-shims/`), while counting
-  skills whose frontmatter `description` starts with `Deprecated` gives
-  **20** — `bmad-generate-project-context` is deprecated but lives beside
-  its replacement in `bmm/plan/`, not under `v6-shims/`. Directory
-  membership is therefore not a reliable predicate for "is a shim".
-  Two of them — `bmad-create-story` and `bmad-dev-story` — are retained
-  in full, not forwarders, so "shim" does not imply "empty".
+  writing a gate: `grep -c v6-shims` on the skill manifest gives **20**,
+  while counting skills whose frontmatter `description` starts with
+  `Deprecated` gives **21** — `bmad-generate-project-context` is
+  deprecated but lives beside its replacement in `bmm/plan/`, not under
+  `v6-shims/`. Directory membership is not a reliable predicate for "is a
+  shim". Two of them — `bmad-create-story` and `bmad-dev-story` — are
+  retained in full, not forwarders, so "shim" does not imply "empty".
 
 ### The `bmad-manticore` plugin
 
@@ -175,7 +193,10 @@ All of them:
 | `bmad-manticore` | Video production module | Active, bundled as its own plugin |
 | `bmad-module-template` | Module-authoring scaffold | Active, vendored as an asset (not published) |
 | `bmad-plugins-marketplace` | Official module registry (separate repo, not a Claude marketplace) | Active, not bundled |
-| `bmad-skills` | Generated publish target for BMAD-METHOD skills | Active, machine-written, not bundled |
+| `bmad-skills` | Generated publish target for BMAD-METHOD skills | **No longer listed** in the org as of 2026-09-13 |
+| `bmad-plugins` | "Plugin distribution for the BMAD Method — all agent platforms except Claude and Vercel skills" | Active, not bundled — it is the non-Claude distribution channel, so it is the sibling of this repo, not a source for it |
+| `bmad-eval-quality` | Evaluation/quality tooling for BMAD itself | Active, not bundled — tooling, not a module; it ships no `module.yaml` |
+| `cis-skills` | "Temporary mirror of the CIS npx-skills-distribution branch - FOR TESTING ONLY" | Active, not bundled — a mirror by its own description; CIS reaches the bundle through the installer registry |
 | `bmad-utility-skills` | Plugin of maintainer skills (triage, changelog, release) | Active, not bundled |
 | `bmad-method-ui` | VS Code extension (was `bmad-method-vscode`) | Active, not bundled |
 | `bmad-method-sample-data` | Sample data for testing workflows | Active, not bundled |
@@ -210,7 +231,7 @@ Distinguishing these is the easiest way to misread the ecosystem:
 - **`bmad-modules.yaml`**, at the root of `BMAD-METHOD` — the *installer's*
   registry. It decides what the installer picker offers, in what order,
   under which `code`, on which `default_channel`, and whether an entry is
-  `deprecated`. Verified at `ref=v6.11.0`: it lists `bmad-builder`,
+  `deprecated`. Verified at `ref=v6.12.0`: it lists `bmad-builder`,
   `bmad-creative-intelligence-suite`,
   `bmad-method-test-architecture-enterprise`, `bmad-loop`,
   `bmad-game-dev-studio`, then `bmad-automator` and
@@ -364,12 +385,12 @@ Source of truth: `scripts/lib/upstream-sources.ts`. All eight entries are
 
 | Source id | Repo | `kind` | Pin |
 |-----------|------|--------|-----|
-| `core` | `bmad-code-org/BMAD-METHOD` | `core` | v6.11.0 |
-| `tea` | `bmad-code-org/bmad-method-test-architecture-enterprise` | `registry` | v1.23.3 |
-| `bmb` | `bmad-code-org/bmad-builder` | `registry` | v2.2.1 |
-| `cis` | `bmad-code-org/bmad-module-creative-intelligence-suite` | `registry` | v0.3.1 |
-| `gds` | `bmad-code-org/bmad-module-game-dev-studio` | `registry` | v0.7.1 |
-| `bmad-loop` | `bmad-code-org/bmad-loop` | `registry` | v0.11.0 |
+| `core` | `bmad-code-org/BMAD-METHOD` | `core` | v6.12.0 |
+| `tea` | `bmad-code-org/bmad-method-test-architecture-enterprise` | `registry` | v1.26.0 |
+| `bmb` | `bmad-code-org/bmad-builder` | `registry` | v2.2.2 |
+| `cis` | `bmad-code-org/bmad-module-creative-intelligence-suite` | `registry` | v0.3.2 |
+| `gds` | `bmad-code-org/bmad-module-game-dev-studio` | `registry` | v0.7.2 |
+| `bmad-loop` | `bmad-code-org/bmad-loop` | `registry` | v0.11.1 |
 | `manticore` | `bmad-code-org/bmad-manticore` | `custom` | v1.0.1 |
 | `module-template` | `bmad-code-org/bmad-module-template` | `vendored` | `f1440ec8…` |
 

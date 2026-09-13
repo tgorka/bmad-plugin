@@ -186,6 +186,48 @@ for (const entry of marketplace.plugins) {
       );
     }
   }
+
+  // Every `skill:<id>` in a customize.toml is a live configuration value —
+  // a lens, a doc standard, a review layer the skill will try to dispatch.
+  // Unlike prose that merely mentions an old name, one that does not
+  // resolve is a broken cross-module call. This is what justifies (and
+  // will one day retire) the installer's `--shims` flag: GDS still names
+  // three of them.
+  const dangling = new Map<string, string[]>();
+  const proc = Bun.spawn(
+    ['find', join(dir, 'skills'), '-name', 'customize.toml'],
+    {
+      stdout: 'pipe',
+    },
+  );
+  const tomls = (await new Response(proc.stdout).text())
+    .trim()
+    .split('\n')
+    .filter(Boolean);
+
+  for (const toml of tomls) {
+    for (const line of (await Bun.file(toml).text()).split('\n')) {
+      if (line.trimStart().startsWith('#')) continue;
+      for (const match of line.matchAll(/"skill:([a-z0-9-]+)"/g)) {
+        const id = match[1];
+        if (!id || shipped.has(id)) continue;
+        const where = dangling.get(id) ?? [];
+        where.push(relative(ROOT, toml));
+        dangling.set(id, where);
+      }
+    }
+  }
+
+  for (const [id, where] of dangling) {
+    fail(
+      `[${entry.name}] customize.toml references unshipped skill "${id}": ${where.join(', ')}`,
+    );
+  }
+  if (dangling.size === 0 && tomls.length > 0) {
+    pass(
+      `[${entry.name}] all skill: references in ${tomls.length} customize.toml resolve`,
+    );
+  }
 }
 
 // ── 4. Runtime template + init assets ───────────────────────────────────

@@ -3,7 +3,7 @@
 Common terms used in this repository. Contributors should use these
 consistently in code, documentation, and issue descriptions.
 
-Verified against the tree on 2026-08-20 (plugin v6.11.0.0): the vocabulary
+Verified against the tree on 2026-09-13 (plugin v6.12.0.0): the vocabulary
 below names files that `plugins/bmad/scripts/init.sh` actually creates from
 `plugins/bmad/runtime/_bmad/`, plus the layers
 `plugins/bmad/runtime/_bmad/scripts/config_utils.py` actually reads. For
@@ -37,8 +37,8 @@ It is plugin content and immutable at runtime.
 
 `_bmad/` in the user's repo is the **project runtime**. `/bmad:init`
 (`plugins/bmad/scripts/init.sh`) materializes the template into it file by
-file: a bare repo gets 37 files and directories, and a re-run reports
-`Done: 0 created, 0 refreshed, 37 already current.`
+file: a bare repo gets 36 files and directories, and a re-run reports
+`Done: 0 created, 0 refreshed, 36 already current.`
 
 The two halves of the refresh contract are worth naming, because they
 decide what a plugin update can and cannot change in your repo:
@@ -119,7 +119,7 @@ _bmad/custom/<skill>.toml         team override
 _bmad/custom/<skill>.user.toml    personal override
 ```
 
-90 of the 110 skills ship a `customize.toml`
+90 of the 111 skills ship a `customize.toml`
 (`ls plugins/bmad/skills/*/customize.toml | wc -l`). The `bmad-customize`
 skill authors the override files.
 
