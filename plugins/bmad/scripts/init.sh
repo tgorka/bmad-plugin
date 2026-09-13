@@ -10,6 +10,7 @@
 #
 # Usage:
 #   init.sh [target-dir] [--dry-run] [--with-plugin <name>]...
+#           [--shared-custom <dir>]
 #
 # --with-plugin registers a sibling BMad plugin from the same
 # marketplace (e.g. bmad-manticore): its module runtime is materialized
@@ -17,13 +18,24 @@
 # opt-in because a marketplace install clones the whole repo, so a
 # sibling's files are on disk whether or not that plugin is enabled.
 #
-# Idempotent: existing files are never overwritten — only missing
-# pieces are filled in, and a help row already present is never
-# duplicated. Safe to re-run after a plugin update.
+# --shared-custom points this repo's _bmad/custom/ at a directory you
+# keep outside the project, so one set of skill overrides serves every
+# repo instead of being copy-pasted into each. BMAD itself has no
+# home-directory config layer — every layer it reads lives under
+# {project-root}/_bmad — and a symlink at exactly this seam is what
+# makes sharing work: custom/ is the only user-owned layer, so init
+# never rewrites it, while project_name and the module config stay
+# per-repo. Existing custom files are moved into the shared directory
+# on first use, never overwritten.
+#
+# Idempotent: a missing file is created, an installer-managed file whose
+# content differs from the shipped template is refreshed, and
+# _bmad/custom/** is left alone. Safe to re-run after a plugin update.
 set -euo pipefail
 
 TARGET_DIR="."
 DRY_RUN=0
+SHARED_CUSTOM=""
 SIBLINGS=()
 
 # Naming the same plugin twice would append its help rows twice.
@@ -43,8 +55,14 @@ while [ $# -gt 0 ]; do
       add_sibling "$1"
       ;;
     --with-plugin=*) add_sibling "${1#--with-plugin=}" ;;
+    --shared-custom)
+      shift
+      [ $# -gt 0 ] || { echo "error: --shared-custom needs a directory" >&2; exit 1; }
+      SHARED_CUSTOM="$1"
+      ;;
+    --shared-custom=*) SHARED_CUSTOM="${1#--shared-custom=}" ;;
     -h|--help)
-      sed -n '2,22p' "$0" | sed 's/^# \{0,1\}//'
+      sed -n '2,33p' "$0" | sed 's/^# \{0,1\}//'
       exit 0
       ;;
     -*) echo "error: unknown option '$1'" >&2; exit 1 ;;
@@ -202,6 +220,62 @@ install_file() {
 }
 
 echo "Initializing BMad in $(pwd) (project: $PROJECT_NAME, user: $USER_NAME)"
+
+# 0. Point _bmad/custom/ at a shared directory, before step 1 has a
+#    chance to materialize a real one.
+#
+#    custom/ is the only layer BMAD treats as user-owned — the installer
+#    never rewrites it and neither does this script — which is what makes
+#    it the one safe seam to share. Everything else under _bmad/ is
+#    installer-managed and genuinely per-project (project_name, module
+#    config), so it stays local.
+if [ -n "$SHARED_CUSTOM" ]; then
+  case "$SHARED_CUSTOM" in
+    "~") SHARED_CUSTOM="$HOME" ;;
+    "~/"*) SHARED_CUSTOM="$HOME/${SHARED_CUSTOM#\~/}" ;;
+  esac
+
+  if [ "$DRY_RUN" -eq 1 ]; then
+    echo "  [dry-run] would link _bmad/custom -> $SHARED_CUSTOM"
+  else
+    mkdir -p "$SHARED_CUSTOM"
+    SHARED_ABS="$(cd "$SHARED_CUSTOM" && pwd -P)"
+
+    if [ -L _bmad/custom ]; then
+      # `cd` keeps the logical path through a symlink, so -P is what
+      # actually resolves the link target.
+      if [ "$(cd -P _bmad/custom 2>/dev/null && pwd -P)" != "$SHARED_ABS" ]; then
+        echo "error: _bmad/custom already links elsewhere ($(readlink _bmad/custom))." >&2
+        echo "       Remove it first if you mean to repoint it." >&2
+        exit 1
+      fi
+    elif [ -d _bmad/custom ]; then
+      # Carry existing overrides across rather than stranding them. Never
+      # clobber a file already in the shared directory — the other repos
+      # sharing it would silently inherit this one's version.
+      moved=0
+      for f in _bmad/custom/* _bmad/custom/.[!.]*; do
+        [ -e "$f" ] || continue
+        base="$(basename "$f")"
+        if [ -e "$SHARED_ABS/$base" ]; then
+          if ! cmp -s "$f" "$SHARED_ABS/$base"; then
+            echo "  ! $base differs from the shared copy; keeping the shared one" >&2
+          fi
+          continue
+        fi
+        mv "$f" "$SHARED_ABS/$base"
+        moved=$((moved + 1))
+      done
+      rm -rf _bmad/custom
+      ln -s "$SHARED_ABS" _bmad/custom
+      echo "  + _bmad/custom -> $SHARED_ABS ($moved file(s) moved in)"
+    else
+      mkdir -p _bmad
+      ln -s "$SHARED_ABS" _bmad/custom
+      echo "  + _bmad/custom -> $SHARED_ABS"
+    fi
+  fi
+fi
 
 # `_bmad/_config/bmad-help.csv` is ASSEMBLED, not installed: step 1
 # restores the template copy and step 3 merges each registered sibling's

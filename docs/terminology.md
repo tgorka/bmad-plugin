@@ -59,6 +59,50 @@ restored to their real name on copy. A live nested `.gitignore` inside the
 template would exclude sibling template files from this repo, so a
 `bun run validate` gate forbids one.
 
+### There is no home-directory config layer
+
+Worth stating explicitly, because it is the first thing people ask when
+they maintain the same overrides in several repos.
+
+Every layer BMAD reads lives under `{project-root}/_bmad`
+(`_bmad/scripts/config_utils.py`):
+
+```
+central:   config.toml → config.user.toml
+           → custom/config.toml → custom/config.user.toml
+per-skill: <skill>/customize.toml
+           → _bmad/custom/<skill>.toml → _bmad/custom/<skill>.user.toml
+```
+
+Nothing reads `$HOME`, and `~/_bmad` is a rejected design rather than an
+oversight. From `resolve_customization.py`:
+
+> The working directory leads because the project is where the user is
+> working, not where the skill happens to be installed — a home-installed
+> skill walks up to `~`, and any `~/_bmad` there would otherwise mask the
+> real project's overrides.
+
+`find_project_root()` does walk up to the nearest ancestor holding
+`_bmad/`, so an ancestor's config is used by a repo that has none — but
+it is nearest-wins, never merged, and the moment a repo has its own
+`_bmad/` the ancestor is ignored entirely. (Upstream at least warns on
+stderr when a root it rejected held an override it did not use.) Skills
+invoke the resolver with `--project-root {project-root}` anyway, which
+pins the root to the repo and bypasses the walk.
+
+**To share overrides across repos, link the one user-owned layer:**
+
+```sh
+/bmad:init            # then, once:
+bash "$CLAUDE_PLUGIN_ROOT/scripts/init.sh" --shared-custom ~/bmad-custom
+```
+
+That symlinks `_bmad/custom/` at a directory outside the project and
+moves any existing overrides into it. It is safe precisely because
+`custom/` is the only layer the installer and `/bmad:init` never rewrite;
+everything else under `_bmad/` is installer-managed and genuinely
+per-project, so `project_name` and the module config stay local.
+
 ### Templatization placeholders
 
 Three placeholders in the template are substituted at init time:

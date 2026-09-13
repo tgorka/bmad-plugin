@@ -2,10 +2,12 @@ import { afterAll, describe, expect, test } from 'bun:test';
 import {
   cpSync,
   existsSync,
+  lstatSync,
   mkdirSync,
   mkdtempSync,
   readdirSync,
   readFileSync,
+  realpathSync,
   rmSync,
   statSync,
   writeFileSync,
@@ -90,6 +92,18 @@ async function runInitAt(script: string, ...args: string[]): Promise<string> {
   if (exitCode !== 0) {
     const stderr = await new Response(proc.stderr).text();
     throw new Error(`init.sh exited with ${exitCode}: ${stderr}`);
+  }
+  return stdout;
+}
+
+async function run(cmd: string[]): Promise<string> {
+  const proc = Bun.spawn(cmd, { stdout: 'pipe', stderr: 'pipe' });
+  const exitCode = await proc.exited;
+  const stdout = await new Response(proc.stdout).text();
+  if (exitCode !== 0) {
+    throw new Error(
+      `${cmd[0]} exited with ${exitCode}: ${await new Response(proc.stderr).text()}`,
+    );
   }
   return stdout;
 }
@@ -388,6 +402,95 @@ describe('init.sh', () => {
     const help = readFileSync(join(dir, '_bmad/_config/bmad-help.csv'), 'utf8');
     expect(help).not.toContain('BMad Manticore,');
     expect(existsSync(join(dir, '_bmad/manticore'))).toBe(false);
+  });
+
+  test('--shared-custom links custom/ out of the project and resolves through it', async () => {
+    // BMAD has no home-directory config layer: every layer it reads lives
+    // under {project-root}/_bmad. custom/ is the only user-owned one, so
+    // linking exactly there is what lets several repos share overrides
+    // while project_name and module config stay per-repo.
+    const shared = makeTempDir();
+    writeFileSync(
+      join(shared, 'bmad-prd.toml'),
+      '[workflow]\nactivation_steps_append = "SHARED"\n',
+    );
+
+    const dir = makeTempDir();
+    await runInit(dir, '--shared-custom', shared);
+
+    expect(lstatSync(join(dir, '_bmad/custom')).isSymbolicLink()).toBe(true);
+    expect(realpathSync(join(dir, '_bmad/custom'))).toBe(realpathSync(shared));
+
+    // Resolved the way a skill invokes it: --project-root pinned to the repo.
+    const out = await run([
+      'uv',
+      'run',
+      '--no-cache',
+      join(dir, '_bmad/scripts/resolve_customization.py'),
+      '--skill',
+      join(ROOT, 'plugins/bmad/skills/bmad-prd'),
+      '--project-root',
+      dir,
+      '--key',
+      'workflow',
+    ]);
+    expect(JSON.parse(out).workflow.activation_steps_append).toBe('SHARED');
+
+    // project_name must stay per-repo — that is the point of linking only
+    // custom/ rather than all of _bmad/.
+    expect(readFileSync(join(dir, '_bmad/config.toml'), 'utf8')).toContain(
+      `project_name = "${basename(dir)}"`,
+    );
+  });
+
+  test('--shared-custom migrates existing overrides without clobbering shared ones', async () => {
+    const shared = makeTempDir();
+    writeFileSync(
+      join(shared, 'bmad-prd.toml'),
+      '[workflow]\nactivation_steps_append = "SHARED"\n',
+    );
+
+    const dir = makeTempDir();
+    await runInit(dir);
+    // One file only this repo has, and one the shared dir already owns
+    // with different content.
+    writeFileSync(
+      join(dir, '_bmad/custom/bmad-spec.toml'),
+      '[workflow]\nactivation_steps_append = "MINE"\n',
+    );
+    writeFileSync(
+      join(dir, '_bmad/custom/bmad-prd.toml'),
+      '[workflow]\nactivation_steps_append = "LOCAL"\n',
+    );
+
+    await runInit(dir, '--shared-custom', shared);
+
+    // Carried across…
+    expect(readFileSync(join(shared, 'bmad-spec.toml'), 'utf8')).toContain(
+      'MINE',
+    );
+    // …but the shared copy wins, or every other repo would silently
+    // inherit this one's version.
+    expect(readFileSync(join(shared, 'bmad-prd.toml'), 'utf8')).toContain(
+      'SHARED',
+    );
+  });
+
+  test('--shared-custom is idempotent and refuses to repoint silently', async () => {
+    const shared = makeTempDir();
+    const other = makeTempDir();
+    const dir = makeTempDir();
+
+    await runInit(dir, '--shared-custom', shared);
+    const again = await runInit(dir, '--shared-custom', shared);
+    expect(again).toContain('Done: 0 created, 0 refreshed');
+
+    await expect(runInit(dir, '--shared-custom', other)).rejects.toThrow(
+      /already links elsewhere/,
+    );
+    // A plain run must not disturb the link.
+    await runInit(dir);
+    expect(realpathSync(join(dir, '_bmad/custom'))).toBe(realpathSync(shared));
   });
 
   test('rejects an unknown option and an unknown sibling plugin', async () => {
