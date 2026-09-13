@@ -164,12 +164,12 @@ describe('runtime template', () => {
       'utf8',
     );
     const resolved: Array<[string, string]> = [
-      ['core', '6.11.0'],
-      ['bmb', 'v2.2.1'],
-      ['cis', 'v0.3.1'],
-      ['gds', 'v0.7.1'],
-      ['tea', 'v1.23.3'],
-      ['bmad-loop', 'v0.11.0'],
+      ['core', '6.12.0'],
+      ['bmb', 'v2.2.2'],
+      ['cis', 'v0.3.2'],
+      ['gds', 'v0.7.2'],
+      ['tea', 'v1.26.0'],
+      ['bmad-loop', 'v0.11.1'],
     ];
     for (const [id, version] of resolved) {
       const pinned = JSON.parse(

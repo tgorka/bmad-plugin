@@ -275,6 +275,25 @@ async function runInstaller(
     modules.join(','),
     '--tools',
     'claude-code',
+    // The one deliberate divergence from the installer's defaults.
+    //
+    // Core v6.12.0 made the v6 deprecation shims opt-in and recommends
+    // declining them. That is right for a single-module install, but this
+    // bundle also ships GDS, and GDS v0.7.2 still depends on three shim
+    // IDs — not in prose, in live instructions and live config:
+    //
+    //   gds-quick-dev/step-oneshot.md      "Invoke the
+    //     `bmad-review-adversarial-general` skill in a subagent"
+    //   gds-code-review/steps/step-02-review.md, gds-quick-dev/step-04-review.md
+    //   gds-ux/customize.toml, gds-create-game-brief/customize.toml
+    //     doc_standards = [… "skill:bmad-editorial-review-structure",
+    //                        "skill:bmad-editorial-review-prose"]
+    //
+    // Without --shims those five game-dev skills instruct the agent to
+    // invoke skills the plugin does not contain. `validate` resolves every
+    // `skill:<id>` reference against the shipped set, so the day GDS stops
+    // naming them this flag can go and the gate will say so.
+    '--shims',
   ];
   if (customSource) args.push('--custom-source', customSource);
 
