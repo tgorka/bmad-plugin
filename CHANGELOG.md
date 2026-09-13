@@ -4,6 +4,44 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [Unreleased]
+
+### Added
+
+- **`/bmad:init --shared-custom <dir>`** — link `_bmad/custom/` at a
+  directory outside the project so one set of skill overrides serves
+  every repo instead of being copy-pasted into each.
+
+  BMAD has no home-directory config layer: every layer
+  `_bmad/scripts/config_utils.py` reads is under `{project-root}/_bmad`,
+  and `~/_bmad` is explicitly rejected upstream —
+  `resolve_customization.py` puts the working directory first precisely
+  so a `~/_bmad` "would otherwise mask the real project's overrides".
+  There is an ancestor walk, but it is nearest-wins rather than layered,
+  and skills pin `--project-root` anyway, which bypasses it.
+
+  `custom/` is the only layer the installer and `/bmad:init` never
+  rewrite, which makes it the one safe seam to share; everything else
+  under `_bmad/` is installer-managed and genuinely per-project, so
+  `project_name` and the module config stay local. Existing overrides are
+  moved into the shared directory, a file the shared directory already
+  owns is never clobbered (the other repos sharing it would silently
+  inherit this one's version), re-running is a no-op, and repointing an
+  existing link is refused rather than done silently.
+- `favicon.svg` and `favicon.ico` at the repo root, copied verbatim from
+  BMAD-METHOD's `docs-site/public/`, and shown beside the README title.
+  Upstream's TRADEMARK.md puts the BMad mark outside the MIT grant, so
+  the README records the source and states plainly that this is an
+  unofficial, unendorsed redistribution.
+
+### Fixed
+
+- The sibling-merge test copied all 1,543 files under `plugins/` into a
+  temp directory inside bun's 5s default timeout, and overran it often
+  enough to be a real flake (reproduced on `main`: one run in two failed
+  with a knock-on `init.sh exited with 143`). It now copies only the
+  three subtrees `init.sh` reads — 35 files.
+
 ## [6.12.0.0] - 2026-09-13
 
 Upstream sync: BMAD-METHOD **v6.11.0 → v6.12.0**. Module bumps, all read

@@ -1,3 +1,5 @@
+<img src="favicon.svg" alt="" width="72" align="right">
+
 # BMAD Plugin for Claude Code
 
 > BMAD Method - Breakthrough Method for Agile AI-Driven Development
@@ -243,6 +245,24 @@ up-to-date repo reports `0 created, 0 refreshed`. It creates:
 Project name comes from the directory, user name from
 `git config user.name` (falling back to `$USER`).
 
+#### Sharing overrides across repos
+
+BMAD has **no home-directory config layer** — every layer it reads lives
+under `{project-root}/_bmad`, and `~/_bmad` is a design upstream
+explicitly rejected. If you keep the same skill overrides in several
+repos, link the one layer that is yours:
+
+```sh
+bash "$CLAUDE_PLUGIN_ROOT/scripts/init.sh" --shared-custom ~/bmad-custom
+```
+
+That points `_bmad/custom/` at a directory outside the project and moves
+any overrides you already had into it. It is safe at exactly this seam
+because `custom/` is the only layer the installer and `/bmad:init` never
+rewrite — `project_name` and the module config stay per-repo. Re-running
+is a no-op, and repointing an existing link is refused rather than done
+silently. See [docs/terminology.md](docs/terminology.md).
+
 Commit `_bmad/` to version control so your team shares one configuration
 (`_bmad/custom/*.user.toml` files are gitignored by the shipped
 `_bmad/custom/.gitignore`).
@@ -410,10 +430,20 @@ One chain: `bmad-sprint-planning` → `bmad-build` → `bmad-code-review`.
 
 This plugin implements the **BMAD Method** created by **BMad Code, LLC**.
 
-- [Original Repository](https://github.com/bmadcode/BMAD-METHOD)
+- [Original Repository](https://github.com/bmad-code-org/BMAD-METHOD)
 - [Website](https://bmadcodes.com/bmad-method/)
 - [YouTube](https://www.youtube.com/@BMadCode)
 - [Discord](https://discord.gg/gk8jAdXWmj)
+
+`favicon.svg` and `favicon.ico` are BMad Code, LLC's mark, copied
+verbatim from
+[`docs-site/public/`](https://github.com/bmad-code-org/BMAD-METHOD/tree/main/docs-site/public)
+in BMAD-METHOD. Upstream's
+[TRADEMARK.md](https://github.com/bmad-code-org/BMAD-METHOD/blob/main/TRADEMARK.md)
+puts the BMad name and logo outside the MIT grant, so they are used here
+only to identify the upstream this plugin packages. This is an
+unofficial redistribution and is **not** endorsed or certified by
+BMad Code, LLC.
 
 ## Releases
 

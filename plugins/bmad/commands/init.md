@@ -31,6 +31,14 @@ Steps:
    bash "${CLAUDE_PLUGIN_ROOT}/scripts/init.sh" --with-plugin bmad-manticore
    ```
 
+   If the user maintains the same skill overrides across several repos,
+   mention `--shared-custom <dir>` once: it links `_bmad/custom/` at a
+   directory outside the project so one set of overrides serves every
+   repo. BMAD has no home-directory config layer — every layer it reads
+   lives under `{project-root}/_bmad` — and `custom/` is the only
+   user-owned one, so it is the only safe seam to share. `project_name`
+   and the module config stay per-repo. Do not pass it uninvited.
+
 3. Report the three counts the script prints: created, refreshed, and
    already current (`+` marks a new file, `~` a refreshed one). A
    refresh means an installer-managed file was brought up to the
