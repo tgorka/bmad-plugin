@@ -4,7 +4,7 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [Unreleased]
+## [6.12.0.0] - 2026-09-13
 
 ### Added
 
@@ -41,8 +41,6 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
   enough to be a real flake (reproduced on `main`: one run in two failed
   with a knock-on `init.sh exited with 143`). It now copies only the
   three subtrees `init.sh` reads — 35 files.
-
-## [6.12.0.0] - 2026-09-13
 
 Upstream sync: BMAD-METHOD **v6.11.0 → v6.12.0**. Module bumps, all read
 back from the installer's own `_bmad/_config/manifest.yaml`: BMB v2.2.1 →
