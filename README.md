@@ -63,14 +63,30 @@ What the sync adds on top of the raw installer output:
 3. **The upstream module-authoring scaffold**, vendored (not published)
    under `plugins/bmad/templates/module-template/`.
 
-**Changed in v6.11.0.0: deprecated shims now ship.** Up to v6.10 the sync
-pruned upstream's v6 forwarder skills. That is no longer correct —
-upstream's own `v6-shims/README.md` states "External module repos (gds,
-loop, tea, bmb, os-utils) still invoke these IDs, so they ship by
-default. Removal rides the v7 cut — never a 6.x minor." Pruning them in a
-6.x minor breaks cross-module invocation. 20 of the 110 skills are such
-shims; they forward to their replacement and are not listed below.
-Rationale in [docs/plan-6.11-rebuild.md](docs/plan-6.11-rebuild.md).
+**The v6 deprecation shims ship, by an explicit `--shims`.** This is the
+pipeline's one deliberate divergence from the installer's defaults.
+Upstream v6.12.0 made the shims opt-in and its own prompt recommends
+declining them — sound advice for a single-module install. It does not
+hold for this bundle, because GDS v0.7.2 still depends on three shim IDs
+in live instructions and live configuration, not in prose:
+
+```
+gds-quick-dev/step-oneshot.md:22   "Invoke the
+  `bmad-review-adversarial-general` skill in a subagent"
+gds-ux/customize.toml:80-81       doc_standards = […
+  "skill:bmad-editorial-review-structure", "skill:bmad-editorial-review-prose"]
+```
+
+Installing with the new default produces a 90-skill tree in which five
+game-dev skills tell the agent to invoke skills the plugin does not
+contain. 21 of the 111 shipped skills are shims; they forward to their
+replacement and are not listed below.
+
+The divergence is gated rather than merely commented: `bun run validate`
+resolves every `"skill:<id>"` value in every `customize.toml` against the
+shipped set. When GDS stops naming them, the gate goes quiet and
+`--shims` can go. Rationale in
+[docs/plan-6.11-rebuild.md](docs/plan-6.11-rebuild.md).
 
 ## Requirements
 
@@ -85,16 +101,16 @@ Rationale in [docs/plan-6.11-rebuild.md](docs/plan-6.11-rebuild.md).
 
 ## Features
 
-**110 skills across 7 upstream modules**, agent personas included as
+**111 skills across 7 upstream modules**, agent personas included as
 Claude Code-native skills. Counts are the installer's own
 `_config/skill-manifest.csv` grouping:
 
 | Module | Skills | Highlights |
 |---|---|---|
 | core | 14 | `bmad-help`, `bmad-review` (one review skill, many lenses), `bmad-deep-recon`, `bmad-project-context`, `bmad-party-mode`, `bmad-customize` |
-| bmm | 35 | 5 `bmad-agent-*` personas, `bmad-prd`, `bmad-architecture`, `bmad-ux`, `bmad-spec`, `bmad-build`, `bmad-build-auto`, `bmad-sprint-planning`, `bmad-code-review`, `bmad-retrospective` |
+| bmm | 36 | 5 `bmad-agent-*` personas, `bmad-prd`, `bmad-architecture`, `bmad-ux`, `bmad-spec`, `bmad-build`, `bmad-build-auto`, `bmad-sprint-planning`, `bmad-code-review`, `bmad-retrospective` |
 | gds | 33 | Game Dev Studio: 5 `gds-agent-*` personas plus `gds-gdd` / `gds-prd` / `gds-ux` and the production pipeline |
-| core+bmm shims | (20 of the above) | v6 forwarder IDs external modules still call |
+| core+bmm shims | (21 of the above) | v6 forwarder IDs external modules still call |
 | tea | 10 | `bmad-tea` (Murat) + 8 `bmad-testarch-*` + `bmad-teach-me-testing` |
 | cis | 10 | 6 `bmad-cis-agent-*` personas + design thinking, storytelling, innovation strategy, problem solving |
 | bmb | 5 | `bmad-{agent,workflow,module}-builder`, `bmad-bmb-setup` |
@@ -103,7 +119,22 @@ Claude Code-native skills. Counts are the installer's own
 Plus, as a separate opt-in plugin: **15 `mc-*` skills** (BMad Manticore,
 AI video production).
 
-Notable in this release:
+New in v6.12.0:
+
+- **`bmad-walkthrough`** replaces `bmad-checkpoint-preview` (menu code
+  `CK` → `WT`); the old ID forwards.
+- **Build sizes its own ceremony** — it decides how much process a change
+  needs after investigating it, and no longer auto-triggers on
+  interactive edits, git bookkeeping or formatting chores.
+- **Review triage records a verdict and evidence for every finding**, so
+  nothing is dropped silently.
+- **`bmad-project-context` adopts a handwritten `AGENTS.md`** instead of
+  rewriting it.
+- Two override-breaking renames if you customized anything:
+  `persistent_facts` now ships empty (re-add `project-context.md` if you
+  relied on the auto-load), and `{diff_output}` is now `{diff_file}`.
+
+Carried over from v6.11.0:
 
 - **Phase 4 is one chain** — `bmad-sprint-planning` → `bmad-build` →
   `bmad-code-review`. `bmad-quick-dev` and `bmad-dev-auto` were renamed
@@ -114,8 +145,6 @@ Notable in this release:
   from `_bmad/custom/bmad-review.toml`.
 - **Research consolidated** — market / domain / technical research is one
   `bmad-deep-recon` skill with six type packs.
-- **`bmad-project-context`** replaces generated project documentation
-  with one verified block in the repository's `AGENTS.md`.
 - **`/bmad:init` project initializer** — one command provisions the
   working-repo files skills depend on, and registers sibling plugins.
 - **`customize.toml` per skill** — layered
@@ -137,7 +166,7 @@ In-session (inside Claude Code):
 /plugin
 
 # Pin to a specific version
-/plugin marketplace add tgorka/bmad-plugin#v6.11.0.0
+/plugin marketplace add tgorka/bmad-plugin#v6.12.0.0
 ```
 
 External CLI (outside Claude Code):
@@ -439,18 +468,18 @@ with 221 stars. Here is how this plugin differs:
 
 | | **bmad-plugin** (this repo) | aj-geddes/claude-code-bmad-skills |
 |---|---|---|
-| Upstream version tracked | v6.11.0 (8 sources pinned via `.upstream-versions/*.json`) | v6 (approximate) |
-| Skills | 110 in `bmad` (core 14 + bmm 35 + gds 33 + tea 10 + cis 10 + bmb 5 + loop 3), plus 15 in `bmad-manticore` | 4 |
+| Upstream version tracked | v6.12.0 (8 sources pinned via `.upstream-versions/*.json`) | v6 (approximate) |
+| Skills | 111 in `bmad` (core 14 + bmm 36 + gds 33 + tea 10 + cis 10 + bmb 5 + loop 3), plus 15 in `bmad-manticore` | 4 |
 | Agents | 17 personas (shipped as skills) | 12 |
 | Source of truth | The official `npx bmad-method install --tools claude-code` output, copied 1:1 | Manual shell-script copy |
 | Project initializer | Yes (`/bmad:init` — `_bmad/` runtime + output folders + sibling-plugin registration) | No |
 | Automated upstream sync | Yes (GitHub Actions, weekly, matrix-driven from the source registry) | No |
 | Plugin marketplace | Yes, two plugins (`marketplace.json`) | No (Smithery only) |
-| Last updated | 2026-08-20 (v6.11.0.0) | 2026-01-01 |
+| Last updated | 2026-09-13 (v6.12.0.0) | 2026-01-01 |
 
 **Key advantages:**
 
-- **Full coverage** — the complete v6.11.0 surface across seven upstream
+- **Full coverage** — the complete v6.12.0 surface across seven upstream
   modules, including every agent persona as a skill, mirrored
   byte-for-byte from the upstream installer.
 - **Single source of truth** — every sync regenerates the plugin tree

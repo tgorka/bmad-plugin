@@ -4,7 +4,7 @@ Manual tests cover what automated tests cannot — primarily plugin loading
 behavior in a real Claude Code session, and the two-plugin marketplace
 install path.
 
-Verified against the tree on 2026-08-20 (plugin v6.11.0.0). The expected
+Verified against the tree on 2026-09-13 (plugin v6.12.0.0). The expected
 outputs below were produced by running
 `plugins/bmad/scripts/init.sh` in throwaway temp dirs; re-derive them
 rather than trusting them if the runtime template changed.
@@ -87,7 +87,7 @@ Then check the placeholder substitution actually happened:
 
 No file anywhere under `_bmad/` should still contain `__BMAD_`.
 
-Re-run `/bmad:init`. Expected: `Done: 0 created, 0 refreshed, 37 already
+Re-run `/bmad:init`. Expected: `Done: 0 created, 0 refreshed, 36 already
 current.` followed by `Repo was already initialized — nothing to do.`
 
 Then test the two halves of the refresh contract:
@@ -114,12 +114,25 @@ and `_bmad/render/` to appear, and no help row naming `bmad-index-docs`,
 Run `/bmad:bmad-help` and verify it reads
 `_bmad/_config/bmad-help.csv` and presents the module map.
 
-The v6.5.0 expectation is now **inverted**: the catalog *does* offer the v6
+The v6.5.0 expectation is **inverted**, and since v6.12.0 it is inverted
+against the installer's own default: the catalog *does* offer the v6
 deprecation shims (`bmad-create-prd`, `bmad-create-architecture`,
-`bmad-quick-dev`, `bmad-sprint-status`, …). They are no longer pruned,
-because external module repos still invoke those ids — upstream's
-`v6-shims/README.md` says removal rides the v7 cut, never a 6.x minor. A
-catalog with no deprecated rows is now the failure, not the pass.
+`bmad-quick-dev`, `bmad-sprint-status`, …), because the sync runs the
+installer with `--shims`. A catalog with no deprecated rows is the
+failure, not the pass.
+
+Check the dependency that justifies the flag, since that is what will one
+day retire it. `bmad-review-adversarial-general` must be in the installed
+skill list, because GDS invokes it by name:
+
+```sh
+grep -rn 'bmad-review-adversarial-general' plugins/bmad/skills/gds-quick-dev/
+ls -d plugins/bmad/skills/bmad-review-adversarial-general
+```
+
+Also confirm `bmad-walkthrough` is present — v6.12.0 renamed
+`bmad-checkpoint-preview` to it (`CK` → `WT`) and the old ID still
+forwards, so both should appear.
 
 Spot-check that Phase 4 is one chain, not the old fan-out. In
 `bmad-help.csv`, the `bmad-build` row (display name `Build`, menu code

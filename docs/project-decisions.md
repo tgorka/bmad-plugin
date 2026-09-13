@@ -22,7 +22,7 @@
 >   `plugins/bmad/runtime/_bmad/config.toml` (17 entries: bmm 5, cis 6,
 >   gds 5, tea 1).
 > - **The target tree in section 7 does not describe this repo.**
->   `plugins/bmad/skills/` is flat — 110 sibling skill directories, no
+>   `plugins/bmad/skills/` is flat — 111 sibling skill directories, no
 >   `workflows/` or `knowledge/` split. `plugins/bmad/commands/` holds one
 >   file, `init.md`; there is no `status.md`. `plugins/bmad/templates/`
 >   holds `README.md` and the vendored `module-template/`, not document

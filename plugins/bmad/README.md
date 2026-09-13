@@ -1,7 +1,7 @@
 # BMAD Method Plugin for Claude Code
 
 Breakthrough Method for Agile AI-Driven Development — a Claude Code
-plugin providing 110 skills (17 agent personas among them, shipped as
+plugin providing 111 skills (17 agent personas among them, shipped as
 skills) across seven upstream modules: core, BMM (the method itself),
 GDS (game dev studio), TEA (test architecture), CIS (creative
 intelligence), BMB (builder), and BMad Loop (unattended dev-loop
@@ -10,9 +10,11 @@ orchestration).
 The skill tree is the output of the official
 `npx bmad-method install --tools claude-code` installer, copied 1:1 and
 regenerated from scratch on every sync. There is no merge or rewrite
-layer. As of core v6.11.0 that includes upstream's v6 deprecation shims:
-external module repos still invoke those skill IDs, and upstream removes
-them at the v7 cut, never in a 6.x minor.
+layer, with one deliberate exception: the installer is run with
+`--shims`. Core v6.12.0 made the v6 deprecation shims opt-in, but GDS
+v0.7.2 still invokes three of them — from step instructions and from
+`doc_standards` in its `customize.toml` — so a default install would
+leave five game-dev skills calling skills that are not installed.
 
 ## Requirements
 

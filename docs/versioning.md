@@ -9,7 +9,7 @@ Format `<upstream-version>.X` where:
 
 - `<upstream-version>` is the core BMAD-METHOD release verbatim (e.g. `6.11.0`)
 - `.X` is a plugin patch counter, reset to 0 on each new upstream release
-  (e.g. `6.11.0.0`), incremented on additional plugin releases within the same
+  (e.g. `6.12.0.0`), incremented on additional plugin releases within the same
   upstream version
 
 The string lives in four places, all rewritten together — `.plugin-version`,
@@ -27,7 +27,7 @@ version followed by `.`, and that the remainder is a non-negative integer.
 
 | Plugin | Source | Version | Anchored to |
 |---|---|---|---|
-| `bmad` | `./plugins/bmad` | `6.11.0.0` | core BMAD-METHOD release + patch counter |
+| `bmad` | `./plugins/bmad` | `6.12.0.0` | core BMAD-METHOD release + patch counter |
 | `bmad-manticore` | `./plugins/bmad-manticore` | `1.0.1` | the upstream module version |
 
 `bmad-manticore` is **not** on the plugin version line. Its
@@ -63,12 +63,12 @@ registry that defines the set is
 
 | File | Module | Repo | `kind` | Pinned |
 |---|---|---|---|---|
-| `core.json` | BMAD Method (core + bmm) | `bmad-code-org/BMAD-METHOD` | `core` | `v6.11.0` |
-| `tea.json` | TEA (Test Architect Enterprise) | `bmad-code-org/bmad-method-test-architecture-enterprise` | `registry` | `v1.23.3` |
-| `bmb.json` | BMB (BMad Builder) | `bmad-code-org/bmad-builder` | `registry` | `v2.2.1` |
-| `cis.json` | CIS (Creative Intelligence Suite) | `bmad-code-org/bmad-module-creative-intelligence-suite` | `registry` | `v0.3.1` |
-| `gds.json` | GDS (Game Dev Studio) | `bmad-code-org/bmad-module-game-dev-studio` | `registry` | `v0.7.1` |
-| `bmad-loop.json` | BMad Loop | `bmad-code-org/bmad-loop` | `registry` | `v0.11.0` |
+| `core.json` | BMAD Method (core + bmm) | `bmad-code-org/BMAD-METHOD` | `core` | `v6.12.0` |
+| `tea.json` | TEA (Test Architect Enterprise) | `bmad-code-org/bmad-method-test-architecture-enterprise` | `registry` | `v1.26.0` |
+| `bmb.json` | BMB (BMad Builder) | `bmad-code-org/bmad-builder` | `registry` | `v2.2.2` |
+| `cis.json` | CIS (Creative Intelligence Suite) | `bmad-code-org/bmad-module-creative-intelligence-suite` | `registry` | `v0.3.2` |
+| `gds.json` | GDS (Game Dev Studio) | `bmad-code-org/bmad-module-game-dev-studio` | `registry` | `v0.7.2` |
+| `bmad-loop.json` | BMad Loop | `bmad-code-org/bmad-loop` | `registry` | `v0.11.1` |
 | `manticore.json` | BMad Manticore | `bmad-code-org/bmad-manticore` | `custom` | `v1.0.1` |
 | `module-template.json` | Module template | `bmad-code-org/bmad-module-template` | `vendored` | `f1440ec80b9c8b13e0779dedd47487b74d634a02` |
 

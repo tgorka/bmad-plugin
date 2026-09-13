@@ -8,9 +8,9 @@
 > and [CHANGELOG.md](../CHANGELOG.md).
 >
 > At time of writing, upstream BMAD-METHOD was at **v6.0.0-alpha.23**.
-> As of 2026-08-20 the plugin tracks core BMAD **v6.11.0** and
+> As of 2026-09-13 the plugin tracks core BMAD **v6.12.0** and
 > `.claude-plugin/marketplace.json` publishes **two** plugins — `bmad`
-> (v6.11.0.0) and `bmad-manticore` (v1.0.1).
+> (v6.12.0.0) and `bmad-manticore` (v1.0.1).
 
 Research findings on BMAD Method and Claude Code plugin ecosystem.
 
