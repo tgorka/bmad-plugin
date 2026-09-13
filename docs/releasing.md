@@ -1,119 +1,88 @@
 # Release Process
 
-`main` is protected — direct push is not allowed — so releasing goes through a
-PR from `dev` to `main`. [`scripts/release.sh`](../scripts/release.sh) drives
-it in two phases so a slow or failing CI run does not lose the work already
-done.
+`main` is the trunk and is protected, so a release either **tags what main
+already carries** — the usual case, because `bun run sync` set the version
+anchors and the work reached main through PRs — or bumps the version first
+through a short-lived `release/vX` PR.
+
+[`scripts/release.sh`](../scripts/release.sh) drives both.
 
 ## Usage
 
 ```sh
-./scripts/release.sh                # release the current .plugin-version
+./scripts/release.sh                # tag + publish the version main carries
 ./scripts/release.sh 6.11.0.1       # bump to this version first, then release
-./scripts/release.sh --after-ci     # finish a release whose Phase 1 stopped
+./scripts/release.sh --after-ci     # finish a release whose bump PR is now green
 ```
 
-## Pre-release Checklist
+## Pre-release checklist
 
 The script's own preconditions, in the order it checks them:
 
-- [ ] **On the `dev` branch.** Any other branch is a hard error. (Not `main`.)
+- [ ] **On `main`.** Any other branch is a hard error — work reaches main
+      through PRs, so a release is cut from the trunk.
 - [ ] **Working tree clean, excluding `.beads/`** — both unstaged and staged.
       `.beads/` is exempt because the script syncs and commits it itself.
+- [ ] **Local `main` identical to `origin/main`.** Tagging a local-only
+      commit would publish a tag nobody else can resolve.
 - [ ] **The tag `v<version>` does not already exist.**
 
-Worth doing before you start, because the release PR's CI runs exactly these:
+## The common path: no bump
 
-- [ ] `bun run typecheck && bun run lint`
-- [ ] `bun run validate && bun run test:unit`
+When `.plugin-version` already holds the target version, the script runs the
+four gates itself (`typecheck`, `lint`, `validate`, `test:unit`), then tags
+`origin/main` and publishes. Nothing is committed and no PR is opened.
 
-## Phase 1 — prepare
+This is the normal shape of a sync release: `bun run sync -- --tag vX.Y.Z`
+writes all four version anchors as part of regenerating the tree, so by the
+time that work has merged, main already carries the release version.
 
-1. **Bump (only when a version argument is given).** Rewrites
-   `.plugin-version`, `package.json`,
-   `plugins/bmad/.claude-plugin/plugin.json` and
-   `.claude-plugin/marketplace.json`; runs `bun run update-readme`; commits
-   `chore: bump version to <version>` and pushes to `dev`. Passing the version
-   already in `.plugin-version` skips the bump. **See the known limitation
-   below — this step does not work on GNU sed.**
-2. **Sync beads.** If `bd` is on `PATH` and `.beads/` exists, runs `bd sync`
-   and commits `chore: sync beads before release` when it produced changes.
-3. **Release branch and PR.** Creates `release/v<version>` from `dev`, pushes
-   it, and opens a PR against `main` titled `release: v<version>`.
-4. **Save recovery state.** Writes `.release-state` (gitignored) with
-   `RELEASE_PR_NUMBER`, `RELEASE_TAG`, `RELEASE_VERSION`, `RELEASE_BRANCH`.
-5. **Wait for CI.** Polls `gh pr checks --watch` up to 4 times with a 15s
-   delay. If checks report a failure it stops immediately, returns to `dev`,
-   and tells you to run `--after-ci` once fixed. If checks never register
-   within 60s it does the same rather than merging blind.
+## The bump path
 
-If CI passes inside Phase 1 the script continues straight into Phase 2 in the
-same run.
+Given a version argument that differs from the current one:
 
-## Phase 2 — finish (`--after-ci`)
+1. **Branch.** Creates `release/v<version>` from main.
+2. **Bump.** Rewrites `.plugin-version`, `package.json`,
+   `plugins/bmad/.claude-plugin/plugin.json` and the `bmad` entry in
+   `.claude-plugin/marketplace.json`, then `bun run update-readme`.
+   The `bmad-manticore` entry is left alone — it tracks the upstream module
+   version, not the plugin version.
+3. **Verify the bump landed everywhere.** `bun run validate` requires all
+   four anchors to agree, so a partial bump cannot reach a PR.
+4. **Sync beads** if `bd` is available. Failure here is a warning, never
+   fatal — issue bookkeeping must not be able to abort a release.
+5. **PR + CI.** Pushes the branch, opens `release: v<version>` against main,
+   and watches the checks. Green → continues straight into the finish phase.
+   Not green → saves `.release-state` and exits 1 with instructions.
+6. **Finish** (`--after-ci`): merges the PR, tags `origin/main`, publishes,
+   returns to main and removes `.release-state`.
 
-Reads `.release-state` (and errors if it is absent), re-verifies CI with
-`gh pr checks --watch`, then:
+## Release notes
 
-1. Merges the release PR (`gh pr merge --merge`).
-2. Tags `origin/main` with `v<version>` and pushes the tag.
-3. Creates the GitHub release with `--generate-notes`.
-4. Returns to `dev` and pulls.
-5. Removes `.release-state`.
-6. Triggers `sync-upstream.yml` so the release watcher re-checks every
-   upstream against the freshly pinned versions.
+Notes come from the `## [<version>]` section of
+[`CHANGELOG.md`](../CHANGELOG.md), not from `--generate-notes`. A sync
+release touches on the order of 1,900 regenerated files, so a generated
+commit list is noise; the CHANGELOG section is the only place the release is
+actually explained. Write it before releasing. If no matching section
+exists, the script warns and falls back to generated notes.
 
-Fixes for a failing release PR go on the `release/v<version>` branch; then
-re-run `./scripts/release.sh --after-ci`.
+## Portability
 
-## Known limitation: the bump step is BSD-sed only
+The in-place edits go through a `sed_inplace` helper that uses the attached
+suffix form (`sed -i.release-bak`) and removes the backup, which is the one
+spelling both GNU and BSD/macOS `sed` accept.
 
-`scripts/release.sh` lines **95, 96 and 97** use the BSD form of in-place
-editing:
+This used to be `sed -i ''`, the BSD-only form. On Linux, GNU `sed` read the
+empty string as the script and the real expression as a filename, and under
+`set -euo pipefail` the run aborted **after** `.plugin-version` had already
+been rewritten — a partial bump that also tripped the clean-tree
+precondition on the next attempt. Both the portable helper and the
+`validate` call in step 3 exist to stop that recurring.
 
-```sh
-sed -i '' "s/\"version\": \"$CURRENT_VERSION\"/\"version\": \"$NEW_VERSION\"/" "$ROOT/package.json"
-```
+## After a release
 
-BSD/macOS `sed` requires an explicit (possibly empty) backup suffix as a
-separate argument. GNU `sed` (Linux) takes the suffix only when attached
-(`-i.bak`), so it reads `''` as the script and the real `s/…/…/` expression as
-a **filename**. Verified against GNU sed 4.9:
-
-```
-sed: can't read s/"version": "6.11.0.0"/"version": "6.11.0.1"/: No such file or directory
-exit 2
-```
-
-The script runs under `set -euo pipefail`, so it aborts at line 95 — *after*
-line 94 has already rewritten `.plugin-version`. The result is a partial bump:
-`.plugin-version` moved, the three JSON files did not, nothing was committed,
-and the working tree is now dirty, which also trips the clean-tree
-precondition on the next attempt.
-
-The script is not fixed here (this is a documentation change). Until it is,
-release from Linux **without** the version argument:
-
-1. Set the version yourself — `bun run sync` writes all four anchors from the
-   core release it installs, or edit the four files by hand and run
-   `bun run update-readme`.
-2. Commit and push to `dev`.
-3. `./scripts/release.sh` with no argument, which skips step 1 entirely.
-
-Everything after the bump (beads sync, branch, PR, CI wait, merge, tag,
-release) is portable.
-
-## Version Format
-
-`<upstream-version>.X` (e.g. `6.11.0.0`). The sibling `bmad-manticore` plugin
-is on its own version line and is not touched by a plugin bump — see
-[versioning.md](versioning.md) for both rules and what `bun run validate`
-enforces.
-
-## Post-release Verification
-
-- [ ] Release appears on
-      [GitHub releases](https://github.com/tgorka/bmad-plugin/releases)
-- [ ] Tag exists: `git tag -l | grep <version>`
-- [ ] `.release-state` is gone (its presence means Phase 2 never completed)
-- [ ] `dev` is checked out and up to date with `main`'s merge
+- Confirm the tag resolves: `git ls-remote --tags origin | grep v<version>`.
+- The marketplace serves the default branch, so users are on the new version
+  as soon as main moves; the tag is what `#v<version>` pins resolve against.
+- `claude plugin update` can report "already at the latest version" from a
+  stale marketplace cache — see the README troubleshooting note.

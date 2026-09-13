@@ -4,6 +4,35 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [Unreleased]
+
+### Fixed
+
+- **`scripts/release.sh` could not cut a release.** Three defects, all hit
+  while releasing v6.11.0.0, which had to be tagged by hand:
+  - It required the `dev` branch, retired as the trunk in v6.11.0.0, and
+    opened a `dev` → `main` PR. It now runs from `main`, and when the
+    version anchors already carry the target version — the normal shape of
+    a sync release — it runs the gates and tags in one pass with no branch
+    and no PR.
+  - The bump step used `sed -i ''`, the BSD-only in-place form. On GNU sed
+    that reads the empty string as the script and the expression as a
+    filename, so under `set -euo pipefail` the run aborted after
+    `.plugin-version` had been rewritten but before the three JSON
+    manifests — a partial bump that then tripped the clean-tree
+    precondition on every retry. Replaced with the attached-suffix form
+    both seds accept, and followed by `bun run validate`, which requires
+    all four anchors to agree, so a partial bump cannot reach a PR.
+  - `bd sync` ran unguarded under `set -e`, so a `bd` that is present but
+    incompatible killed the release *after* the bump commit, leaving a
+    release branch with no PR. It is now a warning.
+- Release notes are taken from the `## [<version>]` CHANGELOG section
+  rather than `--generate-notes`, which for a sync release emits a commit
+  list covering ~1,900 regenerated files.
+- New preconditions: local `main` must be identical to `origin/main`
+  (tagging a local-only commit publishes an unresolvable tag), and the
+  gates run before tagging on the no-bump path.
+
 ## [6.11.0.0] - 2026-08-20
 
 From-scratch rebuild against BMAD-METHOD **v6.11.0**, not an incremental
