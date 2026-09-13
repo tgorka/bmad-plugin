@@ -303,9 +303,16 @@ describe('init.sh', () => {
     // bmad-help routes users from this catalog.
     const dir = makeTempDir();
     const plugins = makeTempDir();
-    cpSync(join(ROOT, 'plugins'), join(plugins, 'plugins'), {
-      recursive: true,
-    });
+    // Only what init.sh reads. Copying all of plugins/ meant 1,543 files
+    // per run, which overran bun's 5s default timeout often enough to
+    // make this test flaky on a loaded box.
+    for (const rel of [
+      'plugins/bmad/scripts',
+      'plugins/bmad/runtime',
+      'plugins/bmad-manticore/runtime',
+    ]) {
+      cpSync(join(ROOT, rel), join(plugins, rel), { recursive: true });
+    }
     const initSh = join(plugins, 'plugins/bmad/scripts/init.sh');
     const siblingHelp = join(
       plugins,
