@@ -18,17 +18,17 @@
 <!-- upstream-badges-end -->
 
 <!-- upstream-version-start -->
-**Plugin version:** v6.12.0.0
+**Plugin version:** v6.12.4.0
 
 | Module | Version | Delivery | Last Checked |
 |---|---|---|---|
-| [BMAD Method](https://github.com/bmad-code-org/BMAD-METHOD) | v6.12.0 | installer | 2026-09-13 |
-| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.26.0 | installer module | 2026-09-13 |
-| [BMB](https://github.com/bmad-code-org/bmad-builder) | v2.2.2 | installer module | 2026-09-13 |
-| [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.3.2 | installer module | 2026-09-13 |
-| [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.7.2 | installer module | 2026-09-13 |
-| [Loop](https://github.com/bmad-code-org/bmad-loop) | v0.11.1 | installer module | 2026-09-13 |
-| [Manticore](https://github.com/bmad-code-org/bmad-manticore) | v1.0.1 | custom source | 2026-09-13 |
+| [BMAD Method](https://github.com/bmad-code-org/BMAD-METHOD) | v6.12.4 | installer | 2026-10-20 |
+| [TEA](https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise) | v1.27.2 | installer module | 2026-10-20 |
+| [BMB](https://github.com/bmad-code-org/bmad-builder) | v2.2.2 | installer module | 2026-10-20 |
+| [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.3.2 | installer module | 2026-10-20 |
+| [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.7.2 | installer module | 2026-10-20 |
+| [Loop](https://github.com/bmad-code-org/bmad-loop) | v0.13.2 | installer module | 2026-10-20 |
+| [Manticore](https://github.com/bmad-code-org/bmad-manticore) | v1.0.1 | custom source | 2026-10-20 |
 | [Module template](https://github.com/bmad-code-org/bmad-module-template) | f1440ec8 | vendored asset | 2026-08-20 |
 <!-- upstream-version-end -->
 
