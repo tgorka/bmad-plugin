@@ -28,7 +28,7 @@
 | [CIS](https://github.com/bmad-code-org/bmad-module-creative-intelligence-suite) | v0.3.2 | installer module | 2026-10-20 |
 | [GDS](https://github.com/bmad-code-org/bmad-module-game-dev-studio) | v0.7.2 | installer module | 2026-10-20 |
 | [Loop](https://github.com/bmad-code-org/bmad-loop) | v0.13.2 | installer module | 2026-10-20 |
-| [Manticore](https://github.com/bmad-code-org/bmad-manticore) | v1.0.1 | custom source | 2026-10-20 |
+| [Manticore](https://github.com/bmad-code-org/bmad-manticore) | v4.0.0 | custom source | 2026-10-20 |
 | [Module template](https://github.com/bmad-code-org/bmad-module-template) | f1440ec8 | vendored asset | 2026-08-20 |
 <!-- upstream-version-end -->
 

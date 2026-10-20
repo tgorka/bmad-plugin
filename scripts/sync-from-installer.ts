@@ -26,7 +26,7 @@
  * Run:
  *   bun scripts/sync-from-installer.ts                  # versions from .upstream-versions/
  *   bun scripts/sync-from-installer.ts --tag v6.11.0    # pin core
- *   bun scripts/sync-from-installer.ts --manticore-tag v1.0.1
+ *   bun scripts/sync-from-installer.ts --manticore-tag v4.0.0
  *   bun scripts/sync-from-installer.ts --dry-run        # preview only
  *   bun scripts/sync-from-installer.ts --keep-install   # don't wipe install dirs
  */
@@ -613,12 +613,12 @@ async function captureSiblingSkillManifest(
 /**
  * Drop help rows naming a skill the installer did not install.
  *
- * Upstream's own catalog can over-declare: manticore v1.0.1 lists
- * `mc-audio`, but that skill's frontmatter is invalid YAML, so the
- * installer's `parseSkillMd()` rejects it and it never reaches
- * `skill-manifest.csv`. Shipping the row anyway makes `bmad-help` offer
- * and route to a skill that is not there. This mirrors the installer's
- * own decision rather than overriding it.
+ * Upstream's own catalog can over-declare: manticore v1.0.1 listed
+ * `mc-audio`, but that skill's frontmatter was invalid YAML, so the
+ * installer's `parseSkillMd()` rejected it and it never reached
+ * `skill-manifest.csv` (fixed upstream in v4.0.0). Shipping the row
+ * anyway makes `bmad-help` offer and route to a skill that is not there.
+ * This mirrors the installer's own decision rather than overriding it.
  */
 async function pruneUnshippedHelpRows(
   source: CustomSource,
