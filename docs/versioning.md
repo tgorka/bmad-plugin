@@ -9,7 +9,7 @@ Format `<upstream-version>.X` where:
 
 - `<upstream-version>` is the core BMAD-METHOD release verbatim (e.g. `6.11.0`)
 - `.X` is a plugin patch counter, reset to 0 on each new upstream release
-  (e.g. `6.12.0.0`), incremented on additional plugin releases within the same
+  (e.g. `6.12.4.0`), incremented on additional plugin releases within the same
   upstream version
 
 The string lives in four places, all rewritten together — `.plugin-version`,
@@ -27,13 +27,13 @@ version followed by `.`, and that the remainder is a non-negative integer.
 
 | Plugin | Source | Version | Anchored to |
 |---|---|---|---|
-| `bmad` | `./plugins/bmad` | `6.12.0.0` | core BMAD-METHOD release + patch counter |
-| `bmad-manticore` | `./plugins/bmad-manticore` | `1.0.1` | the upstream module version |
+| `bmad` | `./plugins/bmad` | `6.12.4.0` | core BMAD-METHOD release + patch counter |
+| `bmad-manticore` | `./plugins/bmad-manticore` | `4.0.0` | the upstream module version |
 
 `bmad-manticore` is **not** on the plugin version line. Its
 `plugins/bmad-manticore/.claude-plugin/plugin.json` and its marketplace entry
-both read `1.0.1`, mirroring the module tag pinned in
-`.upstream-versions/manticore.json` (`v1.0.1`). A user installing that plugin
+both read `4.0.0`, mirroring the module tag pinned in
+`.upstream-versions/manticore.json` (`v4.0.0`). A user installing that plugin
 is installing BMad Manticore, so the version they see is Manticore's, not this
 repo's.
 
@@ -43,16 +43,16 @@ What is machine-enforced and what is not:
   `version` to equal the `version` in the plugin directory's
   `.claude-plugin/plugin.json` (and the `name` likewise), that the directory
   has a non-empty `skills/`, and that no `plugins/<dir>` is unpublished. So
-  the two `1.0.1` values cannot drift apart.
-- **Convention, not enforced.** Nothing compares `1.0.1` against
+  the two `4.0.0` values cannot drift apart.
+- **Convention, not enforced.** Nothing compares `4.0.0` against
   `.upstream-versions/manticore.json`. Keeping them equal is a manual step of
-  the manticore bump: raise the tag, run the sync, then edit both `1.0.1`
-  strings.
+  the manticore bump: raise the tag, run the sync, then edit both `version`
+  strings (done this way for `1.0.1` → `4.0.0` in v6.12.4.0).
 
 A plugin-version bump does not disturb it. `updateJsonVersionFiles()` in
 `scripts/lib/bump-utils.ts` does a single-occurrence `String.replace` of
 `"version": "<current-plugin-version>"`, and `release.sh` matches the same
-literal with `sed`, so the `1.0.1` line is never a candidate.
+literal with `sed`, so the `4.0.0` line is never a candidate.
 
 ## Module Version Tracking
 
@@ -63,13 +63,13 @@ registry that defines the set is
 
 | File | Module | Repo | `kind` | Pinned |
 |---|---|---|---|---|
-| `core.json` | BMAD Method (core + bmm) | `bmad-code-org/BMAD-METHOD` | `core` | `v6.12.0` |
-| `tea.json` | TEA (Test Architect Enterprise) | `bmad-code-org/bmad-method-test-architecture-enterprise` | `registry` | `v1.26.0` |
+| `core.json` | BMAD Method (core + bmm) | `bmad-code-org/BMAD-METHOD` | `core` | `v6.12.4` |
+| `tea.json` | TEA (Test Architect Enterprise) | `bmad-code-org/bmad-method-test-architecture-enterprise` | `registry` | `v1.27.2` (registry pin) |
 | `bmb.json` | BMB (BMad Builder) | `bmad-code-org/bmad-builder` | `registry` | `v2.2.2` |
 | `cis.json` | CIS (Creative Intelligence Suite) | `bmad-code-org/bmad-module-creative-intelligence-suite` | `registry` | `v0.3.2` |
 | `gds.json` | GDS (Game Dev Studio) | `bmad-code-org/bmad-module-game-dev-studio` | `registry` | `v0.7.2` |
-| `bmad-loop.json` | BMad Loop | `bmad-code-org/bmad-loop` | `registry` | `v0.11.1` |
-| `manticore.json` | BMad Manticore | `bmad-code-org/bmad-manticore` | `custom` | `v1.0.1` |
+| `bmad-loop.json` | BMad Loop | `bmad-code-org/bmad-loop` | `registry` | `v0.13.2` |
+| `manticore.json` | BMad Manticore | `bmad-code-org/bmad-manticore` | `custom` | `v4.0.0` |
 | `module-template.json` | Module template | `bmad-code-org/bmad-module-template` | `vendored` | `f1440ec80b9c8b13e0779dedd47487b74d634a02` |
 
 `bmm` has no file of its own: it ships inside core and carries the core

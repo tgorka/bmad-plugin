@@ -121,7 +121,32 @@ Claude Code-native skills. Counts are the installer's own
 Plus, as a separate opt-in plugin: **15 `mc-*` skills** (BMad Manticore,
 AI video production).
 
-New in v6.12.0:
+New in v6.12.1 – v6.12.4 (patch releases):
+
+- **BMM skills read the same merged config.** 23 bmm skills (shims
+  included) now load config through `resolve_config.py` instead of
+  reading `_bmad/bmm/config.yaml` directly, so overrides in
+  `_bmad/custom/config.toml` and `config.user.toml` reach them.
+  `config.toml` also carries the user-scope defaults (`user_name`,
+  `communication_language`, `user_skill_level`), so `bmad-build` renders
+  on a fresh clone without a `config.user.toml`. Re-run `/bmad:init` to
+  pick this up.
+- **`bmad-create-epics-and-stories` keeps `status: draft`** until every
+  final validation check passes, and lists the open checks.
+- **TEA v1.27.2** (from v1.26.0): deterministic knowledge-fragment
+  selection, an evidence ledger for NFR audits, stable criterion ids in
+  ATDD, and `bmad-tea` asks one focused question when a request could
+  route to several workflows. TEA v2/v3 and newer CIS releases target
+  BMAD v7; the v6 installer pins TEA at v1.27.2 and CIS at v0.3.2, so
+  these are the newest a v6 install can carry.
+- **BMad Loop v0.13.2** (from v0.11.1): `bmad-loop-resolve` gains
+  `--adopt-branch` and `--reverify`, and `bmad-loop-sweep` files
+  retrospective action items into the deferred-work ledger.
+- **BMad Manticore v4.0.0** (from v1.0.1) in the sibling plugin:
+  `mc-audio` installs now, `mc-ograf` is gone, and there is a DaVinci
+  Resolve lane.
+
+Carried over from v6.12.0:
 
 - **`bmad-walkthrough`** replaces `bmad-checkpoint-preview` (menu code
   `CK` → `WT`); the old ID forwards.
@@ -168,7 +193,7 @@ In-session (inside Claude Code):
 /plugin
 
 # Pin to a specific version
-/plugin marketplace add tgorka/bmad-plugin#v6.12.0.0
+/plugin marketplace add tgorka/bmad-plugin#v6.12.4.0
 ```
 
 External CLI (outside Claude Code):
@@ -293,7 +318,7 @@ which materializes `_bmad/manticore/` and merges the module's rows into
 `mc-setup` once.
 
 See [plugins/bmad-manticore/README.md](plugins/bmad-manticore/README.md)
-for prerequisites and the two known upstream defects at v1.0.1.
+for prerequisites and the one known upstream defect at v4.0.0.
 
 ### Troubleshooting: Plugin Update Shows Stale Version
 
@@ -460,7 +485,7 @@ the plugin.
 ```sh
 bun install                          # deps + Husky hooks
 bun run sync                         # regenerate from the pinned versions
-bun run sync -- --tag v6.12.0        # regenerate against a new core release
+bun run sync -- --tag v6.12.4        # regenerate against a new core release
 bun run sync:dry                     # preview without writing
 bun run validate                     # gates
 bun run test:unit                    # plugin-tree + init-script tests
@@ -498,18 +523,18 @@ with 221 stars. Here is how this plugin differs:
 
 | | **bmad-plugin** (this repo) | aj-geddes/claude-code-bmad-skills |
 |---|---|---|
-| Upstream version tracked | v6.12.0 (8 sources pinned via `.upstream-versions/*.json`) | v6 (approximate) |
+| Upstream version tracked | v6.12.4 (8 sources pinned via `.upstream-versions/*.json`) | v6 (approximate) |
 | Skills | 111 in `bmad` (core 14 + bmm 36 + gds 33 + tea 10 + cis 10 + bmb 5 + loop 3), plus 15 in `bmad-manticore` | 4 |
 | Agents | 17 personas (shipped as skills) | 12 |
 | Source of truth | The official `npx bmad-method install --tools claude-code` output, copied 1:1 | Manual shell-script copy |
 | Project initializer | Yes (`/bmad:init` — `_bmad/` runtime + output folders + sibling-plugin registration) | No |
 | Automated upstream sync | Yes (GitHub Actions, weekly, matrix-driven from the source registry) | No |
 | Plugin marketplace | Yes, two plugins (`marketplace.json`) | No (Smithery only) |
-| Last updated | 2026-09-13 (v6.12.0.0) | 2026-01-01 |
+| Last updated | 2026-10-20 (v6.12.4.0) | 2026-01-01 |
 
 **Key advantages:**
 
-- **Full coverage** — the complete v6.12.0 surface across seven upstream
+- **Full coverage** — the complete v6.12.4 surface across seven upstream
   modules, including every agent persona as a skill, mirrored
   byte-for-byte from the upstream installer.
 - **Single source of truth** — every sync regenerates the plugin tree

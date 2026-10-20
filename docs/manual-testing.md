@@ -4,7 +4,7 @@ Manual tests cover what automated tests cannot — primarily plugin loading
 behavior in a real Claude Code session, and the two-plugin marketplace
 install path.
 
-Verified against the tree on 2026-09-13 (plugin v6.12.0.0). The expected
+Verified against the tree on 2026-10-20 (plugin v6.12.4.0). The expected
 outputs below were produced by running
 `plugins/bmad/scripts/init.sh` in throwaway temp dirs; re-derive them
 rather than trusting them if the runtime template changed.
@@ -62,12 +62,12 @@ With the second plugin enabled, type `/bmad-manticore:` and verify the
 because `/bmad:init` keys sibling registration off their presence in your
 own skill list.
 
-Expect **15** skills, not 16. `mc-audio` is declared upstream but its
-frontmatter is invalid YAML at the pinned tag v1.0.1, so the installer
-drops it. Its help row still exists, so `mc-audio` will show up in
-`/bmad:bmad-help` while having no skill behind it. That is a known,
-documented upstream defect — see
-[docs/bmad-ecosystem.md](bmad-ecosystem.md).
+Expect **15** skills. At v1.0.1 `mc-audio` was declared but its
+frontmatter was invalid YAML, so the installer dropped it; at the pinned
+tag v4.0.0 it installs, so `mc-audio` is among the 15 and its
+`/bmad:bmad-help` row now has a skill behind it. `mc-ograf` is gone
+upstream — an `/bmad-manticore:mc-ograf` that still autocompletes means a
+stale plugin cache.
 
 ### 3. Project initialization — plain
 
@@ -77,12 +77,14 @@ Expected: `_bmad/` (the four config layers, `custom/`, `scripts/`,
 `render/`, per-module `<code>/config.yaml`, `_config/` catalogs),
 `_bmad-output/{planning,implementation}-artifacts/`, `docs/`, and
 `skills/{planning,implementation,test}-artifacts/` are created — a summary
-line reading `Done: 37 created, 0 already present.`
+line reading `Done: 36 created, 1 refreshed, 0 already current.`
 
 Then check the placeholder substitution actually happened:
 
 - `project_name` in `_bmad/config.toml` matches the directory name
-- `user_name` in `_bmad/config.user.toml` matches `git config user.name`
+- `user_name` in both `_bmad/config.toml` and `_bmad/config.user.toml`
+  matches `git config user.name` (since v6.12.1 `config.toml` carries the
+  user-scope defaults too)
 - `installDate` in `_bmad/_config/manifest.yaml` is a real timestamp
 
 No file anywhere under `_bmad/` should still contain `__BMAD_`.
@@ -108,6 +110,11 @@ then run the current `/bmad:init` over the top. Expect the old
 `user_name = "Dev"` leak to disappear, `_bmad/scripts/render_skill.py`
 and `_bmad/render/` to appear, and no help row naming `bmad-index-docs`,
 `bmad-shard-doc` or `bmad-check-implementation-readiness` to remain.
+
+From v6.12.0.0 specifically, the current `/bmad:init` reports
+`Done: 0 created, 12 refreshed, 24 already current.` — the installer
+configs, catalogs, `memlog.py` and `_bmad/config.toml`, which gains
+`user_name`, `communication_language` and `user_skill_level`.
 
 ### 4. Merged help catalog
 
@@ -152,10 +159,10 @@ Expected, on top of the plain run:
 - a line reading `+ 16 help rows merged from sibling plugins`
 - summary `Done: 38 created, 1 refreshed, 0 already current.`
 - `grep -c '^BMad Manticore,' _bmad/_config/bmad-help.csv` → `16`
-- **no `mc-audio` row.** Upstream v1.0.1 declares that skill but its
-  frontmatter is invalid YAML, so the installer refuses to install it and
-  the capture drops the row — a row for a missing skill would make
-  `bmad-help` route into nothing
+- **an `mc-audio` row, backed by a skill.** At v1.0.1 the installer
+  refused that skill (invalid YAML frontmatter) and the capture dropped
+  the row; at v4.0.0 it installs, so all 15 skills plus `_meta` make the
+  16 rows above and every row names a shipped skill
 - the merged rows are intact: no row glued onto the tail of an existing
   one (the installer writes `bmad-help.csv` without a trailing newline, so
   a naive append corrupts the last existing row)

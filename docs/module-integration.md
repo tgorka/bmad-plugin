@@ -111,6 +111,14 @@ them from the pinned core release. That is why the watcher issue for a
 registry source says plain `bun run sync` rather than a tag flag — bumping one
 means moving `--tag` for core.
 
+The registry can also **pin** a module below its newest release. Core
+v6.12.2 pins TEA at v1.27.2 and CIS at v0.3.2, their last v6 releases,
+because newer ones target BMAD v7; v6.12.4 makes the pin win without a
+channel picker. So when the watcher reports TEA v3.x, the sync still
+resolves v1.27.2 — expected, not a bug. `npx bmad-method install --pin
+CODE=TAG` would override it, and the sync deliberately does not: a v7
+module on a v6 core is exactly the mismatch the pin exists to prevent.
+
 ## `kind: 'custom'` — a real module outside the registry
 
 Preconditions: the repo ships `skills/module.yaml` (that is what makes it a
@@ -142,10 +150,13 @@ only route.
    { "version": "v1.0.1", "syncedAt": "2026-08-20" }
    ```
 
-   Manticore is pinned to `v1.0.1`, the newest tag, even though `main`
-   self-declares `3.1.0` — its `CHANGELOG.md` marks both `3.0.0` and `3.1.0`
-   as unreleased and no tag above `v1.0.1` exists. The watcher picks up a real
-   `v3.x` tag the day one lands.
+   Manticore was first pinned to `v1.0.1`, the newest tag at the time, even
+   though `main` already self-declared `3.1.0` — its `CHANGELOG.md` marked
+   both `3.0.0` and `3.1.0` as unreleased and no tag above `v1.0.1` existed.
+   It stayed there until upstream tagged `v4.0.0`, which folds both in; the
+   bump was `bun run sync -- --manticore-tag v4.0.0` plus a hand edit of the
+   `version` in `plugins/bmad-manticore/.claude-plugin/plugin.json` and its
+   marketplace entry (see [versioning.md](versioning.md)).
 
 3. **Decide whether it becomes its own plugin.** Manticore is a sibling
    plugin rather than more skills inside `bmad`, because:
@@ -267,27 +278,26 @@ a live nested `.gitignore` in vendored content.
 ### The installer can silently drop a module's skills
 
 The count a module declares and the count that installs are not the same
-number, and nothing errors. Manticore's
-`plugins/bmad-manticore/runtime/_bmad/manticore/module-help.csv` lists 16
-skills (17 rows, one of which is `_meta`); `plugins/bmad-manticore/skills/`
-contains 15. The missing one is `mc-audio`: its `SKILL.md` frontmatter is
-invalid YAML — `description:` is an unquoted scalar containing `": "` — so
-`yaml.parse` throws, the installer's `parseSkillMd()` returns null, and the
-skill never reaches `skill-manifest.csv`. Fixed on upstream `main`, still
-broken at `v1.0.1`; documented, not patched, because rewriting installer
-output is precisely the merge layer this pipeline exists without.
+number, and nothing errors. At `v1.0.1`, Manticore's `module-help.csv`
+listed 16 skills (17 rows, one of which is `_meta`) while
+`plugins/bmad-manticore/skills/` contained 15. The missing one was
+`mc-audio`: its `SKILL.md` frontmatter was invalid YAML — `description:`
+an unquoted scalar containing `": "` — so `yaml.parse` threw, the
+installer's `parseSkillMd()` returned null, and the skill never reached
+`skill-manifest.csv`. It stayed documented, not patched, until upstream
+fixed it in `v4.0.0`, because rewriting installer output is precisely the
+merge layer this pipeline exists without.
 
 The sync handles the catalog half of this automatically:
 `pruneUnshippedHelpRows()` drops any help row naming a skill the installer
 did not install, and `bun run validate` fails if one survives — a row for a
-missing skill would make `bmad-help` offer and route into nothing. That is
-why the vendored `module-help.csv` carries 16 rows (15 skills plus
-`_meta`) against upstream's 17.
+missing skill would make `bmad-help` offer and route into nothing. At
+`v4.0.0` it has nothing to prune: every declared skill installs.
 
 What the sync cannot repair is a dead cross-reference inside another
-skill's prose: `mc-graphics`, `mc-setup` and `mc-stream-pack` all delegate
-sound work to `mc-audio` by name. Check for those by hand when a module
-under-installs.
+skill's prose: at `v1.0.1`, `mc-graphics`, `mc-setup` and `mc-stream-pack`
+all delegated sound work to the missing `mc-audio` by name. Check for those
+by hand when a module under-installs.
 
 ### A module can depend on a skill the installer stops installing by default
 
@@ -346,8 +356,8 @@ the collision called out in the plugin README and overridden in the user's
 | Command | Purpose |
 |---|---|
 | `bun run sync` | Full regeneration: clone custom sources, run the installer, wipe and rebuild every plugin tree, bump versions, refresh README and badges |
-| `bun run sync -- --tag v6.12.0` | Pin the core release for this run |
-| `bun run sync -- --manticore-tag v1.0.1` | Pin one custom source (`--<id>-tag`) |
+| `bun run sync -- --tag v6.12.4` | Pin the core release for this run |
+| `bun run sync -- --manticore-tag v4.0.0` | Pin one custom source (`--<id>-tag`) |
 | `bun run sync:dry` | Preview only (`--dry-run`) |
 | `bun run sync -- --keep-install` | Keep the throwaway `.upstream-install*` dirs and custom-source clones |
 | `bun run validate` | Version pins, marketplace integrity, skill surface vs installer manifest, runtime template assets, templatization |
