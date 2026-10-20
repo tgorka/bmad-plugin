@@ -164,12 +164,12 @@ describe('runtime template', () => {
       'utf8',
     );
     const resolved: Array<[string, string]> = [
-      ['core', '6.12.0'],
+      ['core', '6.12.4'],
       ['bmb', 'v2.2.2'],
       ['cis', 'v0.3.2'],
       ['gds', 'v0.7.2'],
-      ['tea', 'v1.26.0'],
-      ['bmad-loop', 'v0.11.1'],
+      ['tea', 'v1.27.2'],
+      ['bmad-loop', 'v0.13.2'],
     ];
     for (const [id, version] of resolved) {
       const pinned = JSON.parse(
@@ -228,11 +228,9 @@ describe('marketplace', () => {
     );
     expect(existsSync(helpPath)).toBe(true);
 
-    // Upstream v1.0.1 declares mc-audio, but its frontmatter is invalid
-    // YAML so the installer refuses to install it. The capture drops the
-    // row; shipping it would make bmad-help route to a missing skill.
+    // Every help row must name a shipped skill — a row the installer
+    // refused to install would make bmad-help route to a missing skill.
     const help = readFileSync(helpPath, 'utf8');
-    expect(help).not.toContain(',mc-audio,');
     for (const row of help.split('\n').slice(1).filter(Boolean)) {
       const skill = row.split(',')[1];
       if (!skill || skill === '_meta') continue;

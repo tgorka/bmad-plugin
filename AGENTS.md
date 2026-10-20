@@ -30,7 +30,7 @@ upstream version:
 
 ```sh
 # Regenerate against a new core release (also rewrites the pin)
-bun run sync -- --tag v6.12.0
+bun run sync -- --tag v6.12.4
 
 # …or re-run against the currently pinned versions
 bun run sync
@@ -99,7 +99,10 @@ builds its matrix from `scripts/list-sources.ts`. See
 `docs/module-integration.md`.
 
 Registry module versions cannot be bumped independently: the installer
-resolves them for the pinned core release.
+resolves them for the pinned core release. Since v6.12.2 the registry
+also *pins* some modules at their last v6 release (TEA v1.27.2, CIS
+v0.3.2 — newer releases target v7), so a newer upstream tag on those repos
+is not something a v6 sync can pick up.
 
 ## Release
 

@@ -6,7 +6,7 @@ title/thumbnail package → offered final render, with hard approval gates
 at every taste decision.
 
 Upstream: [bmad-code-org/bmad-manticore](https://github.com/bmad-code-org/bmad-manticore)
-· pinned to **v1.0.1** · 15 skills.
+· pinned to **v4.0.0** · 15 skills.
 
 ## Install
 
@@ -39,25 +39,25 @@ Start with:
 > talk to Manny
 
 Optional lanes (local TTS, music, SFX, model downloads of several GB)
-are opt-in and are configured during `mc-setup`.
+are opt-in and are configured during `mc-setup`. Setting `[editor] name`
+to `resolve` turns on the DaVinci Resolve lane, which needs DaVinci
+Resolve Studio (`mc-setup` checks for it); every other editor keeps the
+fcpxml lane and needs nothing extra.
 
-## Known upstream defects at v1.0.1
+## Known upstream defect at v4.0.0
 
-- **`mc-audio` does not install.** Its `SKILL.md` frontmatter is invalid
-  YAML — `description:` is an unquoted scalar containing `": "`, so the
-  installer's frontmatter parser rejects it and the skill is dropped from
-  the manifest. 16 declared skills install as 15. Fixed on upstream
-  `main`; this plugin will pick the fix up when upstream cuts a tag above
-  `v1.0.1`.
 - **`mc-agent` is not registered in `_bmad/config.toml`'s agent roster.**
   The roster is written by the core install, which does not know about a
   sibling plugin. The skill itself works; only the `bmad-help` agent list
   omits Manny.
 
-`main` self-declares version `3.1.0`, but its `CHANGELOG.md` marks both
-`3.0.0` and `3.1.0` as `- Unreleased` and the repo carries no tag above
-`v1.0.1`. This bundle pins tags, never branches — see
-`docs/plan-6.11-rebuild.md` §D3.
+The v1.0.1 defect that kept `mc-audio` from installing (invalid YAML in
+its frontmatter) is fixed at v4.0.0, so all 15 declared skills install.
+v4.0.0 is upstream's first tag since v1.0.1 and includes the 3.0.0 and
+3.1.0 work that had sat on `main` marked Unreleased; along the way
+`mc-ograf` was removed (OGraf folded into `mc-graphics`, where `ograf`
+stays an alias for the `hyperframes` engine) and the per-skill
+`customize.toml` files were dropped.
 
 ## Provenance
 

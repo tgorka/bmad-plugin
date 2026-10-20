@@ -3,7 +3,7 @@
 Common terms used in this repository. Contributors should use these
 consistently in code, documentation, and issue descriptions.
 
-Verified against the tree on 2026-09-13 (plugin v6.12.0.0): the vocabulary
+Verified against the tree on 2026-10-20 (plugin v6.12.4.0): the vocabulary
 below names files that `plugins/bmad/scripts/init.sh` actually creates from
 `plugins/bmad/runtime/_bmad/`, plus the layers
 `plugins/bmad/runtime/_bmad/scripts/config_utils.py` actually reads. For
@@ -147,7 +147,15 @@ as read-only" in their headers. `_bmad/config.toml` holds team-scoped
 answers (`[core] project_name`, `output_folder`, the `[modules.*]` tables,
 and the `[agents.*]` persona roster); `_bmad/config.user.toml` holds
 answers scoped to one person (`[core] user_name`,
-`communication_language`, `[modules.bmm] user_skill_level`).
+`communication_language`, `[modules.bmm] user_skill_level`). Since
+v6.12.1 `_bmad/config.toml` also carries *defaults* for those three
+user-scope keys, so a fresh clone without `config.user.toml` still
+resolves them; `config.user.toml` overrides them as before.
+
+Also since v6.12.1, 23 bmm skills (shims included) load config through
+`resolve_config.py` instead of reading `_bmad/bmm/config.yaml` directly
+(`grep -rl '_bmad/bmm/config.yaml' plugins/bmad/skills` → 2 files, from
+25), so the `custom/` layers now reach them.
 
 `_bmad/custom/.gitignore` contains exactly `*.user.toml`, which is what
 makes the personal override layer local-only while the team layer commits.

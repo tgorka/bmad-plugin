@@ -4,6 +4,70 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [6.12.4.0] - 2026-10-20
+
+Upstream sync: BMAD-METHOD **v6.12.0 → v6.12.4** (four patch releases).
+Module bumps, all read back from the installer's own
+`_bmad/_config/manifest.yaml`: TEA v1.26.0 → **v1.27.2**, BMad Loop
+v0.11.1 → **v0.13.2**. BMB **v2.2.2**, CIS **v0.3.2** and GDS **v0.7.2**
+are unchanged. BMad Manticore v1.0.1 → **v4.0.0** (custom source, its
+first tag since v1.0.1). The module template stays on **f1440ec8**.
+Skill counts unchanged: **111** in `bmad`, **15** in `bmad-manticore`.
+
+### Changed
+
+- **23 bmm skills (shims included) now load config through
+  `resolve_config.py`** instead of reading `_bmad/bmm/config.yaml`
+  directly (upstream v6.12.1), so `_bmad/custom/config.toml` and
+  `config.user.toml` overrides reach them. `_bmad/config.toml` now
+  carries defaults for the user-scope keys (`user_name`,
+  `communication_language`, `user_skill_level`), so `bmad-build` and
+  `bmad-build-auto` render on a fresh clone without `config.user.toml`.
+  The new `user_name` default is templatized like the other
+  installer-baked values and substituted by `/bmad:init`. **Re-run
+  `/bmad:init` in existing repos** — from a v6.12.0.0 init it refreshes
+  12 installer-managed files, `config.toml` among them, and leaves
+  `_bmad/custom/` alone.
+- `bmad-create-epics-and-stories` writes `status: draft` and keeps it
+  when final validation fails, listing the open checks (v6.12.1).
+- Party mode's collision check sees aliases and custom-only member codes
+  (v6.12.1); helper scripts write UTF-8 on Windows (v6.12.2).
+- **TEA v1.27.2**: deterministic knowledge-fragment selection, one
+  evidence ledger per NFR audit, stable criterion ids in ATDD red-phase
+  output, and `bmad-tea` asks one focused question when a request could
+  route to several workflows.
+- **BMad Loop v0.13.2**: `bmad-loop-resolve` gains `--adopt-branch` and
+  `--reverify`; `bmad-loop-sweep` files retrospective action items into
+  the deferred-work ledger.
+- **BMad Manticore v4.0.0**: a DaVinci Resolve lane across every stage
+  (`[editor] name = "resolve"`), `verify_transcript.py` and
+  `verify_anchors.py` gates, and caption/chapter verifiers. `mc-ograf` is
+  removed upstream (OGraf folded into `mc-graphics`; `ograf` stays an
+  engine alias) and the per-skill `customize.toml` files are gone.
+  `plugin.json` and the marketplace entry move to `4.0.0`.
+
+### Fixed
+
+- **`mc-audio` installs.** At v1.0.1 its frontmatter was invalid YAML, so
+  the installer dropped it and the help catalog had to be pruned of its
+  row; v4.0.0 fixes the frontmatter, so the skill ships and its
+  `bmad-help` row routes somewhere real. The plugin-tree assertion that
+  pinned the old defect is removed; the invariant that every help row
+  names a shipped skill stays.
+
+### Notes
+
+- **TEA stops at v1.27.2 on purpose.** TEA v2.x/v3.x and newer CIS
+  releases target BMAD v7. v6.12.2 pins both in the installer registry at
+  their last v6 releases and v6.12.4 makes that pin win without a
+  picker, so a weekly watcher alert for TEA v3.x is expected and is not
+  something a v6 sync can take.
+- BMAD v7 is in preview through a new `bmad-code-org/bmad-installer`
+  (a wrapper around `npx skills`). npm `bmad-method@latest` is still
+  6.12.4, so the sync stays on the v6 installer.
+- `--shims` stays: GDS is still v0.7.2 and still dispatches on the shim
+  ids.
+
 ## [6.12.0.0] - 2026-09-13
 
 ### Added

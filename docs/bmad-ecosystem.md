@@ -1,8 +1,8 @@
 # BMAD Ecosystem
 
 > What this bundle ships, and the state of the wider `bmad-code-org`
-> organization. Last audited: **2026-09-13** against plugin v6.12.0.0 /
-> core BMAD v6.12.0.
+> organization. Last audited: **2026-10-20** against plugin v6.12.4.0 /
+> core BMAD v6.12.4.
 >
 > Every count, version and repo claim below was derived in the audit —
 > from this tree or from `gh api`. The derivation is named beside the
@@ -17,8 +17,8 @@ marketplace name `bmad-method`:
 
 | Plugin | Source | Version | Skills |
 |--------|--------|---------|--------|
-| `bmad` | `./plugins/bmad` | 6.12.0.0 | 111 |
-| `bmad-manticore` | `./plugins/bmad-manticore` | 1.0.1 | 15 |
+| `bmad` | `./plugins/bmad` | 6.12.4.0 | 111 |
+| `bmad-manticore` | `./plugins/bmad-manticore` | 4.0.0 | 15 |
 
 Skill counts: `ls plugins/bmad/skills | wc -l` → 111,
 `ls plugins/bmad-manticore/skills | wc -l` → 15. Versions cross-checked
@@ -44,13 +44,13 @@ sources. Its `kind` field is the delivery vocabulary used below:
 
 | Module | Code | Repo | Delivery | Pinned version | Personas | Skills |
 |--------|------|------|----------|----------------|----------|--------|
-| Core | `core` | `BMAD-METHOD` | installer | v6.12.0 | 0 | 14 |
-| BMM | `bmm` | `BMAD-METHOD` (same monorepo) | installer | 6.12.0 | 5 | 36 |
-| TEA | `tea` | `bmad-method-test-architecture-enterprise` | installer module | v1.26.0 | 1 (Murat) | 10 |
+| Core | `core` | `BMAD-METHOD` | installer | v6.12.4 | 0 | 14 |
+| BMM | `bmm` | `BMAD-METHOD` (same monorepo) | installer | 6.12.4 | 5 | 36 |
+| TEA | `tea` | `bmad-method-test-architecture-enterprise` | installer module (registry pin) | v1.27.2 | 1 (Murat) | 10 |
 | BMB | `bmb` | `bmad-builder` | installer module | v2.2.2 | 0 in roster (see below) | 5 |
 | CIS | `cis` | `bmad-module-creative-intelligence-suite` | installer module | v0.3.2 | 6 | 10 |
 | GDS | `gds` | `bmad-module-game-dev-studio` | installer module | v0.7.2 | 5 | 33 |
-| Loop | `bmad-loop` | `bmad-loop` | installer module | v0.11.1 | 0 | 3 |
+| Loop | `bmad-loop` | `bmad-loop` | installer module | v0.13.2 | 0 | 3 |
 | **Total** | | | | | **17** | **111** |
 
 Derivations:
@@ -147,28 +147,28 @@ profile is different in kind:
 - `mc-agent` ("talk to Manny") is an always-on persona, which a user who
   only wants planning skills should not have to carry.
 
-Pinned to **v1.0.1**. Upstream `main` self-declares 3.1.0, but its
-CHANGELOG marks both 3.0.0 and 3.1.0 "- Unreleased" and
-`gh api repos/bmad-code-org/bmad-manticore/tags` returns only `v1.0.1`
-and `v1.0.0`. Pinning to a self-declared, untagged version would make the
-pin unreproducible, so the tag wins.
+Pinned to **v4.0.0**, upstream's first tag since v1.0.1 (`gh api
+repos/bmad-code-org/bmad-manticore/tags` → `v4.0.0`, `v1.0.1`, `v1.0.0`).
+It folds in the 3.0.0 and 3.1.0 work that sat on `main` marked
+"- Unreleased" while the pin held at v1.0.1 — a self-declared, untagged
+version would have made the pin unreproducible, so the tag won until there
+was a newer one. Since v1.0.1, `mc-ograf` was removed (OGraf folded into
+`mc-graphics`), `mc-audio` installs, a DaVinci Resolve lane was added and
+every per-skill `customize.toml` was dropped; the count is 15 either way.
 
-Two upstream defects at v1.0.1 are documented rather than patched — this
-repo is a regeneration pipeline, and a local patch would be silently
-reverted by the next sync:
+One upstream defect is documented rather than patched — this repo is a
+regeneration pipeline, and a local patch would be silently reverted by
+the next sync:
 
-1. **16 declared skills install as 15.** `mc-audio`'s frontmatter is
-   invalid YAML: `description:` is an unquoted plain scalar containing
-   `": "`. Verified against
-   `repos/bmad-code-org/bmad-manticore/contents/skills/mc-audio/SKILL.md?ref=v1.0.1`.
-   The installer's `parseSkillMd` drops it, so
-   `plugins/bmad-manticore/skills/` holds 15 directories while
-   `gh api .../contents/skills?ref=v1.0.1` counts 16, and
-   `plugins/bmad-manticore/runtime/_bmad/manticore/module-help.csv` still
-   advertises an `mc-audio` row.
-2. **`mc-agent` is not in the core `[agents.*]` roster.**
-   `grep -c mc-agent plugins/bmad/runtime/_bmad/config.toml` → 0, so
-   roster-driven consumers (help routing, party mode) do not see Manny.
+- **`mc-agent` is not in the core `[agents.*]` roster.**
+  `grep -c mc-agent plugins/bmad/runtime/_bmad/config.toml` → 0, so
+  roster-driven consumers (help routing, party mode) do not see Manny.
+
+The other v1.0.1 defect — `mc-audio`'s frontmatter was invalid YAML, so
+16 declared skills installed as 15 and the help catalog advertised a
+missing skill — is fixed at v4.0.0: all 15 declared skills install, and
+`module-help.csv` carries 16 rows (15 skills plus `_meta`) with nothing
+pruned.
 
 `/bmad:init --with-plugin bmad-manticore` registers the sibling: it
 materializes `_bmad/manticore/{config.yaml,module-help.csv}` and merges
@@ -179,12 +179,13 @@ plugin is enabled.
 
 ## The wider bmad-code-org organization
 
-`gh api orgs/bmad-code-org/repos?per_page=100` returns 16 repositories.
-All of them:
+`gh api orgs/bmad-code-org/repos?per_page=100` returns 19 repositories.
+All of them, plus one that is gone:
 
 | Repo | Role | Status |
 |------|------|--------|
-| `BMAD-METHOD` | Core + BMM monorepo; owns `bmad-modules.yaml` and the installer | Active, bundled |
+| `BMAD-METHOD` | Core + BMM monorepo; owns `bmad-modules.yaml` and the v6 installer | Active, bundled |
+| `bmad-installer` | "Installs and updates BMad Method modules. A thin wrapper around `npx skills`." — the v7 installer, created 2026-09-22; its `modules.yaml` lists only `core-tools`, `method` and `cis` so far | Active, not used — the sync stays on the v6 `npx bmad-method@<tag> install` path until v7 ships as `latest` (`npm view bmad-method dist-tags` → `latest: 6.12.4`) |
 | `bmad-builder` | BMB module | Active, bundled |
 | `bmad-module-creative-intelligence-suite` | CIS module | Active, bundled |
 | `bmad-module-game-dev-studio` | GDS module | Active, bundled |
@@ -193,7 +194,7 @@ All of them:
 | `bmad-manticore` | Video production module | Active, bundled as its own plugin |
 | `bmad-module-template` | Module-authoring scaffold | Active, vendored as an asset (not published) |
 | `bmad-plugins-marketplace` | Official module registry (separate repo, not a Claude marketplace) | Active, not bundled |
-| `bmad-skills` | Generated publish target for BMAD-METHOD skills | **No longer listed** in the org as of 2026-09-13 |
+| `bmad-skills` | Generated publish target for BMAD-METHOD skills | **No longer listed** in the org (404 since the 2026-09-13 audit) |
 | `bmad-plugins` | "Plugin distribution for the BMAD Method — all agent platforms except Claude and Vercel skills" | Active, not bundled — it is the non-Claude distribution channel, so it is the sibling of this repo, not a source for it |
 | `bmad-eval-quality` | Evaluation/quality tooling for BMAD itself | Active, not bundled — tooling, not a module; it ships no `module.yaml` |
 | `cis-skills` | "Temporary mirror of the CIS npx-skills-distribution branch - FOR TESTING ONLY" | Active, not bundled — a mirror by its own description; CIS reaches the bundle through the installer registry |
@@ -231,11 +232,14 @@ Distinguishing these is the easiest way to misread the ecosystem:
 - **`bmad-modules.yaml`**, at the root of `BMAD-METHOD` — the *installer's*
   registry. It decides what the installer picker offers, in what order,
   under which `code`, on which `default_channel`, and whether an entry is
-  `deprecated`. Verified at `ref=v6.12.0`: it lists `bmad-builder`,
+  `deprecated`. Verified at `ref=v6.12.4`: it lists `bmad-builder`,
   `bmad-creative-intelligence-suite`,
   `bmad-method-test-architecture-enterprise`, `bmad-loop`,
   `bmad-game-dev-studio`, then `bmad-automator` and
-  `bmad-method-wds-expansion` under a "Deprecated" comment block.
+  `bmad-method-wds-expansion` under a "Deprecated" comment block. Since
+  v6.12.2 an entry can also carry `pin: <tag>` — "use it when newer
+  releases no longer work with this installer"; CIS is pinned at
+  `v0.3.2` and TEA at `v1.27.2`, because their newer releases target v7.
 - **`bmad-plugins-marketplace`** — a *separate repository* upstream runs as
   the community-facing registry. It has no
   `.claude-plugin/marketplace.json` of its own (404); it holds
@@ -385,13 +389,13 @@ Source of truth: `scripts/lib/upstream-sources.ts`. All eight entries are
 
 | Source id | Repo | `kind` | Pin |
 |-----------|------|--------|-----|
-| `core` | `bmad-code-org/BMAD-METHOD` | `core` | v6.12.0 |
-| `tea` | `bmad-code-org/bmad-method-test-architecture-enterprise` | `registry` | v1.26.0 |
+| `core` | `bmad-code-org/BMAD-METHOD` | `core` | v6.12.4 |
+| `tea` | `bmad-code-org/bmad-method-test-architecture-enterprise` | `registry` | v1.27.2 |
 | `bmb` | `bmad-code-org/bmad-builder` | `registry` | v2.2.2 |
 | `cis` | `bmad-code-org/bmad-module-creative-intelligence-suite` | `registry` | v0.3.2 |
 | `gds` | `bmad-code-org/bmad-module-game-dev-studio` | `registry` | v0.7.2 |
-| `bmad-loop` | `bmad-code-org/bmad-loop` | `registry` | v0.11.1 |
-| `manticore` | `bmad-code-org/bmad-manticore` | `custom` | v1.0.1 |
+| `bmad-loop` | `bmad-code-org/bmad-loop` | `registry` | v0.13.2 |
+| `manticore` | `bmad-code-org/bmad-manticore` | `custom` | v4.0.0 |
 | `module-template` | `bmad-code-org/bmad-module-template` | `vendored` | `f1440ec8…` |
 
 The core repo slug is `bmad-code-org/BMAD-METHOD`. The older
